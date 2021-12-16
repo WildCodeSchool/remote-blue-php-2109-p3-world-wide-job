@@ -21,8 +21,10 @@ class OfferFixtures extends Fixture implements DependentFixtureInterface
     public function load(ObjectManager $manager): void
     {
         $maxOffer = 3;
+        $counter = -1;
         for ($i = 0; $i < $maxOffer; $i++) {
             foreach (self::OFFER as $name) {
+                $counter++;
                 $offer = new Offer();
                 $offer->setName($name)
                     ->setCity('Lyon')
@@ -56,6 +58,7 @@ class OfferFixtures extends Fixture implements DependentFixtureInterface
                     ->setTutor('Mathieu Dupont')
                     ->setDrivingLicence(true)
                     ->setCompany($this->getReference('company_' . rand(0, 4)));
+                $this->addReference('offer_' . $counter, $offer);
                 $manager->persist($offer);
             }
         }

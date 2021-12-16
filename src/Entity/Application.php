@@ -26,13 +26,13 @@ class Application
      * @ORM\ManyToOne(targetEntity=Student::class, inversedBy="applications")
      * @ORM\JoinColumn(nullable=false)
      */
-    private ?Student $student;
+    private Student $student;
 
     /**
      * @ORM\ManyToOne(targetEntity=Offer::class, inversedBy="applications")
      * @ORM\JoinColumn(nullable=false)
      */
-    private ?Offer $offer;
+    private Offer $offer;
 
     public function getId(): ?int
     {
@@ -56,7 +56,7 @@ class Application
         return $this->student;
     }
 
-    public function setStudent(?Student $student): self
+    public function setStudent(Student $student): self
     {
         $this->student = $student;
 
@@ -68,7 +68,7 @@ class Application
         return $this->offer;
     }
 
-    public function setOffer(?Offer $offer): self
+    public function setOffer(Offer $offer): self
     {
         $this->offer = $offer;
 
