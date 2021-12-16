@@ -19,7 +19,7 @@ class CurriculumFixtures extends Fixture implements DependentFixtureInterface
                 ->setLanguage('English')
                 ->setDrivingLicence(true)
                 ->setStudent($this->getReference('student_' . $i));
-            $this->setReference('curriculum_' . $i);
+            $this->addReference('curriculum_' . $i, $curriculum);
             $manager->persist($curriculum);
         };
         $manager->flush();
