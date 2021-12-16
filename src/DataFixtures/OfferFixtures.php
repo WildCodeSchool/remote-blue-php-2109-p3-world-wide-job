@@ -20,33 +20,44 @@ class OfferFixtures extends Fixture implements DependentFixtureInterface
 
     public function load(ObjectManager $manager): void
     {
-        foreach (self::OFFER as $key => $name) {
-            $offer = new Offer();
-            $offer->setName($name)
-                ->setCity('Lyon')
-                ->setContractType(rand(1, 3))
-                ->setDuration(rand(1, 6))
-                ->setShortDescription('Ceci est une description courte')
-                ->setDateOfPublication(new DateTime())
-                ->setLongDescription('
-                Lorem ipsum dolor sit amet. Ad voluptatem neque et maxime distinctio et voluptate fugiat quo voluptas
-                 aspernatur. Et corporis nihil vel vero nihil At quia modi sit provident libero in dolores aperiam.
-                Hic eius eveniet ex sunt consequuntur aut exercitationem delectus et perferendis internos et iure harum
-                 est nesciunt rerum ea perspiciatis rerum. Est error blanditiis est unde delectus et nihil voluptate
-                  sed amet iure? Vel nisi inventore a iste consequatur 
-                sed officia dolorum et autem ratione ea iure minus et dolorem laboriosam qui consequatur labore.
-                 Et alias tenetur ad molestiae ducimus in sequi voluptates et fuga autem et laboriosam error sed illum 
-                 fugit quo excepturi mollitia. 
-                A eaque natus ut veritatis quidem ea deleniti eius et voluptas illo id velit iusto est perferendis 
-                Quis. Ea atque recusandae ab earum omnis id sint laboriosam est voluptatem ullam. Qui numquam tempora 
-                et minus delectus et repellat quia ea sint assumenda.')
-                ->setFieldOfActivity(rand(1, 4))
-                ->setDateIn(new DateTime('2021-01-12'))
-                ->setWage(rand(600, 1600))
-                ->setTutor('Mathieu Dupont')
-                ->setDrivingLicence(true)
-                ->setCompany($this->getReference('company_' . $key));
-            $manager->persist($offer);
+        $maxOffer = 3;
+        for ($i = 0; $i < $maxOffer; $i++) {
+            foreach (self::OFFER as $name) {
+                $offer = new Offer();
+                $offer->setName($name)
+                    ->setCity('Lyon')
+                    ->setContractType(rand(1, 3))
+                    ->setDuration(rand(1, 6))
+                    ->setShortDescription('Ceci est une description courte')
+                    ->setDateOfPublication(new DateTime())
+                    ->setLongDescription('
+                    Lorem ipsum dolor sit amet. Ad voluptatem neque et 
+                    maxime distinctio et voluptate fugiat quo voluptas
+                    aspernatur. Et corporis nihil vel vero nihil At quia 
+                    modi sit provident libero in dolores aperiam.
+                    Hic eius eveniet ex sunt consequuntur aut 
+                    exercitationem delectus et perferendis internos et iure harum
+                    est nesciunt rerum ea perspiciatis rerum. 
+                    Est error blanditiis est unde delectus et nihil voluptate
+                    sed amet iure? Vel nisi inventore a iste consequatur 
+                    sed officia dolorum et autem ratione ea iure minus et dolorem 
+                    laboriosam qui consequatur labore.
+                    Et alias tenetur ad molestiae ducimus in sequi voluptates et 
+                    fuga autem et laboriosam error sed illum 
+                    fugit quo excepturi mollitia. 
+                    A eaque natus ut veritatis quidem ea deleniti eius et voluptas 
+                    illo id velit iusto est perferendis 
+                    Quis. Ea atque recusandae ab earum omnis id sint laboriosam 
+                    est voluptatem ullam. Qui numquam tempora 
+                    et minus delectus et repellat quia ea sint assumenda.')
+                    ->setFieldOfActivity(rand(1, 4))
+                    ->setDateIn(new DateTime('2021-01-12'))
+                    ->setWage(rand(600, 1600))
+                    ->setTutor('Mathieu Dupont')
+                    ->setDrivingLicence(true)
+                    ->setCompany($this->getReference('company_' . rand(0, 4)));
+                $manager->persist($offer);
+            }
         }
         $manager->flush();
     }

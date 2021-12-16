@@ -43,17 +43,19 @@ class Curriculum
      * @ORM\OneToOne(targetEntity=Student::class, inversedBy="curriculum", cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=false)
      */
-    private ?Student $student;
+    private Student $student;
 
     /**
      * @ORM\OneToMany(targetEntity=Experience::class, mappedBy="cv")
+     * @var ArrayCollection<int, Experience>
      */
-    private ArrayCollection $experiences;
+    private Collection $experiences;
 
     /**
      * @ORM\OneToMany(targetEntity=Training::class, mappedBy="curriculum")
+     * @var ArrayCollection<int, Training>
      */
-    private ArrayCollection $trainings;
+    private Collection $trainings;
 
     public function __construct()
     {
