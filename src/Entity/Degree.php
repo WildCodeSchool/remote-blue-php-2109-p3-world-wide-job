@@ -23,7 +23,7 @@ class Degree
      * @ORM\ManyToOne(targetEntity=School::class, inversedBy="degrees")
      * @ORM\JoinColumn(nullable=false)
      */
-    private ?School $school;
+    private School $school;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -32,8 +32,9 @@ class Degree
 
     /**
      * @ORM\ManyToMany(targetEntity=Student::class, mappedBy="degree")
+     * @var ArrayCollection<int, Student>
      */
-    private ArrayCollection $students;
+    private Collection $students;
 
     public function __construct()
     {
@@ -50,7 +51,7 @@ class Degree
         return $this->school;
     }
 
-    public function setSchool(?School $school): self
+    public function setSchool(School $school): self
     {
         $this->school = $school;
 

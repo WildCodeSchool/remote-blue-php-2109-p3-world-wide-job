@@ -163,18 +163,6 @@ class School
         return $this;
     }
 
-    public function removeStudent(Student $student): self
-    {
-        if ($this->students->removeElement($student)) {
-            // set the owning side to null (unless already changed)
-            if ($student->getSchool() == $this) {
-                $student->setSchool(null);
-            }
-        }
-
-        return $this;
-    }
-
     /**
      * @return Collection|Degree[]
      */
@@ -188,18 +176,6 @@ class School
         if (!$this->degrees->contains($degree)) {
             $this->degrees[] = $degree;
             $degree->setSchool($this);
-        }
-
-        return $this;
-    }
-
-    public function removeDegree(Degree $degree): self
-    {
-        if ($this->degrees->removeElement($degree)) {
-            // set the owning side to null (unless already changed)
-            if ($degree->getSchool() === $this) {
-                $degree->setSchool(null);
-            }
         }
 
         return $this;

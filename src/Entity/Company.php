@@ -172,16 +172,4 @@ class Company
 
         return $this;
     }
-
-    public function removeOffer(Offer $offer): self
-    {
-        if ($this->offers->removeElement($offer)) {
-            // set the owning side to null (unless already changed)
-            if ($offer->getCompany() === $this) {
-                $offer->setCompany(null);
-            }
-        }
-
-        return $this;
-    }
 }

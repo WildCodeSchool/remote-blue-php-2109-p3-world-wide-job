@@ -18,6 +18,7 @@ class StudentFixtures extends Fixture implements DependentFixtureInterface
                     ->setIne('12345678910')
                     ->setSchool($this->getReference('school_' . $i))
                     ->setUser($this->getReference('user_' . $i));
+            $this->addReference('student_' . $i, $student);
             $manager->persist($student);
         }
         $manager->flush();
