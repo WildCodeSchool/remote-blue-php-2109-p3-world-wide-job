@@ -30,6 +30,7 @@ class CompanyFixtures extends Fixture implements DependentFixtureInterface
                 ->setUser($this->getReference('user_' . $key));
             $manager->persist($company);
         }
+        $this->addReference('company_' . $key, $company);
         $manager->flush();
     }
 
