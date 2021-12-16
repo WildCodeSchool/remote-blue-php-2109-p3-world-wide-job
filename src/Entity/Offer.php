@@ -88,12 +88,13 @@ class Offer
      * @ORM\ManyToOne(targetEntity=Company::class, inversedBy="offers")
      * @ORM\JoinColumn(nullable=false)
      */
-    private ?Company $company;
+    private Company $company;
 
     /**
      * @ORM\OneToMany(targetEntity=Application::class, mappedBy="offer")
+     * @var ArrayCollection<int, Application>
      */
-    private ArrayCollection $applications;
+    private Collection $applications;
 
     public function __construct()
     {
@@ -266,7 +267,7 @@ class Offer
         return $this->company;
     }
 
-    public function setCompany(?Company $company): self
+    public function setCompany(Company $company): self
     {
         $this->company = $company;
 

@@ -17,10 +17,9 @@ class UserFixtures extends Fixture
         'Constant',
     ];
 
-    public const MAXROLE = 2;
-
     public function load(ObjectManager $manager): void
     {
+        $maxRole = 2;
         foreach (self::NAME as $key => $name) {
             $user = new User();
             $user->setMail('jean.dupont@gmail.com')
@@ -35,7 +34,7 @@ class UserFixtures extends Fixture
                 ->setCity('Saint Siméon de Bressieux')
                 ->setZip(38870)
                 ->setCountry('France')
-                ->setRole(($key <= self::MAXROLE && $key >= 0) ? ($key + 1) : rand(1, 3));
+                ->setRole(($key <= $maxRole && $key >= 0) ? ($key + 1) : rand(1, 3));
             $manager->persist($user);
             $this->addReference('user_' . $key, $user);
         }

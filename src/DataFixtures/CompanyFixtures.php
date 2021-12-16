@@ -28,9 +28,9 @@ class CompanyFixtures extends Fixture implements DependentFixtureInterface
                 ->setSiren('123456789')
                 ->setDescription('Ceci est une déscription test')
                 ->setUser($this->getReference('user_' . $key));
+            $this->addReference('company_' . $key, $company);
             $manager->persist($company);
         }
-        $this->addReference('company_' . $key, $company);
         $manager->flush();
     }
 

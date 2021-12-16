@@ -25,26 +25,27 @@ class Student
     private ?string $picture;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
+     * @ORM\Column(type="string", nullable=true)
      */
-    private ?int $ine;
+    private ?string $ine;
 
     /**
      * @ORM\OneToOne(targetEntity=User::class, inversedBy="student", cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=false)
      */
-    private ?User $user;
+    private User $user;
 
     /**
      * @ORM\ManyToOne(targetEntity=School::class, inversedBy="students")
      * @ORM\JoinColumn(nullable=false)
      */
-    private ?School $school;
+    private School $school;
 
     /**
      * @ORM\ManyToMany(targetEntity=Degree::class, inversedBy="students")
+     * @var ArrayCollection<int, Degree>
      */
-    private ArrayCollection $degree;
+    private Collection $degree;
 
     /**
      * @ORM\OneToOne(targetEntity=Curriculum::class, mappedBy="student", cascade={"persist", "remove"})
@@ -53,8 +54,9 @@ class Student
 
     /**
      * @ORM\OneToMany(targetEntity=Application::class, mappedBy="student")
+     * @var ArrayCollection<int, Application>
      */
-    private ArrayCollection $applications;
+    private Collection $applications;
 
     public function __construct()
     {
@@ -79,12 +81,12 @@ class Student
         return $this;
     }
 
-    public function getIne(): ?int
+    public function getIne(): ?string
     {
         return $this->ine;
     }
 
-    public function setIne(?int $ine): self
+    public function setIne(?string $ine): self
     {
         $this->ine = $ine;
 
@@ -108,7 +110,7 @@ class Student
         return $this;
     }
 
-    public function setSchool(?School $school): self
+    public function setSchool(School $school): self
     {
         $this->school = $school;
 

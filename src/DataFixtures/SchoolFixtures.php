@@ -27,6 +27,7 @@ class SchoolFixtures extends Fixture implements DependentFixtureInterface
                 ->setSchoolDesc('Texte de présentation de la formation')
                 ->setType(rand(1, 9))
                 ->setUser($this->getReference('user_' . $key));
+            $this->addReference('school_' . $key, $school);
             $manager->persist($school);
         }
         $manager->flush();
