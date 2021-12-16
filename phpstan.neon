@@ -12,3 +12,5 @@ parameters:
     reportUnmatchedIgnoredErrors: false
     checkGenericClassInNonGenericObjectType: false
     checkMissingIterableValueType: false
+    doctrine:
+        objectManagerLoader: tests/object-manager.php
