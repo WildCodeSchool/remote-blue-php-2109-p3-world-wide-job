@@ -1,0 +1,186 @@
+<?php
+
+namespace App\Entity;
+
+use App\Repository\CompanyRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity(repositoryClass=CompanyRepository::class)
+ */
+class Company
+{
+    /**
+     * @ORM\Id
+     * @ORM\GeneratedValue
+     * @ORM\Column(type="integer")
+     */
+    protected int $id;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private ?string $logo;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private ?string $companyName;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private ?string $companyFormat;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private ?int $siret;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private ?int $siren;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private ?string $description;
+
+    /**
+     * @ORM\OneToOne(targetEntity=User::class, inversedBy="company", cascade={"persist", "remove"})
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private ?User $user;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Offer::class, mappedBy="company")
+     */
+    private ArrayCollection $offers;
+
+    public function __construct()
+    {
+        $this->offers = new ArrayCollection();
+    }
+
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    public function getLogo(): ?string
+    {
+        return $this->logo;
+    }
+
+    public function setLogo(?string $logo): self
+    {
+        $this->logo = $logo;
+
+        return $this;
+    }
+
+    public function getCompanyName(): ?string
+    {
+        return $this->companyName;
+    }
+
+    public function setCompanyName(?string $companyName): self
+    {
+        $this->companyName = $companyName;
+
+        return $this;
+    }
+
+    public function getCompanyFormat(): ?string
+    {
+        return $this->companyFormat;
+    }
+
+    public function setCompanyFormat(?string $companyFormat): self
+    {
+        $this->companyFormat = $companyFormat;
+
+        return $this;
+    }
+
+    public function getSiret(): ?int
+    {
+        return $this->siret;
+    }
+
+    public function setSiret(?int $siret): self
+    {
+        $this->siret = $siret;
+
+        return $this;
+    }
+
+    public function getSiren(): ?int
+    {
+        return $this->siren;
+    }
+
+    public function setSiren(?int $siren): self
+    {
+        $this->siren = $siren;
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(?string $description): self
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(User $user): self
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Offer[]
+     */
+    public function getOffers(): Collection
+    {
+        return $this->offers;
+    }
+
+    public function addOffer(Offer $offer): self
+    {
+        if (!$this->offers->contains($offer)) {
+            $this->offers[] = $offer;
+            $offer->setCompany($this);
+        }
+
+        return $this;
+    }
+
+    public function removeOffer(Offer $offer): self
+    {
+        if ($this->offers->removeElement($offer)) {
+            // set the owning side to null (unless already changed)
+            if ($offer->getCompany() === $this) {
+                $offer->setCompany(null);
+            }
+        }
+
+        return $this;
+    }
+}
