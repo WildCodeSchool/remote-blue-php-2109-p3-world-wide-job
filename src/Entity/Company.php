@@ -59,7 +59,7 @@ class Company
      * @ORM\OneToMany(targetEntity=Offer::class, mappedBy="company")
      * @var ArrayCollection<int, Offer>
      */
-    private ArrayCollection $offers;
+    private Collection $offers;
 
     public function __construct()
     {

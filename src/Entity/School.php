@@ -54,13 +54,13 @@ class School
      * @ORM\OneToMany(targetEntity=Student::class, mappedBy="school")
      * @var ArrayCollection<int, Student>
      */
-    private ArrayCollection $students;
+    private Collection $students;
 
     /**
      * @ORM\OneToMany(targetEntity=Degree::class, mappedBy="school")
      * @var ArrayCollection<int, Degree>
      */
-    private ArrayCollection $degrees;
+    private Collection $degrees;
 
     public function __construct()
     {
