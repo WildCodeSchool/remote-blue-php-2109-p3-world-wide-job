@@ -48,15 +48,17 @@ class School
      * @ORM\OneToOne(targetEntity=User::class, inversedBy="school", cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=false)
      */
-    private ?User $user;
+    private User $user;
 
     /**
      * @ORM\OneToMany(targetEntity=Student::class, mappedBy="school")
+     * @var ArrayCollection<int, Student>
      */
     private ArrayCollection $students;
 
     /**
      * @ORM\OneToMany(targetEntity=Degree::class, mappedBy="school")
+     * @var ArrayCollection<int, Degree>
      */
     private ArrayCollection $degrees;
 

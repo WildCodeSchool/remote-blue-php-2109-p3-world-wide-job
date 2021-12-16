@@ -48,9 +48,9 @@ class User
     private ?\DateTimeInterface $birthdate;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
+     * @ORM\Column(type="string", nullable=true)
      */
-    private ?int $phone;
+    private ?string $phone;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -174,12 +174,12 @@ class User
         return $this;
     }
 
-    public function getPhone(): ?int
+    public function getPhone(): ?string
     {
         return $this->phone;
     }
 
-    public function setPhone(?int $phone): self
+    public function setPhone(?string $phone): self
     {
         $this->phone = $phone;
 

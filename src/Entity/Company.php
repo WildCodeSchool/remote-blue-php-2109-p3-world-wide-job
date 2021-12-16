@@ -35,14 +35,14 @@ class Company
     private ?string $companyFormat;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
+     * @ORM\Column(type="string", nullable=true)
      */
-    private ?int $siret;
+    private ?string $siret;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
+     * @ORM\Column(type="string", nullable=true)
      */
-    private ?int $siren;
+    private ?string $siren;
 
     /**
      * @ORM\Column(type="text", nullable=true)
@@ -51,12 +51,13 @@ class Company
 
     /**
      * @ORM\OneToOne(targetEntity=User::class, inversedBy="company", cascade={"persist", "remove"})
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn()
      */
     private ?User $user;
 
     /**
      * @ORM\OneToMany(targetEntity=Offer::class, mappedBy="company")
+     * @var ArrayCollection<int, Offer>
      */
     private ArrayCollection $offers;
 
@@ -106,24 +107,24 @@ class Company
         return $this;
     }
 
-    public function getSiret(): ?int
+    public function getSiret(): ?string
     {
         return $this->siret;
     }
 
-    public function setSiret(?int $siret): self
+    public function setSiret(?string $siret): self
     {
         $this->siret = $siret;
 
         return $this;
     }
 
-    public function getSiren(): ?int
+    public function getSiren(): ?string
     {
         return $this->siren;
     }
 
-    public function setSiren(?int $siren): self
+    public function setSiren(?string $siren): self
     {
         $this->siren = $siren;
 
