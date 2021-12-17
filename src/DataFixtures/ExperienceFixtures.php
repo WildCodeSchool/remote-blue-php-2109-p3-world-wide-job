@@ -21,7 +21,7 @@ class ExperienceFixtures extends Fixture implements DependentFixtureInterface
                     ->setCompany('Airbus')
                     ->setLocalisation('Toulouse')
                     ->setContractType(rand(1, 3))
-                    ->setDateIn(new DateTime('20016-10-12'))
+                    ->setDateIn(new DateTime('2016-10-12'))
                     ->setDateOut(new DateTime('2019-10-12'))
                     ->setDescription('Aut dolorem repudiandae ut odio ut sint officia eos officia quia est 
                     provident minima quo dolores eius. Et quam modi aut eaque saepe est aliquid cumque a libero 
