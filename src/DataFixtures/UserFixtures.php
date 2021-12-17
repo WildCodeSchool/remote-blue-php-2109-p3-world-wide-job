@@ -26,7 +26,7 @@ class UserFixtures extends Fixture
     public function load(ObjectManager $manager): void
     {
         $counter = 0;
-        foreach (self::USERROLES as $key => $role) {
+        foreach (self::USERROLES as $role) {
             $maxUser = 4;
             for ($i = 0; $i <= $maxUser; $i++) {
                 $counter++;
