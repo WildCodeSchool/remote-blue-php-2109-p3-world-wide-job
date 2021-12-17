@@ -17,7 +17,7 @@ class StudentFixtures extends Fixture implements DependentFixtureInterface
             $student->setPicture('https://picsum.photos/400/400')
                     ->setIne('12345678910')
                     ->setSchool($this->getReference('school_' . $i))
-                    ->setUser($this->getReference('user_' . $i));
+                    ->setUser($this->getReference('ROLE_STUDENT_' . $i));
             $this->addReference('student_' . $i, $student);
             $manager->persist($student);
         }

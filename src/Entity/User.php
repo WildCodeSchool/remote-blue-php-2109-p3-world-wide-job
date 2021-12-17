@@ -68,7 +68,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private ?string $adresss2;
+    private ?string $adress2;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -262,14 +262,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getAdresss2(): ?string
+    public function getAdress2(): ?string
     {
-        return $this->adresss2;
+        return $this->adress2;
     }
 
-    public function setAdresss2(?string $adresss2): self
+    public function setAdress2(?string $adress2): self
     {
-        $this->adresss2 = $adresss2;
+        $this->adress2 = $adress2;
 
         return $this;
     }
