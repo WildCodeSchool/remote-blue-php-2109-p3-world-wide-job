@@ -8,38 +8,51 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
 <style>
-    .pink-stripe {
-        height: 50vh;
+    .blue-stripe {
+        background-color: rgba(64,136,238,.4);
+        height: 25%;
         width: 100%;
-        display: flex;
-        font-family: 'Varela Round', sans-serif;
-        font-size: 3rem;
-        align-items: center;
-        justify-content: center;
+        border-radius: 15px;
+        padding: 0.6rem;
+        font-family: 'Pacifico', cursive;
     }
-
-    .white-stripe {
-        background-color: white;
-        width: 100vw;
-        height: 50vh;
-        display: flex;
-        position: fixed;
-        bottom: 0;
-        align-items: center;
-        justify-content: center;
+    @media screen and (max-width: 700px){
+        .box {
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .button {
+            padding-bottom: 1rem;
+            padding-top: 1rem;
+        }
+    }
+    @media screen and (min-width: 701px) {
+       .box {
+            display: flex;
+            flex-wrap: nowrap;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .button {
+            padding-left: 5rem;
+            padding-right: 5rem;
+        }
     }
 </style>
 {% endblock %}
 
 {% block body %}
-<div class="pink-stripe">
-    <h1>
-        Let's start coding &#129304;
-    </h1>
+<div class="blue-stripe">
+    <h2 class="text-center">
+        Se créer un compte :
+    </h2>
+    <div class="box">
+        <div class="button"><button type="button" href="" class="btn btn-primary btn-lg btn-block shadow">Etudiant</button></div>
+        <div class="button"><button type="button" href="" class="btn btn-primary btn-lg btn-block shadow">Formation</button></div>
+        <div class="button"><button type="button" href="" class="btn btn-primary btn-lg btn-block shadow">Entreprise</button></div>
+    </div>
 </div>
-<div class="white-stripe ">
-    <img src="https://medinsoft.com/wp-content/uploads/2020/01/LOGO_WILDCODESCHOOL1000-1024x1024.png"
-        style="height:100%">
-</div>
-    <div class="mt-5">Je este</div>
 {% endblock %}
