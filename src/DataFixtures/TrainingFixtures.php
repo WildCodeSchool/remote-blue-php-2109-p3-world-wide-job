@@ -22,7 +22,7 @@ class TrainingFixtures extends Fixture implements DependentFixtureInterface
                     ->setSchool('Ecole de commerce de Nantes')
                     ->setDegree('Master')
                     ->setGraduate(true)
-                    ->setDateIn(new DateTime('20016-10-12'))
+                    ->setDateIn(new DateTime('2016-10-12'))
                     ->setDateOut(new DateTime('2019-10-12'))
                     ->setDescription('Aut dolorem repudiandae ut odio ut sint officia eos officia quia est 
                     provident minima quo dolores eius. Et quam modi aut eaque saepe est aliquid cumque a libero 

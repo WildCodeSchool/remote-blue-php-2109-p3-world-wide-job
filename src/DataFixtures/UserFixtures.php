@@ -11,9 +11,9 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 class UserFixtures extends Fixture
 {
     public const USERROLES = [
-        'ROLE_COMPANY',
-        'ROLE_SCHOOL',
-        'ROLE_STUDENT',
+        ['role' => 'ROLE_COMPANY', 'user' => 'company'],
+        ['role' => 'ROLE_SCHOOL', 'user' => 'school'],
+        ['role' => 'ROLE_STUDENT', 'user' => 'student']
     ];
 
     private UserPasswordHasherInterface $passwordHasher;
@@ -25,19 +25,17 @@ class UserFixtures extends Fixture
 
     public function load(ObjectManager $manager): void
     {
-        $counter = 0;
         foreach (self::USERROLES as $role) {
             $maxUser = 4;
             for ($i = 0; $i <= $maxUser; $i++) {
-                $counter++;
                 $user = new User();
-                $user->setEmail('jean.dupont' . $counter . '@gmail.com');
+                $user->setEmail($role['user'] . $i . '@gmail.com');
                 $hashedPassword = $this->passwordHasher->hashPassword(
                     $user,
                     'companyPassword'
                 );
                 $user->setPassword($hashedPassword)
-                    ->setRoles([$role])
+                    ->setRoles([$role['role']])
                     ->setCivility('Monsieur')
                     ->setFirstName('Jean')
                     ->setLastname('Dupont')
@@ -46,9 +44,9 @@ class UserFixtures extends Fixture
                     ->setAdress1('333 rue de la gerla')
                     ->setAdress2('bis terrain du moulin')
                     ->setCity('Saint Siméon de Bressieux')
-                    ->setZip(38870)
+                    ->setZip('38870')
                     ->setCountry('France');
-                $this->addReference($role . '_' . $i, $user);
+                $this->addReference($role['role'] . '_' . $i, $user);
                 $manager->persist($user);
             };
         };

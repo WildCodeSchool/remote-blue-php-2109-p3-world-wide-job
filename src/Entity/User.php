@@ -76,9 +76,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $city;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
+     * @ORM\Column(type="string", nullable=true)
      */
-    private ?int $zip;
+    private ?string $zip;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -286,12 +286,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getZip(): ?int
+    public function getZip(): ?string
     {
         return $this->zip;
     }
 
-    public function setZip(?int $zip): self
+    public function setZip(?string $zip): self
     {
         $this->zip = $zip;
 
