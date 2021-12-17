@@ -54,7 +54,6 @@ class Student
 
     /**
      * @ORM\OneToMany(targetEntity=Application::class, mappedBy="student")
-     * @var ArrayCollection<int, Application>
      */
     private Collection $applications;
 

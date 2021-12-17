@@ -92,7 +92,6 @@ class Offer
 
     /**
      * @ORM\OneToMany(targetEntity=Application::class, mappedBy="offer")
-     * @var ArrayCollection<int, Application>
      */
     private Collection $applications;
 
@@ -294,12 +293,7 @@ class Offer
 
     public function removeApplication(Application $application): self
     {
-        if ($this->applications->removeElement($application)) {
-            // set the owning side to null (unless already changed)
-            if ($application->getOffer() === $this) {
-                $application->setOffer(null);
-            }
-        }
+        $this->applications->removeElement($application);
 
         return $this;
     }

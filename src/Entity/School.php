@@ -52,13 +52,11 @@ class School
 
     /**
      * @ORM\OneToMany(targetEntity=Student::class, mappedBy="school")
-     * @var ArrayCollection<int, Student>
      */
     private Collection $students;
 
     /**
      * @ORM\OneToMany(targetEntity=Degree::class, mappedBy="school")
-     * @var ArrayCollection<int, Degree>
      */
     private Collection $degrees;
 
@@ -176,6 +174,17 @@ class School
         if (!$this->degrees->contains($degree)) {
             $this->degrees[] = $degree;
             $degree->setSchool($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDegree(Degree $degree): self
+    {
+        if (!$this->degrees->contains($degree)) {
+            if ($degree->getDegree() == $this) {
+                $degree->setDegree(null);
+            }
         }
 
         return $this;

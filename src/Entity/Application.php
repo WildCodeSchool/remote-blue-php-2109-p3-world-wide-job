@@ -24,9 +24,9 @@ class Application
 
     /**
      * @ORM\ManyToOne(targetEntity=Student::class, inversedBy="applications")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
-    private Student $student;
+    private ?Student $student;
 
     /**
      * @ORM\ManyToOne(targetEntity=Offer::class, inversedBy="applications")
@@ -56,7 +56,7 @@ class Application
         return $this->student;
     }
 
-    public function setStudent(Student $student): self
+    public function setStudent(?Student $student): self
     {
         $this->student = $student;
 

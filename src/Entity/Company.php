@@ -57,7 +57,6 @@ class Company
 
     /**
      * @ORM\OneToMany(targetEntity=Offer::class, mappedBy="company")
-     * @var ArrayCollection<int, Offer>
      */
     private Collection $offers;
 
@@ -169,6 +168,13 @@ class Company
             $this->offers[] = $offer;
             $offer->setCompany($this);
         }
+
+        return $this;
+    }
+
+    public function removeOffer(Offer $offer): self
+    {
+        $this->offers->removeElement($offer);
 
         return $this;
     }

@@ -47,13 +47,11 @@ class Curriculum
 
     /**
      * @ORM\OneToMany(targetEntity=Experience::class, mappedBy="cv")
-     * @var ArrayCollection<int, Experience>
      */
     private Collection $experiences;
 
     /**
      * @ORM\OneToMany(targetEntity=Training::class, mappedBy="curriculum")
-     * @var ArrayCollection<int, Training>
      */
     private Collection $trainings;
 

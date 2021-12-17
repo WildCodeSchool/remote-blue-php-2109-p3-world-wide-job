@@ -24,7 +24,7 @@ class DegreeFixtures extends Fixture implements DependentFixtureInterface
             foreach (self::DEGREE as $key => $name) {
                 $degree = new Degree();
                 $degree->setSchool($this->getReference('school_' . $i))
-                    ->setDegre($name)
+                    ->setDegree($name)
                     ->addStudent($this->getReference('student_' . $key));
                 $manager->persist($degree);
             }

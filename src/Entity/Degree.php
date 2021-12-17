@@ -28,11 +28,10 @@ class Degree
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private ?string $degre;
+    private ?string $degree;
 
     /**
      * @ORM\ManyToMany(targetEntity=Student::class, mappedBy="degree")
-     * @var ArrayCollection<int, Student>
      */
     private Collection $students;
 
@@ -58,14 +57,14 @@ class Degree
         return $this;
     }
 
-    public function getDegre(): ?string
+    public function getDegree(): ?string
     {
-        return $this->degre;
+        return $this->degree;
     }
 
-    public function setDegre(?string $degre): self
+    public function setDegree(?string $degree): self
     {
-        $this->degre = $degre;
+        $this->degree = $degree;
 
         return $this;
     }
