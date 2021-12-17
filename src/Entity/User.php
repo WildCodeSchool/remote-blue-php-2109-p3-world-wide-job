@@ -4,11 +4,13 @@ namespace App\Entity;
 
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
  */
-class User
+class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     /**
      * @ORM\Id
@@ -18,14 +20,20 @@ class User
     protected int $id;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", length=180, unique=true)
      */
-    private ?string $mail;
+    private string $email;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="json")
      */
-    private ?string $password;
+    private array $roles = [];
+
+    /**
+     * @var string The hashed password
+     * @ORM\Column(type="string")
+     */
+    private string $password;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -48,7 +56,7 @@ class User
     private ?\DateTimeInterface $birthdate;
 
     /**
-     * @ORM\Column(type="string", nullable=true)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private ?string $phone;
 
@@ -60,7 +68,7 @@ class User
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private ?string $adress2;
+    private ?string $adresss2;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -76,11 +84,6 @@ class User
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private ?string $country;
-
-    /**
-     * @ORM\Column(type="integer", nullable=true)
-     */
-    private ?int $role;
 
     /**
      * @ORM\OneToOne(targetEntity=Company::class, mappedBy="user", cascade={"persist", "remove"})
@@ -102,28 +105,89 @@ class User
         return $this->id;
     }
 
-    public function getMail(): ?string
+    public function getEmail(): ?string
     {
-        return $this->mail;
+        return $this->email;
     }
 
-    public function setMail(?string $mail): self
+    public function setEmail(string $email): self
     {
-        $this->mail = $mail;
+        $this->email = $email;
 
         return $this;
     }
 
-    public function getPassword(): ?string
+    /**
+     * A visual identifier that represents this user.
+     *
+     * @see UserInterface
+     */
+    public function getUserIdentifier(): string
+    {
+        return (string) $this->email;
+    }
+
+    /**
+     * @deprecated since Symfony 5.3, use getUserIdentifier instead
+     */
+    public function getUsername(): string
+    {
+        return (string) $this->email;
+    }
+
+    /**
+     * @see UserInterface
+     */
+    public function getRoles(): array
+    {
+        $roles = $this->roles;
+        // guarantee every user at least has ROLE_USER
+        $roles[] = 'ROLE_USER';
+
+        return array_unique($roles);
+    }
+
+    public function setRoles(array $roles): self
+    {
+        $this->roles = $roles;
+
+        return $this;
+    }
+
+    /**
+     * @see PasswordAuthenticatedUserInterface
+     */
+    public function getPassword(): string
     {
         return $this->password;
     }
 
-    public function setPassword(?string $password): self
+    public function setPassword(string $password): self
     {
         $this->password = $password;
 
         return $this;
+    }
+
+    /**
+     * Returning a salt is only needed, if you are not using a modern
+     * hashing algorithm (e.g. bcrypt or sodium) in your security.yaml.
+     *
+     * @see UserInterface
+     */
+    public function getSalt(): ?string
+    {
+        return null;
+    }
+
+    /**
+     * @see UserInterface
+     */
+    public function eraseCredentials(): ?string
+    {
+        // If you store any temporary, sensitive data on the user, clear it here
+        // $this->plainPassword = null;
+        return null;
     }
 
     public function getCivility(): ?string
@@ -167,7 +231,7 @@ class User
         return $this->birthdate;
     }
 
-    public function setBirthdate(\DateTimeInterface $birthdate): self
+    public function setBirthdate(?\DateTimeInterface $birthdate): self
     {
         $this->birthdate = $birthdate;
 
@@ -198,19 +262,19 @@ class User
         return $this;
     }
 
-    public function getAdress2(): ?string
+    public function getAdresss2(): ?string
     {
-        return $this->adress2;
+        return $this->adresss2;
     }
 
-    public function setAdress2(?string $adress2): self
+    public function setAdresss2(?string $adresss2): self
     {
-        $this->adress2 = $adress2;
+        $this->adresss2 = $adresss2;
 
         return $this;
     }
 
-    public function getCity(): ?string
+    public function geCity(): ?string
     {
         return $this->city;
     }
@@ -246,66 +310,27 @@ class User
         return $this;
     }
 
-    public function getRole(): ?int
-    {
-        return $this->role;
-    }
-
-    public function setRole(?int $role): self
-    {
-        $this->role = $role;
-
-        return $this;
-    }
-
+    /**
+     * @return Company|null
+     */
     public function getCompany(): ?Company
     {
         return $this->company;
     }
 
-    public function setCompany(Company $company): self
-    {
-        // set the owning side of the relation if necessary
-        if ($company->getUser() !== $this) {
-            $company->setUser($this);
-        }
-
-        $this->company = $company;
-
-        return $this;
-    }
-
+    /**
+     * @return School|null
+     */
     public function getSchool(): ?School
     {
         return $this->school;
     }
 
-    public function setSchool(School $school): self
-    {
-        // set the owning side of the relation if necessary
-        if ($school->getUser() !== $this) {
-            $school->setUser($this);
-        }
-
-        $this->school = $school;
-
-        return $this;
-    }
-
+    /**
+     * @return Student|null
+     */
     public function getStudent(): ?Student
     {
         return $this->student;
-    }
-
-    public function setStudent(Student $student): self
-    {
-        // set the owning side of the relation if necessary
-        if ($student->getUser() !== $this) {
-            $student->setUser($this);
-        }
-
-        $this->student = $student;
-
-        return $this;
     }
 }

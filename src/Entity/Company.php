@@ -50,15 +50,14 @@ class Company
     private ?string $description;
 
     /**
-     * @ORM\OneToOne(targetEntity=User::class, inversedBy="company", cascade={"persist", "remove"})
-     * @ORM\JoinColumn()
-     */
-    private ?User $user;
-
-    /**
      * @ORM\OneToMany(targetEntity=Offer::class, mappedBy="company")
      */
     private Collection $offers;
+
+    /**
+     * @ORM\OneToOne(targetEntity=User::class, cascade={"persist", "remove"})
+     */
+    private User $user;
 
     public function __construct()
     {
@@ -142,18 +141,6 @@ class Company
         return $this;
     }
 
-    public function getUser(): ?User
-    {
-        return $this->user;
-    }
-
-    public function setUser(User $user): self
-    {
-        $this->user = $user;
-
-        return $this;
-    }
-
     /**
      * @return Collection|Offer[]
      */
@@ -175,6 +162,18 @@ class Company
     public function removeOffer(Offer $offer): self
     {
         $this->offers->removeElement($offer);
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }
