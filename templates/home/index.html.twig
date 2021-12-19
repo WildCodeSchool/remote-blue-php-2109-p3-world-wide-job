@@ -1,11 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Home{% endblock %}
+{% block title %}World Wide Job{% endblock %}
 
 {% block stylesheets %}
 {{ parent() }}
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="icon" href="{{ asset('build/images/favicon.png') }}"/>
 <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
 <style>
     .pink-stripe {
@@ -26,8 +27,36 @@
         position: fixed;
         bottom: 0;
         align-items: center;
-        justify-content: center;
+        justify-content: center;x
     }
+
+    h1{
+        color: blue;
+    }
+
+    .nav-item{
+        height: 40px;
+    }
+
+
+    .btn{
+        background-color: #4088ee;
+        color: white;
+    }
+
+@media  screen and (max-width: 993px) {
+    .card-image{
+        display:none;
+
+    }
+}
+
+.card-image{
+    height: 100px;
+    position: absolute;
+}
+   
+
 </style>
 {% endblock %}
 
