@@ -6,6 +6,7 @@
     padding: 0.6rem;
     font-family: 'Pacifico', cursive;
 }
+
 @media screen and (max-width: 992px){
     .box-btn {
         display: flex;
@@ -14,18 +15,21 @@
         align-items: center;
         justify-content: center;
     }
+
     .btn-insc {
         padding-bottom: 1rem;
         padding-top: 1rem;
     }
 }
+
 @media screen and (min-width: 993px) {
-   .box-btn {
+    .box-btn {
         display: flex;
         flex-wrap: nowrap;
         align-items: center;
         justify-content: space-between;
     }
+    
     .btn-insc {
         padding-left: 5rem;
         padding-right: 5rem;
