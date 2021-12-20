@@ -7,41 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
-<style>
-    .blue-stripe {
-        background-color: rgba(64,136,238,.4);
-        height: 25%;
-        width: 100%;
-        border-radius: 15px;
-        padding: 0.6rem;
-        font-family: 'Pacifico', cursive;
-    }
-    @media screen and (max-width: 700px){
-        .box {
-            display: flex;
-            flex-wrap: wrap;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-        .button {
-            padding-bottom: 1rem;
-            padding-top: 1rem;
-        }
-    }
-    @media screen and (min-width: 701px) {
-       .box {
-            display: flex;
-            flex-wrap: nowrap;
-            align-items: center;
-            justify-content: space-between;
-        }
-        .button {
-            padding-left: 5rem;
-            padding-right: 5rem;
-        }
-    }
-</style>
+<link rel="stylesheet" href="/assets/styles/index.css">
 {% endblock %}
 
 {% block body %}
@@ -49,10 +15,10 @@
     <h2 class="text-center">
         Se créer un compte :
     </h2>
-    <div class="box">
-        <div class="button"><button type="button" href="" class="btn btn-primary btn-lg btn-block shadow">Etudiant</button></div>
-        <div class="button"><button type="button" href="" class="btn btn-primary btn-lg btn-block shadow">Formation</button></div>
-        <div class="button"><button type="button" href="" class="btn btn-primary btn-lg btn-block shadow">Entreprise</button></div>
+    <div class="box-btn">
+        <div class="btn-insc"><button type="button" href="" class="btn btn-primary btn-lg btn-block shadow">Etudiant</button></div>
+        <div class="btn-insc"><button type="button" href="" class="btn btn-primary btn-lg btn-block shadow">Formation</button></div>
+        <div class="btn-insc"><button type="button" href="" class="btn btn-primary btn-lg btn-block shadow">Entreprise</button></div>
     </div>
 </div>
 {% endblock %}
