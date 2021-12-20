@@ -1,0 +1,22 @@
+
+
+.nav-item{
+    height: 40px;
+}
+
+.btn.press{
+    background-color: #4088ee;
+    color: white;
+}
+
+@media  screen and (max-width: 993px) {
+.image.world{
+    display:none;
+
+}
+}
+
+.image.world{
+height: 100px;
+position: absolute;
+}
