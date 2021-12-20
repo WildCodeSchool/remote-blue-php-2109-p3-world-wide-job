@@ -14,7 +14,7 @@ class SearchJobController extends AbstractController
      */
     public function searchOffer(OfferRepository $offerRepository): Response
     {
-        return $this->render('rechercheBase.html.twig', [
+        return $this->render('searchBase.html.twig', [
             'offers' => $offerRepository->findAll(),
         ]);
     }
