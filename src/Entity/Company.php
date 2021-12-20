@@ -31,6 +31,10 @@ class Company
 
     /**
      * @Vich\UploadableField(mapping="profile_file", fileNameProperty="logo")
+     * @Assert\File(
+     *     maxSize = "1M",
+     *     mimeTypes = {"image/jpeg", "image/png", "image/webp"},
+     * )
      * @var File
      */
     private File $logoFile;

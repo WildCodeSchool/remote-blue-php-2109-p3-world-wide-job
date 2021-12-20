@@ -6,6 +6,7 @@ use App\Repository\StudentRepository;
 use DateTime;
 use DateTimeInterface;
 use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\Validator\Constraints as Assert;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -31,6 +32,10 @@ class Student
 
     /**
      * @Vich\UploadableField(mapping="profile_file", fileNameProperty="picture")
+     * @Assert\File(
+     *     maxSize = "1M",
+     *     mimeTypes = {"image/jpeg", "image/png", "image/webp"},
+     * )
      * @var File
      */
     private File $pictureFile;

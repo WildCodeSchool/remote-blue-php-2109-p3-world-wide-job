@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\SchoolRepository;
 use DateTime;
 use DateTimeInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\HttpFoundation\File\File;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -31,6 +32,10 @@ class School
 
     /**
      * @Vich\UploadableField(mapping="profile_file", fileNameProperty="logo")
+     * @Assert\File(
+     *     maxSize = "1M",
+     *     mimeTypes = {"image/jpeg", "image/png", "image/webp"},
+     * )
      * @var File
      */
     private File $logoFile;
