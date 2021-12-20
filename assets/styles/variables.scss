@@ -1,2 +1,21 @@
+
+$primary: #4088EE;
+$secondary: #0861CD;
+$gray: #999897;
+$black: #000000;
+$white: #ffffff;
 $wild-color: #ff6c71;
 $light: #fffbfb;
+
+$border-radius: .5rem;
+$box-shadow: 0 .25rem .5rem rgba(black, .35);
+
+$theme-colors: (
+        "primary": $primary,
+        "secondary": $secondary,
+        "gray": $gray,
+        "black": $black,
+        "white": $white,
+);
+
+@import "~bootstrap/scss/bootstrap";
