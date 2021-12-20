@@ -1,11 +1,10 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Karla:wght@200;300&display=swap');
-@import "_etapeBar.css";
+@import "_formLayout.scss";
 @import 'variables.scss';
 body {
     margin:0;
     background-color: $wild-color;
     color: $light;
 }
-
 @import "~bootstrap/scss/bootstrap";

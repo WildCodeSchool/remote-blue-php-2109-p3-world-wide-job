@@ -32,14 +32,10 @@
 {% endblock %}
 
 {% block body %}
-<div class="pink-stripe">
-    <h1>
-        Let's start coding &#129304;
-    </h1>
-</div>
-<div class="white-stripe ">
-    <img src="https://medinsoft.com/wp-content/uploads/2020/01/LOGO_WILDCODESCHOOL1000-1024x1024.png"
-        style="height:100%">
-</div>
-    <div class="mt-5">Je este</div>
+
+    <ul>
+    <li> <a href="{{ path('registration_index', {'role': 'ecole'}) }}">Ecole</li>
+<li> <a href="{{ path('registration_index', {'role': 'etudiant'}) }}" > Etudiant </li>
+<li> <a href="{{ path('registration_index', {'role': 'entreprise'}) }}" > Entreprise </li>
+    </ul>
 {% endblock %}

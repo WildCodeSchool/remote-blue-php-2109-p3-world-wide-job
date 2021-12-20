@@ -3,12 +3,17 @@
 namespace App\Entity;
 
 use App\Repository\StudentRepository;
+use DateTime;
+use DateTimeInterface;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass=StudentRepository::class)
+ * @Vich\Uploadable
  */
 class Student
 {
@@ -22,7 +27,13 @@ class Student
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private ?string $picture;
+    private ?string $picture = 'default';
+
+    /**
+     * @Vich\UploadableField(mapping="profile_file", fileNameProperty="picture")
+     * @var File
+     */
+    private File $pictureFile;
 
     /**
      * @ORM\Column(type="string", nullable=true)
@@ -57,6 +68,11 @@ class Student
      */
     private Collection $applications;
 
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private ?\DateTimeInterface $updatedAt;
+
     public function __construct()
     {
         $this->degree = new ArrayCollection();
@@ -78,6 +94,30 @@ class Student
         $this->picture = $picture;
 
         return $this;
+    }
+
+    public function getPictureFile(): ?File
+    {
+        return $this->pictureFile;
+    }
+
+    public function setPictureFile(File $image = null): self
+    {
+        $this->pictureFile = $image;
+        if ($image) {
+            $this->updatedAt = new DateTime('now');
+        }
+        return $this;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeInterface
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(?\DateTimeInterface $updatedAt): void
+    {
+        $this->updatedAt = $updatedAt;
     }
 
     public function getIne(): ?string

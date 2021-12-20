@@ -7,7 +7,7 @@
 		<link rel="stylesheet" href="/build/app.css">
 		<script src="/build/app.js"></script>
 		<title>
-			{% block title %}  {% endblock %}
+			{% block title %}{% endblock %}
 		</title>
 		{% block stylesheets %}
 			{{ encore_entry_link_tags('app') }}
@@ -17,45 +17,28 @@
 		{% endblock %}
 	</head>
 	<body>
-		{% block body %}
-			<div class="mt-5 form-container">
-
-             <div class ="d-flex flex-column mt-auto">
-				 <h1 class="justify-content-center m-auto">  Titulaire du compte </h1>
-			 <ul class="d-flex  justify-content-center align-self-center flex-row etape-container ">
-				 <li class="list-unstyled rounded-3 etape active" > Etape 1/2 </li>
-				 <li class="list-unstyled rounded-3 etape "> Etape 2/2</li>
-			 </ul>
 
 
+		<div class="mt-5 form-container">
 
-			 </div>
-             <div  class="background" >
-				 <form class="m-auto">
-					 <div class="mb-3">
-						 <label for="exampleInputEmail1" class="form-label">Email address</label>
-						 <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-						 <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-					 </div>
-					 <div class="mb-3">
-						 <label for="exampleInputPassword1" class="form-label">Password</label>
-						 <input type="password" class="form-control" id="exampleInputPassword1">
-					 </div>
-					 <div class="mb-3 form-check">
-						 <input type="checkbox" class="form-check-input" id="exampleCheck1">
-						 <label class="form-check-label" for="exampleCheck1">Check me out</label>
-					 </div>
-					 <button type="submit" class="btn btn-primary">Submit</button>
-				 </form>
+			<div class="d-flex flex-column mt-auto">
+				<h1 class="justify-content-center m-auto mb-4"> {% block pageTitle %}{% endblock %}
+					</h1>
+
+					<ul class="d-flex  justify-content-center align-self-center flex-row etape-container "> {% block etapesblock %}{% endblock %}
 
 
+						</ul>
 
 
-			 </div>
+					</div>
+					<div class="background"> {% block form %}{% endblock %}
 
 
+						</div>
 
-			</div>
-		{% endblock %}
-	</body>
-</html>
+
+					</div>
+
+				</body>
+			</html>

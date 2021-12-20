@@ -1,0 +1,39 @@
+{% extends 'layoutForm.html.twig' %}
+
+{% block title %}Register
+{% endblock %}
+
+{% block pageTitle %}
+	Formulaire Titutlaire
+{% endblock %}
+
+{% block etapesblock %}
+	{% set etapes = [
+        {'name': 'étapes 1/2', 'active': 'no'},
+        {'name': 'étape 2/2', 'active': 'yes'},
+    ] %}
+	{% for etape in etapes %}
+		<li class="list-unstyled rounded-3 etape {{ etape.active == 'yes' ? 'active' }}">
+			{{ etape.name }}</li>
+	{% endfor %}
+{% endblock %}
+{% block form %}
+	<h1>Inscription sur le site</h1>
+	{{ form_start(registrationForm) }}
+	{{ form_row(registrationForm.civility) }}
+	{{ form_row(registrationForm.firstname) }}
+	{{ form_row(registrationForm.lastname) }}
+	{{ form_row(registrationForm.birthdate) }}
+	{{ form_row(registrationForm.phone) }}
+	{{ form_row(registrationForm.adress1) }}
+	{{ form_row(registrationForm.adress2) }}
+	{{ form_row(registrationForm.zip) }}
+	{{ form_row(registrationForm.city) }}
+	{{ form_row(registrationForm.country) }}
+	{{ form_row(registrationForm.email) }}
+	{{ form_row(registrationForm.plainPassword, {
+            label: 'Mot de passe'
+        }) }}
+	<button type="submit" class="btn">Etape suivante</button>
+	{{ form_end(registrationForm) }}
+{% endblock %}
