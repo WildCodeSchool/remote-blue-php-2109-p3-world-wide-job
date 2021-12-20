@@ -10,7 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class SearchJobController extends AbstractController
 {
     /**
-     * @Route("/", name="search_offer", methods={"GET"})
+     * @Route("/search", name="search_offer", methods={"GET"})
      */
     public function searchOffer(OfferRepository $offerRepository): Response
     {

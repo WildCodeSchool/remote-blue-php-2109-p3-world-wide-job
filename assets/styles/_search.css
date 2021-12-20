@@ -144,9 +144,9 @@ body::-webkit-scrollbar-thumb {
         opacity: 0;
         pointer-events: none;
         top: 2.5vh;
-        left: 0;
+        left: 5vw;
         height: 95vh;
-        width: 100vw;
+        width: 90vw;
         transition: opacity 0.3s ease;
     }
     .largeSearchCard.show {
