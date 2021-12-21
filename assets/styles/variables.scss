@@ -10,11 +10,11 @@ $border-radius: .5rem;
 $box-shadow: 0 .25rem .5rem rgba(#000, .35);
 
 $theme-colors: (
-        'primary': $primary,
-        'secondary': $secondary,
-        'gray': $gray,
-        'black': $black,
-        'white': $white,
+    'primary': $primary,
+    'secondary': $secondary,
+    'gray': $gray,
+    'black': $black,
+    'white': $white,
 );
 
 @import "~bootstrap/scss/bootstrap";
