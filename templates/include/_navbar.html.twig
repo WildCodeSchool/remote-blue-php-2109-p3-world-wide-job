@@ -1,11 +1,13 @@
 {% block header %}
-<nav class="navbar navbar-expand-lg navbar-light">
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
         <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
                 aria-controls="offcanvasNavbar">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+        <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar"
+             aria-labelledby="offcanvasNavbarLabel">
             <div class="offcanvas-header">
                 <img class="image logo ms-auto" src="{{ asset('build/images/logofinal.png') }}" alt=""/>
                 <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
