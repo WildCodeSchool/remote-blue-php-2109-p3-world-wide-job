@@ -1,5 +1,4 @@
 
-
 .nav-item{
     height: 40px;
 }
@@ -19,4 +18,8 @@
 .image.world{
 height: 100px;
 position: absolute;
+}
+
+.navbar {
+    background-color: white;
 }
