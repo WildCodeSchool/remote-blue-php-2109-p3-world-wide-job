@@ -27,7 +27,7 @@ class CompanyType extends AbstractType
                     'EURL' => '2',
                     'SARL' => '3',
                     'Association' => '4',
-                    'EURL' => '5',
+                    'Société à but non lucrative' => '5',
                     'SA' => '6',
                 ],
 
