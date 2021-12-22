@@ -6,6 +6,7 @@ use App\Entity\User;
 use App\Form\RegistrationFormType;
 use App\Security\EmailVerifier;
 use App\Security\SecurityAuthenticator;
+use App\Services\RegistrationService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -20,24 +21,30 @@ use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
 use Symfony\Component\Security\Http\Authenticator\AuthenticatorInterface;
 use SymfonyCasts\Bundle\VerifyEmail\Exception\VerifyEmailExceptionInterface;
 
+/**
+ * @Route("/inscription", name="registration_")
+ */
 class RegistrationController extends AbstractController
 {
     private EmailVerifier $emailVerifier;
+    private RegistrationService $registrationService;
 
-    public function __construct(EmailVerifier $emailVerifier)
+    public function __construct(EmailVerifier $emailVerifier, RegistrationService $registrationService)
     {
         $this->emailVerifier = $emailVerifier;
+        $this->registrationService = $registrationService;
     }
 
     /**
-     * @Route("/register", name="app_register")
+     * @Route("/{role}", name="index")
      */
     public function register(
         Request $request,
         UserPasswordHasherInterface $userPasswordHasher,
         UserAuthenticatorInterface $userAuthenticator,
         SecurityAuthenticator $authenticator,
-        EntityManagerInterface $entityManager
+        EntityManagerInterface $entityManager,
+        string $role
     ): ?Response {
         $user = new User();
         $form = $this->createForm(RegistrationFormType::class, $user);
@@ -51,13 +58,13 @@ class RegistrationController extends AbstractController
                     strval($form->get('plainPassword')->getData())
                 )
             );
-
+            $user->setRoles($this->registrationService->roleAttribution($role));
             $entityManager->persist($user);
             $entityManager->flush();
 
             // generate a signed url and email it to the user
             $this->emailVerifier->sendEmailConfirmation(
-                'app_verify_email',
+                'registration_app_verify_email',
                 $user,
                 (new TemplatedEmail())
                     ->from(new Address('no-reply@worldWideJob.com', 'Administrator'))
