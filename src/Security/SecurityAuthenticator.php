@@ -14,12 +14,12 @@ class SecurityAuthenticator extends AbstractLoginFormAuthenticator
 {
     protected function getLoginUrl(Request $request): string
     {
-        return self;
+        return void;
     }
 
     public function authenticate(Request $request): PassportInterface
     {
-        return self;
+        return void;
     }
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): Response
