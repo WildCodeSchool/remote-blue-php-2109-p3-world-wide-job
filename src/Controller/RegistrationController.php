@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Form\RegistrationFormType;
 use App\Security\EmailVerifier;
+use App\Security\SecurityAuthenticator;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -13,6 +14,10 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Mime\Address;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Guard\GuardAuthenticatorHandler;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
+use Symfony\Component\Security\Http\Authenticator\AuthenticatorInterface;
 use SymfonyCasts\Bundle\VerifyEmail\Exception\VerifyEmailExceptionInterface;
 
 class RegistrationController extends AbstractController
@@ -30,6 +35,8 @@ class RegistrationController extends AbstractController
     public function register(
         Request $request,
         UserPasswordHasherInterface $userPasswordHasher,
+        UserAuthenticatorInterface $userAuthenticator,
+        SecurityAuthenticator $authenticator,
         EntityManagerInterface $entityManager
     ): Response {
         $user = new User();
@@ -60,7 +67,12 @@ class RegistrationController extends AbstractController
             );
             // do anything else you need here, like send an email
 
-            return $this->redirectToRoute('home');
+            return $userAuthenticator->authenticateUser(
+                $user,
+                $authenticator,
+                $request
+            );
+           // return $this->redirectToRoute('home');
         }
 
         return $this->render('registration/register.html.twig', [
