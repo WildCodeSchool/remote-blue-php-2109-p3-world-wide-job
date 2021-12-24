@@ -22,12 +22,12 @@
     {% include 'include/_navbar.html.twig' %}
 </header>
 <div class="d-flex flex-row">
-<aside>
-{% include 'include/_student-sidebar.html.twig' %}
-</aside>
-<main class ="main-container">
-{% block body %}{% endblock %}
-</main>
+    <aside>
+        {% block sidebar %}{% endblock %}
+    </aside>
+    <main class="main-container">
+        {% block body %}{% endblock %}
+    </main>
 </div>
 <!-- JavaScript Bundle with Popper -->
 <script src="/build/app.js"></script>

@@ -30,7 +30,9 @@
         }
     </style>
 {% endblock %}
-
+{% block sidebar %}
+{% include 'include/_company-sidebar.html.twig' %}
+{% endblock %}
 {% block body %}
     <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque finibus ipsum eu ex aliquet pretium.
         Curabitur accumsan odio elit, sed tempus justo suscipit at. Ut eros risus, vulputate eget augue id, efficitur
