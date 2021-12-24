@@ -1,0 +1,31 @@
+{% block aside %}
+    <div class="bg-secondary pt-3 sidebar-container position-fixed">
+
+
+        <div class="img-profil "
+             style="background-image: url(https://thispersondoesnotexist.com/image);">
+        </div>
+
+        <ul class="list-unstyled list-inline nav-contain">
+              <!-- décomenter le twig pour mettre en place les routes -->
+              <!-- tableau dynamique -->
+            {% set links = [
+                {'title': 'Mon profil étudiant', 'path': '#'},
+                {'title': 'Faire mon CV', 'path': '#'},
+                {'title': 'Voir mes candidatures', 'path': '#'},
+                {'title': 'Mes offres favorites', 'path':'#'},
+            ] %}
+            {% for link in links %}
+                <li class="text-decoration-none btn-primary
+                 {# {{ app.request.pathinfo == path(link.path) ? 'activelink' }} #}">
+                    <a class="text-decoration-none "
+                       href="{# {{ path(link.path) }} #}">{{ link.title }}</a>
+                </li>
+            {% endfor %}
+
+
+        </ul>
+
+    </div>
+{% endblock %}
+
