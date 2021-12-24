@@ -1,33 +1,36 @@
 .sidebar-container {
-  width: 300px;
-  height: 100%;
-  background-color: $gray !important;
+    background-color: $gray; //!important;
+    height: 100%;
+    width: 300px;
 }
 
 .img-profil {
-  background: no-repeat center;
-  background-size: contain;
-  border-radius: 50%;
-  margin: 0 auto 10px 3%;
-  height: 150px;
-  width: 150px;
-  border: $primary solid 5px;
-}
-
-.nav-contain li {
-  margin-top: 20px;
-  margin-bottom: 20px;
-  padding: 5px;
-  height: 40px;
-  background-color: $secondary;
-}
-
-.nav-contain li a {
-  margin-left: 3%;
-  color: $black;
+    background: no-repeat center;
+    background-size: contain;
+    border: $primary solid 5px;
+    border-radius: 50%;
+    height: 150px;
+    margin: 0 auto 10px 3%;
+    width: 150px;
 
 }
+
+.nav-contain {
+    li {
+        background-color: $secondary;
+        height: 40px;
+        margin-bottom: 20px;
+        margin-top: 20px;
+        padding: 5px;
+
+        a {
+            color: $black;
+            margin-left: 3%;
+        }
+    }
+}
+
 
 .activelink {
-  background-color: $primary !important;
+    background-color: $primary; //!important;
 }
