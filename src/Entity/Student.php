@@ -57,6 +57,11 @@ class Student
      */
     private Collection $applications;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private string $slug;
+
     public function __construct()
     {
         $this->degree = new ArrayCollection();
@@ -183,6 +188,18 @@ class Student
                 $application->setStudent(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): self
+    {
+        $this->slug = $slug;
 
         return $this;
     }

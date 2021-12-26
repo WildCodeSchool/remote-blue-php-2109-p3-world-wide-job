@@ -59,6 +59,11 @@ class Company
      */
     private User $user;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private string $slug;
+
     public function __construct()
     {
         $this->offers = new ArrayCollection();
@@ -174,6 +179,18 @@ class Company
     public function setUser(User $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): self
+    {
+        $this->slug = $slug;
 
         return $this;
     }
