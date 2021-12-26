@@ -31,27 +31,27 @@ class RegistrationService
 
     public function redirectAfterRegistration(): RedirectResponse
     {
-        $redirectionResponse = "";
+
         if (
             $this->security->isGranted('ROLE_STUDENT') &&
             empty($this->entityManager->getRepository(Student::class)
                 ->findOneBy(['user' => $this->security->getUser()]))
         ) {
-            $redirectionResponse = $this->urlGenerator->generate('registration_student');
+            return new RedirectResponse($this->urlGenerator->generate('registration_student'));
         } elseif (
             $this->security->isGranted('ROLE_SCHOOL') &&
             empty($this->entityManager->getRepository(School::class)
                 ->findOneBy(['user' => $this->security->getUser()]))
         ) {
-            $redirectionResponse = $this->urlGenerator->generate('registration_school');
+            return new RedirectResponse($this->urlGenerator->generate('registration_school'));
         } elseif (
             $this->security->isGranted('ROLE_COMPANY') &&
             empty($this->entityManager->getRepository(Company::class)
                 ->findOneBy(['user' => $this->security->getUser()]))
         ) {
-            $redirectionResponse = $this->urlGenerator->generate('registration_company');
+            return new RedirectResponse($this->urlGenerator->generate('registration_company'));
         }
 
-        return new RedirectResponse($redirectionResponse);
+        return new RedirectResponse($this->urlGenerator->generate('home'));
     }
 }

@@ -109,7 +109,9 @@ class RegistrationController extends AbstractController
      */
     public function registerStudent(
         Request $request,
-        EntityManagerInterface $entityManager
+        EntityManagerInterface $entityManager,
+        UserAuthenticatorInterface $userAuthenticator,
+        SecurityAuthenticator $authenticator
     ): Response {
         $student = new Student();
         $studentForm = $this->createForm(StudentType::class, $student);
@@ -127,6 +129,12 @@ class RegistrationController extends AbstractController
             }
             $entityManager->persist($student);
             $entityManager->flush();
+            $userAuthenticator->authenticateUser(
+                $loggedUser,
+                $authenticator,
+                $request
+            );
+
             return $this->redirectToRoute('home');
         }
         return $this->render('registration/studentForm.html.twig', [
@@ -209,12 +217,12 @@ class RegistrationController extends AbstractController
         } catch (VerifyEmailExceptionInterface $exception) {
             $this->addFlash('verify_email_error', $exception->getReason());
 
-            return $this->redirectToRoute('app_register');
+            return $this->redirectToRoute('home');
         }
 
         // @TODO Change the redirect on success and handle or remove the flash message in your templates
         $this->addFlash('success', 'Your email address has been verified.');
 
-        return $this->redirectToRoute('app_register');
+        return $this->redirectToRoute('home');
     }
 }

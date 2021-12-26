@@ -37,7 +37,7 @@ class Student
      * )
      * @var ?File
      */
-    private ?File $pictureFile;
+    private ?File $pictureFile = null;
 
     /**
      * @ORM\Column(type="string", nullable=true)

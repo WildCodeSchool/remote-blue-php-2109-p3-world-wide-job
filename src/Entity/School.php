@@ -38,7 +38,7 @@ class School
      * )
      * @var ?File
      */
-    private ?File $logoFile;
+    private ?File $logoFile = null;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
