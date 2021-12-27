@@ -1,32 +1,12 @@
 {% extends 'base.html.twig' %}
 
+{% block body %}
+    <p> lien </p>
+    <ul>
+        <li> <a href="{{ path('registration_index', {'role': 'ecole'}) }}">Ecole </a></li>
+        <li> <a href="{{ path('registration_index', {'role': 'etudiant'}) }}" > Etudiant </a></li>
+        <li> <a href="{{ path('registration_index', {'role': 'entreprise'}) }}" > Entreprise </a></li>
+    </ul>
 {% block title %}Home{% endblock %}
 
-{% block stylesheets %}
-{{ parent() }}
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
-<style>
-    .pink-stripe {
-        height: 50vh;
-        width: 100%;
-        display: flex;
-        font-family: 'Varela Round', sans-serif;
-        font-size: 3rem;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .white-stripe {
-        background-color: white;
-        width: 100vw;
-        height: 50vh;
-        display: flex;
-        position: fixed;
-        bottom: 0;
-        align-items: center;
-        justify-content: center;x
-    }
-</style>
 {% endblock %}
