@@ -1,0 +1,45 @@
+.sidebar-container {
+    background-color: $gray; //!important;
+    height: 100%;
+    width: 300px;
+    top: 54px;
+}
+
+.img-profil {
+    background: no-repeat center;
+    background-size: contain;
+    border: $primary solid 5px;
+    border-radius: 50%;
+    height: 150px;
+    margin: 0 auto 10px 3%;
+    width: 150px;
+
+}
+
+.img-logo {
+    background: no-repeat center;
+    background-size: contain;
+    height: 150px;
+    margin: 0 auto 10px 3%;
+    width: 150px;
+}
+
+.nav-contain {
+    li {
+        background-color: $secondary;
+        height: 40px;
+        margin-bottom: 20px;
+        margin-top: 20px;
+        padding: 5px;
+
+        a {
+            color: $black;
+            margin-left: 3%;
+        }
+    }
+}
+
+
+.activelink {
+    background-color: $primary; //!important;
+}
