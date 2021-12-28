@@ -1,4 +1,6 @@
-
+.navbar-head{
+    background-color: white;
+}
 .nav-item {
     height: 40px;
 }
