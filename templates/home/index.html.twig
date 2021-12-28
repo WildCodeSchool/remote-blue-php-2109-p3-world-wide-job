@@ -1,21 +1,21 @@
 {% extends 'base.html.twig' %}
 
-{% block body %}
-    <p> lien </p>
-    <ul>
-        <li> <a href="{{ path('registration_index', {'role': 'ecole'}) }}">Ecole </a></li>
-        <li> <a href="{{ path('registration_index', {'role': 'etudiant'}) }}" > Etudiant </a></li>
-        <li> <a href="{{ path('registration_index', {'role': 'entreprise'}) }}" > Entreprise </a></li>
-    </ul>
+
+
 {% block title %}Home{% endblock %}
 
-{% endblock %}
+
 {% block sidebar %}
     {% include 'include/_company-sidebar.html.twig' %}
 {% endblock %}
 {% block body %}
     <div class="main-container">
-
+        <p> lien </p>
+        <ul>
+            <li> <a href="{{ path('registration_index', {'role': 'ecole'}) }}">Ecole </a></li>
+            <li> <a href="{{ path('registration_index', {'role': 'etudiant'}) }}" > Etudiant </a></li>
+            <li> <a href="{{ path('registration_index', {'role': 'entreprise'}) }}" > Entreprise </a></li>
+        </ul>
 
     <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque finibus ipsum eu ex aliquet pretium.
         Curabitur accumsan odio elit, sed tempus justo suscipit at. Ut eros risus, vulputate eget augue id, efficitur
