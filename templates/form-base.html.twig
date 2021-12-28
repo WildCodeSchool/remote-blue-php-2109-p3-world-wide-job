@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+{% block title %} Inscription {% endblock %}
+{% block body %}
+
+    <div class="head-container d-flex align-content-center justify-content-center w-25 ms-auto me-auto
+              mt-5 mb-2">
+        <h2 class="text-center form-titre ms-3 align-self-center"> {% block titleform %}{% endblock %}</h2>
+        <ul class="d-flex flex-row ms-auto me-auto mb-1 etape-container ps-0">
+            <li class="list-unstyled active mt-auto mb-auto text-center
+             {{ app.request.pathinfo == path('registration_company')
+            or app.request.pathinfo == path('registration_school')
+            or app.request.pathinfo == path('registration_student')
+            ? 'etape1' }}"> 1
+            </li>
+            <li class="list-unstyled trait  mt-auto mb-auto"></li>
+            <li class="list-unstyled  etape mt-auto mb-auto text-center ms-0 me-0
+             {{ app.request.pathinfo == path('registration_company')
+            or app.request.pathinfo == path('registration_school')
+            or app.request.pathinfo == path('registration_student')
+            ? 'active' }}"> 2</li>
+        </ul>
+    </div>
+    <div>
+
+        <div class="form-container mb-5 w-50 ms-auto me-auto">
+            {% block form %}
+
+            {% endblock %}
+            <button type="submit" class="btn btn-primary align-self-end m-1 form-btn"> {% block bouton %}
+                {% endblock %}</button>
+            {% block endform %} {% endblock %}
+
+        </div>
+
+    </div>
+
+
+{% endblock %}
+

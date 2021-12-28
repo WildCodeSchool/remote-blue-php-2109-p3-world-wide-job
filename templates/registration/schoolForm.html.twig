@@ -1,9 +1,10 @@
-{% extends 'base.html.twig' %}
+{% extends 'form-base.html.twig' %}
+{% block titleform %} Création d'un compte étudiant {% endblock %}
+{% block form %}
 
-{% block body %}
-    <h1>Inscription sur le site</h1>
-    {{ form_start(form) }}
+    {{ form_start(form, {'attr':{'class':'ms-auto me-auto form-register d-flex flex-column'}}) }}
     {{ form_widget(form) }}
-    <button type="submit" class="btn">Etape suivante</button>
-    {{ form_end(form) }}
 {% endblock %}
+     {% block bouton %}Etape suivante {% endblock %}
+   {% block endform %} {{ form_end(form) }} {% endblock %}
+
