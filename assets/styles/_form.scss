@@ -1,46 +1,53 @@
 .form-container {
-    background-color: #999897;
+    background-color: $gray;
+    border: 1px solid $primary;
+    border-radius: 10px;
     min-width: 380px;
     padding: 3% 3% 1%;
-    border-radius: 10px;
-    border: 1px solid beige;
 }
 
-ul .active {
-    width: 50px;
-    height: 50px;
-    border: 2px solid beige;
-    vertical-align: top;
-    padding-top: 10px;
+ul {
+    .active {
+        background-color: $primary;
+        border: 2px solid $primary;
+        border-radius: 50%;
+        color: $black;
+        height: 50px;
+        padding-top: 10px;
+        vertical-align: top;
+        width: 50px;
+  }
+}
+
+.etape {
+    border: 2px solid $primary;
     border-radius: 50%;
-    background-color: beige;
-    color: black;
-}
-
-   .etape {
-    width: 40px;
+    color: $black;
     height: 40px;
-    border: 2px solid beige;
-    vertical-align: top;
     padding-top: 05px;
-    border-radius: 50%;
-    color: black;
+    vertical-align: top;
+    width: 40px;
 }
 
-div .etape-container .etape1 {
-    width: 40px;
-    height: 40px;
-    border: 2px solid beige;
-    vertical-align: top;
-    padding-top: 05px;
-    border-radius: 50%;
-    color: black;
-  background-color:  transparent;
+div {
+    .etape-container {
+        .etape1 {
+            background-color: transparent;
+            border: 2px solid $primary;
+            border-radius: 50%;
+            color: $black;
+            height: 40px;
+            padding-top: 05px;
+            vertical-align: top;
+            width: 40px;
+    }
+  }
 }
+
 .trait {
-    width: 50px;
+    background-color: $primary;
     height: 2px;
-    background-color: beige;
+    width: 50px;
 }
 
 .etape-container {
@@ -60,11 +67,12 @@ div .etape-container .etape1 {
 }
 
 .head-container {
-  flex-direction:row-reverse;
+    flex-direction: row-reverse;
 }
 
 @media (max-width: 992px) {
-   .head-container {
-    flex-direction: column-reverse;
+    .head-container {
+        flex-direction: column-reverse;
   }
 }
+
