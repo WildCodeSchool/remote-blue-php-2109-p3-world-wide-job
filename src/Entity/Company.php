@@ -3,12 +3,17 @@
 namespace App\Entity;
 
 use App\Repository\CompanyRepository;
+use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\Validator\Constraints as Assert;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity(repositoryClass=CompanyRepository::class)
+ * @Vich\Uploadable
  */
 class Company
 {
@@ -22,7 +27,17 @@ class Company
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private ?string $logo;
+    private ?string $logo = "";
+
+    /**
+     * @Vich\UploadableField(mapping="profile_file", fileNameProperty="logo")
+     * @Assert\File(
+     *     maxSize = "1M",
+     *     mimeTypes = {"image/jpeg", "image/png", "image/webp"},
+     * )
+     * @var ?File
+     */
+    private ?File $logoFile;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -64,6 +79,11 @@ class Company
      */
     private string $slug;
 
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private ?\DateTimeInterface $updatedAt;
+
     public function __construct()
     {
         $this->offers = new ArrayCollection();
@@ -83,6 +103,31 @@ class Company
     {
         $this->logo = $logo;
 
+        return $this;
+    }
+
+    public function getLogoFile(): ?File
+    {
+        return $this->logoFile;
+    }
+
+    public function setLogoFile(?File $image = null): self
+    {
+        $this->logoFile = $image;
+        if ($image) {
+            $this->updatedAt = new DateTime('now');
+        }
+        return $this;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeInterface
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(?\DateTimeInterface $updatedAt): self
+    {
+        $this->updatedAt = $updatedAt;
         return $this;
     }
 

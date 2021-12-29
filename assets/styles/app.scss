@@ -1,11 +1,9 @@
 @import 'variables.scss';
-@import "~bootstrap/scss/bootstrap";
 @import url('https://fonts.googleapis.com/css2?family=Karla:wght@200;300&display=swap');
 @import '_navbar.css';
 @import '_profile.css';
+@import '_form.scss';
+@import '_sidebar.scss';
+@import '~bootstrap/scss/bootstrap';
 
-body {
-    margin:0;
-    background-color: $wild-color;
-    color: $light;
-}
+

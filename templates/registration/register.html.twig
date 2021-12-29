@@ -1,27 +1,31 @@
-{% extends 'base.html.twig' %}
+{% extends 'form-base.html.twig' %}
 
-{% block title %}Register{% endblock %}
+{% block title %} Inscription  {% endblock %}
 
-{% block body %}
 
-    <h1>Register</h1>
+{% block titleform %} Titulaire du compte {% endblock %}
+		 {% block form %}
 
-    {{ form_start(registrationForm) }}
-    {{ form_row(registrationForm.civility) }}
-    {{ form_row(registrationForm.firstname) }}
-    {{ form_row(registrationForm.lastname) }}
-    {{ form_row(registrationForm.birthdate) }}
-    {{ form_row(registrationForm.phone) }}
-    {{ form_row(registrationForm.adress1) }}
-    {{ form_row(registrationForm.adress2) }}
-    {{ form_row(registrationForm.zip) }}
-    {{ form_row(registrationForm.city) }}
-    {{ form_row(registrationForm.country) }}
-    {{ form_row(registrationForm.email) }}
-    {{ form_row(registrationForm.plainPassword, {
-        label: 'Mot de passe'
-    }) }}
-    <button type="submit" class="btn">Etape suivante</button>
-    {{ form_end(registrationForm) }}
+             {{ form_start(registrationForm, {'attr': {'class': 'ms-auto me-auto form-register d-flex flex-column'}}) }}
+             {{ form_row(registrationForm.civility) }}
+             {{ form_row(registrationForm.firstname) }}
+             {{ form_row(registrationForm.lastname) }}
+             {{ form_row(registrationForm.birthdate) }}
+             {{ form_row(registrationForm.phone) }}
+             {{ form_row(registrationForm.adress1) }}
+             {{ form_row(registrationForm.adress2) }}
+             {{ form_row(registrationForm.zip) }}
+             {{ form_row(registrationForm.city) }}
+             {{ form_row(registrationForm.country) }}
+             {{ form_row(registrationForm.email) }}
+             {{ form_row(registrationForm.plainPassword, {
+                 label: 'Mot de passe'
+             }) }}
+                {% endblock %}
+               {% block bouton %} étape suivante {% endblock %}
+              {% block endform %}  {{ form_end(registrationForm) }} {% endblock %}
 
-{% endblock %}
+
+
+
+
