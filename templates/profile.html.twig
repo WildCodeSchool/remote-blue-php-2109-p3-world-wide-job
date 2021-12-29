@@ -19,9 +19,11 @@
 <header>
     {% include 'include/_navbar.html.twig' %}
 </header>
+<section class="profile-informations mx-4">
 {% block banner %}{% endblock %}
 {% block picture %}{% endblock %}
 {% block information %}{% endblock %}
+</section>
 {% block body %}{% endblock %}
 <!-- JavaScript Bundle with Popper -->
 <script src="/build/app.js"></script>

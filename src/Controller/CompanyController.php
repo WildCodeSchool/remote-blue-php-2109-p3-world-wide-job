@@ -13,7 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class CompanyController extends AbstractController
 {
     /**
-     * @Route("/{id}", name="show")
+     * @Route("/{slug}", name="show")
      */
     public function show(Company $company): Response
     {

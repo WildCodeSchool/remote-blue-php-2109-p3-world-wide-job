@@ -2,7 +2,9 @@
 
 {% block title %}{{ company.companyName }}{% endblock %}
 
-{% block body %}
-
-    {{ dump(company) }}
+{% block banner %}
+    <img src="{{ asset('build/images/workbanner.jpg') }}" class="profile-banner" alt="ACME logo">
+{% endblock %}
+{% block picture %}
+    <img src="{{ asset('build/images/') }}" class="profile-banner" alt="ACME logo">
 {% endblock %}

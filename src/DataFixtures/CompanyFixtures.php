@@ -29,7 +29,7 @@ class CompanyFixtures extends Fixture implements DependentFixtureInterface
     {
         foreach (self::COMPANY as $key => $name) {
             $company = new Company();
-            $company->setLogo('https://via.placeholder.com/150')
+            $company->setLogo('profile.png')
                 ->setCompanyName($name)
                 ->setSlug($this->slugify->generate($name))
                 ->setCompanyFormat('SARL')
