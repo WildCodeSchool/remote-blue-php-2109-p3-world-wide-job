@@ -78,9 +78,9 @@ class Student
     private Collection $applications;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private string $slug;
+    private ?string $slug;
 
     public function __construct()
     {

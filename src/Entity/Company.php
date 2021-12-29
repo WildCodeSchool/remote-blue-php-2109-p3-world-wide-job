@@ -37,7 +37,7 @@ class Company
      * )
      * @var ?File
      */
-    private ?File $logoFile;
+    private ?File $logoFile = null;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -75,9 +75,9 @@ class Company
     private User $user;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private string $slug;
+    private ?string $slug;
 
     /**
      * @ORM\Column(type="datetime", nullable=true)

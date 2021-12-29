@@ -77,14 +77,14 @@ class School
     private Collection $degrees;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private string $slug;
+    private ?string $slug;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable=true)
      */
-    private \DateTimeInterface $updatedAt;
+    private ?\DateTimeInterface $updatedAt;
 
     public function __construct()
     {
@@ -121,7 +121,7 @@ class School
         return $this->logoFile;
     }
 
-    public function getUpdatedAt(): \DateTimeInterface
+    public function getUpdatedAt(): ?\DateTimeInterface
     {
         return $this->updatedAt;
     }
