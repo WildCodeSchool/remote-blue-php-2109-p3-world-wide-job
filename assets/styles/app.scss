@@ -20,3 +20,13 @@ body {
     margin-top: 50px;
 
 }
+
+@media screen and (max-width: 992px) {
+    .sidebar-container {
+        display: none;
+    }
+
+    .main-container {
+        margin-left: 50px;
+    }
+}

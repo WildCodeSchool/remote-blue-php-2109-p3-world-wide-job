@@ -1,28 +1,122 @@
 {% block header %}
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
-        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
-                aria-controls="offcanvasNavbar">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar"
-             aria-labelledby="offcanvasNavbarLabel">
-            <div class="offcanvas-header">
-                <img class="image logo ms-auto" src="{{ asset('build/images/logofinal.png') }}" alt=""/>
-                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
-                        aria-label="Close"></button>
-            </div>
-            <div class="offcanvas-body">
-                <ul class="navbar-nav align-items-lg-center w-100">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
+                    aria-controls="offcanvasNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar"
+                 aria-labelledby="offcanvasNavbarLabel">
+                <div class="offcanvas-header">
+                    <img class="image logo ms-auto" src="{{ asset('build/images/logofinal.png') }}" alt=""/>
+                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+                            aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body p-lg-2">
+                    <ul class="navbar-nav align-items-lg-center w-100">
                         <li class="nav-item ms-lg-auto ms-2">
                             <a type="button" class="btn press w-100 " href="#"> <i class="fas fa-user"></i>Offres</a>
                         </li>
                         <li class="nav-item ms-2 h-100">
                             <a type="button" class="btn press w-100 " href="#">S'identifier</a>
                         </li>
+
                         <img class="image world" src="{{ asset('build/images/logofinal.png') }}" alt=""/>
                     </ul>
+
+                    <hr class="hr-mobile">
+                    {% if is_granted('ROLE_COMPANY') %}
+
+                        <ul class="list-unstyled list-inline nav-contain sidebar-mobile">
+                            <!-- décomenter le twig pour mettre en place les routes -->
+                            <!-- tableau dynamique -->
+                            {% set links = [
+                                {'title': 'Mon profil entreprise', 'path': '#'},
+                                {'title': 'Créer une offre', 'path': '#'},
+                                {'title': 'Voir mes offres', 'path': '#'},
+                                {'title': 'Consulter mes candidature', 'path': '#'},
+                            ] %}
+                            {% for link in links %}
+                                <li class="text-decoration-none btn-primary text-center
+                 {# {{ app.request.pathinfo == path(link.path) ? 'activelink' }} #}">
+                                    <a class="text-decoration-none "
+                                       href="{# {{ path(link.path) }} #}">{{ link.title }}</a>
+                                </li>
+                            {% endfor %}
+
+
+                        </ul>
+                    {% endif %}
+
+                    {% if is_granted('ROLE_SCHOOL') %}
+
+                        <ul class="list-unstyled list-inline nav-contain sidebar-mobile">
+                            <!-- décomenter le twig pour mettre en place les routes -->
+                            <!-- tableau dynamique -->
+                            {% set links = [
+                                {'title': 'Mon profil formation', 'path': '#'},
+                                {'title': 'Liste des étudiants', 'path': '#'},
+                                {'title': 'Suivie de mes étudiants', 'path': '#'},
+                                {'title': 'Mes cursus', 'path': '#'},
+                            ] %}
+                            {% for link in links %}
+                                <li class="text-decoration-none btn-primary
+                 {# {{ app.request.pathinfo == path(link.path) ? 'activelink' }} #}">
+                                    <a class="text-decoration-none "
+                                       href="{# {{ path(link.path) }} #}">{{ link.title }}</a>
+                                </li>
+                            {% endfor %}
+
+
+                        </ul>
+                    {% endif %}
+
+                    {% if is_granted('ROLE_STUDENT') %}
+
+
+                        <ul class="list-unstyled list-inline nav-contain sidebar-mobile">
+                            <!-- décomenter le twig pour mettre en place les routes -->
+                            <!-- tableau dynamique -->
+                            {% set links = [
+                                {'title': 'Mon profil étudiant', 'path': '#'},
+                                {'title': 'Faire mon CV', 'path': '#'},
+                                {'title': 'Voir mes candidatures', 'path': '#'},
+                                {'title': 'Mes offres favorites', 'path': '#'},
+                            ] %}
+                            {% for link in links %}
+                                <li class="text-decoration-none btn-primary
+                 {# {{ app.request.pathinfo == path(link.path) ? 'activelink' }} #}">
+                                    <a class="text-decoration-none "
+                                       href="{# {{ path(link.path) }} #}">{{ link.title }}</a>
+                                </li>
+                            {% endfor %}
+
+
+                        </ul>
+
+                    {% endif %}
+
+                    <ul class="list-unstyled list-inline nav-contain sidebar-mobile">
+                        <!-- décomenter le twig pour mettre en place les routes -->
+                        <!-- tableau dynamique -->
+                        {% set links = [
+                            {'title': 'Mon profil étudiant', 'path': '#'},
+                            {'title': 'Faire mon CV', 'path': '#'},
+                            {'title': 'Voir mes candidatures', 'path': '#'},
+                            {'title': 'Mes offres favorites', 'path': '#'},
+                        ] %}
+                        {% for link in links %}
+                            <li class="text-decoration-none btn-primary text-center
+                 {# {{ app.request.pathinfo == path(link.path) ? 'activelink' }} #}">
+                                <a class="text-decoration-none "
+                                   href="{# {{ path(link.path) }} #}">{{ link.title }}</a>
+                            </li>
+                        {% endfor %}
+
+
+                    </ul>
+                    <hr class="hr-mobile">
                 </div>
             </div>
         </div>
