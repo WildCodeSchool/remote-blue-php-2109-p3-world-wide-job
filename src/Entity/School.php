@@ -3,12 +3,17 @@
 namespace App\Entity;
 
 use App\Repository\SchoolRepository;
+use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\Validator\Constraints as Assert;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity(repositoryClass=SchoolRepository::class)
+ * @Vich\Uploadable
  */
 class School
 {
@@ -20,9 +25,20 @@ class School
     protected int $id;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", length=255)
+     * @var string
      */
-    private ?string $logo;
+    private string $logo = "";
+
+    /**
+     * @Vich\UploadableField(mapping="profile_file", fileNameProperty="logo")
+     * @Assert\File(
+     *     maxSize = "1M",
+     *     mimeTypes = {"image/jpeg", "image/png", "image/webp"},
+     * )
+     * @var ?File
+     */
+    private ?File $logoFile = null;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -60,6 +76,11 @@ class School
      */
     private Collection $degrees;
 
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private \DateTimeInterface $updatedAt;
+
     public function __construct()
     {
         $this->students = new ArrayCollection();
@@ -71,16 +92,38 @@ class School
         return $this->id;
     }
 
-    public function getLogo(): ?string
+    public function getLogo(): string
     {
         return $this->logo;
     }
 
-    public function setLogo(?string $logo): self
+    public function setLogo(string $logo): self
     {
         $this->logo = $logo;
-
         return $this;
+    }
+
+    public function setLogoFile(?File $image = null): void
+    {
+        $this->logoFile = $image;
+        if ($image) {
+            $this->updatedAt = new DateTime('now');
+        }
+    }
+
+    public function getLogoFile(): ?File
+    {
+        return $this->logoFile;
+    }
+
+    public function getUpdatedAt(): \DateTimeInterface
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(\DateTimeInterface $updatedAt): void
+    {
+        $this->updatedAt = $updatedAt;
     }
 
     public function getSchoolName(): ?string

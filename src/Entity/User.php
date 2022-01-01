@@ -4,11 +4,14 @@ namespace App\Entity;
 
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
+ * @UniqueEntity(fields={"email"}, message="There is already an account with this email")
  */
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
@@ -25,7 +28,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private string $email;
 
     /**
-     * @ORM\Column(type="json")
+     * @ORM\Column(type="json", nullable=true)
      */
     private array $roles = [];
 
@@ -34,6 +37,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\Column(type="string")
      */
     private string $password;
+
+    /**
+     * @Assert\EqualTo(propertyPath="password")
+     */
+    public string $confirmPassword;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -100,6 +108,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private ?Student $student;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private bool $isVerified = false;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -138,7 +151,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @see UserInterface
      */
-    public function getRoles(): array
+    public function getRoles(): ?array
     {
         $roles = $this->roles;
         // guarantee every user at least has ROLE_USER
@@ -274,7 +287,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function geCity(): ?string
+    public function getCity(): ?string
     {
         return $this->city;
     }
@@ -332,5 +345,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function getStudent(): ?Student
     {
         return $this->student;
+    }
+
+    public function isVerified(): bool
+    {
+        return $this->isVerified;
+    }
+
+    public function setIsVerified(bool $isVerified): self
+    {
+        $this->isVerified = $isVerified;
+
+        return $this;
     }
 }

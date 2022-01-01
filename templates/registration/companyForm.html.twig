@@ -1,0 +1,12 @@
+{% extends 'form-base.html.twig' %}
+ {% block titleform %} Création d'un compte entreprise {% endblock %}
+		 {% block form %}
+             {{ form_start(form, {'attr': {'class': 'ms-auto me-auto form-register d-flex flex-column'}}) }}
+             {{ form_widget(form) }}
+         {% endblock %}
+             {% block bouton %} s'inscrire {% endblock %}
+            {% block endform %} {{ form_end(form) }} {% endblock %}
+
+
+
+

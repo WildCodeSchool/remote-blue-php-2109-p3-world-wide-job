@@ -1,30 +1,37 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-		<link rel="icon" href="{{ asset('build/images/logofinal.ico') }}"/>
-		<link rel="stylesheet" href="/build/app.css">
-		<!-- CSS only -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" href="{{ asset('build/images/logofinal.ico') }}"/>
+    <link rel="stylesheet" href="/build/app.css">
+    <!-- CSS only -->
 
-<title>
-			{% block title %}Projet 3 Name{% endblock %}
-</title>
-		{% block stylesheets %}
-			{{ encore_entry_link_tags('app') }}
-		{% endblock %}
-		{% block javascripts %}
-			{{ encore_entry_script_tags('app') }}
-		{% endblock %}
-	</head>
-	<body>
-	<header>
-	{% include 'component/_navbar.html.twig' %}
+    <title>
+        {% block title %}Projet 3 Name{% endblock %}
+    </title>
+    {% block stylesheets %}
+        {{ encore_entry_link_tags('app') }}
+    {% endblock %}
+    {% block javascripts %}
+        {{ encore_entry_script_tags('app') }}
+    {% endblock %}
+</head>
+<body>
+<header class="position-sticky top-0">
+    {% include 'component/_navbar.html.twig' %}
 </header>
+<div>
+    <aside>
+        {% block sidebar %}{% endblock %}
+    </aside>
+    <main>
+        {% block body %}{% endblock %}
+    </main>
+</div>
+<!-- JavaScript Bundle with Popper -->
+<script src="/build/app.js"></script>
 
-		{% block body %}{% endblock %}
-		<!-- JavaScript Bundle with Popper -->
-		<script src="/build/app.js"></script>
+</body>
 
-	</body>
 </html>
