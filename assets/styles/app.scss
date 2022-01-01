@@ -3,6 +3,7 @@
 @import '~@fortawesome/fontawesome-free/css/all.css';
 @import '_home.css';
 @import '_navbar.css';
+@import '_form.scss';
 @import '_sidebar.scss';
 @import '~bootstrap/scss/bootstrap';
 
@@ -25,4 +26,5 @@ body {
     margin-left: 350px;
     margin-right: 50px;
     margin-top: 50px;
+
 }

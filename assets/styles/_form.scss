@@ -1,0 +1,78 @@
+.form-container {
+    background-color: $gray;
+    border: 1px solid $primary;
+    border-radius: 10px;
+    min-width: 380px;
+    padding: 3% 3% 1%;
+}
+
+ul {
+    .active {
+        background-color: $primary;
+        border: 2px solid $primary;
+        border-radius: 50%;
+        color: $black;
+        height: 50px;
+        padding-top: 10px;
+        vertical-align: top;
+        width: 50px;
+  }
+}
+
+.etape {
+    border: 2px solid $primary;
+    border-radius: 50%;
+    color: $black;
+    height: 40px;
+    padding-top: 05px;
+    vertical-align: top;
+    width: 40px;
+}
+
+div {
+    .etape-container {
+        .etape1 {
+            background-color: transparent;
+            border: 2px solid $primary;
+            border-radius: 50%;
+            color: $black;
+            height: 40px;
+            padding-top: 05px;
+            vertical-align: top;
+            width: 40px;
+    }
+  }
+}
+
+.trait {
+    background-color: $primary;
+    height: 2px;
+    width: 50px;
+}
+
+.etape-container {
+    width: 180px;
+}
+
+.form-register {
+    max-width: 470px;
+}
+
+.form-btn {
+    min-width: 143px;
+}
+
+.form-titre {
+    white-space: nowrap;
+}
+
+.head-container {
+    flex-direction: row-reverse;
+}
+
+@media (max-width: 992px) {
+    .head-container {
+        flex-direction: column-reverse;
+  }
+}
+
