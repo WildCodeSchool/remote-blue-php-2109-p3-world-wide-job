@@ -12,6 +12,9 @@ body::-webkit-scrollbar-thumb {
 .jobTitle {
     font-weight: bold;
 }
+.smallCard {
+    pointer-events: none;
+}
 .btn-primary {
     font-size: calc(7px + 0.5rem);
     padding: .3rem .8rem;
@@ -118,6 +121,9 @@ body::-webkit-scrollbar-thumb {
     max-width: 8rem;
     margin-top: 1rem;
 }
+.largeOffer {
+    overflow-y: scroll;
+}
 @media screen and (max-width: 992px) {
     .smallSearchCard {
         margin-top: 3rem;
@@ -137,19 +143,24 @@ body::-webkit-scrollbar-thumb {
     }
 
     .largeSearchCard {
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr;
         position: fixed;
-        opacity: 0;
         pointer-events: none;
-        top: 2.5vh;
+        top: 10vh;
         left: 5vw;
-        height: 95vh;
+        min-height: 60vh;
+        max-height: 85vh;
         width: 90vw;
+    }
+    .largeOffer {
+        grid-column: 1;
+        grid-row: 1;
+        opacity: 0;
         transition: opacity 0.3s ease;
     }
-    .largeSearchCard.show {
+    .largeOffer.show {
         pointer-events: auto;
         opacity: 1;
     }
@@ -186,6 +197,7 @@ body::-webkit-scrollbar-thumb {
     margin-right: 1rem;
     grid-area: miniature;
     grid-column: 6/13;
+    grid-row: 1;
     display: flex;
     flex-direction: column;
 
@@ -195,7 +207,13 @@ body::-webkit-scrollbar-thumb {
     min-height: 100px;
     color: black;
 }
+.smallOffer.active {
+    background-color: rgba($primary, 0.20);
+}
 .largeSearchCard {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
     width: 33%;
     position: sticky;
     top: 1rem;
@@ -206,7 +224,14 @@ body::-webkit-scrollbar-thumb {
     min-height: 75vh;
     max-height: 80vh;
     color: black;
-    overflow-y: scroll;
+    opacity: 0;
+    pointer-events: none;
+    grid-column: 1;
+    grid-row: 1;
+    transition: opacity 0.3s ease;
 }
-
+.largeOffer.show {
+    pointer-events: auto;
+    opacity: 1;
+}
 }

@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+        {% block title %}Recherche emploi world wide job{% endblock %}
+
+{% block filters %}
+{% endblock %}
+{% block body %}
+<div class="searchContainer">
+    <div class="searchGrid">
+        <div class="smallSearchCard">
+            {% for offer in offers %}
+                <div class="card rounded shadow smallOffer" id="smallOffer{{ offer.id }}">
+                    <div class="card-body smallCard">
+                        <div class="jobTitleContainer">
+                            <div class="jobTitle text-primary">{{ offer.name }}</div>
+                        </div>
+                        <div class="jobInfoContainer">
+                            <div class="jobLogoContainer">
+                                <img class="jobCompanyLogo" src="{{ asset('build/images/favicon.png') }}" alt="logo entreprise">
+                            </div>
+                            <div class="jobSubInfoContainer">
+                                <div class="jobLocation">{{ offer.city }}</div>
+                                <div class="jobType">Type de contrat</div>
+                                <div class="jobDate">{% set difference = date('now').diff(date(offer.dateOfPublication)) %}
+                                    {% set left_days = difference.days %}
+                                    Il y à
+                                    {% if left_days == 1 %}
+                                        1 jour
+                                    {% else %}
+                                        {{ left_days }} jours
+                                    {% endif %}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="largeSearchCard" id="largeSearchCard">
+        {% for offer in offers %}
+        <div class="card rounded shadow largeOffer" id="largeOffer{{ offer.id }}">
+            <div class="card-body largeCard">
+                <button class="btn-close closeOffer"></button>
+                <div class="descCompanyName">Company name</div>
+                <div class="descJobTitle">{{ offer.name }}</div>
+                <div class="descJobLocation">{{ offer.city }}</div>
+                <div class="descJobType">Alternance 1 an</div>
+                <button class="btn-primary text-white rounded descApply">Postuler</button>
+                <button class="btn-primary text-white rounded descSave">Enregistrer</button>
+                <div class="descDetails">Détail de l'offre :</div>
+                <div class="descOffer">{{ offer.longDescription }}
+                </div>
+                <div class="descDate">{% set difference = date('now').diff(date(offer.dateOfPublication)) %}
+                    {% set left_days = difference.days %}
+                    Il y à
+                    {% if left_days == 1 %}
+                        1 jour
+                    {% else %}
+                        {{ left_days }} jours
+                    {% endif %}</div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

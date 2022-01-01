@@ -1,11 +1,32 @@
-if (window.matchMedia('(max-width: 992px)').matches) {
-    const largeSearchCard = document.getElementById('largeSearchCard');
-    const closeOffer = document.getElementById('closeOffer');
-    const smallOffers = document.querySelectorAll('.smallOffer');
-    smallOffers.forEach((offer) => offer.addEventListener('click', () => {
-        largeSearchCard.classList.add('show');
-    }));
-    closeOffer.addEventListener('click', () => {
-        largeSearchCard.classList.remove('show');
+const largeOffers = document.getElementsByClassName('largeOffer');
+const smallOffers = document.getElementsByClassName('smallOffer');
+const closeOffer = document.getElementsByClassName('closeOffer');
+// eslint-disable-next-line no-restricted-syntax
+for (const element of smallOffers) {
+    element.addEventListener('click', (event) => {
+        const selectedId = (event.target.id).substring(10);
+        // eslint-disable-next-line no-restricted-syntax
+        for (const clicked of smallOffers) {
+            clicked.classList.remove('active');
+        }
+        element.classList.add('active');
+        // eslint-disable-next-line no-restricted-syntax
+        for (const offer of largeOffers) {
+            if (window.matchMedia('(min-width: 992px)').matches) {
+                offer.classList.remove('show');
+            }
+            const divId = offer.id.substring(10);
+            if (divId === selectedId) {
+                offer.classList.add('show');
+            }
+            if (window.matchMedia('(max-width: 992px)').matches) {
+                // eslint-disable-next-line no-restricted-syntax
+                for (const close of closeOffer) {
+                    close.addEventListener('click', () => {
+                        offer.classList.remove('show');
+                    });
+                }
+            }
+        }
     });
 }

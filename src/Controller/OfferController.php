@@ -3,18 +3,20 @@
 namespace App\Controller;
 
 use App\Repository\OfferRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class SearchJobController extends AbstractController
+class OfferController extends AbstractController
 {
     /**
      * @Route("/search", name="search_offer", methods={"GET"})
      */
     public function searchOffer(OfferRepository $offerRepository): Response
     {
-        return $this->render('searchBase.html.twig', [
+        return $this->render('search/searchOffer.html.twig', [
             'offers' => $offerRepository->findAll(),
         ]);
     }
