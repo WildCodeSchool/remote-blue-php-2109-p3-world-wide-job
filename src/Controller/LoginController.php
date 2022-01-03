@@ -13,8 +13,6 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class LoginController extends AbstractController
 {
-
-
     /**
      * @Route("/connexion", name="login")
      */
@@ -30,15 +28,13 @@ class LoginController extends AbstractController
             'last_username' => $lastUsername,
             'error' => $error,
         ]);
-
     }
 
     /**
      * @Route("/déconnexion", name="app_logout")
      */
-    public function logout(AuthenticationUtils $authenticationUtils)
+    public function logout(AuthenticationUtils $authenticationUtils): void
     {
-
     }
 
     /**
@@ -50,46 +46,37 @@ class LoginController extends AbstractController
 
         if (
             $security->isGranted('ROLE_STUDENT')
-
         ) {
             return new RedirectResponse($urlGenerator->generate('registration_student'));
         }
         if (
             $security->isGranted('ROLE_SCHOOL')
-
         ) {
             return new RedirectResponse($urlGenerator->generate('registration_school'));
         }
         if (
             $security->isGranted('ROLE_COMPANY')
-
         ) {
             return new RedirectResponse($urlGenerator->generate('registration_company'));
         }
 
         if (
             $security->isGranted('ROLE_STUDENT_COMPLETED')
-
         ) {
             return new RedirectResponse($urlGenerator->generate('student_show'));
         }
         if (
             $security->isGranted('ROLE_SCHOOL_COMPLETED')
-
         ) {
             return new RedirectResponse($urlGenerator->generate('school_show'));
         }
         if (
             $security->isGranted('ROLE_COMPANY_COMPLETED')
-
         ) {
             return new RedirectResponse($urlGenerator->generate('company_show'));
         }
 
 
-
-
-        return new RedirectResponse($urlGenerator->generate('login '));
+        return new RedirectResponse($urlGenerator->generate('login'));
     }
-
 }
