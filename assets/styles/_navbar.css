@@ -1,17 +1,17 @@
 
 .container-fluid {
     position: relative;
-    
+
 }
 
 .navbar-head{
     background-color: white;
-    
+
 }
 
 .nav-item {
     height: 40px;
-    
+
 }
 
 .btn.press {
@@ -23,10 +23,20 @@
 @media screen and (max-width: 992px) {
     .image.world {
         display: none;
-
     }
-}
+    .hr-mobile {
 
+        background-color: black;
+    }
+
+}
+@media screen and (min-width: 992px) {
+
+    .sidebar-mobile {
+     display: none;
+    }
+
+}
 .image.world {
     height: 100px;
     position: absolute;
