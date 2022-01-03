@@ -4,6 +4,8 @@
 {% block filters %}
 {% endblock %}
 {% block body %}
+    <div class="filterBar">
+    </div>
 <div class="searchContainer">
     <div class="searchGrid">
         <div class="smallSearchCard">
@@ -11,23 +13,23 @@
                 <div class="card rounded shadow smallOffer" id="smallOffer{{ offer.id }}">
                     <div class="card-body smallCard">
                         <div class="jobTitleContainer">
-                            <div class="jobTitle text-primary">{{ offer.name }}</div>
+                            <h3 class="jobTitle text-primary">{{ offer.name }}</h3>
                         </div>
                         <div class="jobInfoContainer">
                             <div class="jobLogoContainer">
                                 <img class="jobCompanyLogo" src="{{ asset('build/images/favicon.png') }}" alt="logo entreprise">
                             </div>
                             <div class="jobSubInfoContainer">
-                                <div class="jobLocation">{{ offer.city }}</div>
-                                <div class="jobType">Type de contrat</div>
-                                <div class="jobDate">{% set difference = date('now').diff(date(offer.dateOfPublication)) %}
+                                <h4 class="jobLocation">{{ offer.city }}</h4>
+                                <h4 class="jobType">Type de contrat</h4>
+                                <h5 class="jobDate">{% set difference = date('now').diff(date(offer.dateOfPublication)) %}
                                     {% set left_days = difference.days %}
                                     Il y à
                                     {% if left_days == 1 %}
                                         1 jour
                                     {% else %}
                                         {{ left_days }} jours
-                                    {% endif %}</div>
+                                    {% endif %}</h5>
                             </div>
                         </div>
                     </div>
@@ -40,23 +42,23 @@
         <div class="card rounded shadow largeOffer" id="largeOffer{{ offer.id }}">
             <div class="card-body largeCard">
                 <button class="btn-close closeOffer"></button>
-                <div class="descCompanyName">Company name</div>
-                <div class="descJobTitle">{{ offer.name }}</div>
-                <div class="descJobLocation">{{ offer.city }}</div>
-                <div class="descJobType">Alternance 1 an</div>
+                <h3 class="descCompanyName">Company name</h3>
+                <h2 class="descJobTitle">{{ offer.name }}</h2>
+                <h3 class="descJobLocation">{{ offer.city }}</h3>
+                <h3 class="descJobType">Alternance 1 an</h3>
                 <button class="btn-primary text-white rounded descApply">Postuler</button>
                 <button class="btn-primary text-white rounded descSave">Enregistrer</button>
                 <div class="descDetails">Détail de l'offre :</div>
-                <div class="descOffer">{{ offer.longDescription }}
-                </div>
-                <div class="descDate">{% set difference = date('now').diff(date(offer.dateOfPublication)) %}
+                <p class="descOffer">{{ offer.longDescription }}
+                </p>
+                <h5 class="descDate">{% set difference = date('now').diff(date(offer.dateOfPublication)) %}
                     {% set left_days = difference.days %}
                     Il y à
                     {% if left_days == 1 %}
                         1 jour
                     {% else %}
                         {{ left_days }} jours
-                    {% endif %}</div>
+                    {% endif %}</h5>
             </div>
         </div>
         {% endfor %}

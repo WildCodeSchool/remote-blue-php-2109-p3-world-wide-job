@@ -1,11 +1,12 @@
 const largeOffers = document.getElementsByClassName('largeOffer');
 const smallOffers = document.getElementsByClassName('smallOffer');
 const closeOffer = document.getElementsByClassName('closeOffer');
-function load1stContent(array) {
+function load1stContent(array, array2) {
     array[0].classList.add('show');
+    array2[0].classList.add('active');
 }
 if (window.matchMedia('(min-width: 992px)').matches) {
-    window.onload = load1stContent(largeOffers);
+    window.onload = load1stContent(largeOffers, smallOffers);
 }
 // eslint-disable-next-line no-restricted-syntax
 for (const element of smallOffers) {
