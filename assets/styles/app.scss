@@ -1,11 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Karla:wght@200;300&display=swap');
 @import 'variables.scss';
-@import 'search';
 @import '_navbar.css';
+@import '~@fortawesome/fontawesome-free/css/all.css';
+@import '_home.css';
 @import '_form.scss';
 @import '_sidebar.scss';
 @import '~bootstrap/scss/bootstrap';
-
+@import 'search';
 
 body {
     background-color: #d3d3d3;
@@ -13,6 +14,11 @@ body {
     font-family: 'Karla', sans-serif;
     margin: 0;
     min-height: 100vh;
+    background: url('/assets/images/office.png') no-repeat   center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 
 .main-container {

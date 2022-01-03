@@ -1,3 +1,15 @@
+header {
+    z-index: 15;
+}
+
+.container-fluid {
+    position: relative;
+}
+
+.navbar-head{
+    background-color: white;
+}
+
 .nav-item {
     height: 40px;
 }
@@ -5,12 +17,12 @@
 .btn.press {
     background-color: #4088ee;
     color: white;
+    box-shadow: 0px 4px 4px #999;
 }
 
 @media screen and (max-width: 992px) {
     .image.world {
         display: none;
-
     }
 }
 

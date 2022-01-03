@@ -1,57 +1,42 @@
 {% extends 'base.html.twig' %}
 
 
-
 {% block title %}Home{% endblock %}
 
-
-{% block sidebar %}
-    {% include 'component/_company-sidebar.html.twig' %}
-{% endblock %}
 {% block body %}
-    <div class="main-container">
-        <p> lien </p>
-        <ul>
-            <li> <a href="{{ path('registration_index', {'role': 'ecole'}) }}">Ecole </a></li>
-            <li> <a href="{{ path('registration_index', {'role': 'etudiant'}) }}" > Etudiant </a></li>
-            <li> <a href="{{ path('registration_index', {'role': 'entreprise'}) }}" > Entreprise </a></li>
-        </ul>
-
-    <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque finibus ipsum eu ex aliquet pretium.
+    <div class="container">
+    <div class="card-introduction border-success mx-auto m-5" style="max-width: 30rem;">
+        <div class="card-body text-success">
+            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque finibus ipsum eu ex aliquet pretium.
         Curabitur accumsan odio elit, sed tempus justo suscipit at. Ut eros risus, vulputate eget augue id, efficitur
-        sollicitudin lectus. Mauris laoreet sodales lorem, eu congue risus aliquet sit amet. Nulla at massa quis nisl
-        molestie consequat vitae a ipsum. Maecenas tincidunt leo ultrices, consequat ante quis, pulvinar tellus. Vivamus
-        arcu nulla, commodo eu nunc id, mollis sodales neque. Proin malesuada ligula urna, vitae pretium orci
-        condimentum sed. Integer semper quis sapien in hendrerit. Pellentesque consequat malesuada risus ut commodo.
-        Praesent congue leo ac risus aliquam cursus. Pellentesque habitant morbi tristique senectus et netus et
-        malesuada fames ac turpis egestas.
-
-        Fusce vehicula ante eget facilisis hendrerit. Proin ultricies condimentum nulla ut fermentum. Vestibulum eu
-        lacinia diam. Vivamus fringilla velit vel tincidunt maximus. Cras scelerisque nibh congue sapien tincidunt
-        scelerisque. Mauris vulputate lobortis rutrum. Donec vel elit eleifend, cursus nulla vel, congue purus.
-
-        Donec est dolor, venenatis egestas turpis non, suscipit cursus urna. Nullam sed quam massa. Duis fermentum neque
-        quis nibh varius, nec porttitor dolor lobortis. Nunc semper ligula id iaculis euismod. Sed elementum, tellus id
-        dignissim aliquam, risus libero mollis risus, sed placerat libero risus sit amet magna. Praesent consequat
-        tempor quam, eget blandit enim finibus in. Etiam tincidunt pulvinar urna, placerat facilisis enim ornare eget.
-        Quisque vulputate ante non ante consectetur convallis. Etiam semper sem arcu. Integer at lectus commodo,
-        interdum lectus a, hendrerit diam. Vivamus turpis mi, malesuada sit amet malesuada at, posuere posuere sem.
-        Proin sed urna lacus.
-
-        Suspendisse commodo justo sit amet tortor cursus, ut elementum diam pellentesque. Quisque eu mauris velit. In
-        sed dictum dolor. Integer quam lorem, consectetur eu nibh id, egestas porttitor velit. Aenean fermentum felis
-        lacus, at porta arcu posuere vel. Quisque rutrum auctor leo, ut faucibus tellus. Curabitur orci nulla,
-        scelerisque eget fermentum quis, tempor nec tortor.
-
-        Nunc rhoncus interdum tempor. Duis et eleifend nisl. Etiam varius magna at metus hendrerit, sollicitudin tempus
-        nibh aliquet. Sed sed lacus nisi. Mauris sit amet consequat diam, venenatis rhoncus est. Praesent orci purus,
-        dapibus sed suscipit ac, suscipit et dui. Aliquam ante lorem, malesuada eu consequat id, molestie id ex. Morbi
-        hendrerit mollis vehicula. Aliquam et mauris mauris. Vestibulum ante ipsum primis in faucibus orci luctus et
-        ultrices posuere cubilia curae; Nulla et purus nibh. Aliquam ac diam vitae tortor venenatis mollis.
-
-
-    </p>
-    <img src=" https://fakeimg.pl/200x100/?retina=1&text=こんにちは&font=noto">
+        sollicitudin lectus. Mauris laoreet sodales lorem, eu congue risus aliquet sit amet.Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        </div>
+    </div>
+    <div class="card-choice">
+        <div class="card-text"> Se créer un compte: </p>
+            <a class="btn home" href="{{ path('registration_index', {'role': 'ecole'}) }}">Etudiant </a>
+            <a class="btn home" href="{{ path('registration_index', {'role': 'etudiant'}) }}" > Formation </a>
+            <a class="btn home" href="{{ path('registration_index', {'role': 'entreprise'}) }}" > Entreprise </a>
+            </div>
+    </div>
+    <div class="card-choice">
+    <div class="row">
+    <div class="col">
+00
+    </div>
+    <div class="col">
+00
+    </div>
+    <div class="col">
+00
+    </div>
+    <div class="col">
+00
+    </div>
+    <div class="col">
+00
+    </div>
+    </div>
     </div>
 {% endblock %}
 
