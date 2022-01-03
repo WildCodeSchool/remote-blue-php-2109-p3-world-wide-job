@@ -1,6 +1,12 @@
 const largeOffers = document.getElementsByClassName('largeOffer');
 const smallOffers = document.getElementsByClassName('smallOffer');
 const closeOffer = document.getElementsByClassName('closeOffer');
+function load1stContent(array) {
+    array[0].classList.add('show');
+}
+if (window.matchMedia('(min-width: 992px)').matches) {
+    window.onload = load1stContent(largeOffers);
+}
 // eslint-disable-next-line no-restricted-syntax
 for (const element of smallOffers) {
     element.addEventListener('click', (event) => {
