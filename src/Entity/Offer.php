@@ -45,9 +45,9 @@ class Offer
     private ?string $shortDescription;
 
     /**
-     * @ORM\Column(type="datetime", nullable=true)
+     * @ORM\Column(type="datetime")
      */
-    private ?\DateTimeInterface $dateOfPublication;
+    private \DateTimeInterface $dateOfPublication;
 
     /**
      * @ORM\Column(type="text", nullable=true)
@@ -165,12 +165,12 @@ class Offer
         return $this;
     }
 
-    public function getDateOfPublication(): ?\DateTimeInterface
+    public function getDateOfPublication(): ?string
     {
-        return $this->dateOfPublication;
+        return $this->dateOfPublication->format('d-m-Y');
     }
 
-    public function setDateOfPublication(?\DateTimeInterface $dateOfPublication): self
+    public function setDateOfPublication(\DateTimeInterface $dateOfPublication): self
     {
         $this->dateOfPublication = $dateOfPublication;
 

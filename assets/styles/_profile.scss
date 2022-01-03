@@ -1,0 +1,158 @@
+@import 'variables';
+$font-medium: 0.75rem;
+$font-small: 0.7rem;
+
+.profile-informations{
+    background-color: $light;
+    border-radius: 7px;
+    box-shadow: $box-shadow;
+    max-width: 900px
+}
+
+.profile-banner{
+    object-fit: cover;
+    height: 20vh;
+    width: 100%;
+}
+
+.profile-picture{
+    position: relative;
+    object-fit: cover;
+    height: 10vh;
+    top: -5vh;
+    left: 5vw;
+    border-radius: 7px;
+}
+
+.profile-localisation{
+    margin-left: 5vw;
+    display: flex;
+    align-items: center;
+}
+
+.profile-city{
+    border-radius: 7px;
+    display: inline-block;
+    padding: 7px;
+    background-color: $black;
+    color: $white;
+    font-size: $font-medium;
+}
+
+.profile-title{
+    display: flex;
+    justify-content: space-between;
+}
+
+.profile-name{
+    margin-right: 5vw;
+    margin-top: 2vw;
+}
+
+.profile-presentation{
+    margin: 0 5vw;
+    font-size: $font-medium;
+}
+
+.profile-body{
+    background-color: $profile;
+}
+
+.profile-offer{
+    background-color: $light;
+    box-shadow: $box-shadow;
+    border-radius: 7px;
+    padding: 7px;
+    max-width: 700px;
+    .profile-offer-head{
+        > h4 {
+            font-size: $font-medium;
+        }
+        > p {
+            text-align: center;
+            font-size: $font-small;
+        }
+    }
+    .profile-offer-text{
+        width : 74vw;
+        > p {
+            font-size: $font-small;
+            text-align: center;
+        }
+        > div {
+            font-size:  $font-medium;
+        }
+    }
+    .profile-offer-bottom{
+        .profile-offer-picture {
+            width: 14vw;
+            height: 14vw;
+            border-radius: 7px;
+        }
+        > p {
+            font-size: $font-medium;
+        }
+    }
+}
+
+.profile-right{
+    max-width: 700px;
+}
+
+@media screen and(min-width: 768px) {
+
+    .profile-picture{
+        top: -7vh;
+        left: 5rem;
+        height: 14vh;
+    }
+
+    .profile-city{
+        position: relative;
+        top: -3vh
+    }
+
+    .profile-localisation{
+        margin-left: 5rem;
+    }
+
+    .profile-presentation{
+        margin-left: 7vw;
+        margin-right: 7vw;
+    }
+
+    .profile-offer{
+        padding-left: 5rem;
+        padding-right: 5rem;
+    }
+
+    .profile-offer-title.d-flex.align-items-center{
+        font-size: 1rem;
+    }
+
+    .profile-offer-bottom {
+        > img {
+            max-width: 8vh;
+            max-height: 8vh;
+        }
+    }
+
+    .profile-offer-description.my-0.px-lg-4{
+        font-size: 0.75rem;
+    }
+}
+
+@media screen and(min-width: 1200px) {
+    .profile-right{
+        max-width: 900px;
+    }
+
+    .profile-offer {
+        max-width: 900px;
+    }
+}
+
+
+
+
+

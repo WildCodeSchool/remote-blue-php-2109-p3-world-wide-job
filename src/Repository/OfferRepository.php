@@ -2,7 +2,9 @@
 
 namespace App\Repository;
 
+use App\Entity\Company;
 use App\Entity\Offer;
+use App\Entity\Application;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -17,6 +19,21 @@ class OfferRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Offer::class);
+    }
+
+    public function findAllCountApplications(Company $company): mixed
+    {
+        $query = $this->createQueryBuilder('o')
+            ->where('c = :company')
+            ->setParameter('company', $company)
+            ->addSelect('count(a) AS count')
+            ->leftJoin('o.applications', 'a')
+            ->join('o.company', 'c')
+            ->groupBy('o')
+        ;
+
+        // returns an array of Product objects
+        return $query->getQuery()->getResult();
     }
 
     // /**
