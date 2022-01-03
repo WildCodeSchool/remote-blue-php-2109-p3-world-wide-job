@@ -1,8 +1,11 @@
+.container {
+  opacity: 75%;
+}
+
 .card-introduction{
     color: white;
-    background: rgba(64, 136, 238, 0.46);
     border-radius: 10px;
-
+    background-color: #4088ee;
 }
 
 .card-text{
@@ -14,7 +17,7 @@
 .card-choice{
     text-align: center;
     margin-top: 100px;
-    background: rgba(64, 136, 238, 0.46);
+   background-color: #4088ee;
     border-radius: 10px;
     height: 100%;
 }
@@ -45,7 +48,7 @@
 }
 
 .btn.home {
-    background-color: #4088ee;
+    background-color: #0861cd;
     color: white;
     height: 42px;
     width: 275px;
