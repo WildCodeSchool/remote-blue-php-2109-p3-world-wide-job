@@ -21,7 +21,11 @@ class OfferRepository extends ServiceEntityRepository
         parent::__construct($registry, Offer::class);
     }
 
-    public function findAllCountApplications(Company $company): mixed
+    /**
+     * @param Company $company
+     * @return float|int|mixed|string
+     */
+    public function findAllCountApplications(Company $company)
     {
         $query = $this->createQueryBuilder('o')
             ->where('c = :company')
