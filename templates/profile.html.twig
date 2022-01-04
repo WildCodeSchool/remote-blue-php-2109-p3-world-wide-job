@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" href="{{ asset('build/images/logofinal.ico') }}"/>
+    <link rel="stylesheet" href="/build/app.css">
+    <title>
+        {% block title %}Profile name{% endblock %}
+    </title>
+    {% block stylesheets %}
+        {{ encore_entry_link_tags('app') }}
+    {% endblock %}
+    {% block javascripts %}
+        {{ encore_entry_script_tags('app') }}
+    {% endblock %}
+</head>
+<body class="profile-body">
+<header>
+    {% include 'include/_navbar.html.twig' %}
+</header>
+<section class="profile-container d-flex justify-content-center">
+    {% block sidebar %}
+        {% include 'include/_company-sidebar.html.twig' %}
+    {% endblock %}
+    <div class="profile-right">
+        <section class="profile-informations mx-4 pb-4">
+            {% block banner %}{% endblock %}
+            {% block picture %}{% endblock %}
+            {% block information %}{% endblock %}
+        </section>
+        {% block body %}{% endblock %}
+    </div>
+</section>
+<!-- JavaScript Bundle with Popper -->
+<script src="/build/app.js"></script>
+
+</body>
+</html>

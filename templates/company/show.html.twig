@@ -1,0 +1,43 @@
+{% extends 'profile.html.twig' %}
+
+{% block title %}{{ company.companyName }}{% endblock %}
+
+{% block banner %}
+    <img src="{{ asset('build/images/workbanner.jpg') }}" class="profile-banner" alt="profile banner">
+{% endblock %}
+{% block picture %}
+    <div class="profile-title">
+        <img src="{{ vich_uploader_asset(company) }}" class="profile-picture" alt="{{ company.companyName }}">
+        <h2 class="profile-name mt-lg-4">{{ company.companyName }}</h2>
+    </div>
+{% endblock %}
+{% block information %}
+    <div class="profile-localisation">
+        <p class="profile-city">{{ company.user.city }}, {{ company.user.country }}</p>
+    </div>
+    <div class="profile-presentation">
+        <h3>Présentation</h3>
+        <p>{{ company.description }}</p>
+    </div>
+{% endblock %}
+{% block body %}
+    {% for application in applications %}
+        <div class="profile-offer mx-4 my-3 py-lg-3">
+            <div class="profile-offer-head d-flex justify-content-between align-items-center mb-2">
+                <h4 class="profile-offer-title d-flex align-items-center my-0 my-lg-2">{{ application.0.name }}</h4>
+                <p class="d-flex align-items-center my-0">Publié le {{ application.0.dateOfPublication|date("m/d/Y") }}</p>
+            </div>
+            <div class="profile-offer-bottom d-flex">
+                <img class="profile-offer-picture" src="{{ vich_uploader_asset(company) }}" alt="{{ company.companyName }}">
+                <div class="profile-offer-text d-flex flex-column justify-content-between">
+                    <p class="profile-offer-description my-0 px-lg-4">{{ application.0.shortDescription }} </p>
+                    {#  lien href à mettre à jour une fois la page offre créé#}
+                    <div class="d-flex align-items-end justify-content-end">
+                        <a class="mx-4" href="{{ path('registration_index', {'role': 'ecole'}) }}">Voir l'annonce</a>
+                        <p class="my-0">{{ application.count }} Candidatures </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}

@@ -5,6 +5,7 @@
 @import '_navbar.css';
 @import '_form.scss';
 @import '_sidebar.scss';
+@import '_profile.scss';
 @import '~bootstrap/scss/bootstrap';
 
 
@@ -19,7 +20,7 @@ body {
     background-size: cover;
 }
 
-    
+
 
 .main-container {
     // marge du contenu principale : 350px car il y a le tableau de bord à gauche

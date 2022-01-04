@@ -30,7 +30,8 @@ class OfferFixtures extends Fixture implements DependentFixtureInterface
                     ->setCity('Lyon')
                     ->setContractType(rand(1, 3))
                     ->setDuration(rand(1, 6))
-                    ->setShortDescription('Ceci est une description courte')
+                    ->setShortDescription('Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.')
                     ->setDateOfPublication(new DateTime())
                     ->setLongDescription('
                     Lorem ipsum dolor sit amet. Ad voluptatem neque et 
