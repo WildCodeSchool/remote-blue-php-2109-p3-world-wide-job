@@ -2,20 +2,20 @@
 $font-medium: 0.75rem;
 $font-small: 0.7rem;
 
-.profile-informations{
+.profile-informations {
   background-color: $light;
   border-radius: 7px;
   box-shadow: $box-shadow;
   max-width: 900px
 }
 
-.profile-banner{
+.profile-banner {
   object-fit: cover;
   height: 20vh;
   width: 100%;
 }
 
-.profile-picture{
+.profile-picture {
   position: relative;
   object-fit: cover;
   height: 10vh;
@@ -24,13 +24,13 @@ $font-small: 0.7rem;
   border-radius: 7px;
 }
 
-.profile-localisation{
+.profile-localisation {
   margin-left: 5vw;
   display: flex;
   align-items: center;
 }
 
-.profile-city{
+.profile-city {
   border-radius: 7px;
   display: inline-block;
   padding: 7px;
@@ -39,111 +39,118 @@ $font-small: 0.7rem;
   font-size: $font-medium;
 }
 
-.profile-title{
+.profile-title {
   display: flex;
   justify-content: space-between;
 }
 
-.profile-name{
+.profile-name {
   margin-right: 5vw;
   margin-top: 2vw;
 }
 
-.profile-presentation{
+.profile-presentation {
   margin: 0 5vw;
   font-size: $font-medium;
 }
 
-.profile-body{
+.profile-body {
   background-color: $profile;
 }
 
-.profile-offer{
+.profile-offer {
   background-color: $light;
   box-shadow: $box-shadow;
   border-radius: 7px;
   padding: 7px;
   max-width: 700px;
-  .profile-offer-head{
-    > h4 {
+
+  .profile-offer-head {
+    >h4 {
       font-size: $font-medium;
     }
-    > p {
+
+    >p {
       text-align: center;
       font-size: $font-small;
     }
   }
-  .profile-offer-text{
-    width : 74vw;
-    > p {
+
+  .profile-offer-text {
+    width: 74vw;
+
+    >p {
       font-size: $font-small;
       text-align: center;
     }
-    > div {
-      font-size:  $font-medium;
+
+    >div {
+      font-size: $font-medium;
     }
   }
-  .profile-offer-bottom{
+
+  .profile-offer-bottom {
     .profile-offer-picture {
       width: 14vw;
       height: 14vw;
       border-radius: 7px;
     }
-    > p {
+
+    >p {
       font-size: $font-medium;
     }
   }
 }
 
-.profile-right{
+.profile-right {
   max-width: 700px;
 }
 
 @media screen and(min-width: 768px) {
 
-  .profile-picture{
+  .profile-picture {
     top: -7vh;
     left: 5rem;
     height: 14vh;
   }
 
-  .profile-city{
+  .profile-city {
     position: relative;
     top: -3vh
   }
 
-  .profile-localisation{
+  .profile-localisation {
     margin-left: 5rem;
   }
 
-  .profile-presentation{
+  .profile-presentation {
     margin-left: 5rem;
     margin-right: 5rem;
   }
 
-  .profile-offer{
+  .profile-offer {
     padding-left: 5rem;
     padding-right: 5rem;
   }
 
-  .profile-offer-title.d-flex.align-items-center{
+  .profile-offer-title.d-flex.align-items-center {
     font-size: 1rem;
   }
 
   .profile-offer-bottom {
-    > img {
+    >img {
       max-width: 8vh;
       max-height: 8vh;
     }
   }
 
-  .profile-offer-description.my-0.px-lg-4{
+  .profile-offer-description.my-0.px-lg-4 {
     font-size: 0.75rem;
   }
 }
 
 @media screen and(min-width: 1200px) {
-  .profile-right{
+  .profile-right {
     max-width: 900px;
   }
 
