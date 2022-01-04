@@ -65,15 +65,15 @@ $font-small: 0.7rem;
     padding: 7px;
     max-width: 700px;
 
-    .profile-offer-head {
-        >h4 {
-            font-size: $font-medium;
-        }
+        .profile-offer-head {
+            >h4 {
+                font-size: $font-medium;
+            }
 
-        >p {
-            text-align: center;
-            font-size: $font-small;
-        }
+            >p {
+                text-align: center;
+                font-size: $font-small;
+            }
     }
 
     .profile-offer-text {
