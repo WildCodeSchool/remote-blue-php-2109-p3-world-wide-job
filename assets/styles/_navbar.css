@@ -1,17 +1,29 @@
+header {
+    z-index: 15;
+}
 
 .container-fluid {
     position: relative;
+<<<<<<< HEAD
 
+=======
+>>>>>>> c1a0513c6e65513395d6c6d8b714efc2f752810f
 }
 
 .navbar-head{
     background-color: white;
+<<<<<<< HEAD
 
+=======
+>>>>>>> c1a0513c6e65513395d6c6d8b714efc2f752810f
 }
 
 .nav-item {
     height: 40px;
+<<<<<<< HEAD
 
+=======
+>>>>>>> c1a0513c6e65513395d6c6d8b714efc2f752810f
 }
 
 .btn.press {
@@ -23,10 +35,13 @@
 @media screen and (max-width: 992px) {
     .image.world {
         display: none;
+<<<<<<< HEAD
     }
     .hr-mobile {
 
         background-color: black;
+=======
+>>>>>>> c1a0513c6e65513395d6c6d8b714efc2f752810f
     }
 
 }

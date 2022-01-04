@@ -7,7 +7,12 @@ $wild-color: #ff6c71;
 $light: #fffbfb;
 
 $border-radius: .5rem;
-$box-shadow: 0 .25rem .5rem rgba($black, .35);
+
+$box-shadow: 0 .25rem .5rem rgba(#000, .35);
+
+$btn-padding-y: .3rem;
+$btn-padding-x: .8rem;
+$btn-font-size: 1rem;
 
 $theme-colors: (
     'primary': $primary,
@@ -16,3 +21,4 @@ $theme-colors: (
     'black': $black,
     'white': $white,
 );
+
