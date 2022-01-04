@@ -1,17 +1,17 @@
+header {
+    z-index: 15;
+}
 
 .container-fluid {
     position: relative;
-    
 }
 
 .navbar-head{
     background-color: white;
-    
 }
 
 .nav-item {
     height: 40px;
-    
 }
 
 .btn.press {
@@ -23,7 +23,6 @@
 @media screen and (max-width: 992px) {
     .image.world {
         display: none;
-
     }
 }
 
