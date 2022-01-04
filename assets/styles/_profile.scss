@@ -65,46 +65,46 @@ $font-small: 0.7rem;
     padding: 7px;
     max-width: 700px;
 
-  .profile-offer-head {
-    >h4 {
-      font-size: $font-medium;
+    .profile-offer-head {
+        >h4 {
+            font-size: $font-medium;
+        }
+
+        >p {
+            text-align: center;
+            font-size: $font-small;
+        }
     }
 
-    >p {
-      text-align: center;
-      font-size: $font-small;
-    }
-  }
+    .profile-offer-text {
+        width: 74vw;
 
-  .profile-offer-text {
-    width: 74vw;
+        >p {
+            font-size: $font-small;
+            text-align: center;
+        }
 
-    >p {
-      font-size: $font-small;
-      text-align: center;
-    }
-
-    >div {
-      font-size: $font-medium;
-    }
-  }
-
-  .profile-offer-bottom {
-    .profile-offer-picture {
-      width: 14vw;
-      height: 14vw;
-      border-radius: 7px;
+        >div {
+            font-size: $font-medium;
+        }
     }
 
-    >p {
-      font-size: $font-medium;
-    }
-  }
-}
+    .profile-offer-bottom {
+        .profile-offer-picture {
+            width: 14vw;
+            height: 14vw;
+            border-radius: 7px;
+        }
 
-.profile-right {
-  max-width: 700px;
-}
+        >p {
+            font-size: $font-medium;
+        }
+        }
+    }
+
+    .profile-right {
+        max-width: 700px;
+    }
 
 @media screen and(min-width: 768px) {
 
