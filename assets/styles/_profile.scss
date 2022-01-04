@@ -3,67 +3,67 @@ $font-medium: 0.75rem;
 $font-small: 0.7rem;
 
 .profile-informations {
-  background-color: $light;
-  border-radius: 7px;
-  box-shadow: $box-shadow;
-  max-width: 900px
+    background-color: $light;
+    border-radius: 7px;
+    box-shadow: $box-shadow;
+    max-width: 900px
 }
 
 .profile-banner {
-  object-fit: cover;
-  height: 20vh;
-  width: 100%;
+    object-fit: cover;
+    height: 20vh;
+    width: 100%;
 }
 
 .profile-picture {
-  position: relative;
-  object-fit: cover;
-  height: 10vh;
-  top: -5vh;
-  left: 5vw;
-  border-radius: 7px;
+    position: relative;
+    object-fit: cover;
+    height: 10vh;
+    top: -5vh;
+    left: 5vw;
+    border-radius: 7px;
 }
 
 .profile-localisation {
-  margin-left: 5vw;
-  display: flex;
-  align-items: center;
+    margin-left: 5vw;
+    display: flex;
+    align-items: center;
 }
 
 .profile-city {
-  border-radius: 7px;
-  display: inline-block;
-  padding: 7px;
-  background-color: $black;
-  color: $white;
-  font-size: $font-medium;
+    border-radius: 7px;
+    display: inline-block;
+    padding: 7px;
+    background-color: $black;
+    color: $white;
+    font-size: $font-medium;
 }
 
 .profile-title {
-  display: flex;
-  justify-content: space-between;
+    display: flex;
+    justify-content: space-between;
 }
 
 .profile-name {
-  margin-right: 5vw;
-  margin-top: 2vw;
+    margin-right: 5vw;
+    margin-top: 2vw;
 }
 
 .profile-presentation {
-  margin: 0 5vw;
-  font-size: $font-medium;
+    margin: 0 5vw;
+    font-size: $font-medium;
 }
 
 .profile-body {
-  background-color: $profile;
+    background-color: $profile;
 }
 
 .profile-offer {
-  background-color: $light;
-  box-shadow: $box-shadow;
-  border-radius: 7px;
-  padding: 7px;
-  max-width: 700px;
+    background-color: $light;
+    box-shadow: $box-shadow;
+    border-radius: 7px;
+    padding: 7px;
+    max-width: 700px;
 
   .profile-offer-head {
     >h4 {
