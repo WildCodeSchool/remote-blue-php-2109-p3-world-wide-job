@@ -6,7 +6,7 @@
 @import '_form.scss';
 @import '_sidebar.scss';
 @import '~bootstrap/scss/bootstrap';
-
+@import '_login.css';
 
 body {
     color: $light;
@@ -19,7 +19,7 @@ body {
     background-size: cover;
 }
 
-    
+
 
 .main-container {
     // marge du contenu principale : 350px car il y a le tableau de bord à gauche

@@ -8,17 +8,23 @@
         <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
     {% endif %}
 
-    <form action="{{ path('login') }}" method="post">
-        <label for="username">Email:</label>
-        <input type="text" id="username" name="_username" value="{{ last_username }}"/>
+  <div class="wrapper fadeInDown">
+        <div id="formContent" class="formContent">
+    <form action="{{ path('login') }}" method="post" class="form-container">
+        <div class="form-control>
+        <label class="form-titre" for="username">Email:</label>
+        <input type="text" id="login" class="fadeIn second" id="username" name="_username" value="{{ last_username }}"/>
 
         <label for="password">Password:</label>
-        <input type="password" id="password" name="_password"/>
+        <input id="password" class="fadeIn third" type="password" id="password" name="_password"/>
 
-        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 
-        <input type="hidden" name="_target_path" value="{{ path('redirection') }}"/>
 
-        <button type="submit">login</button>
+        <button class="fadeIn fourth form-btn btn rounded-1 btn-primary m-1"  type="submit">se connecter</button>
+        </div>
+
     </form>
+
+        </div>
+  </div>
 {% endblock %}

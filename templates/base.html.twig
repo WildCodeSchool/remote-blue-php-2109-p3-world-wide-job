@@ -25,7 +25,9 @@
     <aside>
         {% block sidebar %}{% endblock %}
     </aside>
-    <main>
+    <main  class="{{ app.request.pathinfo == path('login') ? 'login-background-image' }}"
+           style="{{ app.request.pathinfo == path('login') ?
+           'background-image: url(build/images/backgroundLogin.fd72d10a.png);' }} " >
         {% block body %}{% endblock %}
 </main>
 </div>
