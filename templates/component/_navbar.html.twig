@@ -7,7 +7,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar"
-             aria-labelledby="offcanvasNavbarLabel" >
+             aria-labelledby="offcanvasNavbarLabel">
             <div class="offcanvas-header align-items-start">
                 <img class="image logo ms-auto" src="{{ asset('build/images/logofinal.png') }}" alt=""/>
                 <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
@@ -16,10 +16,10 @@
             <div class="offcanvas-body">
                 <ul class="navbar-nav align-items-lg-center w-100">
                         <li class="nav-item ms-lg-auto ms-2 mb-3 mb-lg-0">
-                            <a class="btn press w-100" href="#"> <i class="fas fa-user"></i>Offres</a>
+                            <a class="btn press w-100" href="{{ path('search_offer') }}">Offres</a>
                         </li>
                         <li class="nav-item ms-2 h-100">
-                            <a class="btn press w-100 " href="#">S'identifier</a>
+                            <a class="btn press w-100 " href="#"><i class="fas fa-user me-2"></i>S'identifier</a>
                         </li>
                         <img class="image world" src="{{ asset('build/images/logofinal.png') }}" alt=""/>
                     </ul>
