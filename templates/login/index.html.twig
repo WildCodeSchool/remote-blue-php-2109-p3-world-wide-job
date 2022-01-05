@@ -11,12 +11,12 @@
 	<div class="wrapper fadeInDown">
 		<div id="formContent" class="formContent">
 			<form action="{{ path('login') }}" method="post" class="form-container">
-				<div class="form-control">
-					<label class=" form-titre" for="username">Email:</label>
-					<input type="text" id="login" class="fadeIn second input-login" id="username" name="_username" value="{{ last_username }}"/>
+				<div class="background-login-form">
+					<label class="form-label form-titre" for="username">Email:</label>
+					<input type="text" id="login" class="fadeIn second input-login form-control" id="username" name="_username" value="{{ last_username }}"/>
 
-					<label for="password">Password:</label>
-					<input id="password" class="fadeIn third input-login" type="password" id="password" name="_password"/>
+					<label for="password" class="form-label">Password:</label>
+					<input id="password" class="fadeIn third input-login form-control" type="password" id="password" name="_password"/>
 					<input type="hidden" name="_csrf_token"  value="{{ csrf_token('authenticate') }}">
           <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 
@@ -26,7 +26,7 @@
 					<button class="fadeIn fourth form-btn btn rounded-1 btn-primary m-1" type="submit">se connecter</button>
 				</div>
 
-      
+
 
 
 			</form>
