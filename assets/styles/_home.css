@@ -16,11 +16,12 @@
     color: white;
     border-radius: 10px;
     background-color: #4088ee;
+    max-width: 60%;
 }
 
 .card-text {
     text-align: center;
-    font-size: 13px;
+    font-size: 0.813rem;
 }
 
 .card-create {
