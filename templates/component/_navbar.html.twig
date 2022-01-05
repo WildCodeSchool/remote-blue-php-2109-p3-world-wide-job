@@ -16,6 +16,7 @@
             <div class="offcanvas-body">
                 <ul class="navbar-nav align-items-lg-center w-100">
                         <li class="nav-item ms-lg-auto ms-2 mb-3 mb-lg-0">
+
                             <a class="btn press w-100" href="{{ path('search_offer') }}">Offres</a>
                         </li>
 
@@ -25,7 +26,8 @@
                     </li>
                     {% else %}
                     <li class="nav-item ms-2 h-100">
-                        <a type="button" class="btn press w-100 "href="{{ path('login') }}"> Se connecter</a>
+
+                        <a type="button" class="btn press w-100 " href="{{ path('login') }}"> <i class="fas fa-user me-1"></i>S'identifier</a>
                     </li>
                     {% endif %}
 
