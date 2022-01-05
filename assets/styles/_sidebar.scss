@@ -43,3 +43,12 @@
 .activelink {
     background-color: $primary; //!important;
 }
+
+
+@media screen and (max-width: 992px) {
+    .sidebar-container {
+        display: none;
+    }
+
+
+}

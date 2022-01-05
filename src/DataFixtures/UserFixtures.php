@@ -11,9 +11,9 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 class UserFixtures extends Fixture
 {
     public const USERROLES = [
-        ['role' => 'ROLE_COMPANY', 'user' => 'company'],
-        ['role' => 'ROLE_SCHOOL', 'user' => 'school'],
-        ['role' => 'ROLE_STUDENT', 'user' => 'student']
+        ['role' => 'ROLE_COMPANY_COMPLETED', 'user' => 'company'],
+        ['role' => 'ROLE_SCHOOL_COMPLETED', 'user' => 'school'],
+        ['role' => 'ROLE_STUDENT_COMPLETED', 'user' => 'student']
     ];
 
     private UserPasswordHasherInterface $passwordHasher;
@@ -32,7 +32,7 @@ class UserFixtures extends Fixture
                 $user->setEmail($role['user'] . $i . '@gmail.com');
                 $hashedPassword = $this->passwordHasher->hashPassword(
                     $user,
-                    'companyPassword'
+                    'password'
                 );
                 $user->setPassword($hashedPassword)
                     ->setRoles([$role['role']])

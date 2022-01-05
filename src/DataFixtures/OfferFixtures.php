@@ -18,6 +18,14 @@ class OfferFixtures extends Fixture implements DependentFixtureInterface
         'Alternance - Communication',
     ];
 
+    public const CITY = [
+        'Lyon',
+        'Toulouse',
+        'Tourcoing',
+        'Brest',
+        'Saint Etienne',
+    ];
+
     public function load(ObjectManager $manager): void
     {
         $maxOffer = 3;
@@ -27,7 +35,7 @@ class OfferFixtures extends Fixture implements DependentFixtureInterface
                 $counter++;
                 $offer = new Offer();
                 $offer->setName($name)
-                    ->setCity('Lyon')
+                    ->setCity(self::CITY[rand(0, 4)])
                     ->setContractType(rand(1, 3))
                     ->setDuration(rand(1, 6))
                     ->setShortDescription('Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
