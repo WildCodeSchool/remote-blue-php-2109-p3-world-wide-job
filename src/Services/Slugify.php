@@ -18,7 +18,7 @@ class Slugify
 
     public function generate(string $input): string
     {
-        return $this->slugger->slug($input);
+        return $this->slugger->slug(strtolower($input));
     }
 
     public function getCompanySlug(?Company $company): ?string
