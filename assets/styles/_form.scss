@@ -1,78 +1,78 @@
 .form-container {
-  background-color: $gray;
-  border: 0.063rem solid $primary;
-  border-radius: 0.625rem;
-  min-width: 23.75rem;
-  padding: 2.007rem;
+    background-color: $gray;
+    border: .063rem solid $primary;
+    border-radius: .625rem;
+    min-width: 23.75rem;
+    padding: 2.007rem;
 }
 
 ul {
-  .active {
-    background-color: $primary;
-    border: 2px solid $primary;
-    border-radius: 50%;
-    color: $black;
-    height: 50px;
-    padding-top: 10px;
-    vertical-align: top;
-    width: 50px;
-  }
+    .active {
+        background-color: $primary;
+        border: 2px solid $primary;
+        border-radius: 50%;
+        color: $black;
+        height: 50px;
+        padding-top: 10px;
+        vertical-align: top;
+        width: 50px;
+    }
 }
 
 .etape {
-  border: 0.125rem solid $primary;
-  border-radius: 50%;
-  color: $black;
-  height: 2.5rem;
-  padding-top: 0.031rem;
-  vertical-align: top;
-  width: 2.5rem;
+    border: .125rem solid $primary;
+    border-radius: 50%;
+    color: $black;
+    height: 2.5rem;
+    padding-top: .031rem;
+    vertical-align: top;
+    width: 2.5rem;
 }
 
 div {
-  .etape-container {
-    .etape1 {
-      background-color: transparent;
-      border: 0.125rem solid $primary;
-      border-radius: 50%;
-      color: $black;
-      height: 2.5rem;
-      padding-top: 0.313rem;
-      vertical-align: top;
-      width: 2.5rem;
+    .etape-container {
+        .etape1 {
+            background-color: transparent;
+            border: .125rem solid $primary;
+            border-radius: 50%;
+            color: $black;
+            height: 2.5rem;
+            padding-top: .313rem;
+            vertical-align: top;
+            width: 2.5rem;
+        }
     }
-  }
 }
 
 .trait {
-  background-color: $primary;
-  height: 0.125rem;
-  width: 3.125rem;
+    background-color: $primary;
+    height: .125rem;
+    width: 3.125rem;
 }
 
 .etape-container {
-  width: 11.25rem;
+    width: 11.25rem;
 }
 
 .form-register {
-  max-width: 29.375rem;
+    max-width: 29.375rem;
 }
 
 .form-btn {
-  min-width: 8.938rem;
+    min-width: 8.938rem;
 }
 
 .form-titre {
-  white-space: nowrap;
+    white-space: nowrap;
 }
 
 .head-container {
-  flex-direction: row-reverse;
+    flex-direction: row-reverse;
 }
 
 @media (max-width: 992px) {
-  .head-container {
-    flex-direction: column-reverse;
-  }
+    .head-container {
+        flex-direction: column-reverse;
+    }
 }
 
