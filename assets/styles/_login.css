@@ -7,20 +7,20 @@
     justify-content: center;
     width: 100%;
     min-height: 100%;
-    padding: 20px;
+    padding: 1.25rem;
 }
 
 .formContent {
-    -webkit-border-radius: 10px 10px 10px 10px;
-    border-radius: 10px 10px 10px 10px;
+    -webkit-border-radius: $border-radius;
+    border-radius: $border-radius;
     background: #fff;
-    padding: 30px;
+    padding: 1.875rem;
     width: 90%;
-    max-width: 450px;
+    max-width: 28.125rem;
     position: relative;
-    padding: 0px;
-    -webkit-box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
-    box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.9);
+    padding: 0;
+    -webkit-box-shadow: 0 1.875rem 3.75rem 0 rgba(0, 0, 0, 0.3);
+    box-shadow: 0 1.875rem 3.75rem 0 rgba(0, 0, 0, 0.9);
     text-align: center;
 }
 
@@ -32,18 +32,18 @@
     background-color: #ffc803;
     border: none;
     color: white;
-    font-weight: bold;
-    padding: 15px 80px;
+    font-weight: 200;
+    padding: 0.938rem 5rem;
     text-align: center;
     text-decoration: none;
     display: inline-block;
     text-transform: uppercase;
-    font-size: 13px;
-    -webkit-box-shadow: 0 10px 30px 0 rgba(58, 58, 58, 0.2);
-    box-shadow: 0 10px 30px 0 rgba(140, 137, 84, 0.3);
-    -webkit-border-radius: 5px 5px 5px 5px;
-    border-radius: 5px 5px 5px 5px;
-    margin: 5px 20px 40px 20px;
+    font-size: 0.813rem;
+    -webkit-box-shadow: 0 0.625rem 1.875rem 0 rgba(58, 58, 58, 0.2);
+    box-shadow: 0 0.625rem 1.875rem 0 rgba(140, 137, 84, 0.3);
+    -webkit-border-radius: $border-radius;
+    border-radius: $border-radius;
+    margin: 0.313rem 1.25rem 2.5rem 1.25rem;
     -webkit-transition: all 0.3s ease-in-out;
     -moz-transition: all 0.3s ease-in-out;
     -ms-transition: all 0.3s ease-in-out;
@@ -68,12 +68,12 @@
     background-color: rgba(145, 144, 144, 0.52);
     border: none;
     color: #0d0d0d;
-    padding: 15px 32px;
+    padding: 0.938rem 2rem;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 16px;
-    margin: 5px;
+    font-size: 1rem;
+    margin: 0.313rem;
     width: 85%;
 
     -webkit-transition: all 0.5s ease-in-out;
@@ -81,13 +81,13 @@
     -ms-transition: all 0.5s ease-in-out;
     -o-transition: all 0.5s ease-in-out;
     transition: all 0.5s ease-in-out;
-    -webkit-border-radius: 5px 5px 5px 5px;
-    border-radius: 5px 5px 5px 5px;
+    -webkit-border-radius: 0.313rem 0.313rem  0.313rem  0.313rem ;
+    border-radius: $border-radius ;
 }
 
 .input-login:focus {
     background-color: #fff;
-    border-bottom: 2px solid #5fbae9;
+    border-bottom: 0.125rem solid #5fbae9;
 }
 
 .input-login::placeholder {
@@ -198,9 +198,9 @@
 .underlineHover:after {
     display: block;
     left: 0;
-    bottom: -10px;
+    bottom: -0.625rem;
     width: 0;
-    height: 2px;
+    height: 0.125rem;
     content: "";
     transition: width 0.2s;
 }
@@ -221,4 +221,10 @@
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
+}
+
+.background-login-form {
+    background: #E7EFFC;
+    opacity: 0.9;
+    border-radius: $border-radius;
 }
