@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+ {% block sidebar %}
+     {% include 'component/_sidebar.html.twig' %}
+ {% endblock %}
+{% block body %}
+<section class="profile-container d-flex justify-content-center">
+    <div class="profile-right">
+        <section class="profile-informations mx-4 pb-4">
+            {% block banner %}{% endblock %}
+            {% block picture %}{% endblock %}
+            {% block information %}{% endblock %}
+        </section>
+        {% block profileBottom %}{% endblock %}
+    </div>
+</section>
+{% endblock %}

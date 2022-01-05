@@ -37,7 +37,7 @@ class Company
      * )
      * @var ?File
      */
-    private ?File $logoFile;
+    private ?File $logoFile = null;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -73,6 +73,11 @@ class Company
      * @ORM\OneToOne(targetEntity=User::class, cascade={"persist", "remove"})
      */
     private User $user;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private ?string $slug;
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
@@ -112,6 +117,18 @@ class Company
         if ($image) {
             $this->updatedAt = new DateTime('now');
         }
+        return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): self
+    {
+        $this->slug = $slug;
+
         return $this;
     }
 

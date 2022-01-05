@@ -13,11 +13,13 @@ class ApplicationFixtures extends Fixture implements DependentFixtureInterface
     {
         $maxOffer = 5;
         for ($i = 0; $i < $maxOffer; $i++) {
-            $application = new Application();
-            $application->setStatus(rand(1, 3))
-                ->setStudent($this->getReference('student_' . $i))
-                ->setOffer($this->getReference('offer_' . $i));
-            $manager->persist($application);
+            for ($j = 0; $j < $maxOffer; $j++) {
+                $application = new Application();
+                $application->setStatus(rand(1, 3))
+                    ->setStudent($this->getReference('student_' . $i))
+                    ->setOffer($this->getReference('offer_' . $j));
+                $manager->persist($application);
+            }
         }
         $manager->flush();
     }
