@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Entity\Company;
+use App\Repository\CompanyRepository;
 use App\Entity\School;
 use App\Entity\Student;
 use Symfony\Component\String\Slugger\SluggerInterface;

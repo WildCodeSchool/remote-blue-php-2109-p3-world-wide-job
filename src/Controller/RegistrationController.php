@@ -23,7 +23,6 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
 use SymfonyCasts\Bundle\VerifyEmail\Exception\VerifyEmailExceptionInterface;
-use Symfony\Component\Security\Core\Security;
 
 /**
  * @Route("/inscription", name="registration_")
@@ -59,7 +58,8 @@ class RegistrationController extends AbstractController
                 getRepository(User::class)->
                 findOneBy(['email' => $loggedUser->getUserIdentifier()]);
                 $company->setUser($loggedUser);
-                $company->setSlug($slugify->generate($company->getCompanyName()));
+                $company->setSlug($slugify
+                    ->generate($company->getCompanyName()));
                 if ($loggedUser != null) {
                     $loggedUser->setRoles(['ROLE_COMPANY_COMPLETED']);
                 }
@@ -100,7 +100,8 @@ class RegistrationController extends AbstractController
                 getRepository(User::class)->
                 findOneBy(['email' => $loggedUser->getUserIdentifier()]);
                 $school->setUser($loggedUser);
-                $school->setSlug($slugify->generate($school->getSchoolName()));
+                $school->setSlug($slugify->
+                generate($school->getSchoolName()));
                 if ($loggedUser != null) {
                     $loggedUser->setRoles(['ROLE_SCHOOL_COMPLETED']);
                 }
@@ -142,7 +143,9 @@ class RegistrationController extends AbstractController
                 findOneBy(['email' => $loggedUser->getUserIdentifier()]);
                 $student->setUser($loggedUser);
                 $student->setSlug($slugify
-                    ->generate($student->getUser()->getFirstname() . '-' . $student->getUser()->getLastname()));
+                    ->generate($student->getUser()
+                            ->getFirstname() . '-' . $student->
+                        getUser()->getLastname()));
                 if ($loggedUser != null) {
                     $loggedUser->setRoles(['ROLE_STUDENT_COMPLETED']);
                 }
