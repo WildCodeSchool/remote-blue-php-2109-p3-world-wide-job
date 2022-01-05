@@ -12,7 +12,7 @@ use App\Form\SchoolType;
 use App\Form\StudentType;
 use App\Security\EmailVerifier;
 use App\Security\SecurityAuthenticator;
-use App\Services\RegistrationService;
+use App\Services\Slugify;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -31,14 +31,11 @@ use Symfony\Component\Security\Core\Security;
 class RegistrationController extends AbstractController
 {
     private EmailVerifier $emailVerifier;
-    private Security $security;
 
     public function __construct(
-        EmailVerifier $emailVerifier,
-        Security $security
+        EmailVerifier $emailVerifier
     ) {
         $this->emailVerifier = $emailVerifier;
-        $this->security = $security;
     }
 
     /**
@@ -47,18 +44,20 @@ class RegistrationController extends AbstractController
      */
     public function registerCompany(
         Request $request,
-        EntityManagerInterface $entityManager
+        EntityManagerInterface $entityManager,
+        Slugify $slugify
     ): Response {
         $company = new Company();
         $companyForm = $this->createForm(CompanyType::class, $company);
         $companyForm->handleRequest($request);
         if ($companyForm->isSubmitted() && $companyForm->isValid()) {
-            $loggedUser = $this->security->getUser();
+            $loggedUser = $this->getUser();
             if ($loggedUser != null) {
                 $loggedUser =  $entityManager->
                 getRepository(User::class)->
                 findOneBy(['email' => $loggedUser->getUserIdentifier()]);
                 $company->setUser($loggedUser);
+                $company->setSlug($slugify->generate($company->getCompanyName()));
                 if ($loggedUser != null) {
                     $loggedUser->setRoles(['ROLE_COMPANY_COMPLETED']);
                 }
@@ -78,18 +77,20 @@ class RegistrationController extends AbstractController
      */
     public function registerSchool(
         Request $request,
-        EntityManagerInterface $entityManager
+        EntityManagerInterface $entityManager,
+        Slugify $slugify
     ): Response {
         $school = new School();
         $schoolForm = $this->createForm(SchoolType::class, $school);
         $schoolForm->handleRequest($request);
         if ($schoolForm->isSubmitted() && $schoolForm->isValid()) {
-            $loggedUser = $this->security->getUser();
+            $loggedUser = $this->getUser();
             if ($loggedUser != null) {
                 $loggedUser =  $entityManager->
                 getRepository(User::class)->
                 findOneBy(['email' => $loggedUser->getUserIdentifier()]);
                 $school->setUser($loggedUser);
+                $school->setSlug($slugify->generate($school->getSchoolName()));
                 if ($loggedUser != null) {
                     $loggedUser->setRoles(['ROLE_SCHOOL_COMPLETED']);
                 }
@@ -111,18 +112,21 @@ class RegistrationController extends AbstractController
         Request $request,
         EntityManagerInterface $entityManager,
         UserAuthenticatorInterface $userAuthenticator,
-        SecurityAuthenticator $authenticator
+        SecurityAuthenticator $authenticator,
+        Slugify $slugify
     ): Response {
         $student = new Student();
         $studentForm = $this->createForm(StudentType::class, $student);
         $studentForm->handleRequest($request);
         if ($studentForm->isSubmitted() && $studentForm->isValid()) {
-            $loggedUser = $this->security->getUser();
+            $loggedUser = $this->getUser();
             if ($loggedUser != null) {
                 $loggedUser =  $entityManager->
                 getRepository(User::class)->
                 findOneBy(['email' => $loggedUser->getUserIdentifier()]);
                 $student->setUser($loggedUser);
+                $student->setSlug($slugify
+                    ->generate($student->getUser()->getFirstname() . '-' . $student->getUser()->getLastname()));
                 if ($loggedUser != null) {
                     $loggedUser->setRoles(['ROLE_STUDENT_COMPLETED']);
                 }
