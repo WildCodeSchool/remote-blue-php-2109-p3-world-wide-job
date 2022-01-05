@@ -64,7 +64,7 @@ class RegistrationController extends AbstractController
             }
             $entityManager->persist($company);
             $entityManager->flush();
-            return $this->redirectToRoute('home');
+            return $this->redirectToRoute('company_show', ['slug' => $company->getSlug()]);
         }
         return $this->render('registration/companyForm.html.twig', [
             'form' => $companyForm->createView(),
@@ -97,7 +97,7 @@ class RegistrationController extends AbstractController
             }
             $entityManager->persist($school);
             $entityManager->flush();
-            return $this->redirectToRoute('home');
+            return $this->redirectToRoute('school_show', ['slug' => $school->getSlug()]);
         }
         return $this->render('registration/schoolForm.html.twig', [
             'form' => $schoolForm->createView(),
@@ -139,7 +139,7 @@ class RegistrationController extends AbstractController
                 $request
             );
 
-            return $this->redirectToRoute('home');
+            return $this->redirectToRoute('student_show', ['slug' => $student->getSlug()]);
         }
         return $this->render('registration/studentForm.html.twig', [
             'form' => $studentForm->createView(),
