@@ -11,8 +11,8 @@
 }
 
 .formContent {
-    -webkit-border-radius: $border-radius;
-    border-radius: $border-radius;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
     background: #fff;
     padding: 1.875rem;
     width: 90%;
@@ -32,12 +32,10 @@
     background-color: #ffc803;
     border: none;
     color: white;
-    font-weight: 200;
     padding: 0.938rem 5rem;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    text-transform: uppercase;
     font-size: 0.813rem;
     -webkit-box-shadow: 0 0.625rem 1.875rem 0 rgba(58, 58, 58, 0.2);
     box-shadow: 0 0.625rem 1.875rem 0 rgba(140, 137, 84, 0.3);
@@ -73,7 +71,7 @@
     text-decoration: none;
     display: inline-block;
     font-size: 1rem;
-    margin: 0.313rem;
+    margin: 0.113rem 0.113rem 0.600rem;
     width: 85%;
 
     -webkit-transition: all 0.5s ease-in-out;
@@ -226,5 +224,11 @@
 .background-login-form {
     background: #E7EFFC;
     opacity: 0.9;
-    border-radius: $border-radius;
+    border-radius: 10px;
+}
+
+.background-login-form .form-control {
+    width: 85%;
+    margin-left: auto;
+    margin-right: auto;
 }

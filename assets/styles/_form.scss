@@ -1,9 +1,9 @@
 .form-container {
     background-color: $gray;
     border: .063rem solid $primary;
-    border-radius: $border-radius;
+    border-radius: 10px;
     min-width: 23.75rem;
-    padding: 2.007rem;
+    padding: 2.007rem 2.007rem 0.1rem;
 }
 
 ul {
