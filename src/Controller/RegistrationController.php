@@ -45,7 +45,9 @@ class RegistrationController extends AbstractController
     public function registerCompany(
         Request $request,
         EntityManagerInterface $entityManager,
-        Slugify $slugify
+        Slugify $slugify,
+        UserAuthenticatorInterface $userAuthenticator,
+        SecurityAuthenticator $authenticator
     ): Response {
         $company = new Company();
         $companyForm = $this->createForm(CompanyType::class, $company);
@@ -64,6 +66,12 @@ class RegistrationController extends AbstractController
             }
             $entityManager->persist($company);
             $entityManager->flush();
+
+            $userAuthenticator->authenticateUser(
+                $this->getUser(),
+                $authenticator,
+                $request
+            );
             return $this->redirectToRoute('company_show', ['slug' => $company->getSlug()]);
         }
         return $this->render('registration/companyForm.html.twig', [
@@ -78,7 +86,9 @@ class RegistrationController extends AbstractController
     public function registerSchool(
         Request $request,
         EntityManagerInterface $entityManager,
-        Slugify $slugify
+        Slugify $slugify,
+        UserAuthenticatorInterface $userAuthenticator,
+        SecurityAuthenticator $authenticator
     ): Response {
         $school = new School();
         $schoolForm = $this->createForm(SchoolType::class, $school);
@@ -97,6 +107,12 @@ class RegistrationController extends AbstractController
             }
             $entityManager->persist($school);
             $entityManager->flush();
+
+            $userAuthenticator->authenticateUser(
+                $this->getUser(),
+                $authenticator,
+                $request
+            );
             return $this->redirectToRoute('school_show', ['slug' => $school->getSlug()]);
         }
         return $this->render('registration/schoolForm.html.twig', [
@@ -134,7 +150,7 @@ class RegistrationController extends AbstractController
             $entityManager->persist($student);
             $entityManager->flush();
             $userAuthenticator->authenticateUser(
-                $loggedUser,
+                $this->getUser(),
                 $authenticator,
                 $request
             );
