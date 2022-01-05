@@ -11,8 +11,8 @@
 }
 
 .formContent {
-    -webkit-border-radius: 0.625rem 0.625rem 0.625rem 0.625rem;
-    border-radius: 0.625rem 0.625rem 0.625rem 0.625rem;
+    -webkit-border-radius: $border-radius;
+    border-radius: $border-radius;
     background: #fff;
     padding: 1.875rem;
     width: 90%;
@@ -41,8 +41,8 @@
     font-size: 0.813rem;
     -webkit-box-shadow: 0 0.625rem 1.875rem 0 rgba(58, 58, 58, 0.2);
     box-shadow: 0 0.625rem 1.875rem 0 rgba(140, 137, 84, 0.3);
-    -webkit-border-radius: 0.313rem 0.313rem 0.313rem 0.313rem;
-    border-radius: 0.313rem 0.313rem 0.313rem 0.313rem;
+    -webkit-border-radius: $border-radius;
+    border-radius: $border-radius;
     margin: 0.313rem 1.25rem 2.5rem 1.25rem;
     -webkit-transition: all 0.3s ease-in-out;
     -moz-transition: all 0.3s ease-in-out;
@@ -82,7 +82,7 @@
     -o-transition: all 0.5s ease-in-out;
     transition: all 0.5s ease-in-out;
     -webkit-border-radius: 0.313rem 0.313rem  0.313rem  0.313rem ;
-    border-radius: 0.313rem  0.313rem  0.313rem  0.313rem ;
+    border-radius: $border-radius ;
 }
 
 .input-login:focus {
@@ -226,5 +226,5 @@
 .background-login-form {
     background: #E7EFFC;
     opacity: 0.9;
-    border-radius: 0.313rem;
+    border-radius: $border-radius;
 }

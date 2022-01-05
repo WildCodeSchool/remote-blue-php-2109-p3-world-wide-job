@@ -1,7 +1,7 @@
 .form-container {
     background-color: $gray;
     border: .063rem solid $primary;
-    border-radius: .625rem;
+    border-radius: $border-radius;
     min-width: 23.75rem;
     padding: 2.007rem;
 }
@@ -20,11 +20,11 @@ ul {
 }
 
 .etape {
-    border: .125rem solid $primary;
+    border: 2px solid $primary;
     border-radius: 50%;
     color: $black;
     height: 2.5rem;
-    padding-top: .031rem;
+    padding-top: 0.25rem;
     vertical-align: top;
     width: 2.5rem;
 }
@@ -33,7 +33,7 @@ div {
     .etape-container {
         .etape1 {
             background-color: transparent;
-            border: .125rem solid $primary;
+            border: 2px solid $primary;
             border-radius: 50%;
             color: $black;
             height: 2.5rem;
