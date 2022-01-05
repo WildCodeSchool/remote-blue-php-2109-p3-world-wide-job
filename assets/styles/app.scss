@@ -7,22 +7,19 @@
 @import '_sidebar.scss';
 @import '_profile.scss';
 @import '~bootstrap/scss/bootstrap';
+@import '_login.css';
 @import 'search';
 
 body {
-    background-color: #d3d3d3;
+    
     font-family: 'Karla', sans-serif;
     margin: 0;
-    min-height: 100vh;
-    background: url('/assets/images/office.png') no-repeat   center center fixed;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
+    background: $background-color;
 }
 
+
 .main-container {
-    // marge du contenu principale : 350px car il y a le tableau de bord à gauche
+    // marge du contenu principale: 350px car il y a le tableau de bord à gauche
     margin-left: 350px;
     margin-right: 50px;
     margin-top: 50px;

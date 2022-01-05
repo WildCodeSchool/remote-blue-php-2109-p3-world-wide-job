@@ -1,5 +1,8 @@
 <!DOCTYPE html>
-<html>
+
+<html lang="fr">
+
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -15,7 +18,8 @@
         {{ encore_entry_script_tags('app') }}
     {% endblock %}
 </head>
-<body>
+<body class="{{ app.request.pathinfo == path('home') ? 'home-background-image' }}"
+      style="{{ app.request.pathinfo == path('home') ? 'background-image: url(build/images/office.4166db60.png);' }}">
 <header class="position-sticky top-0">
     {% include 'component/_navbar.html.twig' %}
 </header>
@@ -23,7 +27,8 @@
     <aside>
         {% block sidebar %}{% endblock %}
     </aside>
-    <main>
+    <main  class="{{ app.request.pathinfo == path('login') ? 'login-background-image' }}"
+           style="{{ app.request.pathinfo == path('login') ? 'background-image: url(build/images/background-Login.fd72d10a.png);' }} " >
         {% block body %}{% endblock %}
 </main>
 </div>
