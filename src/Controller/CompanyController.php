@@ -2,8 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\Application;
 use App\Entity\Company;
 use App\Entity\Offer;
+use App\Entity\Student;
 use App\Repository\ApplicationRepository;
 use App\Repository\OfferRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -15,13 +17,17 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class CompanyController extends AbstractController
 {
-
     /**
-     * @Route("/candidature", name="application")
+     * @Route("/{id}/candidature", name="application")
      */
-    public function searchApplication(): Response
+    public function searchApplication(Company $company, ApplicationRepository $appliRepository): Response
     {
-        return $this->render('company/searchCandidat.html.twig');
+
+        $candidatures = $appliRepository->findAllApplicationsByCompany($company);
+
+        return $this->render('company/searchCandidat.html.twig', [
+            'candidatures' => $candidatures
+        ]);
     }
 
     /**
@@ -37,6 +43,4 @@ class CompanyController extends AbstractController
             'applications' => $applications
         ]);
     }
-
-
 }

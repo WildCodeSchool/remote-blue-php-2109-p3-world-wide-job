@@ -7,7 +7,7 @@
     {% set profils = [
         {'id': '1', 'firstname': 'Frédéric', 'lastname': 'rico', 'city': 'lille', 'zip': '59000', 'formation': 'université de barcelone', 'quand': 'il y a 1 jour', 'cv': '', 'pdp': '{{ asset(build/images/user.a6143582.png) }}'},
         {'id': '2', 'firstname': 'sam', 'lastname': 'rico', 'city': 'lille', 'zip': '59000', 'formation': 'université de barcelone', 'quand': 'il y a 1 jour', 'cv': '', 'pdp': '{{ asset(build/images/user.a6143582.png) }}'},
-        {'id': '3', 'firstname': 'jf', 'lastname': 'rico', 'city': 'lille', 'zip': '59000', 'formation': 'université de barcelone', 'quand': 'il y a 1 jour', 'cv': '', 'pdp': '{{ asset(build/images/user.a6143582.png) }}'},
+        {'id': '3', 'firstname': 'jim', 'lastname': 'rico', 'city': 'lille', 'zip': '59000', 'formation': 'université de barcelone', 'quand': 'il y a 1 jour', 'cv': '', 'pdp': '{{ asset(build/images/user.a6143582.png) }}'},
         {'id': '4', 'firstname': 'paul', 'lastname': 'rico', 'city': 'lille', 'zip': '59000', 'formation': 'université de barcelone', 'quand': 'il y a 1 jour', 'cv': '', 'pdp': '{{ asset(build/images/user.a6143582.png) }}'},
         {'id': '5', 'firstname': 'sarah', 'lastname': 'rico', 'city': 'lille', 'zip': '59000', 'formation': 'université de barcelone', 'quand': 'il y a 1 jour', 'cv': '', 'pdp': '{{ asset(build/images/user.a6143582.png) }}'},
         {'id': '6', 'firstname': 'jeanne', 'lastname': 'rico', 'city': 'lille', 'zip': '59000', 'formation': 'université de barcelone', 'quand': 'il y a 1 jour', 'cv': '', 'pdp': '{{ asset("build/images/user.a6143582.png") }}'},
@@ -19,22 +19,22 @@
     <div class="searchContainer">
         <div class="searchGrid">
             <div class="smallSearchCard">
-                {% for profil in profils %}
-                    <div class="card rounded sha dow smallOffer" id="smallOffer{{ profil.id }}">
+                {% for candidature in candidatures %}
+                    <div class="card rounded sha dow smallOffer" id="smallOffer{{ candidature.id }}">
                         <div class="card-body smallCard d-flex flex-row align-items-center">
 
                             <div class="job-profil-Container me-2">
-                                <img class="profil-offer-photo mt-0" src="{{ asset("build/images/user.a6143582.png") }}"
+                                <img class="profil-offer-photo mt-0" src="{{ candidature.picture }}"
                                      alt="logo entreprise">
                             </div>
 
                             <div class="jobInfoContainer">
 
                                 <div class="jobSubInfoContainer d-flex flex-column align-items-start">
-                                    <h3 class="jobTitle offer-name text-primary mb-1">  {{ profil.lastname }} {{ profil.firstname }}</h3>
-                                    <h4 class="jobLocation offer-localisation  mt-1 mb-0">{{ profil.city }} ({{ profil.zip }}
+                                    <h3 class="jobTitle offer-name text-primary mb-1">  {{ candidature.lastname }} {{ candidature.firstname }}</h3>
+                                    <h4 class="jobLocation offer-localisation  mt-1 mb-0">{{ candidature.city }} ({{ candidature.zip }}
                                         )</h4>
-                                    <h4 class="jobType offer-formation mb-0"> Université de Lille </h4>
+                                    <h4 class="jobType offer-formation mb-0"> candidature.school  </h4>
                                     <h5 class="jobDate offer-date mb-0">il y a 4 jour </h5>
                                 </div>
                             </div>

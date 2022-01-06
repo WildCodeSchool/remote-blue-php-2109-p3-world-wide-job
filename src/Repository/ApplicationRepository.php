@@ -3,6 +3,8 @@
 namespace App\Repository;
 
 use App\Entity\Application;
+use App\Entity\Company;
+use App\Entity\Student;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -17,6 +19,29 @@ class ApplicationRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Application::class);
+    }
+
+
+    /**
+     * @param Company $company
+     * @return float|int|mixed|string
+     */
+    public function findAllApplicationsByCompany(Company $company)
+    {
+        $query = $this->createQueryBuilder('a')
+            ->where('o.company = :company')
+            ->setParameter('company', $company)
+
+            ->join('a.student', 's')
+            ->join('s.user', 'u')
+            ->join('a.offer', 'o')
+            ->join('o.company', 'c')
+            ->join('s.school', 'sc')
+            ->select('u.firstname', 'u.lastname', 'u.city', 'u.zip', 's.picture', 'a.status', 's.ine', 's.id')
+            ->groupBy('a');
+
+        // returns an array of Product objects
+        return $query->getQuery()->getResult();
     }
 
     // /**
