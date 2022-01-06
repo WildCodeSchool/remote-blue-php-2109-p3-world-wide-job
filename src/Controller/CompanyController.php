@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Company;
 use App\Entity\Offer;
+use App\Repository\ApplicationRepository;
 use App\Repository\OfferRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -14,6 +15,15 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class CompanyController extends AbstractController
 {
+
+    /**
+     * @Route("/candidature", name="application")
+     */
+    public function searchApplication(): Response
+    {
+        return $this->render('company/searchCandidat.html.twig');
+    }
+
     /**
      * @Route("/{slug}", name="show")
      */
@@ -27,4 +37,6 @@ class CompanyController extends AbstractController
             'applications' => $applications
         ]);
     }
+
+
 }

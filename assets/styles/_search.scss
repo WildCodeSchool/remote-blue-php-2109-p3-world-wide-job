@@ -117,6 +117,7 @@ body::-webkit-scrollbar-thumb {
     margin-left: 2rem;
 }
 
+
 .jobLocation {
     margin-top: 1rem;
     justify-self: center;
@@ -143,9 +144,6 @@ body::-webkit-scrollbar-thumb {
     margin-top: 1rem;
 }
 
-.largeOffer {
-    overflow-y: scroll;
-}
 
 @media screen and (max-width: 992px) {
     .smallSearchCard {
@@ -249,7 +247,7 @@ body::-webkit-scrollbar-thumb {
         grid-template-rows: 1fr;
         width: 33%;
         position: sticky;
-        top: 1rem;
+        top: 4.188rem;
         bottom: 1rem;
         align-self: flex-start;
     }
