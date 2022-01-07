@@ -59,6 +59,7 @@ class RegistrationController extends AbstractController
                 getRepository(User::class)->
                 findOneBy(['email' => $loggedUser->getUserIdentifier()]);
                 $company->setUser($loggedUser);
+                $company->setSlug('test2');
                 if ($loggedUser != null) {
                     $loggedUser->setRoles(['ROLE_COMPANY_COMPLETED']);
                 }

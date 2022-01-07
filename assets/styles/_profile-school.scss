@@ -1,0 +1,18 @@
+.profile-school-student-picture {
+      max-width: 8rem;
+}
+
+.profile-school-students {
+      background-color: $light;
+}
+
+.profile-school-title {
+      font-weight: bold;
+}
+
+@media screen and(min-width: 768px) {
+      .profile-school-students {
+            padding-left: 5rem;
+            padding-right: 5rem;
+      }
+}
