@@ -1,7 +1,7 @@
 .form-container {
     background-color: $gray;
     border: .063rem solid $primary;
-    border-radius: 10px;
+    border-radius: $border-radius;
     min-width: 23.75rem;
     padding: 2.007rem 2.007rem 0.1rem;
 }
