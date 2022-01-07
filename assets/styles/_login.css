@@ -11,8 +11,8 @@
 }
 
 .formContent {
-    -webkit-border-radius: 10px;
-    border-radius: 10px;
+    -webkit-border-radius: $border-radius;
+    border-radius: $border-radius;
     background: #fff;
     padding: 1.875rem;
     width: 90%;
@@ -224,7 +224,7 @@
 .background-login-form {
     background: #E7EFFC;
     opacity: 0.9;
-    border-radius: 10px;
+    border-radius: $border-radius;
 }
 
 .background-login-form .form-control {
