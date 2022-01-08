@@ -17,12 +17,12 @@
                 <ul class="navbar-nav align-items-lg-center w-100">
                         <li class="nav-item ms-lg-auto ms-2 mb-3 mb-lg-0">
 
-                            <a class="btn press w-100" href="{{ path('search_offer') }}">Offres</a>
+                            <a class="btn press w-100" href="{{ path('search_offer') }}"> <i class="fas fa-briefcase me-1"></i> Offres</a>
                         </li>
 
-                    {% if app.user %}
+                    {% if is_granted('ROLE_USER') %}
                     <li class="nav-item ms-2 h-100">
-                        <a type="button" class="btn press w-100 " href="{{ path('app_logout') }}"> Se déconnecter</a>
+                        <a type="button" class="btn press w-100 " href="{{ path('app_logout') }}"> <i class="fas fa-user me-1"></i> Se déconnecter</a>
                     </li>
                     {% else %}
                     <li class="nav-item ms-2 h-100">
@@ -35,9 +35,9 @@
                     </ul>
 
 
-                <hr class="hr-mobile">
-                {% if is_granted('ROLE_COMPANY_COMPLETED') %}
 
+                {% if is_granted('ROLE_COMPANY_COMPLETED') %}
+                    <hr class="hr-mobile">
                     <ul class="list-unstyled list-inline nav-contain sidebar-mobile">
                         <!-- décomenter le twig pour mettre en place les routes -->
                         <!-- tableau dynamique -->
@@ -57,10 +57,11 @@
 
 
                     </ul>
+                    <hr class="hr-mobile">
                 {% endif %}
 
                 {% if is_granted('ROLE_SCHOOL_COMPLETED') %}
-
+                    <hr class="hr-mobile">
                     <ul class="list-unstyled list-inline nav-contain sidebar-mobile">
                         <!-- décomenter le twig pour mettre en place les routes -->
                         <!-- tableau dynamique -->
@@ -80,10 +81,11 @@
 
 
                     </ul>
+                    <hr class="hr-mobile">
                 {% endif %}
 
                 {% if is_granted('ROLE_STUDENT_COMPLETED') %}
-
+                    <hr class="hr-mobile">
 
                     <ul class="list-unstyled list-inline nav-contain sidebar-mobile">
                         <!-- décomenter le twig pour mettre en place les routes -->
@@ -104,10 +106,10 @@
 
 
                     </ul>
-
+                    <hr class="hr-mobile">
                 {% endif %}
 
-                <hr class="hr-mobile">
+
 
             </div>
             </div>
