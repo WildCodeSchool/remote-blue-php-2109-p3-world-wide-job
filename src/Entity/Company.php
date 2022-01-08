@@ -75,7 +75,7 @@ class Company
     private User $user;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", length=255, nullable=true, unique=true)
      */
     private ?string $slug;
 
@@ -127,7 +127,9 @@ class Company
 
     public function setSlug(string $slug): self
     {
-        $this->slug = $slug;
+        if ($this->getUser() != null) {
+            $this->slug = $slug . $this->getUser()->getId();
+        }
 
         return $this;
     }
