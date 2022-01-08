@@ -5,7 +5,7 @@
     <img src="{{ asset('build/images/student-banner.jpg') }}" class="profile-banner" alt="profile banner">
 {% endblock %}
 {% block picture %}
-    <div class="profile-title">
+    <div class="profile-title text-primary">
         <img src="{{ vich_uploader_asset(school) }}" class="profile-picture" alt="{{ school.schoolName }}">
         <h2 class="profile-name mt-lg-4">{{ school.schoolName }}</h2>
     </div>
@@ -21,8 +21,8 @@
 {% endblock %}
 {% block profileBottom %}
     <section class="profile-school-students my-4 py-4 mx-4">
-        <h4 class="profile-school-title">Nos derniers étudiants à avoir trouvés une entreprise</h4>
-        <div class="d-flex flex-wrap justify-content-center">
+        <h4 class="profile-school-title text-primary mx-3">Nos derniers étudiants à avoir trouvés une entreprise</h4>
+        <div class="d-flex flex-wrap justify-content-evenly mt-4">
 {% for student in studentsByApp %}
     <div class="d-flex flex-column align-items-center justify-content-center mx-2">
         <img src="{{ vich_uploader_asset(student) }}" class="rounded-circle" alt="{{ student.user.firstname }} {{ student.user.lastname }} photos">
@@ -33,7 +33,7 @@
     {% for student in studentsAsc|slice(0, 8 - count_students_by_app) %}
         <div class="d-flex flex-column align-items-center justify-content-center mx-2">
             <img src="{{ vich_uploader_asset(student) }}" class="profile-school-student-picture rounded-circle" alt="{{ student.user.firstname }} {{ student.user.lastname }} photos">
-            <p>{{ student.user.firstname }} {{ student.user.lastname }}</p>
+            <p class="profile-school-name">{{ student.user.firstname }} {{ student.user.lastname }}</p>
         </div>
     {% endfor %}
         </div>

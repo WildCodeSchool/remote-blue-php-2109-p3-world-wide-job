@@ -1,12 +1,18 @@
 .profile-school-student-picture {
-      max-width: 8rem;
+      width: 5rem;
 }
 
 .profile-school-students {
       background-color: $light;
+      box-shadow: $box-shadow;
 }
 
 .profile-school-title {
+      font-weight: bold;
+      font-size: 1.25rem;
+}
+
+.profile-school-name {
       font-weight: bold;
 }
 
@@ -14,5 +20,9 @@
       .profile-school-students {
             padding-left: 5rem;
             padding-right: 5rem;
+      }
+
+      .profile-school-student-picture {
+            width: 8rem;
       }
 }
