@@ -1,28 +1,28 @@
 .profile-school-student-picture {
-      width: 5rem;
+    width: 5rem;
 }
 
 .profile-school-students {
-      background-color: $light;
-      box-shadow: $box-shadow;
+    background-color: $light;
+    box-shadow: $box-shadow;
 }
 
 .profile-school-title {
-      font-weight: bold;
-      font-size: 1.25rem;
+    font-weight: bold;
+    font-size: 1.25rem;
 }
 
 .profile-school-name {
-      font-weight: bold;
+    font-weight: bold;
 }
 
 @media screen and(min-width: 768px) {
       .profile-school-students {
-            padding-left: 5rem;
-            padding-right: 5rem;
+          padding-left: 5rem;
+          padding-right: 5rem;
       }
 
       .profile-school-student-picture {
-            width: 8rem;
+          width: 8rem;
       }
 }
