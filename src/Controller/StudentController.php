@@ -13,9 +13,6 @@ use Symfony\Component\Routing\Annotation\Route;
 class StudentController extends AbstractController
 {
     /**
-     * @Route("/{}", name="student")
-     */
-    /**
      * @Route("/{slug}", name="show")
      */
     public function show(Student $student): Response
