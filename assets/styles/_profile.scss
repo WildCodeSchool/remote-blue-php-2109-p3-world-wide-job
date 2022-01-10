@@ -2,6 +2,11 @@
 $font-medium: 0.75rem;
 $font-small: 0.7rem;
 
+.profile-no-offer {
+    margin-top: 10vh;
+    transform: translateY(-50%);
+}
+
 .profile-informations {
     background-color: $light;
     border-radius: 7px;
@@ -47,11 +52,16 @@ $font-small: 0.7rem;
 .profile-name {
     margin-right: 5vw;
     margin-top: 2vw;
+    font-weight: bold;
 }
 
 .profile-presentation {
     margin: 0 5vw;
     font-size: $font-medium;
+
+    >h3 {
+        font-weight: bold;
+    }
 }
 
 .profile-body {
@@ -68,6 +78,7 @@ $font-small: 0.7rem;
     .profile-offer-head {
         >h4 {
             font-size: $font-medium;
+            font-weight: bolder;
         }
 
         >p {
@@ -104,6 +115,7 @@ $font-small: 0.7rem;
 
 .profile-right {
     max-width: 700px;
+    width: 100vw;
 }
 
 @media screen and(min-width: 768px) {
@@ -126,6 +138,7 @@ $font-small: 0.7rem;
     .profile-presentation {
         margin-left: 5rem;
         margin-right: 5rem;
+        font-size: 1rem;
     }
 
     .profile-offer {
@@ -144,8 +157,8 @@ $font-small: 0.7rem;
         }
     }
 
-    .profile-offer-description.my-0.px-lg-4 {
-        font-size: 0.75rem;
+    .profile-offer-description.my-2.mt-md-3 {
+        font-size: 0.8rem;
     }
 }
 
