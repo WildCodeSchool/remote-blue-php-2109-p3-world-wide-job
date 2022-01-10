@@ -82,6 +82,16 @@ class Student
      */
     private ?string $slug;
 
+    /**
+     * @ORM\Column(type="string", length=255, unique=true, nullable=true)
+     */
+    private string $username;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private ?string $description;
+
     public function __construct()
     {
         $this->degree = new ArrayCollection();
@@ -244,8 +254,32 @@ class Student
     public function setSlug(string $slug): self
     {
         if ($this->getUser() != null) {
-            $this->slug = $slug . $this->getUser()->getId();
+            $this->slug = $slug;
         }
+
+        return $this;
+    }
+
+    public function getUsername(): ?string
+    {
+        return $this->username;
+    }
+
+    public function setUsername(string $username): self
+    {
+        $this->username = $username;
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(?string $description): self
+    {
+        $this->description = $description;
 
         return $this;
     }
