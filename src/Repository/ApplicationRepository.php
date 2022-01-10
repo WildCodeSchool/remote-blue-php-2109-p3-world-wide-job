@@ -45,7 +45,8 @@ class ApplicationRepository extends ServiceEntityRepository
                 'a.status',
                 's.ine',
                 's.id',
-                'sc.schoolName'
+                'sc.schoolName',
+                'a.status'
             )
             ->groupBy('a');
 
