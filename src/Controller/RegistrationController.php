@@ -143,9 +143,7 @@ class RegistrationController extends AbstractController
                 findOneBy(['email' => $loggedUser->getUserIdentifier()]);
                 $student->setUser($loggedUser);
                 $student->setSlug($slugify
-                    ->generate($student->getUser()
-                            ->getFirstname() . '-' . $student->
-                        getUser()->getLastname()));
+                    ->generate($student->getUsername()));
                 if ($loggedUser != null) {
                     $loggedUser->setRoles(['ROLE_STUDENT_COMPLETED']);
                 }
