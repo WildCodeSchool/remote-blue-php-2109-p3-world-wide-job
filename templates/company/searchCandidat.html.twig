@@ -4,21 +4,13 @@
 {% block filters %}
 {% endblock %}
 {% block body %}
-    {% set profils = [
-        {'id': '1', 'firstname': 'Frédéric', 'lastname': 'rico', 'city': 'lille', 'zip': '59000', 'formation': 'université de barcelone', 'quand': 'il y a 1 jour', 'cv': '', 'pdp': '{{ asset(build/images/user.a6143582.png) }}'},
-        {'id': '2', 'firstname': 'sam', 'lastname': 'rico', 'city': 'lille', 'zip': '59000', 'formation': 'université de barcelone', 'quand': 'il y a 1 jour', 'cv': '', 'pdp': '{{ asset(build/images/user.a6143582.png) }}'},
-        {'id': '3', 'firstname': 'jim', 'lastname': 'rico', 'city': 'lille', 'zip': '59000', 'formation': 'université de barcelone', 'quand': 'il y a 1 jour', 'cv': '', 'pdp': '{{ asset(build/images/user.a6143582.png) }}'},
-        {'id': '4', 'firstname': 'paul', 'lastname': 'rico', 'city': 'lille', 'zip': '59000', 'formation': 'université de barcelone', 'quand': 'il y a 1 jour', 'cv': '', 'pdp': '{{ asset(build/images/user.a6143582.png) }}'},
-        {'id': '5', 'firstname': 'sarah', 'lastname': 'rico', 'city': 'lille', 'zip': '59000', 'formation': 'université de barcelone', 'quand': 'il y a 1 jour', 'cv': '', 'pdp': '{{ asset(build/images/user.a6143582.png) }}'},
-        {'id': '6', 'firstname': 'jeanne', 'lastname': 'rico', 'city': 'lille', 'zip': '59000', 'formation': 'université de barcelone', 'quand': 'il y a 1 jour', 'cv': '', 'pdp': '{{ asset("build/images/user.a6143582.png") }}'},
-    ] %}
-
 
     <div class="filterBar">
     </div>
     <div class="searchContainer">
         <div class="searchGrid">
             <div class="smallSearchCard">
+                {% if candidatures %}
                 {% for candidature in candidatures %}
                     <div class="card rounded sha dow smallOffer" id="smallOffer{{ candidature.id }}">
                         <div class="card-body smallCard d-flex flex-row align-items-center">
@@ -34,7 +26,7 @@
                                     <h3 class="jobTitle offer-name text-primary mb-1">  {{ candidature.lastname }} {{ candidature.firstname }}</h3>
                                     <h4 class="jobLocation offer-localisation  mt-1 mb-0">{{ candidature.city }} ({{ candidature.zip }}
                                         )</h4>
-                                    <h4 class="jobType offer-formation mb-0"> candidature.school  </h4>
+                                    <h4 class="jobType offer-formation mb-0"> {{ candidature.schoolName }} </h4>
                                     <h5 class="jobDate offer-date mb-0">il y a 4 jour </h5>
                                 </div>
                             </div>
@@ -43,11 +35,13 @@
                         </div>
                     </div>
                 {% endfor %}
+
+
             </div>
         </div>
         <div class="largeSearchCard card-cv" style="max-width: 580px;" id="largeSearchCard">
-            {% for profil in profils %}
-                <div class="card rounded shadow largeOffer" id="largeOffer{{ profil.id }}">
+            {% for candidature in candidatures %}
+                <div class="card rounded shadow largeOffer" id="largeOffer{{ candidature.id }}">
                     <div class="card-body largeCard d-flex flex-column" >
                         <button class="btn-close closeOffer"></button>
                         <div style="width: 34.375rem"><img class="cv-offer"
@@ -69,6 +63,24 @@
                     </div>
                 </div>
             {% endfor %}
+            {% else %}
+            <div class="card rounded sha dow smallOffer">
+                <div class="card-body smallCard d-flex flex-row align-items-center">
+
+
+
+                    <div class="jobInfoContainer">
+
+                        <div class="jobSubInfoContainer d-flex flex-column align-items-start">
+
+                         Aucune candidature
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+            {% endif %}
         </div>
     </div>
 {% endblock %}

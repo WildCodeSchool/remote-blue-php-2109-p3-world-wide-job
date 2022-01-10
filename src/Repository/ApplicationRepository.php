@@ -31,13 +31,22 @@ class ApplicationRepository extends ServiceEntityRepository
         $query = $this->createQueryBuilder('a')
             ->where('o.company = :company')
             ->setParameter('company', $company)
-
             ->join('a.student', 's')
             ->join('s.user', 'u')
             ->join('a.offer', 'o')
             ->join('o.company', 'c')
             ->join('s.school', 'sc')
-            ->select('u.firstname', 'u.lastname', 'u.city', 'u.zip', 's.picture', 'a.status', 's.ine', 's.id')
+            ->select(
+                'u.firstname',
+                'u.lastname',
+                'u.city',
+                'u.zip',
+                's.picture',
+                'a.status',
+                's.ine',
+                's.id',
+                'sc.schoolName'
+            )
             ->groupBy('a');
 
         // returns an array of Product objects
