@@ -1,9 +1,13 @@
 {% extends 'base.html.twig' %}
         {% block title %}Recherche emploi world wide job{% endblock %}
-
+{% block javascripts %}
+{{ parent() }}
+{{ encore_entry_script_tags('search') }}
+{% endblock %}
 {% block body %}
     <div class="filterBar rounded mt-3">
         <div class="filterCity">
+            {{ form_start(form) }}
         {{ form_widget(form.searchCity) }}
         </div>
         <div class="filterFieldOfActivity mx-2">
@@ -12,7 +16,10 @@
         <div class="filterTypeOfContract me-2">
             {{ form_widget(form.searchTypeOfContract) }}
         </div>
-        <button class="btn-primary rounded text-white" type="submit">Rechercher</button>
+        <div class="submitFilter">
+            {{ form_widget(form.submit) }}
+            {{ form_end(form) }}
+        </div>
     </div>
 <div class="searchContainer">
     <div class="searchGrid">

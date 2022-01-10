@@ -1,9 +1,9 @@
 .form-container {
     background-color: $gray;
-    border: 1px solid $primary;
-    border-radius: 10px;
-    min-width: 380px;
-    padding: 3% 3% 3%;
+    border: .063rem solid $primary;
+    border-radius: $border-radius;
+    min-width: 23.75rem;
+    padding: 2.007rem;
 }
 
 ul {
@@ -16,17 +16,17 @@ ul {
         padding-top: 10px;
         vertical-align: top;
         width: 50px;
-  }
+    }
 }
 
 .etape {
     border: 2px solid $primary;
     border-radius: 50%;
     color: $black;
-    height: 40px;
-    padding-top: 05px;
+    height: 2.5rem;
+    padding-top: 0.25rem;
     vertical-align: top;
-    width: 40px;
+    width: 2.5rem;
 }
 
 div {
@@ -36,30 +36,30 @@ div {
             border: 2px solid $primary;
             border-radius: 50%;
             color: $black;
-            height: 40px;
-            padding-top: 05px;
+            height: 2.5rem;
+            padding-top: .313rem;
             vertical-align: top;
-            width: 40px;
+            width: 2.5rem;
+        }
     }
-  }
 }
 
 .trait {
     background-color: $primary;
-    height: 2px;
-    width: 50px;
+    height: .125rem;
+    width: 3.125rem;
 }
 
 .etape-container {
-    width: 180px;
+    width: 11.25rem;
 }
 
 .form-register {
-    max-width: 470px;
+    max-width: 29.375rem;
 }
 
 .form-btn {
-    min-width: 143px;
+    min-width: 8.938rem;
 }
 
 .form-titre {
@@ -73,6 +73,6 @@ div {
 @media (max-width: 992px) {
     .head-container {
         flex-direction: column-reverse;
-  }
+    }
 }
 

@@ -77,9 +77,14 @@ class School
     private Collection $degrees;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private \DateTimeInterface $updatedAt;
+    private ?string $slug;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private ?\DateTimeInterface $updatedAt;
 
     public function __construct()
     {
@@ -116,7 +121,7 @@ class School
         return $this->logoFile;
     }
 
-    public function getUpdatedAt(): \DateTimeInterface
+    public function getUpdatedAt(): ?\DateTimeInterface
     {
         return $this->updatedAt;
     }
@@ -229,6 +234,18 @@ class School
                 $degree->setDegree(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): self
+    {
+        $this->slug = $slug;
 
         return $this;
     }

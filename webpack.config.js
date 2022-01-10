@@ -32,6 +32,7 @@ Encore
      * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
      */
     .addEntry('app', './assets/app.js')
+    .addEntry('search', './assets/search.js')
 
     // enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)
     .enableStimulusBridge('./assets/controllers.json')
@@ -62,7 +63,9 @@ Encore
 
     // enables @babel/preset-env polyfills
     .configureBabelPresetEnv((config) => {
+        // eslint-disable-next-line no-param-reassign
         config.useBuiltIns = 'usage';
+        // eslint-disable-next-line no-param-reassign
         config.corejs = 3;
     })
 

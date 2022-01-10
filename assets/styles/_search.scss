@@ -12,14 +12,6 @@ body::-webkit-scrollbar-thumb {
     border: 3px solid #dfdfdf;
 }
 
-.filterBar {
-
-}
-
-.jobTitle {
-    font-weight: bold;
-}
-
 .smallCard {
     pointer-events: none;
 }
@@ -41,7 +33,7 @@ body::-webkit-scrollbar-thumb {
 }
 
 .closeOffer {
-    grid-column: 6/7;
+    grid-column: -1;
     grid-row: 1;
 }
 
@@ -100,15 +92,9 @@ body::-webkit-scrollbar-thumb {
     flex-direction: column;
 }
 
-.jobTitleContainer {
-    display: flex;
-    justify-content: center;
-}
-
 .jobTitle {
-    display: flex;
-    justify-content: center;
     font-size: 1.3rem;
+    font-weight: bold;
 }
 
 .jobInfoContainer {
@@ -118,7 +104,6 @@ body::-webkit-scrollbar-thumb {
 
 .jobLogoContainer {
     width: 40%;
-    margin-left: 2rem;
 }
 
 .jobLocation {
@@ -152,8 +137,31 @@ body::-webkit-scrollbar-thumb {
 }
 
 @media screen and (max-width: 992px) {
+    .filterBar {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .filterCity {
+        width: 75vw;
+        margin-bottom: .5rem;
+    }
+
+    .filterFieldOfActivity {
+        width: 40vw;
+    }
+
+    .filterTypeOfContract{
+        width: 40vw;
+    }
+
+    .submitFilter {
+        margin-top: .5rem;
+    }
+
     .smallSearchCard {
-        margin-top: 3rem;
+        margin-top: 1rem;
     }
 
     .smallOffer {
@@ -201,11 +209,18 @@ body::-webkit-scrollbar-thumb {
         background-color: $gray;
         display: flex;
         justify-content: center;
-        margin-left: 12.5%;
+        margin-left: 25%;
         padding: .5rem 0;
-        width: 75%;
+        width: 50%;
     }
 
+    .filterCity {
+        margin-left: .5rem;
+    }
+
+    .submitFilter {
+        margin-right: .5rem;
+    }
     .largeOffer::-webkit-scrollbar {
         width: 12px;
     }

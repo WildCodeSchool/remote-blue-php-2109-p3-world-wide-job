@@ -3,6 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Repository\CompanyRepository;
+use App\Repository\SchoolRepository;
+use App\Repository\StudentRepository;
+use App\Services\Slugify;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
@@ -20,7 +24,6 @@ class LoginController extends AbstractController
     {
         // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();
-
 
         // last username entered by the user
         $lastUsername = $authenticationUtils->getLastUsername();
@@ -40,10 +43,14 @@ class LoginController extends AbstractController
     /**
      * @Route("/redirection", name="redirection")
      */
-    public function redirected(Security $security, UrlGeneratorInterface $urlGenerator): RedirectResponse
-    {
-
-
+    public function redirected(
+        Security $security,
+        UrlGeneratorInterface $urlGenerator,
+        CompanyRepository $companyRepository,
+        SchoolRepository $schoolRepository,
+        StudentRepository $studentRepository,
+        Slugify $slugify
+    ): RedirectResponse {
         if (
             $security->isGranted('ROLE_STUDENT')
         ) {
@@ -63,17 +70,23 @@ class LoginController extends AbstractController
         if (
             $security->isGranted('ROLE_STUDENT_COMPLETED')
         ) {
-            return new RedirectResponse($urlGenerator->generate('student_show'));
+            $loggedStudent = $studentRepository->findOneBy(['user' => $this->getUser()]);
+            return new RedirectResponse($urlGenerator
+                ->generate('company_show', ['slug' => $slugify->getStudentSlug($loggedStudent)]));
         }
         if (
             $security->isGranted('ROLE_SCHOOL_COMPLETED')
         ) {
-            return new RedirectResponse($urlGenerator->generate('school_show'));
+            $loggedSchool = $schoolRepository->findOneBy(['user' => $this->getUser()]);
+            return new RedirectResponse($urlGenerator
+                ->generate('company_show', ['slug' => $slugify->getSchoolSlug($loggedSchool)]));
         }
         if (
             $security->isGranted('ROLE_COMPANY_COMPLETED')
         ) {
-            return new RedirectResponse($urlGenerator->generate('company_show'));
+            $loggedCompany = $companyRepository->findOneBy(['user' => $this->getUser()]);
+            return new RedirectResponse($urlGenerator
+                ->generate('company_show', ['slug' => $slugify->getCompanySlug($loggedCompany)]));
         }
 
 

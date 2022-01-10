@@ -2,7 +2,9 @@
 
 namespace App\Repository;
 
+use App\Entity\Company;
 use App\Entity\Offer;
+use App\Entity\Application;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -23,19 +25,37 @@ class OfferRepository extends ServiceEntityRepository
     }
 
      /**
-     * @return Offer[] Returns an array of Offer objects
+     * @return float|int|mixed|array|string
      */
     public function findLikeCity(string $city)
     {
         return $this->createQueryBuilder('o')
             ->andWhere('o.city LIKE :city')
             ->setParameter('city', '%' . $city . '%')
-            ->orderBy('o.date_of_publication', 'DESC')
+            ->orderBy('o.dateOfPublication', 'DESC')
             ->getQuery()
             ->getResult()
         ;
     }
 
+    /**
+     * @param Company $company
+     * @return float|int|mixed|string
+     */
+    public function findAllCountApplications(Company $company)
+    {
+        $query = $this->createQueryBuilder('o')
+            ->where('c = :company')
+            ->setParameter('company', $company)
+            ->addSelect('count(a) AS count')
+            ->leftJoin('o.applications', 'a')
+            ->join('o.company', 'c')
+            ->groupBy('o')
+        ;
+
+        // returns an array of Product objects
+        return $query->getQuery()->getResult();
+    }
 
     /*
     public function findOneBySomeField($value): ?Offer
