@@ -5,7 +5,7 @@
 {{ encore_entry_script_tags('search') }}
 {% endblock %}
 {% block body %}
-    <div class="filterBar rounded mt-3">
+    <div class="filterBar shadow pt-3">
         <div class="filterCity">
             {{ form_start(form) }}
         {{ form_widget(form.searchCity) }}
@@ -17,7 +17,7 @@
             {{ form_widget(form.searchTypeOfContract) }}
         </div>
         <div class="submitFilter">
-            {{ form_widget(form.submit) }}
+            {{ form_widget(form.submit, {'label': 'Recherche'}) }}
             {{ form_end(form) }}
         </div>
     </div>
