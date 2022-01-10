@@ -186,10 +186,9 @@ body::-webkit-scrollbar-thumb {
         grid-template-rows: 1fr;
         position: fixed;
         pointer-events: none;
-        top: 20vh;
         left: 5vw;
-        min-height: 60vh;
-        max-height: 85vh;
+        top: 225px;
+        height: calc(98vh - 225px);
         width: 90vw;
     }
 
