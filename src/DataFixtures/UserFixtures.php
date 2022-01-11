@@ -26,7 +26,8 @@ class UserFixtures extends Fixture
     public function load(ObjectManager $manager): void
     {
         foreach (self::USERROLES as $role) {
-            $maxUser = 70;
+
+            $maxUser = 35;
             for ($i = 0; $i <= $maxUser; $i++) {
                 $user = new User();
                 $user->setEmail($role['user'] . $i . '@gmail.com');

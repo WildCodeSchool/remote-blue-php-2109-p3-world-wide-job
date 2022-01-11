@@ -62,9 +62,8 @@ class School
 
     /**
      * @ORM\OneToOne(targetEntity=User::class, inversedBy="school", cascade={"persist", "remove"})
-     * @ORM\JoinColumn(nullable=false)
      */
-    private User $user;
+    private ?User $user = null;
 
     /**
      * @ORM\OneToMany(targetEntity=Student::class, mappedBy="school")
@@ -246,7 +245,7 @@ class School
     public function setSlug(string $slug): self
     {
         if ($this->getUser() != null) {
-            $this->slug = $slug . $this->getUser()->getId();
+            $this->slug = $slug;
         }
 
         return $this;

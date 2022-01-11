@@ -1,0 +1,37 @@
+{% extends 'profile.html.twig' %}
+
+{% block title %}{{ student.username }}{% endblock %}
+
+{% block banner %}
+    <img src="{{ asset('build/images/student2-banner.jpg') }}" class="profile-banner" alt="profile banner">
+{% endblock %}
+{% block picture %}
+    <div class="profile-title">
+        <img src="{{ vich_uploader_asset(student) }}" class="profile-picture" alt="{{ student.user.firstname }}">
+        <h2 class="profile-name mt-lg-4">{{ student.user.firstname }} {{ student.user.lastname }}</h2>
+    </div>
+{% endblock %}
+{% block information %}
+    <div class="profile-localisation d-flex align-items-center justify-content-between">
+        <p class="profile-city align-self-center mb-0">{{ student.user.city }}, {{ student.user.country }}</p>
+        <input id="studentMail" name="studentMail" type="hidden" value={{ student.user.email }}>
+        <a type="button" href="mailto:{{ student.user.email }}" class="profile-student-contact btn press d-flex align-items-center justify-content-between">
+            <div class="mx-1">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope" viewBox="0 0 16 16">
+                <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z"/>
+                </svg>
+            </div><p class ="d-none d-sm-block mb-0">Contactez moi</p>
+        </a>
+    </div>
+    <div class="profile-presentation mt-2">
+        <h3>Présentation</h3>
+        <p>{{ student.description }}</p>
+    </div>
+{% endblock %}
+{% block profileBottom %}
+    {% if student.curriculum %}
+        <div class="student-cv-container d-flex justify-content-center">
+            <img src="{{ asset('build/images/cv_test.jpg') }}" class="profile-student-cv mx-4 mt-4" alt="CV {{ student.user.firstname }} {{ student.user.lastname }}">
+        </div>
+    {% endif %}
+{% endblock %}
