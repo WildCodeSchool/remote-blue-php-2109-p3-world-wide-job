@@ -15,6 +15,7 @@ body::-webkit-scrollbar-thumb {
 .filterBar {
     position: sticky;
 }
+
 .smallCard {
     pointer-events: none;
 }
@@ -163,9 +164,9 @@ body::-webkit-scrollbar-thumb {
         width: 45vw;
     }
 
-   .submitFilter {
-       padding-bottom: 1rem;
-   }
+    .submitFilter {
+        padding-bottom: 1rem;
+    }
 
     .smallOffer {
         overflow: hidden;
@@ -223,6 +224,7 @@ body::-webkit-scrollbar-thumb {
     .submitFilter {
         margin-right: .5rem;
     }
+
     .largeOffer::-webkit-scrollbar {
         width: 12px;
     }
