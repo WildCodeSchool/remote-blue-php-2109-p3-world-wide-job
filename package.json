@@ -27,8 +27,6 @@
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.15.4",
-    "@popperjs/core": "^2.11.0",
-    "bootstrap-select": "^1.13.18",
-    "jquery": "^3.6.0"
+    "@popperjs/core": "^2.11.0"
   }
 }
