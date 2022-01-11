@@ -2,9 +2,9 @@
 
 namespace App\Services;
 
-class TypeOfContract
+class AdminService
 {
-    public array $contractType = [
+    public const CONTRACTTYPE = [
         'Alternance 1 an' => 1,
         'Alternance 2 ans' => 2,
         'Stage 2 mois' => 3,
@@ -12,7 +12,7 @@ class TypeOfContract
         'Stage 6 mois' => 5,
     ];
 
-    public array $fieldOfActivity = [
+    public const FIELDOFACTIVITY = [
         'Aéronautique et Espace' => 1,
         'Agriculture' => 2,
         'Agroalimentaire' => 3,
@@ -61,38 +61,4 @@ class TypeOfContract
         'Tourisme' => 46,
         'Transport, Logistique' => 47,
     ];
-
-    /**
-     * @return array|int[]
-     */
-    public function getFieldOfActivity(): array
-    {
-        return $this->fieldOfActivity;
-    }
-
-    /**
-     * @param array|int[] $fieldOfActivity
-     * @return TypeOfContract
-     */
-    public function setFieldOfActivity(array $fieldOfActivity): TypeOfContract
-    {
-        $this->fieldOfActivity = $fieldOfActivity;
-        return $this;
-    }
-
-    /**
-     * @return array|string[]
-     */
-    public function getContractType(): array
-    {
-        return $this->contractType;
-    }
-
-    /**
-     * @param array|string[] $contractType
-     */
-    public function setContractType(array $contractType): void
-    {
-        $this->contractType = $contractType;
-    }
 }

@@ -4,7 +4,7 @@ namespace App\Form;
 
 use App\Entity\Offer;
 use App\Repository\OfferRepository;
-use App\Services\TypeOfContract;
+use App\Services\AdminService;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\ChoiceList\ChoiceList;
@@ -18,7 +18,6 @@ class FilterOfferType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $typeOfContract = new TypeOfContract();
         $builder
             ->add('searchCity', SearchType::class, [
                 'required' => false,
@@ -27,12 +26,12 @@ class FilterOfferType extends AbstractType
             ->add('searchFieldOfActivity', ChoiceType::class, [
                 'required' => false,
                 'placeholder' => "Domaine d'activité",
-                'choices' => $typeOfContract->getFieldOfActivity(),
+                'choices' => AdminService::FIELDOFACTIVITY,
             ])
             ->add('searchTypeOfContract', ChoiceType::class, [
                 'required' => false,
                 'placeholder' => "Type de contrat",
-                'choices' => $typeOfContract->getContractType(),
+                'choices' => AdminService::CONTRACTTYPE,
             ])
             ->add('submit', SubmitType::class)
         ;
