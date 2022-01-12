@@ -20,8 +20,8 @@
 {% block information %}
     <div class="profile-localisation localisation-edit">
 
-        <pclass
-        ="d-flex">{{ form_widget(form.user.city, {'attr': {'class': 'ms-1 me-1'}}) }}
+        <p class="d-flex">
+        {{ form_widget(form.user.city, {'attr': {'class': 'ms-1 me-1'}}) }}
         {{ form_widget(form.user.zip, {'attr': {'class': 'ms-1 me-1 w-25'}}) }}
         {{ form_widget(form.user.adress1, {'attr': {'class': 'ms-1 me-1 w-75'}}) }}
         {{ form_widget(form.user.adress2, {'attr': {'class': 'ms-1 me-1 w-50'}}) }}
