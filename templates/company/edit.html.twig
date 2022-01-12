@@ -10,7 +10,8 @@
     <div class="profile-title title-edit">
         <div>
 
-            <img src="{{ vich_uploader_asset(company) }}" class="profile-picture picture-edit" alt="company.companyName">
+            <img src="{{ vich_uploader_asset(company) }}" class="profile-picture picture-edit"
+                 alt="company.companyName">
             {{ form_widget(form.logoFile) }}
         </div>
         <h2 class="profile-name mt-lg-4">  {{ form_widget(form.companyName) }}  </h2>
@@ -19,7 +20,12 @@
 {% block information %}
     <div class="profile-localisation localisation-edit">
 
-        <p class="d-flex">   {{ form_widget(form.user.city, {'attr': {'class': 'ms-1 me-1'}}) }}   {{ form_widget(form.user.zip, {'attr': {'class': 'ms-1 me-1 w-25'} }) }}  {{ form_widget(form.user.adress1, {'attr': {'class': 'ms-1 me-1 w-75'}}) }} {{ form_widget(form.user.adress2, {'attr': {'class': 'ms-1 me-1 w-50'}}) }} {{ form_widget(form.user.country, {'attr': {'class': 'ms-1 me-1 w-50'}}) }}  </p>
+        <pclass
+        ="d-flex">{{ form_widget(form.user.city, {'attr': {'class': 'ms-1 me-1'}}) }}
+        {{ form_widget(form.user.zip, {'attr': {'class': 'ms-1 me-1 w-25'}}) }}
+        {{ form_widget(form.user.adress1, {'attr': {'class': 'ms-1 me-1 w-75'}}) }}
+        {{ form_widget(form.user.adress2, {'attr': {'class': 'ms-1 me-1 w-50'}}) }}
+        {{ form_widget(form.user.country, {'attr': {'class': 'ms-1 me-1 w-50'}}) }}</p>
 
     </div>
 
@@ -39,9 +45,9 @@
                         class="m-2"> </span> {{ form_widget(form.user.email) }}</h4>
         </div>
         <div class="profile-offer-head d-flex justify-content-between align-items-center mb-2">
-            <h4 class="profile-offer-title d-flex align-items-center my-0 my-lg-2"> {{ form_label(form.siret, null, {'attr': {'class': 'label-nowrap'} }) }}
+            <h4 class="profile-offer-title d-flex align-items-center my-0 my-lg-2"> {{ form_label(form.siret, null, {'attr': {'class': 'label-nowrap'}}) }}
                 <span class="m-2"> </span> {{ form_widget(form.siret) }}</h4>
-            <h4 class="profile-offer-title d-flex align-items-center my-0 my-lg-2">   {{ form_label(form.siren, "N° SIREN :", {'attr': {'class': 'label-nowrap'} }) }}
+            <h4 class="profile-offer-title d-flex align-items-center my-0 my-lg-2">   {{ form_label(form.siren, "N° SIREN :", {'attr': {'class': 'label-nowrap'}}) }}
                 <span class="m-2"> </span> {{ form_widget(form.siren) }}</h4>
         </div>
         <div class="profile-offer-head d-flex justify-content-between align-items-center mb-2">
