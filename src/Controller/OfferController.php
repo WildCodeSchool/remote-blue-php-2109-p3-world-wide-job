@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Form\FilterOfferType;
 use App\Repository\OfferRepository;
+use App\Services\AdminService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -23,7 +24,7 @@ class OfferController extends AbstractController
         $offers = "";
         $form = $this->createForm(FilterOfferType::class);
         $form->handleRequest($request);
-
+        $contractType = AdminService::CONTRACTTYPE;
         if ($form->isSubmitted() && $form->isValid()) {
             $city = $form->getData()['searchCity'];
             $fieldOfActivity = $form->getData()['searchFieldOfActivity'];
@@ -45,6 +46,7 @@ class OfferController extends AbstractController
         return $this->render('search/searchOffer.html.twig', [
             'offers' => $offers,
             'form' => $form->createView(),
+            'typeOfContract' => $contractType,
         ]);
     }
 }

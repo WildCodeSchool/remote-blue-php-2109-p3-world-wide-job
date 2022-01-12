@@ -32,11 +32,16 @@
                         </div>
                         <div class="jobInfoContainer">
                             <div class="jobLogoContainer">
-                                <img class="jobCompanyLogo" src="{{ asset('build/images/favicon.png') }}" alt="logo entreprise">
+                                <img class="jobCompanyLogo" src="{{ vich_uploader_asset(offer.company) }}" alt="logo entreprise">
                             </div>
                             <div class="jobSubInfoContainer">
                                 <h4 class="jobLocation">{{ offer.city }}</h4>
-                                <h4 class="jobType">Type de contrat</h4>
+                                <h4 class="jobType">{% for key, value in typeOfContract %}
+                                        {% if offer.contractType == value %}
+                                            {{ key }}
+                                        {% endif %}
+                                    {% endfor %}
+                                </h4>
                                 <h5 class="jobDate">{% set difference = date('now').diff(date(offer.dateOfPublication)) %}
                                     {% set left_days = difference.days %}
                                     Il y à
@@ -57,10 +62,15 @@
         <div class="card rounded shadow largeOffer" id="largeOffer{{ offer.id }}">
             <div class="card-body largeCard">
                 <button class="btn-close closeOffer"></button>
-                <h3 class="descCompanyName">Company name</h3>
+                <h3 class="descCompanyName">{{ offer.company.companyName }}</h3>
                 <h2 class="descJobTitle">{{ offer.name }}</h2>
                 <h3 class="descJobLocation">{{ offer.city }}</h3>
-                <h3 class="descJobType">Alternance 1 an</h3>
+                <h3 class="descJobType">{% for key, value in typeOfContract %}
+                        {% if offer.contractType == value %}
+                            {{ key }}
+                        {% endif %}
+                    {% endfor %}
+                </h3>
                 <button class="btn-primary text-white rounded descApply">Postuler</button>
                 <button class="btn-primary text-white rounded descSave">Enregistrer</button>
                 <div class="descDetails">Détail de l'offre :</div>
