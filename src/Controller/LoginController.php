@@ -71,15 +71,17 @@ class LoginController extends AbstractController
             $security->isGranted('ROLE_STUDENT_COMPLETED')
         ) {
             $loggedStudent = $studentRepository->findOneBy(['user' => $this->getUser()]);
-            return new RedirectResponse($urlGenerator
-                ->generate('company_show', ['slug' => $slugify->getStudentSlug($loggedStudent)]));
+            if ($loggedStudent != null) {
+                return new RedirectResponse($urlGenerator
+                    ->generate('student_show', ['slug' => $loggedStudent->getSlug()]));
+            }
         }
         if (
             $security->isGranted('ROLE_SCHOOL_COMPLETED')
         ) {
             $loggedSchool = $schoolRepository->findOneBy(['user' => $this->getUser()]);
             return new RedirectResponse($urlGenerator
-                ->generate('company_show', ['slug' => $slugify->getSchoolSlug($loggedSchool)]));
+                ->generate('school_show', ['slug' => $slugify->getSchoolSlug($loggedSchool)]));
         }
         if (
             $security->isGranted('ROLE_COMPANY_COMPLETED')
