@@ -47,7 +47,7 @@ class CompanyType extends AbstractType
                 'allow_delete'  => true, // not mandatory, default is true
                 'download_uri' => true, // not mandatory, default is true
             ])
-            ->add('user', UserEditType::class)
+
         ;
     }
 

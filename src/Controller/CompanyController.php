@@ -8,6 +8,7 @@ use App\Form\Company1Type;
 use App\Form\CompanyEditType;
 use App\Form\CompanyType;
 use App\Form\PasswordEditType;
+use App\Form\UserEditType;
 use App\Repository\OfferRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -42,6 +43,9 @@ class CompanyController extends AbstractController
         $companyForm = $this->createForm(CompanyType::class, $company);
         $companyForm->handleRequest($request);
 
+        $userForm = $this->createForm(UserEditType::class, $company->getUser());
+        $userForm->handleRequest($request);
+
         $passwordForm = $this->createForm(PasswordEditType::class, $company);
         $passwordForm->handleRequest($request);
 
@@ -61,6 +65,7 @@ class CompanyController extends AbstractController
         return $this->renderForm('company/edit.html.twig', [
             'company' => $company,
             'form' => $companyForm,
+             'userForm' => $userForm,
             'passwordForm' => $passwordForm
         ]);
     }
