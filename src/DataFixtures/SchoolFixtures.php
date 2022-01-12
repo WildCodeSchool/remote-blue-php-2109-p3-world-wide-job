@@ -29,11 +29,15 @@ class SchoolFixtures extends Fixture implements DependentFixtureInterface
     {
         foreach (self::SCHOOL as $key => $name) {
             $school = new School();
-            $school->setLogo('https://via.placeholder.com/150')
+            $school->setLogo('profile.png')
                 ->setSchoolName($name)
                 ->setSlug($this->slugify->generate($name))
                 ->setSchoolCode('0441442D')
-                ->setSchoolDesc('Texte de présentation de la formation')
+                ->setSchoolDesc('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod 
+                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation 
+                ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in 
+                voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non 
+                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.')
                 ->setType(rand(1, 9))
                 ->setUser($this->getReference('ROLE_SCHOOL_COMPLETED_' . $key));
             $this->addReference('school_' . $key, $school);
