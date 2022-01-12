@@ -72,7 +72,7 @@ class Company
     /**
      * @ORM\OneToOne(targetEntity=User::class, cascade={"persist", "remove"})
      */
-    private User $user;
+    private ?User $user = null;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true, unique=true)
@@ -128,7 +128,7 @@ class Company
     public function setSlug(string $slug): self
     {
         if ($this->getUser() != null) {
-            $this->slug = $slug . $this->getUser()->getId();
+            $this->slug = $slug;
         }
 
         return $this;

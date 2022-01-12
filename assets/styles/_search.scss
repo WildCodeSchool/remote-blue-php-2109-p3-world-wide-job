@@ -12,8 +12,8 @@ body::-webkit-scrollbar-thumb {
     border: 3px solid #dfdfdf;
 }
 
-.jobTitle {
-    font-weight: bold;
+.filterBar {
+    position: sticky;
 }
 
 .smallCard {
@@ -37,7 +37,7 @@ body::-webkit-scrollbar-thumb {
 }
 
 .closeOffer {
-    grid-column: 6/7;
+    grid-column: -1;
     grid-row: 1;
 }
 
@@ -96,15 +96,9 @@ body::-webkit-scrollbar-thumb {
     flex-direction: column;
 }
 
-.jobTitleContainer {
-    display: flex;
-    justify-content: center;
-}
-
 .jobTitle {
-    display: flex;
-    justify-content: center;
     font-size: 1.3rem;
+    font-weight: bold;
 }
 
 .jobInfoContainer {
@@ -114,7 +108,6 @@ body::-webkit-scrollbar-thumb {
 
 .jobLogoContainer {
     width: 40%;
-    margin-left: 2rem;
 }
 
 .jobLocation {
@@ -148,8 +141,31 @@ body::-webkit-scrollbar-thumb {
 }
 
 @media screen and (max-width: 992px) {
-    .smallSearchCard {
-        margin-top: 3rem;
+    .filterBar {
+        background-color: lightgrey;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        top: 55px;
+        z-index: 10;
+    }
+
+    .filterCity {
+        width: 75vw;
+        margin-bottom: .5rem;
+    }
+
+    .filterFieldOfActivity {
+        width: 45vw;
+        margin-bottom: .5rem;
+    }
+
+    .filterTypeOfContract{
+        width: 45vw;
+    }
+
+    .submitFilter {
+        padding-bottom: 1rem;
     }
 
     .smallOffer {
@@ -171,10 +187,9 @@ body::-webkit-scrollbar-thumb {
         grid-template-rows: 1fr;
         position: fixed;
         pointer-events: none;
-        top: 10vh;
         left: 5vw;
-        min-height: 60vh;
-        max-height: 85vh;
+        top: 225px;
+        height: calc(98vh - 225px);
         width: 90vw;
     }
 
@@ -193,6 +208,23 @@ body::-webkit-scrollbar-thumb {
 }
 
 @media screen and (min-width: 992px) {
+    .filterBar {
+        background-color: $gray;
+        display: flex;
+        justify-content: center;
+        padding: .5rem 0;
+        z-index: 10;
+        top: 55px;
+    }
+
+    .filterCity {
+        margin-left: .5rem;
+    }
+
+    .submitFilter {
+        margin-right: .5rem;
+    }
+
     .largeOffer::-webkit-scrollbar {
         width: 12px;
     }
@@ -212,7 +244,7 @@ body::-webkit-scrollbar-thumb {
     }
 
     .searchContainer {
-        margin-top: 3rem;
+        margin-top: 1rem;
         display: flex;
         flex-direction: row;
     }
@@ -249,14 +281,13 @@ body::-webkit-scrollbar-thumb {
         grid-template-rows: 1fr;
         width: 33%;
         position: sticky;
-        top: 1rem;
+        top: 135px;
         bottom: 1rem;
         align-self: flex-start;
     }
 
     .largeOffer {
-        min-height: 75vh;
-        max-height: 80vh;
+        height: calc(98vh - 135px);
         color: black;
         opacity: 0;
         pointer-events: none;
