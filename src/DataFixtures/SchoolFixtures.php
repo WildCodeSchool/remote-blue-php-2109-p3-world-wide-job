@@ -13,7 +13,7 @@ class SchoolFixtures extends Fixture implements DependentFixtureInterface
     public const SCHOOL = [
         'Wild Code School',
         'HEC',
-        'Université de Lille',
+        'Universite de Lille',
         'IUT Nantes',
         'BTS MUC',
     ];
