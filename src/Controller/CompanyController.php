@@ -19,7 +19,6 @@ class CompanyController extends AbstractController
      */
     public function show(Company $company, OfferRepository $offerRepository): Response
     {
-
         $applications = $offerRepository->findAllCountApplications($company);
 
         return $this->render('company/show.html.twig', [

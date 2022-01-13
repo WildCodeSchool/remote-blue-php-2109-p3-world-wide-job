@@ -244,9 +244,7 @@ class School
 
     public function setSlug(string $slug): self
     {
-        if ($this->getUser() != null) {
-            $this->slug = $slug;
-        }
+        $this->slug = $slug;
 
         return $this;
     }

@@ -55,42 +55,37 @@ class LoginController extends AbstractController
             $security->isGranted('ROLE_STUDENT')
         ) {
             return new RedirectResponse($urlGenerator->generate('registration_student'));
-        }
-        if (
+        } elseif (
             $security->isGranted('ROLE_SCHOOL')
         ) {
             return new RedirectResponse($urlGenerator->generate('registration_school'));
-        }
-        if (
+        } elseif (
             $security->isGranted('ROLE_COMPANY')
         ) {
             return new RedirectResponse($urlGenerator->generate('registration_company'));
-        }
-
-        if (
+        } elseif (
             $security->isGranted('ROLE_STUDENT_COMPLETED')
         ) {
             $loggedStudent = $studentRepository->findOneBy(['user' => $this->getUser()]);
-            if ($loggedStudent != null) {
                 return new RedirectResponse($urlGenerator
                     ->generate('student_show', ['slug' => $loggedStudent->getSlug()]));
-            }
-        }
-        if (
+        } elseif (
             $security->isGranted('ROLE_SCHOOL_COMPLETED')
         ) {
             $loggedSchool = $schoolRepository->findOneBy(['user' => $this->getUser()]);
-            return new RedirectResponse($urlGenerator
-                ->generate('school_show', ['slug' => $slugify->getSchoolSlug($loggedSchool)]));
-        }
-        if (
+            if ($loggedSchool) {
+                return new RedirectResponse($urlGenerator
+                    ->generate('school_show', ['slug' => $loggedSchool->getSlug()]));
+            }
+        } elseif (
             $security->isGranted('ROLE_COMPANY_COMPLETED')
         ) {
             $loggedCompany = $companyRepository->findOneBy(['user' => $this->getUser()]);
-            return new RedirectResponse($urlGenerator
-                ->generate('company_show', ['slug' => $slugify->getCompanySlug($loggedCompany)]));
+            if ($loggedCompany) {
+                return new RedirectResponse($urlGenerator
+                    ->generate('company_show', ['slug' => $loggedCompany->getSlug()]));
+            }
         }
-
 
         return new RedirectResponse($urlGenerator->generate('login'));
     }
