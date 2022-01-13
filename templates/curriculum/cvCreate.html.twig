@@ -6,13 +6,15 @@
     {{ encore_entry_script_tags('displayform') }}
 {% endblock %}
 {% block body %}
-<div>
+<div class="row">
     {{ form_start(form) }}
+    <div class="col-4">
         {{ form_widget(form._token) }}
         {{ form_row(form.pictureFile) }}
         {{ form_row(form.language) }}
         {{ form_row(form.skills) }}
         {{ form_row(form.drivingLicence) }}
+    </div>
     <button type="button" class="btn btn-primary btn-new" data-collection="#experiences">Nouvelle experience</button>
     <div id="experiences" class="row"
          data-prototype="{{ include("component/_experienceForm.html.twig", {form: form.experiences.vars.prototype})|e("html_attr") }}"
