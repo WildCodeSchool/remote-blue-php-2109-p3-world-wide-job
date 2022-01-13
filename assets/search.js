@@ -1,12 +1,29 @@
 const largeOffers = document.getElementsByClassName('largeOffer');
 const smallOffers = document.getElementsByClassName('smallOffer');
 const closeOffer = document.getElementsByClassName('closeOffer');
+const lastUrlSegment = window.location.href.split('/').pop();
+const applyButton = document.getElementById('apply');
+
+function jobApply(event) {
+    event.preventDefault();
+    const applyLink = event.currentTarget;
+    const link = applyLink.href;
+    fetch(link)
+        .then((res) => res.json())
+        .then((res) => {
+            if (res.isApplicated) {
+                applyButton.classList.add('applied');
+            }
+        });
+}
+applyButton.addEventListener('click', jobApply);
+
 function load1stContent(array, array2) {
     array[0].classList.add('show');
     array2[0].classList.add('active');
 }
-if (window.matchMedia('(min-width: 992px)').matches) {
-    window.onload = load1stContent(largeOffers, smallOffers);
+if (window.matchMedia('(min-width: 992px)').matches && (lastUrlSegment === 'offres')) {
+    load1stContent(largeOffers, smallOffers);
 }
 // eslint-disable-next-line no-restricted-syntax
 for (const element of smallOffers) {

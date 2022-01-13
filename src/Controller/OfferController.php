@@ -2,9 +2,12 @@
 
 namespace App\Controller;
 
+use App\Entity\Application;
 use App\Form\FilterOfferType;
 use App\Repository\OfferRepository;
+use App\Repository\StudentRepository;
 use App\Services\AdminService;
+use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -48,5 +51,27 @@ class OfferController extends AbstractController
             'form' => $form->createView(),
             'typeOfContract' => $contractType,
         ]);
+    }
+
+    /**
+     * @Route("/offres/{application}", name="search_offer_apply")
+     */
+    public function addApplication(
+        int $offerId,
+        Request $request,
+        Application $application,
+        EntityManagerInterface $entityManager,
+        OfferRepository $offerRepository,
+        StudentRepository $studentRepository
+    ): Response {
+        $offer = $offerRepository->findOneBy(['id' => $offerId]);
+        $student = $studentRepository->findOneBy([$this->getUser()]);
+        $application->setStudent($student)
+            ->setOffer($offer)
+            ->setStatus(1);
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->persist($application);
+        $entityManager->flush();
+        return $this->json(['isApplicated' => true]);
     }
 }

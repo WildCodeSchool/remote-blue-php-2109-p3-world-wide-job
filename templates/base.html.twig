@@ -13,9 +13,11 @@
     </title>
     {% block stylesheets %}
         {{ encore_entry_link_tags('app') }}
+        <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     {% endblock %}
     {% block javascripts %}
         {{ encore_entry_script_tags('app') }}
+        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     {% endblock %}
 </head>
 <body class="{{ app.request.pathinfo == path('home') ? 'home-background-image' }}"

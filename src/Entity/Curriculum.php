@@ -3,12 +3,17 @@
 namespace App\Entity;
 
 use App\Repository\CurriculumRepository;
+use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\Validator\Constraints as Assert;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity(repositoryClass=CurriculumRepository::class)
+ * @Vich\Uploadable
  */
 class Curriculum
 {
@@ -22,7 +27,17 @@ class Curriculum
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private ?string $picture;
+    private ?string $picture = "";
+
+    /**
+     * @Vich\UploadableField(mapping="profile_file", fileNameProperty="picture")
+     * @Assert\File(
+     *     maxSize = "1M",
+     *     mimeTypes = {"image/jpeg", "image/png", "image/webp"},
+     * )
+     * @var ?File
+     */
+    private ?File $pictureFile = null;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -54,6 +69,33 @@ class Curriculum
      * @ORM\OneToMany(targetEntity=Training::class, mappedBy="curriculum")
      */
     private Collection $trainings;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private ?int $cvType;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private ?\DateTimeInterface $updatedAt;
+
+    /**
+     * @return File|null
+     */
+    public function getPictureFile(): ?File
+    {
+        return $this->pictureFile;
+    }
+
+    public function setPictureFile(?File $image = null): self
+    {
+        $this->pictureFile = $image;
+        if ($image) {
+            $this->updatedAt = new DateTime('now');
+        }
+        return $this;
+    }
 
     public function __construct()
     {
@@ -182,6 +224,30 @@ class Curriculum
                 $training->setCurriculum(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getCvType(): ?int
+    {
+        return $this->cvType;
+    }
+
+    public function setCvType(?int $cvType): self
+    {
+        $this->cvType = $cvType;
+
+        return $this;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeInterface
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(?\DateTimeInterface $updatedAt): self
+    {
+        $this->updatedAt = $updatedAt;
 
         return $this;
     }

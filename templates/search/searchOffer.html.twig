@@ -10,7 +10,7 @@
             {{ form_start(form) }}
         {{ form_widget(form.searchCity) }}
         </div>
-        <div class="filterFieldOfActivity mx-2">
+        <div id="fieldOfActivity" class="filterFieldOfActivity mx-2">
             {{ form_widget(form.searchFieldOfActivity) }}
         </div>
         <div class="filterTypeOfContract me-2">
@@ -71,7 +71,7 @@
                         {% endif %}
                     {% endfor %}
                 </h3>
-                <button class="btn-primary text-white rounded descApply">Postuler</button>
+                <a href="{{ path('search_offer', {'application': offer.id}) }}" id="apply" class="btn-primary text-white rounded descApply">Postuler</a>
                 <button class="btn-primary text-white rounded descSave">Enregistrer</button>
                 <div class="descDetails">Détail de l'offre :</div>
                 <p class="descOffer">{{ offer.longDescription }}
