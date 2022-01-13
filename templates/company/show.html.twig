@@ -10,9 +10,10 @@
 {% endblock %}
 {% block picture %}
     <div class="profile-title">
-        <div>
+
 
         <img src="{{ vich_uploader_asset(company) }}" class="profile-picture" alt="{{ company.companyName }}">
+
 
         <h2 class="profile-name mt-lg-4 text-primary">{{ company.companyName }}</h2>
 
@@ -21,7 +22,8 @@
 {% block information %}
     <div class="profile-localisation">
 
-        <p class="profile-city">{{ company.user.city }}, {{ company.user.country }}</p>
+        <p class="profile-city rounded">{{ company.user.city }}, {{ company.user.country }}</p>
+
     </div>
     <div class="profile-presentation">
         <h3>Présentation</h3>

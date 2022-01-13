@@ -2,6 +2,8 @@
 
 namespace App\Repository;
 
+use App\Entity\Application;
+use App\Entity\School;
 use App\Entity\Student;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -17,6 +19,42 @@ class StudentRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Student::class);
+    }
+
+    /**
+     * @param School $school
+     * @return float|int|mixed|string
+     */
+    public function findAllNameAsc(School $school)
+    {
+        $query = $this->createQueryBuilder('s')
+            ->where('s.school = :school')
+            ->setParameter('school', $school)
+            ->leftJoin('s.user', 'u')
+            ->orderBy('u.firstname', 'ASC')
+        ;
+
+        // returns an array of Product objects
+        return $query->getQuery()->getResult();
+    }
+
+    /**
+     * @param School $school
+     * @return float|int|mixed|string
+     */
+    public function findAllByApplication(School $school)
+    {
+        $query = $this->createQueryBuilder('s')
+            ->where('s.school = :school')
+            ->andWhere('a.status = 3')
+            ->setParameter('school', $school)
+            ->leftJoin('s.user', 'u')
+            ->leftJoin('s.applications', 'a')
+            ->orderBy('u.firstname', 'ASC')
+        ;
+
+        // returns an array of Product objects
+        return $query->getQuery()->getResult();
     }
 
     // /**
