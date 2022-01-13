@@ -1,68 +1,69 @@
 .title-edit {
-  .picture-edit {
-    margin-bottom: -1.438rem;
-  }
+    .picture-edit {
+        margin-bottom: -1.438rem;
+     }
 
-  .vich-file {
-    margin-left: 4.875rem;
-    margin-bottom: 3.125rem;
-    margin-top: -1.688rem;
-  }
+    .vich-file {
+        margin-left: 4.875rem;
+        margin-bottom: 3.125rem;
+        margin-top: -1.688rem;
+    }
 }
 
 
 .localisation-edit {
-  margin-left: auto;
-  margin-right: auto;
-  width: 83%;
+    margin-left: auto;
+    margin-right: auto;
+    width: 83%;
 }
 
 .update-edit {
-  position: fixed;
-  top:25%;
+    position: fixed;
+    top:25%;
+    left: 75%;
+}
 
-  left: 75%;
-}
 .vich-file div {
-  display: none;
+    display: none;
 }
+
 .vich-file a {
-  display: none;
+    display: none;
 }
 
 .profile-offer-title label {
-  white-space: nowrap;
+    white-space: nowrap;
 }
+
 .password-btn {
-  margin-top: 5px;
+    margin-top: 5px;
 }
 
 .delete-edit {
-  position: fixed;
-  top: 35%;
-  left:75%;
+    position: fixed;
+    top: 35%;
+    left:75%;
 }
 
 .delete-edit:hover  {
-  background: $primary;
-
+    background: $primary;
 }
 
 .update-edit:hover {
-  background: $primary;
+    background: $primary;
 
 }
 
 
 .btn-edit {
-  border: $secondary 1px solid;
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
+    border: $secondary 1px solid;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
 }
 
 
 .btn-edit:hover {
-  background: $primary;
+    background: $primary;
 }
 
