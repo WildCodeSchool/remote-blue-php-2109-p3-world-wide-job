@@ -35,7 +35,7 @@ class CompanyController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name="edit", methods={"GET", "POST"})
+     * @Route("/{slug}/edit", name="edit", methods={"GET", "POST"})
      */
     public function edit(Request $request, Company $company, EntityManagerInterface $entityManager): Response
     {
