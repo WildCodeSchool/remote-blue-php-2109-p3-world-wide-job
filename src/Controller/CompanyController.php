@@ -35,7 +35,7 @@ class CompanyController extends AbstractController
     }
 
     /**
-     * @Route("/{slug}/edit", name="edit", methods={"GET", "POST"})
+     * @Route("/{id}/edit", name="edit", methods={"GET", "POST"})
      */
     public function edit(Request $request, Company $company, EntityManagerInterface $entityManager): Response
     {
@@ -51,7 +51,7 @@ class CompanyController extends AbstractController
         if ($companyForm->isSubmitted() && $companyForm->isValid()) {
             $entityManager->flush();
 
-            return $this->redirectToRoute('company_show', ['id' => $company->getId() ], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('company_show', ['slug' => $company->getSlug() ], Response::HTTP_SEE_OTHER);
         }
 
         if ($passwordForm->isSubmitted() && $passwordForm->isValid()) {
