@@ -40,7 +40,7 @@ class NavigationService
         $this->security = $security;
     }
 
-    public function userLinks()
+    public function userLinks(): array
     {
         if ($this->security->isGranted('ROLE_STUDENT_COMPLETED')) {
             return self::STUDENT_COMPLETED;
