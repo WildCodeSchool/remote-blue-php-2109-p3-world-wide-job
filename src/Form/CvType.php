@@ -26,13 +26,15 @@ class CvType extends AbstractType
                 "entry_type" => ExperienceType::class,
                 "by_reference" => false,
                 "allow_add" => true,
-                "allow_delete" => true
+                "allow_delete" => true,
+                "error_bubbling" => false,
             ])
             ->add('trainings', CollectionType::class, [
                 "entry_type" => TrainingType::class,
                 "by_reference" => false,
                 "allow_add" => true,
-                "allow_delete" => true
+                "allow_delete" => true,
+                "error_bubbling" => false
             ]);
     }
 

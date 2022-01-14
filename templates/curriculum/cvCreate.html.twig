@@ -10,6 +10,7 @@
     {{ form_start(form) }}
     <div class="col-4">
         {{ form_widget(form._token) }}
+        {{ form_errors(form) }}
         {{ form_row(form.pictureFile) }}
         {{ form_row(form.language) }}
         {{ form_row(form.skills) }}
@@ -31,6 +32,7 @@
             {{ include("component/_trainingForm.html.twig", {form: training}) }}
         {% endfor %}
     </div>
+    <button class="btn btn-primary">Valider</button>
     {{ form_end(form, {render_rest: false}) }}
 </div>
 {% endblock %}
