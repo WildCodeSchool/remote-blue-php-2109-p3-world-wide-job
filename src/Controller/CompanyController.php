@@ -22,7 +22,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class CompanyController extends AbstractController
 {
     /**
-     * @Route("/{id}", name="show")
+     * @Route("/{slug}", name="show")
      */
     public function show(Company $company, OfferRepository $offerRepository): Response
     {
@@ -51,7 +51,7 @@ class CompanyController extends AbstractController
         if ($companyForm->isSubmitted() && $companyForm->isValid()) {
             $entityManager->flush();
 
-            return $this->redirectToRoute('company_show', ['id' => $company->getId() ], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('company_show', ['slug' => $company->getSlug() ], Response::HTTP_SEE_OTHER);
         }
 
         if ($passwordForm->isSubmitted() && $passwordForm->isValid()) {

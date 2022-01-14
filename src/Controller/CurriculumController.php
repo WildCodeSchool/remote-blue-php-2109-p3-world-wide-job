@@ -18,6 +18,13 @@ class CurriculumController extends AbstractController
     {
         $curriculum = new Curriculum();
         $form = $this->createForm(CvType::class, $curriculum)->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->getDoctrine()->getManager()->persist($curriculum);
+            $this->getDoctrine()->getManager()->flush();
+            //Penser a rediriger vers la page de profil student
+            return $this->redirectToRoute('home');
+        }
         return $this->render('curriculum/cvCreate.html.twig', [
             'form' => $form->createView(),
         ]);
