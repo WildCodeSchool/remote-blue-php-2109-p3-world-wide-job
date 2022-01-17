@@ -1,33 +1,7 @@
 {% extends 'profile.html.twig' %}
 
     {% block title %}{{ student.username }}{% endblock %}
-
-{#
-
-    {{ form_widget(form.pictureFile, {'attr': {'required': 'required'}}) }}
-    {{ form_widget(form.ine, {'attr': {'required': 'required'}}) }}
-    {{ form_widget(form.username, {'attr': {'required': 'required'}}) }}
-    {{ form_widget(form.description, {'attr': {'required': 'required'}}) }}
-    {{ form_widget(form.school, {'attr': {'required': 'required'}}) }}
-    {{ form_widget(userForm.civility, {'attr': {'required': 'required'}}) }}
-    {{ form_widget(userForm.lastname, {'attr': {'required': 'required'}}) }}
-    {{ form_widget(userForm.firstname, {'attr': {'required': 'required'}}) }}
-    {{ form_widget(userForm.birthdate, {'attr': {'required': 'required'}}) }}
-    {{ form_widget(userForm.phone, {'attr': {'required': 'required'}}) }}
-    {{ form_widget(userForm.adress1, {'attr': {'required': 'required'}}) }}
-    {{ form_widget(userForm.adress2, {'attr': {'required': 'required'}}) }}
-    {{ form_widget(userForm.zip, {'attr': {'required': 'required'}}) }}
-    {{ form_widget(userForm.city, {'attr': {'required': 'required'}}) }}
-    {{ form_widget(userForm.country, {'attr': {'required': 'required'}}) }}
-    {{ form_widget(userForm.email, {'attr': {'required': 'required'}}) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
-    {{ form_end(passwordForm) }}
-    {{ form_end(passwordForm) }}
-    {{ form_start(passwordForm) }} #}
-
-
-
-
+    
     {% block banner %}
         {{ form_start(form) }}
         <img src="{{ asset('build/images/student2-banner.jpg') }}" class="profile-banner" alt="profile banner">
