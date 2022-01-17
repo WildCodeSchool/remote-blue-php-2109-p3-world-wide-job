@@ -11,7 +11,7 @@ function jobApply(event) {
     fetch(link)
         .then((res) => res.json())
         .then((res) => {
-            if (res.isApplicated) {
+            if (res.isApplied) {
                 applyButton.classList.add('applied');
             }
         });

@@ -3,7 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Application;
+use App\Entity\Offer;
 use App\Form\FilterOfferType;
+use App\Repository\ApplicationRepository;
 use App\Repository\OfferRepository;
 use App\Repository\StudentRepository;
 use App\Services\AdminService;
@@ -54,24 +56,42 @@ class OfferController extends AbstractController
     }
 
     /**
-     * @Route("/offres/{application}", name="search_offer_apply")
+     * @Route("/offres/{id}/apply", name="offer_apply")
      */
     public function addApplication(
-        int $offerId,
-        Request $request,
-        Application $application,
+        int $id,
         EntityManagerInterface $entityManager,
         OfferRepository $offerRepository,
-        StudentRepository $studentRepository
+        StudentRepository $studentRepository,
+        ApplicationRepository $applicationRepo
     ): Response {
-        $offer = $offerRepository->findOneBy(['id' => $offerId]);
-        $student = $studentRepository->findOneBy([$this->getUser()]);
-        $application->setStudent($student)
-            ->setOffer($offer)
+        $offer = $offerRepository->findOneBy(['id' => $id]);
+        $student = $studentRepository->findOneBy(['user' => $this->getUser()]);
+
+        if ($offer->isAppliedByStudent($student)) {
+            $applied = $applicationRepo->findOneBy([
+                'offer' => $offer,
+                'student' => $student
+            ]);
+            $entityManager->remove($applied);
+            $entityManager->flush();
+
+            return $this->json([
+                'message' => 'Postulat bien retiré',
+                'isApplied' => $applicationRepo->findOneBy([
+                    'offer' => $offer,
+                    'student' => $student
+                ])
+                ], 200);
+        }
+        $application = new Application();
+        $application->setOffer($offer)
+            ->setStudent($student)
             ->setStatus(1);
-        $entityManager = $this->getDoctrine()->getManager();
         $entityManager->persist($application);
         $entityManager->flush();
-        return $this->json(['isApplicated' => true]);
+        return $this->json(['message' => 'Postulat pris en compte','isApplied' => $applicationRepo->findOneBy([
+            'offer' => $offer,
+            'student' => $student]), 200]);
     }
 }

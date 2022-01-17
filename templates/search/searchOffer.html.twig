@@ -71,7 +71,7 @@
                         {% endif %}
                     {% endfor %}
                 </h3>
-                <a href="{{ path('search_offer', {'application': offer.id}) }}" id="apply" class="btn-primary text-white rounded descApply">Postuler</a>
+                <a href="{{ path('offer_apply', {'id': offer.id}) }}" id="apply" class="btn-primary text-white rounded descApply">Postuler</a>
                 <button class="btn-primary text-white rounded descSave">Enregistrer</button>
                 <div class="descDetails">Détail de l'offre :</div>
                 <p class="descOffer">{{ offer.longDescription }}
