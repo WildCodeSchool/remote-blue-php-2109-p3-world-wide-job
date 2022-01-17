@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Company;
+use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
@@ -24,7 +25,6 @@ class PasswordEditType extends AbstractType
         $builder
             ->add('plainPassword', RepeatedType::class, [
                 'type' => PasswordType::class,
-
                 'mapped' => false,
                 'attr' => ['autocomplete' => 'new-password'],
                 'options' => ['attr' => ['class' => 'password-field']],
@@ -33,13 +33,13 @@ class PasswordEditType extends AbstractType
                 'second_options' => ['label' => 'Confirmer mot de passe'],
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Veuillez entrer un mot de passe',
+                        'message' => 'Entrer votre mot de passe',
                     ]),
                     new Length([
-                        'min' => 6,
-                        'minMessage' => 'Le mot de passe doit faire {{ limit }} characters minimum',
+                        'min' => 7,
+                        'minMessage' => 'Votre password doit au moin faire {{ limit }} characters minimum',
                         // max length allowed by Symfony for security reasons
-                        'max' => 4096,
+                        'max' => 4097,
                     ]),
                 ],
             ]);
@@ -49,7 +49,7 @@ class PasswordEditType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Company::class,
+            'data_class' => User::class,
         ]);
     }
 }

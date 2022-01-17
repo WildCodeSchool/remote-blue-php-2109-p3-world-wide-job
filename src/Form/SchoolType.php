@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\School;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -22,7 +23,7 @@ class SchoolType extends AbstractType
             ->add('schoolCode', TextType::class, [
                 'label' => 'N° de l’établissement :'
             ])
-            ->add('schoolDesc', TextType::class, [
+            ->add('schoolDesc', TextareaType::class, [
                 'label' => "Description de l'établissement :"
             ])
             ->add('type', ChoiceType::class, [
