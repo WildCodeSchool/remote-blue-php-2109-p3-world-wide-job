@@ -25,28 +25,58 @@ class UserEditType extends AbstractType
         $builder
 
 
+            ->add('civility', ChoiceType::class, [
+                'label' => 'Civilité',
+                'choices'  => [
+                    'Monsieur' => 'Monsieur',
+                    'Madame' => 'Madame',
+                    'Non-genré' => 'non-genré',
+                    'required' => false
+                ],
+            ])
+            ->add('lastname', TextType::class, [
+                'label' => 'Nom',
+                'required' => false
+            ])
+            ->add('firstname', TextType::class, [
+                'label' => 'Prénom',
+                'required' => false
+            ])
+            ->add('birthdate', BirthdayType::class, [
+                'label' => 'Date de naissance',
+                'required' => false
+            ])
             ->add('phone', TextType::class, [
-                'label' => 'Téléphone'
+                'label' => 'Téléphone',
+                'required' => false
             ])
             ->add('adress1', TextType::class, [
-                'label' => 'Adresse'
+                'label' => 'Adresse',
+                'required' => false
             ])
             ->add('adress2', TextType::class, [
                 'label' => 'Adresse (suite)',
                 'required' => false
             ])
             ->add('zip', TextType::class, [
-                'label' => 'Code Postal'
+                'label' => 'Code Postal',
+                'required' => false
             ])
             ->add('city', TextType::class, [
-                'label' => 'Ville'
+                'label' => 'Ville',
+                'required' => false
+
             ])
             ->add('country', TextType::class, [
-                'label' => 'Pays'
+                'label' => 'Pays',
+                'required' => false
             ])
             ->add('email', EmailType::class, [
-                'label' => 'Mail'
+                'label' => 'Mail',
+                'required' => false
             ])
+
+
 
 
         ;

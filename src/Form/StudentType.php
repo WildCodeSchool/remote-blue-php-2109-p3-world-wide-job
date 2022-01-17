@@ -10,6 +10,7 @@ use App\Repository\SchoolRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
@@ -33,7 +34,7 @@ class StudentType extends AbstractType
             ->add('username', TextType::class, [
                 'label' => "Pseudo :"
             ])
-            ->add('description', TextType::class, [
+            ->add('description', TextareaType::class, [
                 'label' => "INE :"
             ])
             ->add('school', EntityType::class, [
