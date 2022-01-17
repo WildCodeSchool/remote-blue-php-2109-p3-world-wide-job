@@ -10,6 +10,7 @@
         <img src="{{ vich_uploader_asset(student) }}" class="profile-picture" alt="{{ student.user.firstname }}">
         <h2 class="profile-name mt-lg-4">{{ student.user.firstname }} {{ student.user.lastname }}</h2>
     </div>
+    <a class="btn btn-edit update-edit text-end" style="padding: 10px" href="{{ path('student_edit', {'slug': student.slug}) }}"> <i class="fas fa-pen me-1"></i> </a>
 {% endblock %}
 {% block information %}
     <div class="profile-localisation d-flex align-items-center justify-content-between">
@@ -27,7 +28,7 @@
         <h3>Présentation</h3>
         <p>{{ student.description }}</p>
     </div>
-    <a class="btn btn-edit update-edit text-end" style="padding: 10px" href="{{ path('company_edit', {'slug': student.slug}) }}"> <i class="fas fa-pen me-1"></i> </a>
+    <a class="btn btn-edit update-edit text-end" style="padding: 10px" href="{{ path('student_edit', {'slug': student.slug}) }}"> <i class="fas fa-pen me-1"></i> </a>
 {% endblock %}
 {% block profileBottom %}
     {% if student.curriculum %}

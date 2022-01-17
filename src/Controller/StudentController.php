@@ -43,6 +43,7 @@ class StudentController extends AbstractController
         $userForm->handleRequest($request);
 
         if ($studentForm->isSubmitted() && $studentForm->isValid()) {
+            $student->setSlug($student->getUsername());
             $entityManager->flush();
 
             return $this->redirectToRoute('student_show', ['slug' => $student->getSlug()], Response::HTTP_SEE_OTHER);
