@@ -21,17 +21,3 @@ const contractType = document.getElementById('offer_contractType');
 contractType.addEventListener('change', () => {
     document.getElementById('offerContract').innerHTML = contractType.selectedOptions[0].label;
 });
-
-/*
-$(document).ready(() => {
-    $('#offer_name').on('input', function () {
-        $('#offerJobTitle').text($(this).val());
-    });
-    $('#offer_city').on('input', function () {
-        $('#offerCity').text($(this).val());
-    });
-    $('#offer_contractType').on('input', () => {
-        $('#offerContract').text($('#offer_contractType option:selected').text());
-    });
-});
-*/
