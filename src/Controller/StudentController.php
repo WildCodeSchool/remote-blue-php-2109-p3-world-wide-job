@@ -49,10 +49,12 @@ class StudentController extends AbstractController
             return $this->redirectToRoute('student_show', ['slug' => $student->getSlug()], Response::HTTP_SEE_OTHER);
         }
 
+
+
         if ($passwordForm->isSubmitted() && $passwordForm->isValid()) {
             $entityManager->flush();
 
-            return $this->redirectToRoute('student_edit', ['slug' => $student->getSlug()], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('student_show', ['slug' => $student->getSlug()], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('student/edit.html.twig', [

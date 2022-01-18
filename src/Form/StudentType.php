@@ -25,21 +25,26 @@ class StudentType extends AbstractType
         $builder
             ->add('pictureFile', VichFileType::class, [
                 'required' => false,
+                'error_bubbling' => true,
                 'allow_delete' => true, // not mandatory, default is true
                 'download_uri' => true, // not mandatory, default is true
             ])
             ->add('ine', TextType::class, [
-                'label' => "INE :"
+                'label' => "INE :",
+                'error_bubbling' => true,
             ])
             ->add('username', TextType::class, [
-                'label' => "Pseudo :"
+                'label' => "Pseudo :",
+                'error_bubbling' => true,
             ])
             ->add('description', TextareaType::class, [
-                'label' => "INE :"
+                'label' => "INE :",
+                'error_bubbling' => true,
             ])
             ->add('school', EntityType::class, [
                 "class" => School::class,
                 "choice_label" => "schoolName",
+                'error_bubbling' => true,
                 'multiple' => false,
                 'query_builder' => function (SchoolRepository $repository) {
                     return $repository->createQueryBuilder('s')->orderBy('s.schoolName', 'ASC');

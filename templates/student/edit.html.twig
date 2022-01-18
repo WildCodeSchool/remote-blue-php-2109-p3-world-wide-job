@@ -10,8 +10,9 @@
 
         <div class="profile-title title-student-edit">
 
-            <img src="{{ vich_uploader_asset(student) }}" class="profile-picture picture-student-edit" alt="{{ student.user.firstname }}">
-            {{ form_widget(form.pictureFile, {'attr': {'class': 'h-10  student-profil'} }) }}
+            <img src="{{ vich_uploader_asset(student) }}" class="profile-picture picture-student-edit"
+                 alt="{{ student.user.firstname }}">
+            {{ form_widget(form.pictureFile, {'attr': {'class': 'h-10  student-profil'}}) }}
 
 
             <h2 class="profile-name mt-lg-4 d-flex h-100 justify-content-end">{{ form_widget(userForm.firstname, {'attr': {'required': 'required', 'class': 'w-25 ms-1 me-1 '}}) }}   {{ form_widget(userForm.lastname, {'attr': {'required': 'required', 'class': 'w-25 ms-1 me-1 '}}) }}</h2>
@@ -41,7 +42,7 @@
                     <span class="m-2"> </span> {{ form_widget(userForm.phone) }} </div>
                 <div class="profile-offer-title d-flex align-items-center my-0 my-lg-2">Mail<span
                             class="m-2"> </span> {{ form_widget(userForm.email) }}</div>
-            </div>
+            </div>                          {{ form_errors(userForm.email) }}
             <div class="profile-offer-head d-flex justify-content-between align-items-center mb-2">
                 <div class="profile-offer-title d-flex align-items-center my-0 my-lg-2"> {{ form_label(form.ine, null, {'attr': {'class': 'label-nowrap'}}) }}
                     <span class="m-2"> </span> {{ form_widget(form.ine) }}</div>
