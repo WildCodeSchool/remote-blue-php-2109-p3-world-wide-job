@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Application;
 use App\Entity\Company;
+use App\Entity\School;
 use App\Entity\Student;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;

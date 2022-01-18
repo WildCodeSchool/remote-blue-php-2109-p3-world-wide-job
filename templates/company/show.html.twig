@@ -3,23 +3,33 @@
 {% block title %}{{ company.companyName }}{% endblock %}
 
 {% block banner %}
+
     <div class={{ applications ? "d-none" : "profile-no-offer" }}></div>
+
     <img src="{{ asset('build/images/workbanner.jpg') }}" class="profile-banner" alt="profile banner">
 {% endblock %}
 {% block picture %}
     <div class="profile-title">
+
+
         <img src="{{ vich_uploader_asset(company) }}" class="profile-picture" alt="{{ company.companyName }}">
+
+
         <h2 class="profile-name mt-lg-4 text-primary">{{ company.companyName }}</h2>
+
     </div>
 {% endblock %}
 {% block information %}
     <div class="profile-localisation">
-        <p class="profile-city">{{ company.user.city }}, {{ company.user.country }}</p>
+
+        <p class="profile-city rounded">{{ company.user.city }}, {{ company.user.country }}</p>
+
     </div>
     <div class="profile-presentation">
         <h3>Présentation</h3>
         <p>{{ company.description }}</p>
     </div>
+    <a class="btn btn-edit update-edit text-end" style="padding: 10px" href="{{ path('company_edit', {'slug': company.slug}) }}"> <i class="fas fa-pen me-1"></i> </a>
 {% endblock %}
 {% block profileBottom %}
     {% for application in applications %}
