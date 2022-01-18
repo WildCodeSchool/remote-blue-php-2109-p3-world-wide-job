@@ -56,7 +56,7 @@ class OfferType extends AbstractType
                 'required' => false,
                 'constraints' => [new Positive()],
                 'attr' => [
-                    'min' => 1
+                    'min' => 0
                 ]
             ])
             ->add('tutor', TextType::class, [
