@@ -29,7 +29,7 @@
                         <li class="nav-item dropdown ms-2 d-none d-lg-block">
                             <a class="dropdown-toggle btn press w-100" href="#" id="navbarDropdown" role="button"
                                data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user me-1"></i>
-                                Utilisateur
+                                {{ app.user.email }}
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                 {% for link in navigation.userLinks %}

@@ -11,6 +11,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Validator\Constraints\Positive;
 
 class OfferType extends AbstractType
 {
@@ -53,13 +54,17 @@ class OfferType extends AbstractType
             ->add('wage', IntegerType::class, [
                 'label' => "Salaire :",
                 'required' => false,
-
+                'constraints' => [new Positive()],
+                'attr' => [
+                    'min' => 1
+                ]
             ])
             ->add('tutor', TextType::class, [
                 'label' => "Nom du tuteur",
                 'required' => false,
             ])
             ->add('drivingLicence', ChoiceType::class, [
+                'label' => "Permis de conduire",
                 'choices' => [
                     'Oui' => true,
                     'Non' => false
