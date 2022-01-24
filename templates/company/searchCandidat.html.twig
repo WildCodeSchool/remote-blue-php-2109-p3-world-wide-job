@@ -5,6 +5,7 @@
     {{ encore_entry_script_tags('search') }}
 {% endblock %}
 {% block filters %}
+
 {% endblock %}
 {% block body %}
     <div class="filterBar shadow pt-3">
@@ -23,7 +24,7 @@
         {{ form_end(form) }}
     </div>
     </div>
-    <div class="searchContainer">
+    <div class="searchContainer mt-5 pt-3">
         <div class="searchGrid">
             <div class="smallSearchCard">
                 {% if candidatures %}
@@ -59,7 +60,7 @@
                         </div>
                     </div>
                 {% endfor %}
-{{ dump() }}
+
 
             </div>
         </div>
