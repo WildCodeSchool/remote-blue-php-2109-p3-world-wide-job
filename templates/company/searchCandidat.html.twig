@@ -1,11 +1,27 @@
 {% extends 'base.html.twig' %}
         {% block title %}Recherche emploi world wide job{% endblock %}
-
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('search') }}
+{% endblock %}
 {% block filters %}
 {% endblock %}
 {% block body %}
-
-    <div class="filterBar">
+    <div class="filterBar shadow pt-3">
+    <div class="filterCity">
+        {{ form_start(form) }}
+        {{ form_widget(form.searchStudent) }}
+    </div>
+    <div class="filterFieldOfActivity mx-2">
+        {{ form_widget(form.searchBySchool) }}
+    </div>
+    <div class="filterTypeOfContract me-2">
+        {{ form_widget(form.searchByOffers) }}
+    </div>
+    <div class="submitFilter">
+        {{ form_widget(form.submit, {'label': 'Recherche'}) }}
+        {{ form_end(form) }}
+    </div>
     </div>
     <div class="searchContainer">
         <div class="searchGrid">
@@ -16,7 +32,7 @@
                         <div class="card-body smallCard d-flex flex-row align-items-center">
 
                             <div class="job-profil-Container me-2">
-                                <img class="profil-offer-photo mt-0" src="{{ candidature.picture }}"
+                                <img class="profil-offer-photo mt-0 " src="{{candidature.picture }}"
                                      alt="logo entreprise">
                             </div>
 
@@ -43,7 +59,7 @@
                         </div>
                     </div>
                 {% endfor %}
-
+{{ dump() }}
 
             </div>
         </div>
@@ -60,8 +76,6 @@
 
                             <button class="btn-primary text-white rounded descApply me-2">Valider</button>
                             <button class="btn-primary text-white rounded descSave me-1 ms-2">Voir le profil</button>
-                            <button class="btn-primary text-white rounded descSave ms-1 me-2">Favori</button>
-                            <button class="btn-primary text-white rounded descSave ms-1 me-2">Enregistrer le CV</button>
                             <h5 class="descDate mt-2"> il y a 3 jours </h5>
 
 

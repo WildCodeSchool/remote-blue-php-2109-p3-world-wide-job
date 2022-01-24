@@ -5,17 +5,21 @@ namespace App\Controller;
 use App\Entity\Application;
 use App\Entity\Company;
 use App\Entity\Offer;
+use App\Entity\School;
+use Doctrine\ORM\EntityRepository;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\SearchType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\HttpFoundation\Request;
 use App\Entity\Student;
+use App\Form\FilterCandidature;
 use App\Repository\ApplicationRepository;
-use App\Form\Company1Type;
-use App\Form\CompanyEditType;
 use App\Form\CompanyType;
 use App\Form\PasswordEditType;
 use App\Form\UserEditType;
 use App\Repository\OfferRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -27,13 +31,66 @@ class CompanyController extends AbstractController
     /**
      * @Route("/{slug}/candidature", name="application")
      */
-    public function searchApplication(Company $company, ApplicationRepository $appliRepository): Response
-    {
+    public function searchApplication(
+        Request $request,
+        Company $company,
+        ApplicationRepository $appliRepository
+    ): Response {
 
-        $candidatures = $appliRepository->findAllApplicationsByCompany($company);
+        $form = $this->createFormBuilder()
+        ->add('searchStudent', SearchType::class, [
+            'required' => false,
+            'attr' => ['placeholder' => 'Étudiant'],
+        ])
+            ->add('searchBySchool', EntityType::class, [
+                'class' => School::class,
+                'required' => false,
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('s')
+                        ->orderBy('s.schoolName', 'ASC');
+                },
+                'placeholder' => "Ecole",
+                'choice_label' => 'schoolName',
+            ])
+            ->add('searchByOffers', EntityType::class, [
+                'class' => Offer::class,
+                'required' => false,
+                'placeholder' => "Vos offres",
+                'choice_label' => 'name',
+                'query_builder' => function (OfferRepository $er) use ($company) {
+                    return $er->createQueryBuilder('o')
+                        ->where('o.company = :company')
+                        ->setParameter('company', $company)
+                        ->orderBy('o.name', 'ASC');
+                },
+            ])
+            ->add('submit', SubmitType::class)
+             -> getForm();
+
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $student = $form->getData()['searchStudent'];
+            $offer = $form->getData()['searchByOffers'];
+            $school = $form->getData()['searchBySchool'];
+            if (!empty($student)) {
+                $candidatures = $appliRepository->findLikeStudent($student);
+            } elseif (!empty($offer)) {
+                $candidatures = $appliRepository->findByOffer($offer);
+
+            } elseif (!empty($school)) {
+                $candidatures = $appliRepository->findBySchool($school);
+            } else {
+                $candidatures = $appliRepository->findAllApplicationsByCompany($company);
+            }
+        } else {
+            $candidatures = $appliRepository->findAllApplicationsByCompany($company);
+        }
 
         return $this->render('company/searchCandidat.html.twig', [
-            'candidatures' => $candidatures
+            'candidatures' => $candidatures,
+            'form' => $form->createView(),
         ]);
     }
 
