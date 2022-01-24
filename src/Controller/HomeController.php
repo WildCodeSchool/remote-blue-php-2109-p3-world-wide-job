@@ -16,18 +16,18 @@ class HomeController extends AbstractController
      */
     public function index(
         StudentRepository $studentRepository,
-        ApplicationRepository $applicationRepository,
+        ApplicationRepository $appRepository,
         CompanyRepository $companyRepository
     ): Response {
         $countStudents = $studentRepository->findAll();
-        $countApplications = $applicationRepository->findAll();
+        $countApplications = $appRepository->findAll();
         $countCompanies = $companyRepository->findAll();
-        $signedApllications = $applicationRepository->findBy(['status' => 3]);
+        $signedApllications = $appRepository->findBy(['status' => 3]);
         return $this->render('home/index.html.twig', [
             'countStudents' => $countStudents,
             'countApplications' => $countApplications,
             'countCompanies' => $countCompanies,
-            'signedApplications' =>$signedApllications
+            'signedApplications' => $signedApllications
         ]);
     }
 }
