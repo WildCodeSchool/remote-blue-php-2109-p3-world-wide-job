@@ -68,19 +68,20 @@ class OfferController extends AbstractController
         $offer = $offerRepository->findOneBy(['id' => $id]);
         $student = $studentRepository->findOneBy(['user' => $this->getUser()]);
 
-        if ($offer->isAppliedByStudent($student)) {
-            $applied = $applicationRepo->findOneBy([
-                'offer' => $offer,
-                'student' => $student
-            ]);
+        $applied = $applicationRepo->findOneBy([
+            'offer' => $offer,
+            'student' => $student
+        ]);
+        if ($applied) {
+            //"Vous avez deja postulé" à la place du remove, a voir pour la gestion.
             $entityManager->remove($applied);
             $entityManager->flush();
 
             return $this->json([
-                'message' => 'Postulat bien retiré',
+               'message' => 'Postulat bien retiré',
                 'isApplied' => $applicationRepo->findOneBy([
-                    'offer' => $offer,
-                    'student' => $student
+                   'offer' => $offer,
+                   'student' => $student
                 ])
                 ], 200);
         }
@@ -90,8 +91,7 @@ class OfferController extends AbstractController
             ->setStatus(1);
         $entityManager->persist($application);
         $entityManager->flush();
-        return $this->json(['message' => 'Postulat pris en compte','isApplied' => $applicationRepo->findOneBy([
-            'offer' => $offer,
-            'student' => $student]), 200]);
+        return $this->json([
+            'message' => 'Postulat pris en compte','isApplied' => null], 200, [], ['groups' => 'application']);
     }
 }

@@ -2,7 +2,7 @@ const largeOffers = document.getElementsByClassName('largeOffer');
 const smallOffers = document.getElementsByClassName('smallOffer');
 const closeOffer = document.getElementsByClassName('closeOffer');
 const lastUrlSegment = window.location.href.split('/').pop();
-const applyButton = document.getElementById('apply');
+const applyButtons = document.querySelectorAll('[data-apply]');
 
 function jobApply(event) {
     event.preventDefault();
@@ -12,11 +12,15 @@ function jobApply(event) {
         .then((res) => res.json())
         .then((res) => {
             if (res.isApplied) {
-                applyButton.classList.add('applied');
+                // Ajout d'un message au clic si possible
+                alert('Vous avez déjà postulé');
+            } else {
+                applyLink.classList.add('applied');
+                applyLink.innerHTML = 'Postulé';
             }
         });
 }
-applyButton.addEventListener('click', jobApply);
+applyButtons.forEach((element) => element.addEventListener('click', jobApply));
 
 function load1stContent(array, array2) {
     array[0].classList.add('show');
