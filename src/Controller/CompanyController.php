@@ -71,14 +71,13 @@ class CompanyController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $student = $form->getData()['searchStudent'];
-            $offer = $form->getData()['searchByOffers'];
-            $school = $form->getData()['searchBySchool'];
+            $student = $form->get('searchStudent')->getData();
+            $offer = $form->get('searchByOffers')->getData();
+            $school = $form->get('searchBySchool')->getData();
             if (!empty($student)) {
-                $candidatures = $appliRepository->findLikeStudent($student);
+                    $candidatures = $appliRepository->findLikeStudent($student);
             } elseif (!empty($offer)) {
                 $candidatures = $appliRepository->findByOffer($offer);
-
             } elseif (!empty($school)) {
                 $candidatures = $appliRepository->findBySchool($school);
             } else {

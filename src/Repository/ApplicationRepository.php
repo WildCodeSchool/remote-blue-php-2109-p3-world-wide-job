@@ -24,9 +24,10 @@ class ApplicationRepository extends ServiceEntityRepository
     }
 
     /**
+     * @param mixed $student
      * @return float|int|mixed|array|string
      */
-    public function findLikeStudent(string $student)
+    public function findLikeStudent($student)
     {
         return $this->createQueryBuilder('a')
             ->Where('u.firstname LIKE :student')
@@ -54,9 +55,10 @@ class ApplicationRepository extends ServiceEntityRepository
     }
 
     /**
+     * @param mixed $school
      * @return float|int|mixed|array|string
      */
-    public function findBySchool(School $school)
+    public function findBySchool($school)
     {
         return $this->createQueryBuilder('a')
             ->Where('s.school = :school')
@@ -84,9 +86,10 @@ class ApplicationRepository extends ServiceEntityRepository
     }
 
     /**
+     * @param mixed $offer
      * @return float|int|mixed|array|string
      */
-    public function findByOffer(Offer $offer)
+    public function findByOffer($offer)
     {
         return $this->createQueryBuilder('a')
             ->Where('a.offer = :offer')
