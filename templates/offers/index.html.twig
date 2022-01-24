@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Offer index{% endblock %}
+
+{% block body %}
+    <h1>Offer index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>City</th>
+                <th>ContractType</th>
+                <th>Duration</th>
+                <th>ShortDescription</th>
+                <th>DateOfPublication</th>
+                <th>LongDescription</th>
+                <th>FieldOfActivity</th>
+                <th>JobPosition</th>
+                <th>DateIn</th>
+                <th>Wage</th>
+                <th>Tutor</th>
+                <th>DrivingLicence</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for offer in offers %}
+            <tr>
+                <td>{{ offer.id }}</td>
+                <td>{{ offer.name }}</td>
+                <td>{{ offer.city }}</td>
+                <td>{{ offer.contractType }}</td>
+                <td>{{ offer.duration }}</td>
+                <td>{{ offer.shortDescription }}</td>
+                <td>{{ offer.dateOfPublication ? offer.dateOfPublication|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ offer.longDescription }}</td>
+                <td>{{ offer.fieldOfActivity }}</td>
+                <td>{{ offer.jobPosition }}</td>
+                <td>{{ offer.dateIn ? offer.dateIn|date('Y-m-d') : '' }}</td>
+                <td>{{ offer.wage }}</td>
+                <td>{{ offer.tutor }}</td>
+                <td>{{ offer.drivingLicence ? 'Yes' : 'No' }}</td>
+                <td>
+                    <a href="{{ path('offers_show', {'id': offer.id}) }}">show</a>
+                    <a href="{{ path('offers_edit', {'id': offer.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="15">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('offers_new') }}">Create new</a>
+{% endblock %}

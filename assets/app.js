@@ -12,3 +12,4 @@ import './styles/app.scss';
 import './bootstrap';
 
 window.bootstrap = require('bootstrap');
+window.ClassicEditor = require('@ckeditor/ckeditor5-build-classic');

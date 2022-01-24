@@ -17,8 +17,7 @@
                     <ul class="navbar-nav align-items-lg-center w-100">
                         <li class="nav-item ms-lg-auto ms-2 mb-3 mb-lg-0">
 
-                            <a class="btn press w-100" href="{{ path('search_offer') }}"> <i
-                                        class="fas fa-briefcase me-1"></i> Offres</a>
+                            <a class="btn press w-100" href="{{ path('offer_search') }}"> <i class="fas fa-briefcase me-1"></i> Offres</a>
                         </li>
                         <li class="nav-item ms-2 h-100 d-lg-none">
 
@@ -30,7 +29,7 @@
                         <li class="nav-item dropdown ms-2 d-none d-lg-block">
                             <a class="dropdown-toggle btn press w-100" href="#" id="navbarDropdown" role="button"
                                data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user me-1"></i>
-                                User
+                                {{ app.user.email }}
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                 {% for link in navigation.userLinks %}
