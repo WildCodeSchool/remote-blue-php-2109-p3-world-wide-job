@@ -9,6 +9,7 @@ use App\Form\CompanyEditType;
 use App\Form\CompanyType;
 use App\Form\PasswordEditType;
 use App\Form\UserEditType;
+use App\Repository\CompanyRepository;
 use App\Repository\OfferRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -33,6 +34,17 @@ class CompanyController extends AbstractController
             'applications' => $applications
         ]);
     }
+
+    /**
+     * @Route("/{slug}/offres", name="_index", methods={"GET", "POST"})
+     */
+    public function index(Company $company): Response
+    {
+        return $this->render('offers/index.html.twig', [
+            'company' => $company
+        ]);
+    }
+
 
     /**
      * @Route("/{slug}/edit", name="edit", methods={"GET", "POST"})

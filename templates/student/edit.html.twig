@@ -1,32 +1,25 @@
 {% extends 'profile.html.twig' %}
-
     {% block title %}{{ student.username }}{% endblock %}
 
-    {% block banner %}
+{% block banner %}
         {{ form_start(form) }}
         <img src="{{ asset('build/images/student2-banner.jpg') }}" class="profile-banner" alt="profile banner">
     {% endblock %}
     {% block picture %}
-
         <div class="profile-title title-student-edit">
-
             <img src="{{ vich_uploader_asset(student) }}" class="profile-picture picture-student-edit" alt="{{ student.user.firstname }}">
             {{ form_widget(form.pictureFile, {'attr': {'class': 'h-10  student-profil'}}) }}
-
-
             <h2 class="profile-name mt-lg-4 d-flex h-100 justify-content-end">{{ form_widget(userForm.firstname, {'attr': {'required': 'required', 'class': 'w-25 ms-1 me-1 '}}) }}   {{ form_widget(userForm.lastname, {'attr': {'required': 'required', 'class': 'w-25 ms-1 me-1 '}}) }}</h2>
         </div>
     {% endblock %}
     {% block information %}
         <div class="profile-localisation localisation-edit">
-
             <p class="d-flex">
                 {{ form_widget(userForm.city, {'attr': {'class': 'ms-1 me-1'}}) }}
                 {{ form_widget(userForm.zip, {'attr': {'class': 'ms-1 me-1 w-25'}}) }}
                 {{ form_widget(userForm.adress1, {'attr': {'class': 'ms-1 me-1 w-75'}}) }}
                 {{ form_widget(userForm.adress2, {'attr': {'class': 'ms-1 me-1 w-50'}}) }}
                 {{ form_widget(userForm.country, {'attr': {'class': 'ms-1 me-1 w-50'}}) }}</p>
-
         </div>
         <div class="profile-presentation mt-2">
             <h3>Présentation</h3>
@@ -49,17 +42,12 @@
                     <span class="m-2"> </span> {{ form_widget(form.username) }}</h4>
             </div>
             <div class="profile-offer-head d-flex justify-content-between align-items-center mb-2">
-
                 {{ form_row(form.school) }}
             </div>
         </div>
         <button class="btn btn-edit update-edit text-end"><i class="fas fa-save me-1"></i></button>
-
-
         {{ form_end(form) }}
-
         {{ form_start(passwordForm) }}
-
         <div class="profile-offer mx-4 my-3 py-lg-3">
             <h3> Changer de mot de passe </h3>
             <div class="profile-offer-head d-flex justify-content-between align-items-center mb-2">
@@ -67,20 +55,12 @@
                     <span class="m-3"> </span> {{ form_row(passwordForm.plainPassword.second) }}</h4>
                 <button class="btn btn-secondary w-auto password-btn ms-2" type="submit"> Changer</button>
             </div>
-
             {{ form_end(passwordForm) }}
-
         </div>
-
-
-
         <form method="post" action="{{ path('student_delete', {'slug': student.slug}) }}"
               onsubmit="return confirm('Voulez vous vraiment supprimer votre compte ?');">
             <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ student.id) }}">
             <button class="btn btn-edit delete-edit text-end"><i class="fa fa-trash me-1"></i></button>
         </form>
-
     {% endblock %}
-
-
 

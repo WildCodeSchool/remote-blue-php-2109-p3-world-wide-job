@@ -1,0 +1,12 @@
+{{ form_start(form) }}
+<h3 class="d-none d-xl-block">Visible sur l'annonce :</h3>
+{{ form_row(form.name) }}
+{{ form_row(form.city) }}
+{{ form_row(form.contractType) }}
+{{ form_row(form.longDescription) }}
+<h3 class="d-none d-xl-block">Pour le référencement :</h3>
+{{ form_widget(form) }}
+<div class="d-flex justify-content-end">
+    <button type="submit" formnovalidate="formnovalidate" class="btn-primary text-white rounded mb-4">{{ button_label|default('Enregistrer') }}</button>
+</div>
+{{ form_end(form) }}

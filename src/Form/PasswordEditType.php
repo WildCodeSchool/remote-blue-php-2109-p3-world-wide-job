@@ -34,7 +34,7 @@ class PasswordEditType extends AbstractType
                 'second_options' => ['label' => 'Confirmer mot de passe'],
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Veuillez entrer un mot de passe',
+                        'message' => 'Entrez un mot de passe',
                     ]),
                     new Length([
                         'min' => 6,
