@@ -1,32 +1,79 @@
 {% extends 'base.html.twig' %}
-
-{% block title %}Offer index{% endblock %}
-
+{% block title %}Mes offres{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('search') }}
+{% endblock %}
 {% block body %}
-    <h1>Offer index</h1>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>City</th>
-                <th>ContractType</th>
-                <th>Duration</th>
-                <th>ShortDescription</th>
-                <th>DateOfPublication</th>
-                <th>LongDescription</th>
-                <th>FieldOfActivity</th>
-                <th>JobPosition</th>
-                <th>DateIn</th>
-                <th>Wage</th>
-                <th>Tutor</th>
-                <th>DrivingLicence</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for offer in offers %}
+<div class="searchContainer">
+    <div class="searchGrid">
+        <div class="smallSearchCard">
+            {% for offer in company.offers %}
+                <div class="card rounded shadow smallOffer" id="smallOffer{{ offer.id }}">
+                    <div class="card-body smallCard">
+                        <div class="jobTitleContainer">
+                            <h3 class="jobTitle text-primary">{{ offer.name }}</h3>
+                        </div>
+                        <div class="jobInfoContainer">
+                            <div class="jobLogoContainer">
+                                <img class="jobCompanyLogo" src="{{ vich_uploader_asset(offer.company) }}" alt="logo entreprise">
+                            </div>
+                            <div class="jobSubInfoContainer">
+                                <h4 class="jobLocation">{{ offer.city }}</h4>
+                                <h4 class="jobType">{% for key, value in offer.contractType %}
+                                        {% if offer.contractType == value %}
+                                            {{ key }}
+                                        {% endif %}
+                                    {% endfor %}
+                                </h4>
+                                <h5 class="jobDate">{% set difference = date('now').diff(date(offer.dateOfPublication)) %}
+                                    {% set left_days = difference.days %}
+                                    Il y à
+                                    {% if left_days == 1 %}
+                                        1 jour
+                                    {% else %}
+                                        {{ left_days }} jours
+                                    {% endif %}</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="largeSearchCard" id="largeSearchCard">
+        {% for offer in company.offers %}
+            <div class="card rounded shadow largeOffer" id="largeOffer{{ offer.id }}">
+                <div class="card-body largeCard">
+                    <button class="btn-close closeOffer"></button>
+                    <h3 class="descCompanyName">{{ offer.company.companyName }}</h3>
+                    <h2 class="descJobTitle">{{ offer.name }}</h2>
+                    <h3 class="descJobLocation">{{ offer.city }}</h3>
+                    <h3 class="descJobType">{% for key, value in offer.contractType %}
+                            {% if offer.contractType == value %}
+                                {{ key }}
+                            {% endif %}
+                        {% endfor %}
+                    </h3>
+                    <button class="btn-primary text-white rounded descApply">Postuler</button>
+                    <button class="btn-primary text-white rounded descSave">Enregistrer</button>
+                    <div class="descDetails">Détail de l'offre :</div>
+                    <p class="descOffer">{{ offer.longDescription }}
+                    </p>
+                    <h5 class="descDate">{% set difference = date('now').diff(date(offer.dateOfPublication)) %}
+                        {% set left_days = difference.days %}
+                        Il y à
+                        {% if left_days == 1 %}
+                            1 jour
+                        {% else %}
+                            {{ left_days }} jours
+                        {% endif %}</h5>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{#        {% for offer in offers %}
             <tr>
                 <td>{{ offer.id }}</td>
                 <td>{{ offer.name }}</td>
@@ -51,9 +98,9 @@
             <tr>
                 <td colspan="15">no records found</td>
             </tr>
-        {% endfor %}
+        {% endfor %}#}
         </tbody>
     </table>
 
-    <a href="{{ path('offers_new') }}">Create new</a>
+{#    <a href="{{ path('offers_new') }}">Create new</a>#}
 {% endblock %}
