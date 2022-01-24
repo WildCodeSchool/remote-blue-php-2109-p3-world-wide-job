@@ -95,7 +95,6 @@ class OfferController extends AbstractController
         ]);
     }
 
-
     /**
      * @Route("/{id}/edit", name="_edit", methods={"GET", "POST"})
      */
