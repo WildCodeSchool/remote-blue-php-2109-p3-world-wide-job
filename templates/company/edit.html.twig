@@ -3,13 +3,13 @@
 {% block title %}Edit Company{% endblock %}
 
 {% block banner %}
-    {{ form_start(form) }}
+    {{ form_start(userForm) }}
+
     <img src="{{ asset('build/images/workbanner.jpg') }}" class="profile-banner" alt="profile banner">
 {% endblock %}
 {% block picture %}
     <div class="profile-title title-edit">
         <div>
-
             <img src="{{ vich_uploader_asset(company) }}" class="profile-picture picture-edit"
                  alt="company.companyName">
             {{ form_widget(form.logoFile) }}
@@ -43,8 +43,8 @@
                 <span class="m-2"> </span> {{ form_widget(userForm.phone) }} </div>
             <div class="profile-offer-title d-flex align-items-center my-0 my-lg-2">Mail<span
                         class="m-2"> </span> {{ form_widget(userForm.email) }}</div>
-            <div> {{ form_errors(userForm.email) }}</div>
-        </div>
+            <div> </div>
+        </div>    {{ form_errors(userForm) }}
         <div class="profile-offer-head d-flex justify-content-between align-items-center mb-2">
             <div class="profile-offer-title d-flex align-items-center my-0 my-lg-2"> {{ form_label(form.siret, null, {'attr': {'class': 'label-nowrap'}}) }}
                 <span class="m-2"> </span> {{ form_widget(form.siret) }}</div>
@@ -57,7 +57,7 @@
     </div>
     <button class="btn btn-edit update-edit text-end"><i class="fas fa-save me-1"></i></button>
 
-    {{ form_end(form) }}
+    {{ form_end(userForm) }}
 
     {{ form_start(passwordForm) }}
 

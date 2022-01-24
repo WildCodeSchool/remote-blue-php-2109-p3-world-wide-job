@@ -55,6 +55,7 @@ class CompanyController extends AbstractController
         $companyForm = $this->createForm(CompanyType::class, $company);
         $companyForm->handleRequest($request);
 
+
         $userForm = $this->createForm(UserEditType::class, $company->getUser());
         $userForm->handleRequest($request);
 
