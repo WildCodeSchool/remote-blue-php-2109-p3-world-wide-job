@@ -3,9 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\School;
-use App\Form\CompanyType;
 use App\Form\PasswordEditType;
-use App\Form\School1Type;
 use App\Form\SchoolType;
 use App\Form\UserEditType;
 use App\Repository\StudentRepository;
@@ -52,7 +50,7 @@ class SchoolController extends AbstractController
         if ($schoolForm->isSubmitted() && $schoolForm->isValid()) {
             $entityManager->flush();
 
-            return $this->redirectToRoute('school_show', ['slug' => $schoolForm->getSlug() ], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('school_show', ['slug' => $school->getSlug() ], Response::HTTP_SEE_OTHER);
         }
 
         if ($passwordForm->isSubmitted() && $schoolForm->isValid()) {

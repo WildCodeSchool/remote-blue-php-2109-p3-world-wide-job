@@ -1,73 +1,77 @@
 {% extends 'profile.html.twig' %}
-
     {% block title %}{{ student.username }}{% endblock %}
 
     {% block banner %}
         <img src="{{ asset('build/images/student2-banner.jpg') }}" class="profile-banner" alt="profile banner">
     {% endblock %}
+
     {% block picture %}
-
         <div class="profile-title title-student-edit">
-
-            <img src="{{ vich_uploader_asset(student) }}" class="profile-picture picture-student-edit" alt="{{ student.user.firstname }}">
-
-            <h2 class="profile-name mt-lg-4 d-flex h-100 justify-content-end">{{ form_widget(userForm.firstname, {'attr': {'required': 'required', 'class': 'w-25 ms-1 me-1 '}}) }}   {{ form_widget(userForm.lastname, {'attr': {'required': 'required', 'class': 'w-25 ms-1 me-1 '}}) }}</h2>
+            <img src="{{ vich_uploader_asset(student) }}" class="profile-picture picture-student-edit"
+                 alt="{{ student.user.firstname }}">
         </div>
     {% endblock %}
     {% block information %}
+        {{ form_start(userForm) }}
+        <h2 class="profile-name mt-lg-4 mb-2 d-flex h-100 justify-content-end">{{ form_widget(userForm.firstname, {'attr': {'required': 'required', 'class': 'w-25 ms-1 me-1 '}}) }}   {{ form_widget(userForm.lastname, {'attr': {'required': 'required', 'class': 'w-25 ms-1 me-1 '}}) }}</h2>
         <div class="profile-localisation localisation-edit">
-
-            <div class="d-flex">
+            <div class="d-flex mt-2 mb-2">
                 {{ form_widget(userForm.city, {'attr': {'class': 'ms-1 me-1'}}) }}
                 {{ form_widget(userForm.zip, {'attr': {'class': 'ms-1 me-1 w-25'}}) }}
                 {{ form_widget(userForm.adress1, {'attr': {'class': 'ms-1 me-1 w-75'}}) }}
                 {{ form_widget(userForm.adress2, {'attr': {'class': 'ms-1 me-1 w-50'}}) }}
                 {{ form_widget(userForm.country, {'attr': {'class': 'ms-1 me-1 w-50'}}) }}</div>
-
-        </div>
-        <div class="profile-presentation mt-2">
-            <h3>Présentation</h3>
-            <div>{{ form_widget(form.description, {'attr': {'required': 'required'}}) }}</div>
         </div>
 
-        <div class="profile-offer-title d-flex align-items-center my-0 my-lg-2"> {{ form_label(userForm.phone) }}
-            <span class="m-2"> </span> {{ form_widget(userForm.phone) }} </div>
-
-        <div class="profile-offer-title d-flex align-items-center my-0 my-lg-2">Mail<span
-                    class="m-2"> </span> {{ form_widget(userForm.email) }}</div>
+        <div class="profile-localisation localisation-edit mt-3 mb-3"> {{ form_label(userForm.phone) }}
+            <span class="m-2"> </span> {{ form_widget(userForm.phone) }} <span
+                    class="m-2"> </span> {{ form_label(userForm.email) }}
+            <span class="m-2"> </span> {{ form_widget(userForm.email) }} </div>
         {{ form_errors(userForm.email) }}
-        <div class="profile-offer-title d-flex align-items-center my-0 my-lg-2">   {{ form_label(form.username, "Username", {'attr': {'class': 'label-nowrap'}}) }}
-            <span class="m-2"> </span> {{ form_widget(form.username) }}</div>
-        {{ form_errors(form.username) }}
+        <div class="profile-localisation localisation-edit mt-3 mb-3">{{ form_label(userForm.civility) }} {{ form_widget(userForm.civility) }}
+            <span
+                    class="m-2"> </span> {{ form_label(userForm.birthdate) }}
+            {{ form_widget(userForm.birthdate, {'attr': {'class': 'birthday'}}) }} </div>
 
-        {{ form_end(form) }}
+
+        <div class="text-end">
+            {{ form_row(userForm.submit) }}
+        </div>
+        {{ form_end(userForm) }}
     {% endblock %}
+
     {% block profileBottom %}
+        {{ form_start(form) }}
         <div class="profile-offer mx-4 my-3 py-lg-3">
-            <h3> Informations privées </h3>
-            {{ form_start(form) }}
+            <h3> Informations </h3>
             {{ form_widget(form.pictureFile, {'attr': {'class': 'h-10  student-profil'}}) }}
             <div class="profile-offer-head d-flex justify-content-between align-items-center mb-2">
-
 
             </div>
             <div class="profile-offer-head d-flex justify-content-between align-items-center mb-2">
                 <div class="profile-offer-title d-flex align-items-center my-0 my-lg-2"> {{ form_label(form.ine, null, {'attr': {'class': 'label-nowrap'}}) }}
                     <span class="m-2"> </span> {{ form_widget(form.ine) }}</div>
-
             </div>
-            <div class="profile-offer-head d-flex justify-content-between align-items-center mb-2">
 
+            <div class="profile-offer-title d-flex align-items-center my-0 my-lg-2">   {{ form_label(form.username, "Username", {'attr': {'class': 'label-nowrap'}}) }}
+                <span class="m-2"> </span> {{ form_widget(form.username) }}</div>
+          <div>  {{ form_errors(form.username) }}</div>
+        <div class="profile-offer-head d-flex justify-content-between align-items-center mb-2">
                 {{ form_row(form.school) }}
             </div>
+
+            <div class="profile-presentation mt-2">
+                <h3>Présentation</h3>
+                <div>{{ form_widget(form.description, {'attr': {'required': 'required'}}) }}</div>
+            </div>
         </div>
-        <button class="btn btn-edit update-edit text-end"><i class="fas fa-save me-1"></i></button>
-
-
+        <div class=" text-end profile-offer-title d-flex align-items-center my-0 my-lg-2">
+            <button class="btn btn-edit btn-secondary"><i class="fas fa-save me-1"></i></button>
+        </div>
+        {{ form_end(form) }}
 
 
         {{ form_start(passwordForm) }}
-
         <div class="profile-offer mx-4 my-3 py-lg-3">
             <h3> Changer de mot de passe </h3>
             <div class="profile-offer-head d-flex justify-content-between align-items-center mb-2">
@@ -75,20 +79,12 @@
                     <span class="m-3"> </span> {{ form_row(passwordForm.plainPassword.second) }}</div>
                 <button class="btn btn-secondary w-auto password-btn ms-2" type="submit"> Changer</button>
             </div>
-
             {{ form_end(passwordForm) }}
-
         </div>
-
-
-
         <form method="post" action="{{ path('student_delete', {'slug': student.slug}) }}"
               onsubmit="return confirm('Voulez vous vraiment supprimer votre compte ?');">
             <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ student.id) }}">
             <button class="btn btn-edit delete-edit text-end"><i class="fa fa-trash me-1"></i></button>
         </form>
-
     {% endblock %}
-
-
 

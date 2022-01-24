@@ -9,6 +9,8 @@
 import './styles/app.scss';
 
 // start the Stimulus application
+import './offerType';
 import './bootstrap';
 
 window.bootstrap = require('bootstrap');
+window.ClassicEditor = require('@ckeditor/ckeditor5-build-classic');

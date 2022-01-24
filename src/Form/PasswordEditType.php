@@ -39,7 +39,6 @@ class PasswordEditType extends AbstractType
                     new Length([
                         'min' => 6,
                         'minMessage' => 'Votre mot de pass doit faire au moins {{ limit }} characters minimum',
-
                         // max length allowed by Symfony for security reasons
                         'max' => 4097,
                     ]),
