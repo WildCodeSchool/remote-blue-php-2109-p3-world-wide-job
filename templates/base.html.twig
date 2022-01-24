@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" class="h-100">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -14,9 +14,10 @@
         {{ encore_entry_script_tags('app') }}
     {% endblock %}
 </head>
-<body class="{{ app.request.pathinfo == path('home') ? 'home-background-image' }}"
+<body class="{{ app.request.pathinfo == path('home') ? 'home-background-image' }}
+d-flex flex-column h-100"
       style="{{ app.request.pathinfo == path('home') ? 'background-image: url(build/images/office.4166db60.png);' }}">
-<header class="position-sticky top-0">
+<header class="position-fixed top-0 w-100">
     {% include 'component/_navbar.html.twig' %}
 </header>
 <div>
@@ -27,7 +28,7 @@
         {% block body %}{% endblock %}
     </main>
 </div>
-<footer class="position-sticky top-0">
+<footer class="mt-auto">
     {% include 'component/_footer.html.twig' %}
 </footer>
 </body>
