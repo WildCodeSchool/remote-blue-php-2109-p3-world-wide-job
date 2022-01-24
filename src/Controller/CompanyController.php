@@ -36,7 +36,7 @@ class CompanyController extends AbstractController
     }
 
     /**
-     * @Route("/{slug}/offres", name="_index", methods={"GET", "POST"})
+     * @Route("/{slug}/offres", name="index", methods={"GET", "POST"})
      */
     public function index(Company $company): Response
     {
@@ -44,7 +44,6 @@ class CompanyController extends AbstractController
             'company' => $company
         ]);
     }
-
 
     /**
      * @Route("/{slug}/edit", name="edit", methods={"GET", "POST"})
