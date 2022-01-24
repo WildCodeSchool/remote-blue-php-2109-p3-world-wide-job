@@ -10,8 +10,9 @@
 
         <div class="profile-title title-student-edit">
 
-            <img src="{{ vich_uploader_asset(student) }}" class="profile-picture picture-student-edit"
-                 alt="{{ student.user.firstname }}">
+
+            <img src="{{ vich_uploader_asset(student) }}" class="profile-picture picture-student-edit" alt="{{ student.user.firstname }}">
+
             {{ form_widget(form.pictureFile, {'attr': {'class': 'h-10  student-profil'}}) }}
 
 
