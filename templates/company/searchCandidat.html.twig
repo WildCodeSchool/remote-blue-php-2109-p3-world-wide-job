@@ -5,7 +5,6 @@
     {{ encore_entry_script_tags('search') }}
 {% endblock %}
 {% block filters %}
-
 {% endblock %}
 {% block body %}
     <div class="filterBar shadow pt-3">
@@ -31,12 +30,10 @@
                 {% for candidature in candidatures %}
                     <div class="card rounded sha dow smallOffer" id="smallOffer{{ candidature.id }}">
                         <div class="card-body smallCard d-flex flex-row align-items-center">
-
                             <div class="job-profil-Container me-2">
                                 <img class="profil-offer-photo mt-0 " src="{{ candidature.picture }}"
                                      alt="logo entreprise">
                             </div>
-
                             <div class="jobInfoContainer">
 
                                 <div class="jobSubInfoContainer d-flex flex-column align-items-start">
@@ -45,7 +42,6 @@
                                         ({{ candidature.zip }}
                                         )</h4>
                                     <h4 class="jobType offer-formation mb-0"> {{ candidature.schoolName }} </h4>
-
                                 </div>
                                 {% if candidature.status == 1 %}
                                     <div class="status-candidature"> En attente </div>
@@ -55,13 +51,9 @@
                                     <div class="status-candidature"> Refusé </div>
                                 {% endif %}
                             </div>
-
-
                         </div>
                     </div>
                 {% endfor %}
-
-
             </div>
         </div>
         <div class="largeSearchCard card-cv" style="max-width: 580px;" id="largeSearchCard">
@@ -69,8 +61,7 @@
                 <div class="card rounded shadow largeOffer" id="largeOffer{{ candidature.id }}">
                     <div class="card-body largeCard d-flex flex-column">
                         <button class="btn-close closeOffer"></button>
-                        <div style="width: 34.375rem"><img class="cv-offer"
-                                                           src="{{ asset('build/images/120-modele-cv-francais.93cbe942.jpg') }}">
+                        <div style="width: 34.375rem"><img class="cv-offer" src="{{ asset('build/images/120-modele-cv-francais.93cbe942.jpg') }}">
                         </div>
                         <hr>
                         <div>
@@ -84,9 +75,7 @@
                 <div class="card rounded sha dow smallOffer">
                     <div class="card-body smallCard d-flex flex-row align-items-center">
                         <div class="jobInfoContainer">
-
                             <div class="jobSubInfoContainer d-flex flex-column align-items-start">
-
                                 Aucune candidature
                             </div>
                         </div>
