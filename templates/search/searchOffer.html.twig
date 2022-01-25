@@ -26,6 +26,7 @@
     <div class="searchGrid">
         <div class="smallSearchCard">
             {% for offer in offers %}
+                {% if offer.status %}
                 <div class="card rounded shadow smallOffer" id="smallOffer{{ offer.id }}">
                     <div class="card-body smallCard">
                         <div class="jobTitleContainer">
@@ -55,11 +56,13 @@
                         </div>
                     </div>
                 </div>
+                {% endif %}
             {% endfor %}
         </div>
     </div>
     <div class="largeSearchCard" id="largeSearchCard">
         {% for offer in offers %}
+            {% if offer.status %}
         <div class="card rounded shadow largeOffer" id="largeOffer{{ offer.id }}">
             <div class="card-body largeCard">
                 <button class="btn-close closeOffer"></button>
@@ -87,6 +90,7 @@
                     {% endif %}</h5>
             </div>
         </div>
+            {% endif %}
         {% endfor %}
     </div>
 </div>
