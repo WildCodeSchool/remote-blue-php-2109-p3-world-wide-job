@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-use App\Entity\Application;
 use App\Entity\Company;
 use App\Entity\Offer;
 use App\Entity\School;
@@ -11,13 +10,11 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\SearchType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
-use App\Entity\Student;
 use App\Form\FilterCandidature;
 use App\Repository\ApplicationRepository;
 use App\Form\CompanyType;
 use App\Form\PasswordEditType;
 use App\Form\UserEditType;
-use App\Repository\CompanyRepository;
 use App\Repository\OfferRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
