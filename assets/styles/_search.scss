@@ -110,6 +110,7 @@ body::-webkit-scrollbar-thumb {
     width: 40%;
 }
 
+
 .jobLocation {
     margin-top: 1rem;
     justify-self: center;
@@ -281,7 +282,7 @@ body::-webkit-scrollbar-thumb {
         grid-template-rows: 1fr;
         width: 33%;
         position: sticky;
-        top: 135px;
+        top:135px;
         bottom: 1rem;
         align-self: flex-start;
     }

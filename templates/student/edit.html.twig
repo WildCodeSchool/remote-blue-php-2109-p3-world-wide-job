@@ -1,6 +1,8 @@
 {% extends 'profile.html.twig' %}
     {% block title %}{{ student.username }}{% endblock %}
-{% block banner %}
+
+
+    {% block banner %}
         {{ form_start(form) }}
         <img src="{{ asset('build/images/student2-banner.jpg') }}" class="profile-banner" alt="profile banner">
     {% endblock %}
@@ -8,6 +10,7 @@
         <div class="profile-title title-student-edit">
             <img src="{{ vich_uploader_asset(student) }}" class="profile-picture picture-student-edit" alt="{{ student.user.firstname }}">
             {{ form_widget(form.pictureFile, {'attr': {'class': 'h-10  student-profil'}}) }}
+
             <h2 class="profile-name mt-lg-4 d-flex h-100 justify-content-end">{{ form_widget(userForm.firstname, {'attr': {'required': 'required', 'class': 'w-25 ms-1 me-1 '}}) }}   {{ form_widget(userForm.lastname, {'attr': {'required': 'required', 'class': 'w-25 ms-1 me-1 '}}) }}</h2>
         </div>
     {% endblock %}
