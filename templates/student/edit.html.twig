@@ -28,9 +28,8 @@
                     class="m-2"> </span> {{ form_label(userForm.email) }}
             <span class="m-2"> </span> {{ form_widget(userForm.email) }} </div>
         {{ form_errors(userForm.email) }}
-        <div class="profile-localisation localisation-edit mt-3 mb-3">{{ form_label(userForm.civility) }} {{ form_widget(userForm.civility) }}
-            <span
-                    class="m-2"> </span> {{ form_label(userForm.birthdate) }}
+        <div class="profile-localisation localisation-edit mt-3 mb-3">{{ form_label(userForm.civility, {'attr': {'class': 'me-4'}}) }} {{ form_widget(userForm.civility, {'attr': {'class': 'me-4 w-50'}}) }}
+            {{ form_label(userForm.birthdate, {'attr': {'class': 'birthday_label'}}) }} }}
             {{ form_widget(userForm.birthdate, {'attr': {'class': 'birthday'}}) }} </div>
         <div> {{ form_errors(userForm) }} </div>
 
@@ -46,7 +45,6 @@
             <h3> Informations </h3>
             {{ form_widget(form.pictureFile, {'attr': {'class': 'h-10  student-profil'}}) }}
             <div class="profile-offer-head d-flex justify-content-between align-items-center mb-2">
-
             </div>
             <div class="profile-offer-head d-flex justify-content-between align-items-center mb-2">
                 <div class="profile-offer-title d-flex align-items-center my-0 my-lg-2"> {{ form_label(form.ine, null, {'attr': {'class': 'label-nowrap'}}) }}
@@ -55,11 +53,11 @@
 
             <div class="profile-offer-title d-flex align-items-center my-0 my-lg-2">   {{ form_label(form.username, "Username", {'attr': {'class': 'label-nowrap'}}) }}
                 <span class="m-2"> </span> {{ form_widget(form.username) }}</div>
-          <div class="form-error" >  {{ form_errors(form.username) }}</div>
-        <div class="profile-offer-head d-flex justify-content-between align-items-center mb-2">
+            <div class="form-error">  {{ form_errors(form.username) }}</div>
+            <div class="profile-offer-head d-flex justify-content-between align-items-center mb-2">
                 {{ form_row(form.school) }}
             </div>
-           <div> {{ form_errors(form) }} </div>
+            <div> {{ form_errors(form) }} </div>
             <div class="profile-presentation mt-2">
                 <h3>Présentation</h3>
                 <div>{{ form_widget(form.description, {'attr': {'required': 'required'}}) }}</div>
@@ -79,8 +77,9 @@
                     <span class="m-3"> </span> {{ form_row(passwordForm.plainPassword.second) }}</div>
                 <button class="btn btn-secondary w-auto password-btn ms-2" type="submit"> Changer</button>
             </div>
-            {{ form_end(passwordForm) }}
         </div>
+            {{ form_end(passwordForm) }}
+
         <form method="post" action="{{ path('student_delete', {'slug': student.slug}) }}"
               onsubmit="return confirm('Voulez vous vraiment supprimer votre compte ?');">
             <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ student.id) }}">
