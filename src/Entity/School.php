@@ -253,4 +253,8 @@ class School
 
         return $this;
     }
+    public function __sleep()
+    {
+        return [];
+    }
 }

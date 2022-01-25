@@ -283,4 +283,8 @@ class Student
 
         return $this;
     }
+    public function __sleep()
+    {
+        return [];
+    }
 }

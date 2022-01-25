@@ -298,6 +298,7 @@ class Offer
         return $this;
     }
 
+
     public function isAppliedByStudent(Student $student): bool
     {
         foreach ($this->applications as $application) {
@@ -306,5 +307,10 @@ class Offer
             }
         }
         return false;
+    }
+
+    public function __sleep()
+    {
+        return [];
     }
 }
