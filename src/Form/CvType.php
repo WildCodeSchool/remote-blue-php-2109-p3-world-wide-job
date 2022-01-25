@@ -3,6 +3,8 @@
 namespace App\Form;
 
 use App\Entity\Curriculum;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -18,23 +20,35 @@ class CvType extends AbstractType
         $builder
             ->add('pictureFile', VichFileType::class, [
                 'required' => false,
+                'label' => 'Photo pour votre CV',
             ])
-            ->add('language', TextType::class)
-            ->add('drivingLicence', CheckboxType::class)
-            ->add('skills', TextType::class)
+            ->add('language', TextType::class, [
+                'label' => 'Langue courante',
+                'required' => false
+            ])
+            ->add('drivingLicence', CheckboxType::class, [
+                'label' => "Permis de conduire",
+                'required' => false
+            ])
+            ->add('skills', TextareaType::class, [
+                'label' => 'Court resumé de vos compétences',
+                'required' => false
+            ])
             ->add('experiences', CollectionType::class, [
                 "entry_type" => ExperienceType::class,
                 "by_reference" => false,
                 "allow_add" => true,
                 "allow_delete" => true,
                 "error_bubbling" => false,
+                'required' => false
             ])
             ->add('trainings', CollectionType::class, [
                 "entry_type" => TrainingType::class,
                 "by_reference" => false,
                 "allow_add" => true,
                 "allow_delete" => true,
-                "error_bubbling" => false
+                "error_bubbling" => false,
+                'required' => false
             ]);
     }
 

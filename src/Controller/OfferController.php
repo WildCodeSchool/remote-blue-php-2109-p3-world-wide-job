@@ -26,7 +26,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class OfferController extends AbstractController
 {
     /**
-     * @Route("/", name="search", methods={"GET"})
+     * @Route("", name="search", methods={"GET"})
      */
     public function searchOffer(Request $request, OfferRepository $offerRepository): Response
     {
@@ -60,7 +60,7 @@ class OfferController extends AbstractController
     }
 
     /**
-     * @Route("/offres/{id}/apply", name="offer_apply")
+     * @Route("/offres/{id}/apply", name="apply")
      */
     public function addApplication(
         int $id,
