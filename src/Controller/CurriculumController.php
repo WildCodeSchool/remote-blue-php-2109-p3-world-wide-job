@@ -23,6 +23,7 @@ class CurriculumController extends AbstractController
         $form = $this->createForm(CvType::class, $curriculum)->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $curriculum->setStudent($student);
             $this->getDoctrine()->getManager()->persist($curriculum);
             $this->getDoctrine()->getManager()->flush();
             //Penser a rediriger vers la page de profil student

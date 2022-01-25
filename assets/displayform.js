@@ -2,7 +2,7 @@ const addItem = (e) => {
     const collectionHolder = document.querySelector(e.currentTarget.dataset.collection);
 
     const itemForm = document.createElement('div');
-    itemForm.classList.add('col-4');
+    itemForm.classList.add('form-ext');
     itemForm.innerHTML = collectionHolder.dataset.prototype
         .replace(/__name__/g, collectionHolder.dataset.index);
     itemForm.querySelector('.btn-remove').addEventListener('click', () => itemForm.remove());

@@ -1,0 +1,27 @@
+.curriculum-title {
+    margin-top: 75px;
+    font-size: 3rem;
+}
+
+.curriculum-form {
+    display: flex;
+    justify-content: center;
+}
+
+.curriculum-general {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.btn-new {
+    margin-bottom: 1.5rem;
+    width: 25%;
+}
+
+.curriculum-confirm {
+    margin-bottom: 1.5rem;
+    width: 25%;
+    margin-left: 37.5%;
+}

@@ -6,33 +6,34 @@
     {{ encore_entry_script_tags('displayform') }}
 {% endblock %}
 {% block body %}
-<div class="row">
-    {{ form_start(form) }}
-    <div class="col-4">
+    <h1 class="curriculum-title text-center">Créer ton CV !</h1>
+    <div class="curriculum-form">
+        {{ form_start(form, {'attr': {'class': 'curriculum-general'}}) }}
+        <div class="curriculum-content">
         {{ form_widget(form._token) }}
         {{ form_errors(form) }}
         {{ form_row(form.pictureFile) }}
         {{ form_row(form.language) }}
         {{ form_row(form.skills) }}
         {{ form_row(form.drivingLicence) }}
-    </div>
-    <button type="button" class="btn btn-primary btn-new" data-collection="#experiences">Nouvelle experience</button>
-    <div id="experiences" class="row"
+        </div>
+        <button type="button" class="btn btn-primary btn-new" data-collection="#experiences">Nouvelle experience</button>
+        <div id="experiences" class="curriculum-content"
          data-prototype="{{ include("component/_experienceForm.html.twig", {form: form.experiences.vars.prototype})|e("html_attr") }}"
          data-index="{{ form.experiences|length > 0 ? form.experiences|last.vars.name + 1 : 0 }}">
         {% for experience in form.experiences %}
             {{ include("component/_experienceForm.html.twig", {form: experience}) }}
         {% endfor %}
-    </div>
-    <button type="button" class="btn btn-primary btn-new" data-collection="#trainings">Nouvelle formation</button>
-    <div id="trainings" class="row"
+        </div>
+        <button type="button" class="btn btn-primary btn-new" data-collection="#trainings">Nouvelle formation</button>
+        <div id="trainings" class="curriculum-content"
          data-prototype="{{ include("component/_trainingForm.html.twig", {form: form.trainings.vars.prototype})|e("html_attr") }}"
          data-index="{{ form.trainings|length > 0 ? form.trainings|last.vars.name + 1 : 0 }}">
         {% for training in form.trainings %}
             {{ include("component/_trainingForm.html.twig", {form: training}) }}
         {% endfor %}
+        </div>
+        <button class="btn btn-primary curriculum-confirm">Valider</button>
+        {{ form_end(form, {render_rest: false}) }}
     </div>
-    <button class="btn btn-primary">Valider</button>
-    {{ form_end(form, {render_rest: false}) }}
-</div>
 {% endblock %}
