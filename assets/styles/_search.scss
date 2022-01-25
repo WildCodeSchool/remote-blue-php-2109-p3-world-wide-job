@@ -137,6 +137,9 @@ body::-webkit-scrollbar-thumb {
     margin-top: 1rem;
 }
 
+.largeOffer {
+    overflow-y: scroll;
+}
 
 @media screen and (max-width: 992px) {
     .filterBar {
