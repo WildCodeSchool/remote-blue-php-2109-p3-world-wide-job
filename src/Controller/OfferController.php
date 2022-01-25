@@ -57,7 +57,7 @@ class OfferController extends AbstractController
     }
 
     /**
-     * @Route("/ajouter", name="_new", methods={"GET", "POST"})
+     * @Route("/ajouter", name="new", methods={"GET", "POST"})
      */
     public function new(
         Request $request,
@@ -86,7 +86,7 @@ class OfferController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="_show", methods={"GET"})
+     * @Route("/{id}", name="show", methods={"GET"})
      */
     public function show(Offer $offer): Response
     {
@@ -96,27 +96,32 @@ class OfferController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name="_edit", methods={"GET", "POST"})
+     * @Route("/{id}/edit", name="edit", methods={"GET", "POST"})
      */
-    public function edit(Request $request, Offer $offer, EntityManagerInterface $entityManager): Response
-    {
+    public function edit(
+        Request $request,
+        Offer $offer,
+        EntityManagerInterface $entityManager,
+        CompanyRepository $companyRepository
+    ): Response {
+        $company = $companyRepository->findOneBy(['user' => $this->getUser()]);
+
         $form = $this->createForm(OfferType::class, $offer);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
-
-            return $this->redirectToRoute('offer_search', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('company_index', ['slug' => $company->getSlug()], Response::HTTP_SEE_OTHER);
         }
-
         return $this->renderForm('offers/edit.html.twig', [
             'offer' => $offer,
             'form' => $form,
+            'company' => $company
         ]);
     }
 
     /**
-     * @Route("/{id}", name="_delete", methods={"POST"})
+     * @Route("/{id}", name="delete", methods={"POST"})
      */
     public function delete(Request $request, Offer $offer, EntityManagerInterface $entityManager): Response
     {
@@ -125,6 +130,6 @@ class OfferController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('offer_search', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('company_index', [], Response::HTTP_SEE_OTHER);
     }
 }

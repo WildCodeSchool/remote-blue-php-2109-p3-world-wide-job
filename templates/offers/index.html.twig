@@ -46,7 +46,9 @@
             <div class="card rounded shadow largeOffer" id="largeOffer{{ offer.id }}">
                 <div class="card-body largeCard">
                     <button class="btn-close closeOffer"></button>
-                    <h3 class="descCompanyName">{{ offer.company.companyName }}</h3>
+                    <div class="descCompanyName">
+                        <a href="{{ path('offer_edit', {'id': offer.id}) }}">Modifier</a>
+                    </div>
                     <h2 class="descJobTitle">{{ offer.name }}</h2>
                     <h3 class="descJobLocation">{{ offer.city }}</h3>
                     <h3 class="descJobType">{% for key, value in offer.contractType %}
@@ -73,34 +75,4 @@
         {% endfor %}
     </div>
 </div>
-{#        {% for offer in offers %}
-            <tr>
-                <td>{{ offer.id }}</td>
-                <td>{{ offer.name }}</td>
-                <td>{{ offer.city }}</td>
-                <td>{{ offer.contractType }}</td>
-                <td>{{ offer.duration }}</td>
-                <td>{{ offer.shortDescription }}</td>
-                <td>{{ offer.dateOfPublication ? offer.dateOfPublication|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ offer.longDescription }}</td>
-                <td>{{ offer.fieldOfActivity }}</td>
-                <td>{{ offer.jobPosition }}</td>
-                <td>{{ offer.dateIn ? offer.dateIn|date('Y-m-d') : '' }}</td>
-                <td>{{ offer.wage }}</td>
-                <td>{{ offer.tutor }}</td>
-                <td>{{ offer.drivingLicence ? 'Yes' : 'No' }}</td>
-                <td>
-                    <a href="{{ path('offers_show', {'id': offer.id}) }}">show</a>
-                    <a href="{{ path('offers_edit', {'id': offer.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="15">no records found</td>
-            </tr>
-        {% endfor %}#}
-        </tbody>
-    </table>
-
-{#    <a href="{{ path('offers_new') }}">Create new</a>#}
 {% endblock %}

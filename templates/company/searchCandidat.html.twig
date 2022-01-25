@@ -31,7 +31,6 @@
                 {% for candidature in candidatures %}
                     <div class="card rounded sha dow smallOffer" id="smallOffer{{ candidature.id }}">
                         <div class="card-body smallCard d-flex flex-row align-items-center">
-
                             <div class="job-profil-Container me-2">
                                 <img class="profil-offer-photo mt-0 " src="{{ asset(candidature.picture) }}"
                                      alt="logo entreprise">
@@ -45,7 +44,6 @@
                                         ({{ candidature.zip }}
                                         )</h4>
                                     <h4 class="jobType offer-formation mb-0"> {{ candidature.schoolName }} </h4>
-
                                 </div>
                                 {% if candidature.status == 1 %}
                                     <div class="status-candidature"> En attente </div>
@@ -77,7 +75,11 @@
 
                             <button class="btn-primary text-white rounded descApply me-2">Valider</button>
                             <button class="btn-primary text-white rounded descSave me-1 ms-2">Voir le profil</button>
+<<<<<<< HEAD
 
+=======
+
+>>>>>>> 23ed8d86fe85017330e929424c088a33e64734df
 
 
                         </div>
