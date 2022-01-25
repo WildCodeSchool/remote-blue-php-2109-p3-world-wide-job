@@ -36,12 +36,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @var string The hashed password
      * @ORM\Column(type="string")
      */
-    private string $password;
+    private string $password = "";
 
     /**
      * @Assert\EqualTo(propertyPath="password")
      */
-    public string $confirmPassword;
+    public string $confirmPassword = "";
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
