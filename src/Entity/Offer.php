@@ -95,6 +95,11 @@ class Offer
      */
     private Collection $applications;
 
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private ?bool $status;
+
     public function __construct()
     {
         $this->applications = new ArrayCollection();
@@ -312,5 +317,17 @@ class Offer
     public function __sleep()
     {
         return [];
+    }
+
+    public function getStatus(): ?bool
+    {
+        return $this->status;
+    }
+
+    public function setStatus(?bool $status): self
+    {
+        $this->status = $status;
+
+        return $this;
     }
 }
