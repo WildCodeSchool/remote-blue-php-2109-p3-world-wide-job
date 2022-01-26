@@ -66,6 +66,7 @@ class OfferFixtures extends Fixture implements DependentFixtureInterface
                     ->setWage(rand(600, 1600))
                     ->setTutor('Mathieu Dupont')
                     ->setDrivingLicence(true)
+                    ->setStatus(1)
                     ->setCompany($this->getReference('company_' . rand(0, 4)));
                 $this->addReference('offer_' . $counter, $offer);
                 $manager->persist($offer);

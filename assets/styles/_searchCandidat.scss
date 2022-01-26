@@ -1,0 +1,80 @@
+.profil-offer-photo {
+    min-height: 4rem;
+    max-height: 9rem;
+    min-width: 4rem;
+    max-width: 6rem;
+    margin-top: 1rem;
+}
+
+.cv-offer {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.largeOffer {
+    overflow-y: scroll;
+}
+
+
+.offer-name {
+    margin-right: 0.375rem;
+
+}
+
+.offer-formation {
+    margin-bottom: 0;
+}
+
+.offer-date {
+    margin-bottom: 0;
+}
+
+.job-profil-Container {
+    width: 25%;
+    margin-left: 2rem;
+
+}
+
+.status-candidature {
+    white-space: nowrap;
+}
+
+@media screen and (max-width: 992px) {
+    .searchContainer .card-cv {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr;
+        position: fixed;
+        pointer-events: none;
+        top: 10vh;
+        left: 17%;
+        min-height: 60vh;
+        max-height: 85vh;
+        width: 90vw;
+  }
+
+}
+@media screen and (max-width: 750px) {
+    .searchContainer .card-cv {
+
+        left: 5vw;
+
+  }
+
+}
+@media screen and (min-width: 992px) {
+    .searchContainer .card-cv {
+
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr;
+        width: 33%;
+        bottom: 1rem;
+        position: sticky;
+        top: 4.188rem;
+        align-self: flex-start;
+
+  }
+
+}

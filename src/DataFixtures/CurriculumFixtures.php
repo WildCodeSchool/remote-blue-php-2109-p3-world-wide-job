@@ -12,7 +12,7 @@ class CurriculumFixtures extends Fixture implements DependentFixtureInterface
     public function load(ObjectManager $manager): void
     {
         $maxCurriculum = 5;
-        for ($i = 0; $i < $maxCurriculum; $i++) {
+        for ($i = 1; $i < $maxCurriculum; $i++) {
             $curriculum = new Curriculum();
             $curriculum->setPicture('https://picsum.photos/300/300')
                 ->setSkills("Je suis motivé et perfectionniste")

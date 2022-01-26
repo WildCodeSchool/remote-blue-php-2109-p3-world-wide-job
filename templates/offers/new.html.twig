@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+{% block title %}Ajouter une offre{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('offerType') }}
+{% endblock %}
+{% block body %}
+    <div class="form-offer-main d-xl-flex justify-content-center">
+        <section class="form-offer">
+            <h2 class="mt-4">Ajouter une offre</h2>
+            {{ include('offers/_form.html.twig') }}
+        </section>
+        <div class="card rounded shadow offer-card-container d-none d-xl-block">
+            <div class="offer-card card-body">
+                <img class="offer-company-picture" src="{{ company ? vich_uploader_asset(company) : '' }}">
+                <h3 class="offer-descCompanyName">{{ company ? company.companyName : '' }}</h3>
+                <h2 class="offer-descJobTitle" id="offerJobTitle">Nom de l'offre</h2>
+                <h3 class="offer-descJobLocation" id="offerCity">Ville</h3>
+                <h3 class="offer-descJobType" id="offerContract">Type de contrat</h3>
+                <button class="btn-primary text-white rounded offer-descApply">Postuler</button>
+                <button class="btn-primary text-white rounded offer-descSave">Enregistrer</button>
+                <div class="offer-descDetails">Détail de l'offre :</div>
+                <p class="offer-descOffer" id="offerDescription">Contenu de l'offre</p>
+                <h5 class="offer-descDate">Publiée il y a 0 jour</h5>
+            </div>
+        </div>
+    </div>
+{% endblock %}
