@@ -1,6 +1,24 @@
 const largeOffers = document.getElementsByClassName('largeOffer');
 const smallOffers = document.getElementsByClassName('smallOffer');
 const closeOffer = document.getElementsByClassName('closeOffer');
+const addFavorite = document.querySelectorAll('[data-favorite]');
+
+function addToFavorite(event) {
+    event.preventDefault();
+    const favoriteLink = event.currentTarget;
+    const link = favoriteLink.href;
+    fetch(link)
+        .then((res) => res.json())
+        .then((res) => {
+            if (res.isInFavorite) {
+                // Ajout d'un message au clic si possible
+                favoriteLink.innerHTML = 'Enlever des favoris';
+            } else {
+                favoriteLink.innerHTML = 'Enregistrer';
+            }
+        });
+}
+
 function load1stContent(array, array2) {
     array[0].classList.add('show');
     array2[0].classList.add('active');
@@ -37,3 +55,6 @@ for (const element of smallOffers) {
         }
     });
 }
+
+addFavorite
+    .forEach((a) => a.addEventListener('click', addToFavorite));
