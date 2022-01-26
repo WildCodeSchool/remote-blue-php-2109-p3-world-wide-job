@@ -24,8 +24,6 @@ class StudentController extends AbstractController
      */
     public function show(Student $student): Response
     {
-        dump($student);
-
         return $this->render('student/show.html.twig', [
             'student' => $student
         ]);

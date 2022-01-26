@@ -21,31 +21,4 @@ class Slugify
     {
         return $this->slugger->slug(strtolower($input));
     }
-
-    public function getCompanySlug(?Company $company): ?string
-    {
-        $slug = "";
-        if ($company != null) {
-            $slug = $company->getSlug();
-        }
-        return $slug;
-    }
-
-    public function getStudentSlug(?Student $student): ?string
-    {
-        $slug = "";
-        if ($student != null) {
-            $slug = $student->getSlug();
-        }
-        return $slug;
-    }
-
-    public function getSchoolSlug(?School $school): ?string
-    {
-        $slug = "";
-        if ($school != null) {
-            $slug = $school->getSlug();
-        }
-        return $slug;
-    }
 }

@@ -85,6 +85,11 @@ class School
      */
     private ?\DateTimeInterface $updatedAt;
 
+    public function __sleep()
+    {
+        return [];
+    }
+
     public function __construct()
     {
         $this->students = new ArrayCollection();
@@ -244,9 +249,7 @@ class School
 
     public function setSlug(string $slug): self
     {
-        if ($this->getUser() != null) {
-            $this->slug = $slug;
-        }
+        $this->slug = $slug;
 
         return $this;
     }

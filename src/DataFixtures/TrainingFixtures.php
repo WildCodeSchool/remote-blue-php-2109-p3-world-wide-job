@@ -13,7 +13,7 @@ class TrainingFixtures extends Fixture implements DependentFixtureInterface
     public function load(ObjectManager $manager): void
     {
         $maxCurriculum = 5;
-        for ($i = 0; $i < $maxCurriculum; $i++) {
+        for ($i = 1; $i < $maxCurriculum; $i++) {
             $maxTraining = 2;
             for ($itterator = 0; $itterator <= $maxTraining; $itterator++) {
                 $training = new Training();

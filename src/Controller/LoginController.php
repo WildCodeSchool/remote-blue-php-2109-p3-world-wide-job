@@ -17,6 +17,30 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class LoginController extends AbstractController
 {
+    private StudentRepository $studentRepository;
+    private SchoolRepository $schoolRepository;
+    private CompanyRepository $companyRepository;
+    private UrlGeneratorInterface $urlGenerator;
+
+    /**
+     * @param StudentRepository $studentRepository
+     * @param SchoolRepository $schoolRepository
+     * @param CompanyRepository $companyRepository
+     * @param UrlGeneratorInterface $urlGenerator
+     */
+    public function __construct(
+        StudentRepository $studentRepository,
+        SchoolRepository $schoolRepository,
+        CompanyRepository $companyRepository,
+        UrlGeneratorInterface $urlGenerator
+    ) {
+        $this->studentRepository = $studentRepository;
+        $this->schoolRepository = $schoolRepository;
+        $this->companyRepository = $companyRepository;
+        $this->urlGenerator = $urlGenerator;
+    }
+
+
     /**
      * @Route("/connexion", name="login")
      */
@@ -55,41 +79,46 @@ class LoginController extends AbstractController
             $security->isGranted('ROLE_STUDENT')
         ) {
             return new RedirectResponse($urlGenerator->generate('registration_student'));
-        }
-        if (
+        } elseif (
             $security->isGranted('ROLE_SCHOOL')
         ) {
             return new RedirectResponse($urlGenerator->generate('registration_school'));
-        }
-        if (
+        } elseif (
             $security->isGranted('ROLE_COMPANY')
         ) {
             return new RedirectResponse($urlGenerator->generate('registration_company'));
+        } else {
+            return $this->redirectToCompletedAccount();
         }
+    }
 
+    private function redirectToCompletedAccount(): RedirectResponse
+    {
         if (
-            $security->isGranted('ROLE_STUDENT_COMPLETED')
+            $this->isGranted('ROLE_STUDENT_COMPLETED')
         ) {
-            $loggedStudent = $studentRepository->findOneBy(['user' => $this->getUser()]);
-            return new RedirectResponse($urlGenerator
-                ->generate('company_show', ['slug' => $slugify->getStudentSlug($loggedStudent)]));
-        }
-        if (
-            $security->isGranted('ROLE_SCHOOL_COMPLETED')
+            $loggedStudent = $this->studentRepository->findOneBy(['user' => $this->getUser()]);
+            if ($loggedStudent) {
+                return new RedirectResponse($this->urlGenerator
+                ->generate('student_show', ['slug' => $loggedStudent->getSlug()]));
+            }
+        } elseif (
+            $this->isGranted('ROLE_SCHOOL_COMPLETED')
         ) {
-            $loggedSchool = $schoolRepository->findOneBy(['user' => $this->getUser()]);
-            return new RedirectResponse($urlGenerator
-                ->generate('company_show', ['slug' => $slugify->getSchoolSlug($loggedSchool)]));
-        }
-        if (
-            $security->isGranted('ROLE_COMPANY_COMPLETED')
+            $loggedSchool = $this->schoolRepository->findOneBy(['user' => $this->getUser()]);
+            if ($loggedSchool) {
+                return new RedirectResponse($this->urlGenerator
+                ->generate('school_show', ['slug' => $loggedSchool->getSlug()]));
+            }
+        } elseif (
+            $this->isGranted('ROLE_COMPANY_COMPLETED')
         ) {
-            $loggedCompany = $companyRepository->findOneBy(['user' => $this->getUser()]);
-            return new RedirectResponse($urlGenerator
-                ->generate('company_show', ['slug' => $slugify->getCompanySlug($loggedCompany)]));
+            $loggedCompany = $this->companyRepository->findOneBy(['user' => $this->getUser()]);
+            if ($loggedCompany) {
+                return new RedirectResponse($this->urlGenerator
+                ->generate('company_show', ['slug' => $loggedCompany->getSlug()]));
+            }
         }
-
-
-        return new RedirectResponse($urlGenerator->generate('login'));
+        return new RedirectResponse($this->urlGenerator->generate('login'));
     }
 }

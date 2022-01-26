@@ -1,0 +1,41 @@
+{% extends 'profile.html.twig' %}
+
+{% block title %}{{ school.schoolName }}{% endblock %}
+{% block banner %}
+    <img src="{{ asset('build/images/student-banner.jpg') }}" class="profile-banner" alt="profile banner">
+{% endblock %}
+{% block picture %}
+    <div class="profile-title text-primary">
+        <img src="{{ vich_uploader_asset(school) }}" class="profile-picture" alt="{{ school.schoolName }}">
+        <h2 class="profile-name mt-lg-4">{{ school.schoolName }}</h2>
+    </div>
+{% endblock %}
+{% block information %}
+    <div class="profile-localisation">
+        <p class="profile-city">{{ school.user.city }}, {{ school.user.country }}</p>
+    </div>
+    <div class="profile-presentation">
+        <h3>Présentation</h3>
+        <p>{{ school.schoolDesc }}</p>
+    </div>
+{% endblock %}
+{% block profileBottom %}
+    <section class="profile-school-students my-4 py-4 mx-4">
+        <h4 class="profile-school-title text-primary mx-3">Nos derniers étudiants à avoir trouvés une entreprise</h4>
+        <div class="d-flex flex-wrap justify-content-evenly mt-4">
+{% for student in studentsByApp %}
+    <div class="d-flex flex-column align-items-center justify-content-center mx-2">
+        <img src="{{ vich_uploader_asset(student) }}" class="profile-school-student-picture rounded-circle" alt="{{ student.user.firstname }} {{ student.user.lastname }} photos">
+        <p class="profile-school-name">{{ student.user.firstname }} {{ student.user.lastname }}</p>
+    </div>
+    {% endfor %}
+    {% set count_students_by_app = studentsByApp|length %}
+    {% for student in studentsAsc|slice(0, 8 - count_students_by_app) %}
+        <div class="d-flex flex-column align-items-center justify-content-center mx-2">
+            <img src="{{ vich_uploader_asset(student) }}" class="profile-school-student-picture rounded-circle" alt="{{ student.user.firstname }} {{ student.user.lastname }} photos">
+            <p class="profile-school-name">{{ student.user.firstname }} {{ student.user.lastname }}</p>
+        </div>
+    {% endfor %}
+        </div>
+    </section>
+{% endblock %}

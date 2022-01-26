@@ -1,11 +1,12 @@
-
 {% block cv %}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
 
     <div class="grid-container">
         <div class="zone-1">
             <div class="toCenter">
-                <div class="profile"></div>
+                <div class="profile">
+                    {# <img class="userPicture" src="{{ vich_uploader_asset(student.curriculum.picture) }}" alt="photo user"> #}
+                </div>
             </div>
             <div class="contact-box">
                 <div class="title">
@@ -29,35 +30,21 @@
                     <h2>Compétences</h2>
                     <div class="skill-1">
                         <p>{{ student.curriculum.skills }}</p>
-                        <div class="progress">
-                            <div class="dot active"></div>
-                            <div class="dot active"></div>
-                            <div class="dot active"></div>
-                            <div class="dot active"></div>
-                            <div class="dot active"></div>
-                            <div class="dot active"></div>
-                            <div class="dot active"></div>
-                        </div>
                     </div>
                 </div>
             </div>
             <div class="langues-box">
                 <div class="title">
                     <h2>Langues</h2>
-                </div>
-                <div class="logo">
-                        <ul>
-                            <li>{{ student.curriculum.language }}</li>
-                        </ul>
+                    <ul>
+                        <li>{{ student.curriculum.language }}</li>
+                    </ul>
                 </div>
             </div>
         </div>
         <div class="zone-2">
             <div class="headTitle">
                 <h1>{{ student.user.firstname }}<br><b>{{ student.user.lastname }}</b></h1>
-            </div>
-            <div class="subTitle">
-                <h1>"A voir"<h1>
             </div>
             <div class="group-1">
                 <div class="title">
@@ -79,13 +66,12 @@
                             <li>
                                 <div class="msg-1">{{ training.dateIn|date("d-n-y") }}-{{ training.dateOut|date("d-n-y") }} | {{ training.degree }}</div>
                                 <div class="msg-2">{{ training.school }} | {{ training.graduate }}</div>
-                                <div class="msg-3">{{ training.description }}</div>
                             </li>
                         </ul>
                     {% endfor %}
                 </div>
             </div>
-            {# <div class="group-3">
+            <div class="group-3">
                 <div class="title">
                     <div class="box">
                         <h2>Expériences</h2>
@@ -95,14 +81,14 @@
                     {% for experience in student.curriculum.experiences %}
                         <ul>
                             <li>
-                                <div class="msg-1">{{ experience.dateIn|date("d-n-y") }}-{{ experience.dateOut|date("d-n-y") }} | {{ experience.job_position }}</div>
-                                <div class="msg-2">{{ experience.contract_type }} - {{ experience.company }} - {{ experience.localisation }}</div>
+                                <div class="msg-1">{{ experience.dateIn|date("d-n-y") }}-{{ experience.dateOut|date("d-n-y") }} | {{ experience.jobPosition }}</div>
+                                <div class="msg-2">{{ experience.contractType }} - {{ experience.company }} - {{ experience.localisation }}</div>
                                 <div class="msg-3">{{ experience.description }}</div>
                             </li>
                         </ul>
                     {% endfor %}
                 </div>
-            </div> #}
+            </div>
         </div>
     </div>
 {% endblock %}
