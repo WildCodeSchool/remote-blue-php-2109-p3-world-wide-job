@@ -7,12 +7,12 @@ use App\Entity\Offer;
 use App\Entity\Company;
 use App\Form\OfferType;
 use App\Repository\CompanyRepository;
+use App\Repository\StudentRepository;
 use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Form\FilterOfferType;
 use App\Repository\ApplicationRepository;
 use App\Repository\OfferRepository;
-use App\Repository\StudentRepository;
 use App\Services\AdminService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -180,5 +180,26 @@ class OfferController extends AbstractController
         }
         $company = $companyRepository->findOneBy(['user' => $this->getUser()]);
         return $this->redirectToRoute('company_index', ['slug' => $company->getSlug()], Response::HTTP_SEE_OTHER);
+    }
+
+    /**
+     * @Route("/{id}/favoris", name="favorite")
+     */
+    public function addToFavorite(
+        StudentRepository $studentRepository,
+        EntityManagerInterface $entityManager,
+        Offer $offer
+    ): Response {
+        $student = $studentRepository->findOneBy(['user' => $this->getUser()]);
+        if ($student->isInFavorite($offer)) {
+            $student->removeFavorite($offer);
+        } else {
+            $student->addFavorite($offer);
+        }
+        $entityManager->flush();
+
+        return $this->json([
+            'isInFavorite' => $student->isInFavorite($offer),
+        ]);
     }
 }

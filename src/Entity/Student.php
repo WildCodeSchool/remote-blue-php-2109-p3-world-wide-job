@@ -94,10 +94,17 @@ class Student
      */
     private ?string $description;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Offer::class, inversedBy="students")
+     * @var ArrayCollection<int, Offer>
+     */
+    private Collection $favorite;
+
     public function __construct()
     {
         $this->degree = new ArrayCollection();
         $this->applications = new ArrayCollection();
+        $this->favorite = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -286,5 +293,38 @@ class Student
     public function __sleep()
     {
         return [];
+    }
+
+    /**
+     * @return Collection|Offer[]
+     */
+    public function getFavorite(): Collection
+    {
+        return $this->favorite;
+    }
+
+    public function addFavorite(Offer $favorite): self
+    {
+        if (!$this->favorite->contains($favorite)) {
+            $this->favorite[] = $favorite;
+        }
+
+        return $this;
+    }
+
+    public function removeFavorite(Offer $favorite): self
+    {
+        $this->favorite->removeElement($favorite);
+
+        return $this;
+    }
+
+    public function isInFavorite(Offer $offer): bool
+    {
+        if ($this->getFavorite()->contains($offer)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

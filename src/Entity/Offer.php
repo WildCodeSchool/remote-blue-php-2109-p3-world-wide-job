@@ -100,9 +100,16 @@ class Offer
      */
     private ?bool $status;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Student::class, mappedBy="favorite")
+     * @var ArrayCollection<int, Student>
+     */
+    private Collection $students;
+
     public function __construct()
     {
         $this->applications = new ArrayCollection();
+        $this->students = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -327,6 +334,33 @@ class Offer
     public function setStatus(?bool $status): self
     {
         $this->status = $status;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Student[]
+     */
+    public function getStudents(): Collection
+    {
+        return $this->students;
+    }
+
+    public function addStudent(Student $student): self
+    {
+        if (!$this->students->contains($student)) {
+            $this->students[] = $student;
+            $student->addFavorite($this);
+        }
+
+        return $this;
+    }
+
+    public function removeStudent(Student $student): self
+    {
+        if ($this->students->removeElement($student)) {
+            $student->removeFavorite($this);
+        }
 
         return $this;
     }
