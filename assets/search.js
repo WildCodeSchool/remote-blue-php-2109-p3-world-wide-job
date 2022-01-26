@@ -1,30 +1,33 @@
 const largeOffers = document.getElementsByClassName('largeOffer');
 const smallOffers = document.getElementsByClassName('smallOffer');
 const closeOffer = document.getElementsByClassName('closeOffer');
-const addFavorite = document.querySelectorAll('[data-favorite]');
 
-function addToFavorite(event) {
+const applyButtons = document.querySelectorAll('[data-apply]');
+
+function jobApply(event) {
     event.preventDefault();
-    const favoriteLink = event.currentTarget;
-    const link = favoriteLink.href;
+    const applyLink = event.currentTarget;
+    const link = applyLink.href;
     fetch(link)
         .then((res) => res.json())
         .then((res) => {
-            if (res.isInFavorite) {
+            if (res.isApplied) {
                 // Ajout d'un message au clic si possible
-                favoriteLink.innerHTML = 'Enlever des favoris';
+                alert('Vous avez déjà postulé');
             } else {
-                favoriteLink.innerHTML = 'Enregistrer';
+                applyLink.classList.add('applied');
+                applyLink.innerHTML = 'Postulé';
             }
         });
 }
+applyButtons.forEach((element) => element.addEventListener('click', jobApply));
 
 function load1stContent(array, array2) {
     array[0].classList.add('show');
     array2[0].classList.add('active');
 }
 if (window.matchMedia('(min-width: 992px)').matches) {
-    window.onload = load1stContent(largeOffers, smallOffers);
+    load1stContent(largeOffers, smallOffers);
 }
 // eslint-disable-next-line no-restricted-syntax
 for (const element of smallOffers) {
