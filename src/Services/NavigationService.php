@@ -25,7 +25,7 @@ class NavigationService
 
     public const STUDENT_COMPLETED = [
         ['title' => 'Mon profil étudiant', 'path' => 'student_show'],
-        ['title' => 'Faire mon CV', 'path' => 'student_show'],
+        ['title' => 'Faire mon CV', 'path' => 'curriculum'],
         ['title' => 'Voir mes candidatures', 'path' => 'student_show'],
         ['title' => 'Mes offres favorites', 'path' => 'student_show'],
     ];

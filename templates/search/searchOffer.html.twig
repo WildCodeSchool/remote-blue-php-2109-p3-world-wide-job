@@ -11,7 +11,7 @@
             {{ form_start(form) }}
         {{ form_widget(form.searchCity) }}
         </div>
-        <div class="filterFieldOfActivity mx-2">
+        <div id="fieldOfActivity" class="filterFieldOfActivity mx-2">
             {{ form_widget(form.searchFieldOfActivity) }}
         </div>
         <div class="filterTypeOfContract me-2">
@@ -46,7 +46,7 @@
                                 </h4>
                                 <h5 class="jobDate">{% set difference = date('now').diff(date(offer.dateOfPublication)) %}
                                     {% set left_days = difference.days %}
-                                    Il y à
+                                    Publié il y à
                                     {% if left_days == 1 %}
                                         1 jour
                                     {% else %}
@@ -75,7 +75,11 @@
                         {% endif %}
                     {% endfor %}
                 </h3>
-                <button class="btn-primary text-white rounded descApply">Postuler</button>
+                {% if app.user is not empty and offer.isAppliedByStudent(app.user.student) %}
+                    <button class="btn-success text-white rounded descApply">Postulé</button>
+                {% else %}
+                    <a href="{{ path('offer_apply', {'id': offer.id}) }}" data-apply="" class="btn-primary text-white rounded descApply">Postuler</a>
+                {% endif %}
                 <a class="btn-primary text-white rounded descSave" data-favorite="" href="{{ path('offer_favorite', {'id': offer.id}) }}">{{ app.user.student.inFavorite(offer) ? 'Enlever des favoris' : 'Enregistrer' }}
                 </a>
                 <div class="descDetails">Détail de l'offre :</div>
@@ -83,7 +87,7 @@
                 </p>
                 <h5 class="descDate">{% set difference = date('now').diff(date(offer.dateOfPublication)) %}
                     {% set left_days = difference.days %}
-                    Il y à
+                    Publié il y à
                     {% if left_days == 1 %}
                         1 jour
                     {% else %}

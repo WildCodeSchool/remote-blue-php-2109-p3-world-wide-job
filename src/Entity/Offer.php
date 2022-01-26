@@ -102,8 +102,9 @@ class Offer
 
     /**
      * @ORM\ManyToMany(targetEntity=Student::class, mappedBy="favorite")
+     * @var ArrayCollection<int, Student>
      */
-    private ArrayCollection $students;
+    private Collection $students;
 
     public function __construct()
     {
@@ -307,6 +308,17 @@ class Offer
         $this->applications->removeElement($application);
 
         return $this;
+    }
+
+
+    public function isAppliedByStudent(Student $student): bool
+    {
+        foreach ($this->applications as $application) {
+            if ($application->getStudent() === $student) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public function __sleep()

@@ -64,6 +64,12 @@ body::-webkit-scrollbar-thumb {
 .descApply {
     grid-column: 2;
     grid-row: 5;
+    text-decoration: none;
+    max-height: 2rem;
+}
+
+.descApply.applied {
+    background-color: $success;
 }
 
 .descSave {
