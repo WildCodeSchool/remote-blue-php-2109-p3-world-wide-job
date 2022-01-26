@@ -77,7 +77,7 @@ class OfferController extends AbstractController
             'student' => $student
         ]);
         if ($applied) {
-            //"Vous avez deja postulé" à la place du remove, a voir pour la gestion.
+            //@TODO "Vous avez deja postulé" à la place du remove, a voir pour la gestion.
             $entityManager->remove($applied);
             $entityManager->flush();
 

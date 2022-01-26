@@ -1,7 +1,6 @@
 const largeOffers = document.getElementsByClassName('largeOffer');
 const smallOffers = document.getElementsByClassName('smallOffer');
 const closeOffer = document.getElementsByClassName('closeOffer');
-const lastUrlSegment = window.location.href.split('/').pop();
 const applyButtons = document.querySelectorAll('[data-apply]');
 
 function jobApply(event) {
@@ -26,7 +25,7 @@ function load1stContent(array, array2) {
     array[0].classList.add('show');
     array2[0].classList.add('active');
 }
-if (window.matchMedia('(min-width: 992px)').matches && (lastUrlSegment === 'offres')) {
+if (window.matchMedia('(min-width: 992px)').matches) {
     load1stContent(largeOffers, smallOffers);
 }
 // eslint-disable-next-line no-restricted-syntax
