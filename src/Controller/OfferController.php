@@ -72,6 +72,7 @@ class OfferController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $offer->setCompany($company)
                 ->setDateOfPublication(new DateTime());
+            $offer->setStatus(1);
             $entityManager->persist($offer);
             $entityManager->flush();
 
@@ -123,13 +124,18 @@ class OfferController extends AbstractController
     /**
      * @Route("/{id}", name="delete", methods={"POST"})
      */
-    public function delete(Request $request, Offer $offer, EntityManagerInterface $entityManager): Response
-    {
+    public function delete(
+        Request $request,
+        Offer $offer,
+        EntityManagerInterface $entityManager,
+        CompanyRepository $companyRepository
+    ): Response {
         if ($this->isCsrfTokenValid('delete' . $offer->getId(), $request->request->get('_token'))) {
-            $entityManager->remove($offer);
+            $offer->setStatus(0);
+            $company = $companyRepository->findOneBy(['user' => $this->getUser()]);
             $entityManager->flush();
         }
-
-        return $this->redirectToRoute('company_index', [], Response::HTTP_SEE_OTHER);
+        $company = $companyRepository->findOneBy(['user' => $this->getUser()]);
+        return $this->redirectToRoute('company_index', ['slug' => $company->getSlug()], Response::HTTP_SEE_OTHER);
     }
 }
