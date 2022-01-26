@@ -303,6 +303,17 @@ class Offer
         return $this;
     }
 
+
+    public function isAppliedByStudent(Student $student): bool
+    {
+        foreach ($this->applications as $application) {
+            if ($application->getStudent() === $student) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public function __sleep()
     {
         return [];
