@@ -2,6 +2,23 @@ const largeOffers = document.getElementsByClassName('largeOffer');
 const smallOffers = document.getElementsByClassName('smallOffer');
 const closeOffer = document.getElementsByClassName('closeOffer');
 const applyButtons = document.querySelectorAll('[data-apply]');
+const addFavorite = document.querySelectorAll('[data-favorite]');
+
+function addToFavorite(event) {
+    event.preventDefault();
+    const favoriteLink = event.currentTarget;
+    const link = favoriteLink.href;
+    fetch(link)
+        .then((res) => res.json())
+        .then((res) => {
+            if (res.isInFavorite) {
+                // Ajout d'un message au clic si possible
+                favoriteLink.innerHTML = 'Enlever des favoris';
+            } else {
+                favoriteLink.innerHTML = 'Enregistrer';
+            }
+        });
+}
 
 function jobApply(event) {
     event.preventDefault();
@@ -57,3 +74,6 @@ for (const element of smallOffers) {
         }
     });
 }
+
+addFavorite
+    .forEach((a) => a.addEventListener('click', addToFavorite));
