@@ -85,6 +85,11 @@ class School
      */
     private ?\DateTimeInterface $updatedAt;
 
+    public function __sleep()
+    {
+        return [];
+    }
+
     public function __construct()
     {
         $this->students = new ArrayCollection();
@@ -249,8 +254,4 @@ class School
         return $this;
     }
 
-    public function __sleep()
-    {
-        return [];
-    }
 }

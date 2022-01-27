@@ -7,6 +7,7 @@ use App\Form\PasswordEditType;
 use App\Form\RegistrationFormType;
 use App\Form\StudentType;
 use App\Form\UserEditType;
+use App\Services\AdminService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -23,8 +24,10 @@ class StudentController extends AbstractController
      */
     public function show(Student $student): Response
     {
+        $contractCv = AdminService::CONTRACTCV;
         return $this->render('student/show.html.twig', [
             'student' => $student,
+            'contract' => $contractCv,
         ]);
     }
 
@@ -78,5 +81,15 @@ class StudentController extends AbstractController
         }
 
         return $this->redirectToRoute('student_index', [], Response::HTTP_SEE_OTHER);
+    }
+
+    /**
+     * @Route("/{slug}/favoris", name="favorite")
+     */
+    public function showFavorite(Student $student): Response
+    {
+        return $this->render('favorite/favorite_show.html.twig', [
+            'student' => $student,
+        ]);
     }
 }

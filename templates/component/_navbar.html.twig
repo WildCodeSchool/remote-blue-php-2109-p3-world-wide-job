@@ -37,7 +37,7 @@
                                         {# {{ app.request.pathinfo == path(link.path) ? 'activelink' }} #}">
                                         <a class="dropdown-item"
                                            {#@todo get link path #}
-                                           href="#">{{ link.title }}</a>
+                                           href="{{ link.path }}">{{ link.title }}</a>
                                     </li>
                                 {% endfor %}
                                 <li>
@@ -66,10 +66,9 @@
 
                             {% for link in navigation.userLinks %}
                                 <li class=" text-decoration-none btn-primary text-center text-center
-                                    {# {{ app.request.pathinfo == path(link.path) ? 'activelink' }} #}">
+                                    {{ app.request.pathinfo == link.path ? 'activelink' }}">
                                     <a class="text-decoration-none "
-                                       {#@todo get link path #}
-                                       href="#">{{ link.title }}</a>
+                                       href="{{ link.path }}">{{ link.title }}</a>
                                 </li>
                             {% endfor %}
 
