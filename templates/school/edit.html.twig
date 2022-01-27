@@ -100,17 +100,4 @@
         </div>
     </div>
     {{ form_end(passwordForm) }}
-
-
-
-
-       {% for category, messages in app.flashes %}
-        {% for message in messages %}
-            <div id="alertEdit" class="alert alert-{{ category }}">
-                <button id="btnEditClose" class="btn-close closeAlert"></button>
-                {{ message }}
-            </div>
-        {% endfor %}
-    {% endfor %}
-
 {% endblock %}
