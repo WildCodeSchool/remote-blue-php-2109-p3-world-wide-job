@@ -41,5 +41,13 @@ security:
     access_control:
         - { path: ^/offres/ajouter, roles: ROLE_COMPANY_COMPLETED }
         - { path: ^/curriculum, roles: ROLE_STUDENT_COMPLETED }
+        - { path: ^/etudiant, roles: [
+                ROLE_STUDENT_COMPLETED,
+                ROLE_SCHOOL_COMPLETED,
+                ROLE_COMPANY_COMPLETED] }
+        - { path: ^/entreprise, roles: [
+                ROLE_STUDENT_COMPLETED,
+                ROLE_SCHOOL_COMPLETED,
+                ROLE_COMPANY_COMPLETED ] }
     # - { path: ^/admin, roles: ROLE_ADMIN }
     # - { path: ^/profile, roles: ROLE_USER }
