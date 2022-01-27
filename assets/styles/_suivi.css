@@ -1,0 +1,21 @@
+.container-suivi{
+    font-weight: bold;
+    background-color: white;
+    border-radius: 20px;
+    margin-top: 12rem;
+
+}
+.title{
+    color: black;
+    font-weight: bold;
+    font-size: 40px;
+    text-align: center;
+}
+
+.contract{
+    width: 100%;
+    height: 30px;
+    background-color: mistyrose;
+    border-radius: 10px;
+}
+

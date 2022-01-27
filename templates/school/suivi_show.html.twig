@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {{ dump(candidate) }}
+<body>
+<div class="container-suivi p-5 ">
+    <h1 class="title">Tableaux de Bord</h1>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Nom/Prénom</th>
+            <th>Éleve</th>
+            <th>Dernière connexion</th>
+            <td>Candidature</td>
+            <td>Candidature acceptée</td>
+            <td>État du contrat</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>Giraud Pierre</td>
+            <td><img src="/favicon.02074073.png"/></td>
+            <td>il y a 3 jour</td>
+            <td>(4) candidature</td>
+            <td>(2) candidature</td>
+            <td><div class="contract text-center">En recherche</div></td>
+        </tr>
+        <tr>
+            <td>Durand</td>
+            <td><img src="/favicon.02074073.png"/></td>
+            <td>il ya 3 jour</td>
+            <td>(4) candidature</td>
+            <td>(2) candidature</td>
+            <td><div class="contract text-center">Signé</div></td>
+        </tr>
+        <tr>
+            <td>Joly</td>
+            <td><img src="/favicon.02074073.png"/></td>
+            <td>il y a 3 jour</td>
+            <td>(4) candidature</td>
+            <td>(2) candidature</td>
+            <td><div class="contract text-center">En attente de signature</div></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+{% endblock %}
