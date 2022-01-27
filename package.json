@@ -1,6 +1,12 @@
 {
   "devDependencies": {
+    "@hotwired/stimulus": "^3.0.0",
+    "@swup/debug-plugin": "^1.0",
+    "@swup/fade-theme": "^1.0",
+    "@swup/forms-plugin": "^1.0",
+    "@swup/slide-theme": "^1.0",
     "@symfony/stimulus-bridge": "^2.0.0",
+    "@symfony/ux-swup": "file:vendor/symfony/ux-swup/Resources/assets",
     "@symfony/webpack-encore": "^1.0.0",
     "bootstrap": "^5.1.3",
     "core-js": "^3.0.0",
@@ -15,6 +21,7 @@
     "sass-lint": "^1.13.1",
     "sass-loader": "^12.0.0",
     "stimulus": "^2.0.0",
+    "swup": "^2.0",
     "webpack-notifier": "^1.6.0"
   },
   "license": "UNLICENSED",
@@ -28,6 +35,7 @@
   "dependencies": {
     "@ckeditor/ckeditor5-build-classic": "^31.1.0",
     "@fortawesome/fontawesome-free": "^5.15.4",
-    "@popperjs/core": "^2.11.0"
+    "@popperjs/core": "^2.11.0",
+    "bootstrap-icons": "^1.7.2"
   }
 }

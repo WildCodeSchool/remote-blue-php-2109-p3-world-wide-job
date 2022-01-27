@@ -1,0 +1,35 @@
+<nav class="main-nav" id="nav">
+    <button class="close-main-nav navbar-toggler text-white"><i class="bi bi-x-lg"></i></button>
+    <span class="fs-4">Admin</span>
+    <hr>
+    <ul class="nav nav-pills flex-column mb-auto">
+        <li class="nav-item">
+            <a href="{{ path('home') }}" class="nav-link text-white" target="_blank" data-no-swup="">
+                <small>Aller sur le site</small> <i class="bi bi-box-arrow-up-right"></i>
+            </a>
+        </li>
+        {% set links = [
+            {'title': 'Accueil', 'path': 'admin_home_index'},
+            {'title': 'Statistiques', 'path': 'admin_statistic_index'},
+            {'title': 'Étudiants', 'path': 'admin_student_index'},
+            {'title': 'Centres de formations', 'path': 'admin_school_index'},
+            {'title': 'Sociétés', 'path': 'admin_company_index'},
+        ] %}
+        {% for link in links %}
+        <li class="nav-item">
+            <a href="{{ path(link.path) }}"
+               class="nav-link {{ app.request.pathInfo == path(link.path) ? 'active' : 'text-white' }}">
+                {{ link.title }}
+            </a>
+        </li>
+        {% endfor %}
+    </ul>
+    <hr class=" mt-auto">
+    <ul class="nav nav-pills flex-column">
+        <li class="nav-item">
+            <a href="{{ path('app_logout') }}" class="nav-link text-white">
+                <i class="bi bi-box-arrow-right"></i> Déconnexion
+            </a>
+        </li>
+    </ul>
+</nav>
