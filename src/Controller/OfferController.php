@@ -2,13 +2,16 @@
 
 namespace App\Controller;
 
-use App\Entity\Company;
+use App\Entity\Application;
 use App\Entity\Offer;
+use App\Entity\Company;
 use App\Form\OfferType;
 use App\Repository\CompanyRepository;
+use App\Repository\StudentRepository;
 use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Form\FilterOfferType;
+use App\Repository\ApplicationRepository;
 use App\Repository\OfferRepository;
 use App\Services\AdminService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -23,7 +26,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class OfferController extends AbstractController
 {
     /**
-     * @Route("/", name="search", methods={"GET"})
+     * @Route("", name="search", methods={"GET"})
      */
     public function searchOffer(Request $request, OfferRepository $offerRepository): Response
     {
@@ -54,6 +57,46 @@ class OfferController extends AbstractController
             'form' => $form->createView(),
             'typeOfContract' => $contractType,
         ]);
+    }
+
+    /**
+     * @Route("/offres/{id}/apply", name="apply")
+     */
+    public function addApplication(
+        int $id,
+        EntityManagerInterface $entityManager,
+        OfferRepository $offerRepository,
+        StudentRepository $studentRepository,
+        ApplicationRepository $applicationRepo
+    ): Response {
+        $offer = $offerRepository->findOneBy(['id' => $id]);
+        $student = $studentRepository->findOneBy(['user' => $this->getUser()]);
+
+        $applied = $applicationRepo->findOneBy([
+            'offer' => $offer,
+            'student' => $student
+        ]);
+        if ($applied) {
+            //@TODO "Vous avez deja postulé" à la place du remove, a voir pour la gestion.
+            $entityManager->remove($applied);
+            $entityManager->flush();
+
+            return $this->json([
+                'message' => 'Postulat bien retiré',
+                'isApplied' => $applicationRepo->findOneBy([
+                    'offer' => $offer,
+                    'student' => $student
+                ])
+            ], 200);
+        }
+        $application = new Application();
+        $application->setOffer($offer)
+            ->setStudent($student)
+            ->setStatus(1);
+        $entityManager->persist($application);
+        $entityManager->flush();
+        return $this->json([
+            'message' => 'Postulat pris en compte', 'isApplied' => null], 200, [], ['groups' => 'application']);
     }
 
     /**
@@ -137,5 +180,37 @@ class OfferController extends AbstractController
         }
         $company = $companyRepository->findOneBy(['user' => $this->getUser()]);
         return $this->redirectToRoute('company_index', ['slug' => $company->getSlug()], Response::HTTP_SEE_OTHER);
+    }
+
+    /**
+     * @Route("/{id}/favoris", name="favorite")
+     */
+    public function addToFavorite(
+        StudentRepository $studentRepository,
+        EntityManagerInterface $entityManager,
+        Offer $offer,
+        Request $request
+    ): Response {
+        $student = $studentRepository->findOneBy(['user' => $this->getUser()]);
+        $referer = $request->headers->get('referer');
+        $referer = str_replace("http://localhost:8000", "", $referer);
+        $referer = str_replace("https://mumakil-projet3-world-wide-job.phprover.wilders.dev/", "", $referer);
+        if ($student->isInFavorite($offer)) {
+            $student->removeFavorite($offer);
+        } else {
+            $student->addFavorite($offer);
+        }
+        $entityManager->flush();
+        if ($referer == "/etudiant/" . $student->getSlug() . "/favoris") {
+            return $this->redirectToRoute(
+                'student_favorite',
+                ['slug' => $student->getSlug()],
+                Response::HTTP_SEE_OTHER
+            );
+        } else {
+            return $this->json([
+                'isInFavorite' => $student->isInFavorite($offer),
+            ]);
+        }
     }
 }

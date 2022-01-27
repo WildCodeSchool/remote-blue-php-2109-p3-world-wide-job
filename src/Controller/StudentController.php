@@ -81,4 +81,14 @@ class StudentController extends AbstractController
 
         return $this->redirectToRoute('student_index', [], Response::HTTP_SEE_OTHER);
     }
+
+    /**
+     * @Route("/{slug}/favoris", name="favorite")
+     */
+    public function showFavorite(Student $student): Response
+    {
+        return $this->render('favorite/favorite_show.html.twig', [
+            'student' => $student,
+        ]);
+    }
 }
