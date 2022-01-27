@@ -3,10 +3,6 @@
     {% block banner %}
         <img src="{{ asset('build/images/student2-banner.jpg') }}" class="profile-banner" alt="profile banner">
     {% endblock %}
-    {% block javascripts %}
-     {{ parent() }}
-     {{ encore_entry_script_tags('edit') }}
-    {% endblock %}
     {% block picture %}
         <div class="profile-title title-student-edit">
             <img src="{{ vich_uploader_asset(student) }}" class="profile-picture picture-student-edit"
@@ -99,15 +95,5 @@
             </div>
         </div>
         {{ form_end(passwordForm) }}
-
-
-        {% for category, messages in app.flashes %}
-            {% for message in messages %}
-                <div id="alertEdit" class="alert alert-{{ category }}">
-                    <button id="btnEditClose" class="btn-close closeAlert"></button>
-                    {{ message }}
-                </div>
-            {% endfor %}
-        {% endfor %}
     {% endblock %}
 

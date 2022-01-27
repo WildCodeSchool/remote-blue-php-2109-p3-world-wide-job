@@ -3,7 +3,6 @@
 {% block title %}Edit Company{% endblock %}
  {% block javascripts %}
      {{ parent() }}
-     {{ encore_entry_script_tags('edit') }}
  {% endblock %}
 {% block banner %}
     <img src="{{ asset('build/images/workbanner.jpg') }}" class="profile-banner" alt="profile banner">
@@ -106,15 +105,4 @@
         </div>
     </div>
     {{ form_end(passwordForm) }}
-
-
-    {% for category, messages in app.flashes %}
-        {% for message in messages %}
-            <div id="alertEdit" class="alert alert-{{ category }}">
-                <button id="btnEditClose" class="btn-close closeAlert"></button>
-                {{ message }}
-            </div>
-        {% endfor %}
-    {% endfor %}
-
 {% endblock %}
