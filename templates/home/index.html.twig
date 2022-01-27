@@ -17,9 +17,24 @@
         <h2> Se créer un compte </h2>
 
         <div class="card-create ">
-            <div class="btn home justify-content-center align-items-center">  <img class="btn-img me-2" src="{{ asset('/build/images/noto_man-student.727b2524.png') }}"><a class="text-decoration-none text-white" href="{{ path('registration_index', {'role': 'etudiant'}) }}">Etudiant</a></div>
-            <div class="btn home justify-content-center align-items-center">  <img class="btn-img me-2" src="{{ asset('build/images/emojione_school.b7ba314f.png') }}" ><a class="text-decoration-none text-white" href="{{ path('registration_index', {'role': 'ecole'}) }}">Formation</a></div>
-            <div class="btn home justify-content-center align-items-center">  <img class="btn-img me-2" src="{{ asset('build/images/emojione_briefcase.63a041e7.png') }}"><a class="text-decoration-none text-white" href="{{ path('registration_index', {'role': 'entreprise'}) }}">Entreprise</a></div>
+            <div class="btn home justify-content-center align-items-center" >
+                <img class="btn-img me-2" src="{{ asset('build/images/noto_man-student.png') }}">
+                <a class="text-decoration-none text-white" href="{{ path('registration_index', {'role': 'etudiant'}) }}">
+                    Etudiant
+                </a>
+            </div>
+            <div class="btn home justify-content-center align-items-center"  >
+                <img class="btn-img me-2" src="{{ asset('build/images/emojione_school.png') }}" >
+                <a  class="text-decoration-none text-white" href="{{ path('registration_index', {'role': 'ecole'}) }}" >
+                    Formation
+                </a>
+            </div>
+            <div class="btn home justify-content-center align-items-center" >
+                <img class="btn-img me-2" src="{{ asset('build/images/emojione_briefcase.png') }}">
+                <a class="text-decoration-none text-white" href="{{ path('registration_index', {'role': 'entreprise'}) }}">
+                    Entreprise
+                </a>
+            </div>
         </div>
     </div>
     <div class="card-choice stats">
