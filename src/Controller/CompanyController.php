@@ -132,19 +132,17 @@ class CompanyController extends AbstractController
 
         if ($companyForm->isSubmitted() && $companyForm->isValid()) {
             $entityManager->flush();
-
-            return $this->redirectToRoute('company_show', ['slug' => $company->getSlug() ], Response::HTTP_SEE_OTHER);
+            $this->addFlash('success', 'Votre profil a été modifié');
         }
 
         if ($userForm->isSubmitted() && $userForm->isValid()) {
             $entityManager->flush();
-            return $this->redirectToRoute('company_show', ['slug' => $company->getSlug() ], Response::HTTP_SEE_OTHER);
+            $this->addFlash('success', 'Votre profil a été modifié');
         }
 
         if ($passwordForm->isSubmitted() && $passwordForm->isValid()) {
             $entityManager->flush();
-
-            return $this->redirectToRoute('company_show', ['slug' => $company->getSlug() ], Response::HTTP_SEE_OTHER);
+            $this->addFlash('success', 'Votre mot de passe a été modifié');
         }
 
 

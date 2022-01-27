@@ -55,7 +55,7 @@ class SchoolController extends AbstractController
 
         if ($passwordForm->isSubmitted() && $schoolForm->isValid()) {
             $entityManager->flush();
-
+        //TODO finir edit school route name
             return $this->redirectToRoute('company_show', ['slug' => $school->getSlug() ], Response::HTTP_SEE_OTHER);
         }
 
