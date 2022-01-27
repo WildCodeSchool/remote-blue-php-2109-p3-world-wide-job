@@ -210,7 +210,6 @@ class OfferController extends AbstractController
         } else {
             return $this->json([
                 'isInFavorite' => $student->isInFavorite($offer),
-                'referer' => $referer,
             ]);
         }
     }
