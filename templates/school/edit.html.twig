@@ -6,63 +6,91 @@
      {{ encore_entry_script_tags('edit') }}
  {% endblock %}
 {% block banner %}
-    {{ form_start(form) }}
     <img src="{{ asset('build/images/workbanner.jpg') }}" class="profile-banner" alt="profile banner">
 {% endblock %}
 {% block picture %}
     <div class="profile-title title-edit">
         <div>
-
             <img src="{{ vich_uploader_asset(school) }}" class="profile-picture picture-edit"
                  alt="company.companyName">
-            {{ form_widget(form.logoFile) }}
         </div>
-        <div class="profile-name mt-lg-4">  {{ form_widget(form.schoolName) }}  </div>
     </div>
 {% endblock %}
 {% block information %}
-    <div class="profile-localisation localisation-edit">
-
-        <div class="d-flex">
-            {{ form_widget(userForm.city, {'attr': {'class': 'ms-1 me-1'}}) }}
-            {{ form_widget(userForm.zip, {'attr': {'class': 'ms-1 me-1 w-25'}}) }}
-            {{ form_widget(userForm.adress1, {'attr': {'class': 'ms-1 me-1 w-75'}}) }}
-            {{ form_widget(userForm.adress2, {'attr': {'class': 'ms-1 me-1 w-50'}}) }}
-            {{ form_widget(userForm.country, {'attr': {'class': 'ms-1 me-1 w-50'}}) }}</div>
-
+    {{ form_start(userForm) }}
+    <div class="profile-name mt-lg-4 mb-2 d-flex h-100 justify-content-end">
+        {{ form_widget(userForm.firstname,
+            {'attr': {'required': 'required', 'class': 'w-25 ms-1 me-1 '}}) }}
+        {{ form_widget(userForm.lastname,
+            {'attr': {'required': 'required', 'class': 'w-25 ms-1 me-1 '}}) }}
     </div>
 
-    <div class="profile-presentation mt-4">
-        <h3>Présentation</h3>
-        <p> {{ form_widget(form.schoolDesc) }}</p>
+    <div class="profile-localisation localisation-edit">
+        <div class="d-flex mt-2 mb-5">
+            {{ form_widget(userForm.city, {'attr': {'class': 'mx-2'}}) }}
+            {{ form_widget(userForm.zip, {'attr': {'class': 'mx-2'}}) }}
+            {{ form_widget(userForm.country, {'attr': {'class': 'mx-2'}}) }}
+        </div>
+    </div>
+
+    <div class="d-flex localisation-edit profile-localisation justify-content-between">
+        {{ form_row(userForm.adress1) }}
+        {{ form_row(userForm.adress2) }}
+    </div>
+
+    <div class="d-flex localisation-edit profile-localisation justify-content-between">
+        {{ form_row(userForm.phone) }}
+        {{ form_row(userForm.email) }}
+    </div>
+    <div>
+
+    </div>
+    <div class="d-flex localisation-edit profile-localisation justify-content-between">
+        {{ form_row(userForm.civility) }}
+        {{ form_row(userForm.birthdate) }}
+    </div>
+
+    <div class="d-flex flex-row-reverse  my-3 mx-auto profile-localisation localisation-edit justify-content-start">
+        <button class="btn btn-secondary"> Modifier </button>
+        {{ form_end(userForm) }}
+        <form method="post" action="{{ path('school_delete', {'slug': school.slug}) }}"
+              onsubmit="return confirm('Voulez vous vraiment supprimer votre compte ?');">
+            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ school.id) }}">
+            <button class="btn btn-supp text-end me-4"><i class="fa fa-trash me-1"></i></button>
+        </form>
     </div>
 {% endblock %}
 {% block profileBottom %}
-
+    {{ form_start(form) }}
     <div class="profile-offer mx-4 my-3 py-lg-3">
-        <h3> Informations privées </h3>
-        <div class="profile-offer-head d-flex justify-content-between align-items-center mb-2">
-            <div class="profile-offer-title d-flex align-items-center my-0 my-lg-2"> {{ form_label(userForm.phone) }}
-                <span class="m-2"> </span> {{ form_widget(userForm.phone) }} </div>
-            <div class="profile-offer-title d-flex align-items-center my-0 my-lg-2">Mail<span
-                        class="m-2"> </span> {{ form_widget(userForm.email) }}</div>
-            <div>  {{ form_errors(userForm.email) }}</div>
+    <h3>Autre Informations  </h3>
+    <div class="profile-offer-head d-flex justify-content-between align-items-center mb-2">
+        <div class="profile-offer-title d-flex align-items-center my-0 my-lg-2">
+            {{ form_row(form.schoolName) }}
         </div>
-        <div class="profile-offer-head d-flex justify-content-between align-items-center mb-2">
-            <div class="profile-offer-title d-flex align-items-center my-0 my-lg-2"> {{ form_label(form.schoolCode, null, {'attr': {'class': 'label-nowrap'}}) }}
-                <span class="m-2"> </span> {{ form_widget(form.schoolCode) }}</div>
-            <div class="profile-offer-head d-flex justify-content-between align-items-center mb-2">
-                {{ form_row(form.type) }}
-            </div>
+        <div class="profile-offer-title d-flex align-items-center my-0 my-lg-2">
+            {{ form_row(form.type) }}
+        </div>
+    </div>
+        <div class="profile-offer-title d-flex align-items-center my-0 my-lg-2">
+            {{ form_row(form.schoolCode) }}
         </div>
 
+    <div class="profile-offer-title d-flex align-items-center my-0 my-lg-2">
+        {{ form_label(form.logoFile, "Image de profil :") }} {{ form_widget(form.logoFile, {'attr': {'class': 'w-100'}}) }}
     </div>
-    <button class="btn btn-edit update-edit text-end"><i class="fas fa-save me-1"></i></button>
+    <h5>Présentation</h5>
+    <div>
+        {{ form_widget(form.schoolDesc, {'attr': {'required': 'required'}}) }}
+    </div>
+    <div class="d-flex mt-3 mb-3 profile-localisation justify-content-end">
+        <button class="btn btn-secondary"> Modifier</button>
+    </div>
+</div>
 
     {{ form_end(form) }}
 
     {{ form_start(passwordForm) }}
-
     <div class="profile-offer mx-4 my-3 py-lg-3">
         <h3> Changer de mot de passe </h3>
         <div class="profile-offer-head d-flex justify-content-between align-items-center mb-2">
@@ -70,16 +98,11 @@
                 <span class="m-3"> </span> {{ form_row(passwordForm.plainPassword.second) }}</div>
             <button class="btn btn-secondary w-auto password-btn ms-2" type="submit"> Changer</button>
         </div>
-
-        {{ form_end(passwordForm) }}
-
     </div>
+    {{ form_end(passwordForm) }}
 
-    <form method="post" action="{{ path('school_delete', {'slug': school.slug}) }}"
-          onsubmit="return confirm('Voulez vous vraiment supprimer votre compte ?');">
-        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ school.id) }}">
-        <button class="btn btn-edit delete-edit text-end"><i class="fa fa-trash me-1"></i></button>
-    </form>
+
+
 
        {% for category, messages in app.flashes %}
         {% for message in messages %}

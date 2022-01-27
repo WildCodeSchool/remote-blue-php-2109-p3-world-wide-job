@@ -65,7 +65,7 @@ class SchoolController extends AbstractController
         return $this->renderForm('school/edit.html.twig', [
             'school' => $school,
             'form' => $schoolForm,
-            'userFrom' => $userForm,
+            'userForm' => $userForm,
             'passwordForm' => $passwordForm,
         ]);
     }
