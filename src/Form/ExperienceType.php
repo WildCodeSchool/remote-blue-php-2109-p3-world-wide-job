@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Experience;
+use App\Services\AdminService;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
@@ -27,7 +28,7 @@ class ExperienceType extends AbstractType
             ])
             ->add('contractType', ChoiceType::class, [
                 'label' => 'Type de contrat',
-                'choices' => ['CDI' => 1, 'CDD' => 2, 'Stage' => 3, 'Alternance' => 4]
+                'choices' => AdminService::CONTRACTCV
             ])
             ->add('dateIn', DateType::class, [
                 'label' => "Date de début",

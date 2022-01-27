@@ -31,8 +31,8 @@
 {% endblock %}
 {% block profileBottom %}
     {% if student.curriculum %}
-        <div class="student-cv-container d-flex justify-content-center">
-            <img src="{{ asset('build/images/cv_test.jpg') }}" class="profile-student-cv mx-4 mt-4" alt="CV {{ student.user.firstname }} {{ student.user.lastname }}">
-        </div>
+        {% include 'student/cv/_cv1.html.twig' %}
+        {% else %}
+        <h3 class="text-center">Vous n'avez pas encore de cv, vous pouvez le créer <a href="{{ path('curriculum') }}">ici</a></h3>
     {% endif %}
 {% endblock %}

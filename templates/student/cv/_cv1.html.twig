@@ -1,0 +1,50 @@
+<div class="container-cv">
+    <div class="infos-cv">
+        <div class="student-left-cv">
+             <img class="picture-cv" src="{{ vich_uploader_asset(student) }}" alt="student picture"/>
+             <div class="student-left-right-cv">
+                <h1 class="student-name-cv">{{ student.user.firstname }}{{ student.user.lastname }}</h1>
+                <h2 class="student-age-cv">{{ date('now').diff((date(student.user.birthdate))).format('%y ans') }}</h2>
+             </div>
+        </div>
+        <div class="student-right-cv">
+            <ul>
+                <li class="student-adress-cv">{{ student.user.adress1 }} {% if student.user.adress2 %} {{ student.user.adress2 }}
+                {% endif %}</li>
+                <li class="student-adress-cv"> {{ student.user.zip }} {{ student.user.city }}</li>
+                <li class="student-phone-cv"> {{ student.user.phone }}</li>
+                <li class="student-email-cv"> {{ student.user.email }}</li>
+                <li class="student-drive-cv"> {% if student.curriculum.drivingLicence %}  Permis B {% endif %}</li>
+            </ul>
+        </div>
+    </div>
+    <hr class="separator-cv">
+    <div class="skills-container-cv">
+        <p class="skills-cv">{{ student.curriculum.skills }}</p>
+    </div>
+    <hr class="separator-cv">
+    <div class="exp-train-container-cv">
+        <div class="training-cv">
+            <h2 class="training-title-cv">Formations :</h2>
+            <hr>
+            {% for training in student.curriculum.trainings %}
+                <h3 class="diploma-title-cv">{{ training.fieldOfStudy }} - {{ training.school }}</h3>
+                <p class="diploma-date-cv">{{ training.dateIn|date("d/m/Y") }} - {{ training.dateOut|date("d/m/Y") }}</p>
+                <p class="diploma-infos-cv">{{ training.description }}</p>
+            {% endfor %}
+        </div>
+        <div class="experience-cv">
+            <h2 class="experience-title-cv">Expériences :</h2>
+            <hr>
+            {% for experience in student.curriculum.experiences %}
+                <h3 class="exp-title-cv">{% for key, value in contract %}
+                        {% if experience.contractType == value %}
+                            {{ key }}
+                        {% endif %}
+                    {% endfor %} {{ experience.jobPosition }} - {{ experience.company }} {{ experience.localisation }}</h3>
+                <p class="exp-date-cv">{{ experience.dateIn|date("d/m/Y") }} - {{ experience.dateOut|date("d/m/Y") }}</p>
+                <p class="exp-infos-cv">{{ experience.description }}</p>
+            {% endfor %}
+        </div>
+    </div>
+</div>

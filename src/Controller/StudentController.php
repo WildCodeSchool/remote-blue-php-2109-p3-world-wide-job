@@ -7,6 +7,7 @@ use App\Form\PasswordEditType;
 use App\Form\RegistrationFormType;
 use App\Form\StudentType;
 use App\Form\UserEditType;
+use App\Services\AdminService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -23,8 +24,10 @@ class StudentController extends AbstractController
      */
     public function show(Student $student): Response
     {
+        $contractCv = AdminService::CONTRACTCV;
         return $this->render('student/show.html.twig', [
             'student' => $student,
+            'contract' => $contractCv,
         ]);
     }
 
