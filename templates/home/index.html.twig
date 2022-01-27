@@ -8,36 +8,62 @@
     <div class="card-introduction border-success mx-auto m-5">
         <div class="card-body text-success">
             <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque finibus ipsum eu ex aliquet pretium.
-        Curabitur accumsan odio elit, sed tempus justo suscipit at. Ut eros risus, vulputate eget augue id, efficitur
-        sollicitudin lectus. Mauris laoreet sodales lorem, eu congue risus aliquet sit amet.Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                Curabitur accumsan odio elit, sed tempus justo suscipit at. Ut eros risus, vulputate eget augue id, efficitur
+                sollicitudin lectus. Mauris laoreet sodales lorem, eu congue risus aliquet sit amet.Some quick example text to build on the card title and make up the bulk of the card's content.</p>
         </div>
     </div>
     <div class="card-choice">
-        <h2> Se créer un compte </h2>
-        <div class="card-create d-flex">
-            <div class="btn home d-flex justify-content-center align-items-center" >  <img class="btn-img me-2" src="{{ asset('/build/images/noto_man-student.727b2524.png') }}"> <a class="text-decoration-none text-white" href="{{ path('registration_index', {'role': 'etudiant'}) }}">  Etudiant  </a> </div>
-            <div class="btn home d-flex justify-content-center align-items-center"  >  <img class="btn-img me-2" src="{{ asset('build/images/emojione_school.b7ba314f.png') }}" >   <a  class="text-decoration-none text-white" href="{{ path('registration_index', {'role': 'ecole'}) }}" >  Formation </a> </div>
-            <div class="btn home d-flex justify-content-center align-items-center" >  <img class="btn-img me-2" src="{{ asset('build/images/emojione_briefcase.63a041e7.png') }}">    <a class="text-decoration-none text-white" href="{{ path('registration_index', {'role': 'entreprise'}) }}"> Entreprise </a> </div>
-        </div>
-    </div>
-    <div class="card-choice">
-    <div class="row">
-    <div class="col">
-00
-    </div>
-    <div class="col">
-00
-    </div>
-    <div class="col">
-00
-    </div>
-    <div class="col">
-00
-    </div>
-    <div class="col">
-00
-    </div>
-    </div>
-    </div>
-{% endblock %}
 
+        <h2> Se créer un compte </h2>
+
+        <div class="card-create ">
+            <div class="btn home justify-content-center align-items-center" >
+                <img class="btn-img me-2" src="{{ asset('build/images/noto_man-student.png') }}">
+                <a class="text-decoration-none text-white" href="{{ path('registration_index', {'role': 'etudiant'}) }}">
+                    Etudiant
+                </a>
+            </div>
+            <div class="btn home justify-content-center align-items-center"  >
+                <img class="btn-img me-2" src="{{ asset('build/images/emojione_school.png') }}" >
+                <a  class="text-decoration-none text-white" href="{{ path('registration_index', {'role': 'ecole'}) }}" >
+                    Formation
+                </a>
+            </div>
+            <div class="btn home justify-content-center align-items-center" >
+                <img class="btn-img me-2" src="{{ asset('build/images/emojione_briefcase.png') }}">
+                <a class="text-decoration-none text-white" href="{{ path('registration_index', {'role': 'entreprise'}) }}">
+                    Entreprise
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="card-choice stats">
+        <div class="row">
+            <div class="col">
+                <div class="stat1 d-flex flex-column">
+                    <h2>{{ countStudents|length }}</h2>
+                    <h4>profils d'étudiants</h4>
+                </div>
+            </div>
+            <div class="col">
+                <div class="stat2 d-flex flex-column">
+                    <h2>{{ countApplications|length }}</h2>
+                    <h4>offres publiées</h4>
+                </div>
+            </div>
+            <div class="col">
+                <div class="stat2 d-flex flex-column">
+                    <h2>{{ countCompanies|length }}</h2>
+                    <h4>entreprises inscrites</h4>
+                </div>
+            </div>
+            <div class="col">
+                <div class="stat2 d-flex flex-column">
+                    <h2>{{ signedApplications|length }}</h2>
+                    <h4>conventions signées</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

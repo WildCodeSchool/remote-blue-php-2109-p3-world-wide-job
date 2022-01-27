@@ -1,3 +1,5 @@
 twig:
     default_path: '%kernel.project_dir%/templates'
+    globals:
+        navigation: '@App\Services\NavigationService'
     form_themes: [ 'bootstrap_5_layout.html.twig' ]

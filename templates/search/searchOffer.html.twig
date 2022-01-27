@@ -10,7 +10,7 @@
             {{ form_start(form) }}
         {{ form_widget(form.searchCity) }}
         </div>
-        <div class="filterFieldOfActivity mx-2">
+        <div id="fieldOfActivity" class="filterFieldOfActivity mx-2">
             {{ form_widget(form.searchFieldOfActivity) }}
         </div>
         <div class="filterTypeOfContract me-2">
@@ -25,6 +25,7 @@
     <div class="searchGrid">
         <div class="smallSearchCard">
             {% for offer in offers %}
+                {% if offer.status %}
                 <div class="card rounded shadow smallOffer" id="smallOffer{{ offer.id }}">
                     <div class="card-body smallCard">
                         <div class="jobTitleContainer">
@@ -32,7 +33,9 @@
                         </div>
                         <div class="jobInfoContainer">
                             <div class="jobLogoContainer">
+                                {% if app.user %}
                                 <img class="jobCompanyLogo" src="{{ vich_uploader_asset(offer.company) }}" alt="logo entreprise">
+                                {% endif %}
                             </div>
                             <div class="jobSubInfoContainer">
                                 <h4 class="jobLocation">{{ offer.city }}</h4>
@@ -44,7 +47,7 @@
                                 </h4>
                                 <h5 class="jobDate">{% set difference = date('now').diff(date(offer.dateOfPublication)) %}
                                     {% set left_days = difference.days %}
-                                    Il y à
+                                    Publié il y à
                                     {% if left_days == 1 %}
                                         1 jour
                                     {% else %}
@@ -54,11 +57,14 @@
                         </div>
                     </div>
                 </div>
+                {% endif %}
             {% endfor %}
         </div>
     </div>
+    {% if app.user %}
     <div class="largeSearchCard" id="largeSearchCard">
         {% for offer in offers %}
+            {% if offer.status %}
         <div class="card rounded shadow largeOffer" id="largeOffer{{ offer.id }}">
             <div class="card-body largeCard">
                 <button class="btn-close closeOffer"></button>
@@ -71,14 +77,19 @@
                         {% endif %}
                     {% endfor %}
                 </h3>
-                <button class="btn-primary text-white rounded descApply">Postuler</button>
-                <button class="btn-primary text-white rounded descSave">Enregistrer</button>
+                {% if app.user.student is not empty and offer.isAppliedByStudent(app.user.student) %}
+                    <button class="btn-success text-white rounded descApply">Postulé</button>
+                {% else %}
+                    <a href="{{ path('offer_apply', {'id': offer.id}) }}" data-apply="" class="btn-primary text-white rounded descApply">Postuler</a>
+                {% endif %}
+                <a class="btn-primary text-white rounded descSave" data-favorite="" href="{{ path('offer_favorite', {'id': offer.id}) }}">{{ is_granted('ROLE_STUDENT_COMPLETED') and app.user.student.inFavorite(offer) ? 'Enlever des favoris' : 'Enregistrer' }}
+                </a>
                 <div class="descDetails">Détail de l'offre :</div>
                 <p class="descOffer">{{ offer.longDescription }}
                 </p>
                 <h5 class="descDate">{% set difference = date('now').diff(date(offer.dateOfPublication)) %}
                     {% set left_days = difference.days %}
-                    Il y à
+                    Publié il y à
                     {% if left_days == 1 %}
                         1 jour
                     {% else %}
@@ -86,7 +97,34 @@
                     {% endif %}</h5>
             </div>
         </div>
+            {% endif %}
         {% endfor %}
     </div>
+        {% else %}
+    <div class="largeSearchCard disconnected">
+        <div class="card rounded shadow largeOffer">
+            <div class="card-body largeCard">
+                <button class="btn-close closeOffer"></button>
+                <h3 class="descCompanyName">Entreprise</h3>
+                <h2 class="descJobTitle">Nom de l'offre</h2>
+                <h3 class="descJobLocation">Localisation</h3>
+                <h3 class="descJobType">Type de contrat</h3>
+                <button class="btn-success text-white rounded descApply inactived">Postulé</button>
+                <button class="btn-primary text-white rounded descSave inactived">Enregistrer</button>
+                <div class="descDetails">Détail de l'offre :</div>
+                <p class="descOffer">Description de l'offre détailléeDescription de l'offre détaillée
+                    Description de l'offre détailléeDescription de l'offre détailléeDescription de l'offre détaillée
+                    Description de l'offre détailléeDescription de l'offre détailléeDescription de l'offre détaillée
+                    Description de l'offre détailléeDescription de l'offre détailléeDescription de l'offre détaillée
+                    Description de l'offre détailléeDescription de l'offre détailléeDescription de l'offre détaillée
+                    Description de l'offre détailléeDescription de l'offre détailléeDescription de l'offre détaillée
+                    Description de l'offre détailléeDescription de l'offre détailléeDescription de l'offre détaillée
+                    Description de l'offre détailléeDescription de l'offre détailléeDescription de l'offre détaillée
+                    Description de l'offre détailléeDescription de l'offre détailléeDescription de l'offre détaillée</p>
+                <h5 class="descDate">Il y à x jours</h5>
+            </div>
+        </div>
+    </div>
+    {% endif %}
 </div>
 {% endblock %}

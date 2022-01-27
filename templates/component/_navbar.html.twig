@@ -1,117 +1,81 @@
 {% block header %}
 
-<nav class="navbar-head navbar navbar-expand-lg navbar-light bg-light shadow">
-    <div class="container-fluid">
-        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
-                aria-controls="offcanvasNavbar">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar"
-             aria-labelledby="offcanvasNavbarLabel">
-            <div class="offcanvas-header align-items-start">
-                <img class="image logo ms-auto" src="{{ asset('build/images/logofinal.png') }}" alt=""/>
-                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
-                        aria-label="Close"></button>
-            </div>
-            <div class="offcanvas-body">
-                <ul class="navbar-nav align-items-lg-center w-100">
+    <nav class="navbar-head navbar navbar-expand-lg navbar-light bg-light shadow">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
+                    aria-controls="offcanvasNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar"
+                 aria-labelledby="offcanvasNavbarLabel">
+                <div class="offcanvas-header align-items-start">
+                    <img class="image logo ms-auto" src="{{ asset('build/images/logofinal.png') }}" alt=""/>
+                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+                            aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav align-items-lg-center w-100">
                         <li class="nav-item ms-lg-auto ms-2 mb-3 mb-lg-0">
 
-                            <a class="btn press w-100" href="{{ path('search_offer') }}"> <i class="fas fa-briefcase me-1"></i> Offres</a>
+                            <a class="btn press w-100" href="{{ path('offer_search') }}"> <i class="fas fa-briefcase me-1"></i> Offres</a>
+                        </li>
+                        <li class="nav-item ms-2 h-100 d-lg-none">
+
+                            <a type="button" class="btn press w-100 " href="{{ path('app_logout') }}"><i class="fas fa-sign-out-alt"></i>
+                                Se déconnecter</a>
                         </li>
 
+                        {% if is_granted('ROLE_USER') %}
+                        <li class="nav-item dropdown ms-2 d-none d-lg-block">
+                            <a class="dropdown-toggle btn press w-100" href="#" id="navbarDropdown" role="button"
+                               data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user me-1"></i>
+                                {{ app.user.email }}
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                {% for link in navigation.userLinks %}
+                                    <li class=" text-decoration-none
+                                        {# {{ app.request.pathinfo == path(link.path) ? 'activelink' }} #}">
+                                        <a class="dropdown-item"
+                                           {#@todo get link path #}
+                                           href="{{ link.path }}">{{ link.title }}</a>
+                                    </li>
+                                {% endfor %}
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="{{ path('app_logout') }}"><i class="fas fa-sign-out-alt"></i>
+                                        Se déconnecter</a></li>
+                            </ul>
+                        </li>
+                            {% else %}
+                        <li class="nav-item ms-2 h-100">
+
+                            <a type="button" class="btn press w-100 " href="{{ path('login') }}"> <i
+                                        class="fas fa-user me-1"></i>S'identifier</a>
+                        </li>
+
+                        {% endif %}
+                        <a class="image world" href="{{ path("home") }}"><img class="image world" src="{{ asset('build/images/logofinal.png') }}" alt=""/></a>
+                    </ul>
+
                     {% if is_granted('ROLE_USER') %}
-                    <li class="nav-item ms-2 h-100">
-                        <a type="button" class="btn press w-100 " href="{{ path('app_logout') }}"> <i class="fas fa-user me-1"></i> Se déconnecter</a>
-                    </li>
-                    {% else %}
-                    <li class="nav-item ms-2 h-100">
+                        <hr class="hr-mobile">
+                        <ul class="list-unstyled list-inline nav-contain sidebar-mobile">
+                            <!-- décomenter le twig pour mettre en place les routes -->
+                            <!-- tableau dynamique -->
 
-                        <a type="button" class="btn press w-100 " href="{{ path('login') }}"> <i class="fas fa-user me-1"></i>S'identifier</a>
-                    </li>
+                            {% for link in navigation.userLinks %}
+                                <li class=" text-decoration-none btn-primary text-center text-center
+                                    {{ app.request.pathinfo == link.path ? 'activelink' }}">
+                                    <a class="text-decoration-none "
+                                       href="{{ link.path }}">{{ link.title }}</a>
+                                </li>
+                            {% endfor %}
+
+                        </ul>
+                        <hr class="hr-mobile">
                     {% endif %}
-
-                    <a class="image world" href="{{ path("home") }}"><img class="image world" src="{{ asset('build/images/logofinal.png') }}" alt=""/></a>
-                    </ul>
-
-
-
-                {% if is_granted('ROLE_COMPANY_COMPLETED') %}
-                    <hr class="hr-mobile">
-                    <ul class="list-unstyled list-inline nav-contain sidebar-mobile">
-                        <!-- décomenter le twig pour mettre en place les routes -->
-                        <!-- tableau dynamique -->
-                        {% set links = [
-                            {'title': 'Mon profil entreprise', 'path': '#'},
-                            {'title': 'Créer une offre', 'path': '#'},
-                            {'title': 'Voir mes offres', 'path': '#'},
-                            {'title': 'Consulter mes candidature', 'path': '#'},
-                        ] %}
-                        {% for link in links %}
-                            <li class=" text-decoration-none btn-primary text-center text-center
-                 {# {{ app.request.pathinfo == path(link.path) ? 'activelink' }} #}">
-                                <a class="text-decoration-none "
-                                   href="{# {{ path(link.path) }} #}">{{ link.title }}</a>
-                            </li>
-                        {% endfor %}
-
-
-                    </ul>
-                    <hr class="hr-mobile">
-                {% endif %}
-
-                {% if is_granted('ROLE_SCHOOL_COMPLETED') %}
-                    <hr class="hr-mobile">
-                    <ul class="list-unstyled list-inline nav-contain sidebar-mobile">
-                        <!-- décomenter le twig pour mettre en place les routes -->
-                        <!-- tableau dynamique -->
-                        {% set links = [
-                            {'title': 'Mon profil formation', 'path': '#'},
-                            {'title': 'Liste des étudiants', 'path': '#'},
-                            {'title': 'Suivie de mes étudiants', 'path': '#'},
-                            {'title': 'Mes cursus', 'path': '#'},
-                        ] %}
-                        {% for link in links %}
-                            <li class="text-decoration-none btn-primary text-center
-                 {# {{ app.request.pathinfo == path(link.path) ? 'activelink' }} #}">
-                                <a class="text-decoration-none "
-                                   href="{# {{ path(link.path) }} #}">{{ link.title }}</a>
-                            </li>
-                        {% endfor %}
-
-
-                    </ul>
-                    <hr class="hr-mobile">
-                {% endif %}
-
-                {% if is_granted('ROLE_STUDENT_COMPLETED') %}
-                    <hr class="hr-mobile">
-
-                    <ul class="list-unstyled list-inline nav-contain sidebar-mobile">
-                        <!-- décomenter le twig pour mettre en place les routes -->
-                        <!-- tableau dynamique -->
-                        {% set links = [
-                            {'title': 'Mon profil étudiant', 'path': '#'},
-                            {'title': 'Faire mon CV', 'path': '#'},
-                            {'title': 'Voir mes candidatures', 'path': '#'},
-                            {'title': 'Mes offres favorites', 'path': '#'},
-                        ] %}
-                        {% for link in links %}
-                            <li class="text-decoration-none btn-primary text-center
-                 {# {{ app.request.pathinfo == path(link.path) ? 'activelink' }} #}">
-                                <a class="text-decoration-none"
-                                   href="{# {{ path(link.path) }} #}">{{ link.title }}</a>
-                            </li>
-                        {% endfor %}
-
-
-                    </ul>
-                    <hr class="hr-mobile">
-                {% endif %}
-
-
-
-            </div>
+                </div>
             </div>
         </div>
     </nav>

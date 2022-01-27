@@ -4,6 +4,13 @@ namespace App\Services;
 
 class AdminService
 {
+    public const CONTRACTCV = [
+        'CDI' => 1,
+        'CDD' => 2,
+        'Stage' => 3,
+        'Alternance' => 4
+    ];
+
     public const CONTRACTTYPE = [
         'Alternance 1 an' => 1,
         'Alternance 2 ans' => 2,

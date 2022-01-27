@@ -25,6 +25,7 @@ class FilterOfferType extends AbstractType
             ])
             ->add('searchFieldOfActivity', ChoiceType::class, [
                 'required' => false,
+                'multiple' => true,
                 'placeholder' => "Domaine d'activité",
                 'choices' => AdminService::FIELDOFACTIVITY,
             ])

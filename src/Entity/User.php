@@ -39,11 +39,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private string $password = "";
 
     /**
-     * @Assert\EqualTo(propertyPath="password")
-     */
-    public string $confirmPassword = "";
-
-    /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private ?string $civility;

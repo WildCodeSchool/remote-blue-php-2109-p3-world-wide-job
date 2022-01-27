@@ -95,9 +95,21 @@ class Offer
      */
     private Collection $applications;
 
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private ?bool $status;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Student::class, mappedBy="favorite")
+     * @var ArrayCollection<int, Student>
+     */
+    private Collection $students;
+
     public function __construct()
     {
         $this->applications = new ArrayCollection();
+        $this->students = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -294,6 +306,61 @@ class Offer
     public function removeApplication(Application $application): self
     {
         $this->applications->removeElement($application);
+
+        return $this;
+    }
+
+
+    public function isAppliedByStudent(Student $student): bool
+    {
+        foreach ($this->applications as $application) {
+            if ($application->getStudent() === $student) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public function __sleep()
+    {
+        return [];
+    }
+
+    public function getStatus(): ?bool
+    {
+        return $this->status;
+    }
+
+    public function setStatus(?bool $status): self
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Student[]
+     */
+    public function getStudents(): Collection
+    {
+        return $this->students;
+    }
+
+    public function addStudent(Student $student): self
+    {
+        if (!$this->students->contains($student)) {
+            $this->students[] = $student;
+            $student->addFavorite($this);
+        }
+
+        return $this;
+    }
+
+    public function removeStudent(Student $student): self
+    {
+        if ($this->students->removeElement($student)) {
+            $student->removeFavorite($this);
+        }
 
         return $this;
     }

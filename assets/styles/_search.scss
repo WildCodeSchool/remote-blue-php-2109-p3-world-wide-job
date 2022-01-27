@@ -12,6 +12,15 @@ body::-webkit-scrollbar-thumb {
     border: 3px solid #dfdfdf;
 }
 
+.disconnected {
+    filter: blur(1rem);
+    border: solid 5px;
+}
+
+.inactived {
+    pointer-events: none;
+}
+
 .filterBar {
     position: sticky;
 }
@@ -64,11 +73,19 @@ body::-webkit-scrollbar-thumb {
 .descApply {
     grid-column: 2;
     grid-row: 5;
+    text-decoration: none;
+    max-height: 2rem;
+}
+
+.descApply.applied {
+    background-color: $success;
 }
 
 .descSave {
     grid-column: 4;
     grid-row: 5;
+    text-decoration: none;
+    max-height: 2rem;
 }
 
 .descDetails {
@@ -109,6 +126,7 @@ body::-webkit-scrollbar-thumb {
 .jobLogoContainer {
     width: 40%;
 }
+
 
 .jobLocation {
     margin-top: 1rem;
@@ -281,7 +299,7 @@ body::-webkit-scrollbar-thumb {
         grid-template-rows: 1fr;
         width: 33%;
         position: sticky;
-        top: 135px;
+        top:135px;
         bottom: 1rem;
         align-self: flex-start;
     }
