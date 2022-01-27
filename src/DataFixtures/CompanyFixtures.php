@@ -40,7 +40,8 @@ class CompanyFixtures extends Fixture implements DependentFixtureInterface
                 ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in 
                 voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non 
                 proident, sunt in culpa qui officia deserunt mollit anim id est laborum.')
-                ->setUser($this->getReference('ROLE_COMPANY_COMPLETED_' . $key));
+                ->setUser($this->getReference('ROLE_COMPANY_COMPLETED_' . $key))
+                ->setStatus(true);
             $this->addReference('company_' . $key, $company);
             $manager->persist($company);
         }

@@ -3,7 +3,6 @@
 {% block title %}Edit Company{% endblock %}
  {% block javascripts %}
      {{ parent() }}
-     {{ encore_entry_script_tags('edit') }}
  {% endblock %}
 {% block banner %}
     <img src="{{ asset('build/images/workbanner.jpg') }}" class="profile-banner" alt="profile banner">
@@ -53,11 +52,8 @@
     <div class="d-flex flex-row-reverse  my-3 mx-auto profile-localisation localisation-edit justify-content-start">
         <button class="btn btn-secondary"> Modifier </button>
         {{ form_end(userForm) }}
-        <form method="post" action="{{ path('school_delete', {'slug': school.slug}) }}"
-              onsubmit="return confirm('Voulez vous vraiment supprimer votre compte ?');">
-            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ school.id) }}">
-            <button class="btn btn-supp text-end me-4"><i class="fa fa-trash me-1"></i></button>
-        </form>
+        <a class="text-decoration-none btn btn-secondary"
+           href="{{ path('school_delete', {'slug': school.slug}) }}"> Supprimer mon compte </a>
     </div>
 {% endblock %}
 {% block profileBottom %}
@@ -100,17 +96,4 @@
         </div>
     </div>
     {{ form_end(passwordForm) }}
-
-
-
-
-       {% for category, messages in app.flashes %}
-        {% for message in messages %}
-            <div id="alertEdit" class="alert alert-{{ category }}">
-                <button id="btnEditClose" class="btn-close closeAlert"></button>
-                {{ message }}
-            </div>
-        {% endfor %}
-    {% endfor %}
-
 {% endblock %}

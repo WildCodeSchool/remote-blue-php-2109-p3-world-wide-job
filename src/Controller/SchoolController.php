@@ -72,15 +72,12 @@ class SchoolController extends AbstractController
 
 
     /**
-     * @Route("/{slug}", name="delete", methods={"POST"})
+     * @Route("/{slug}/delete", name="delete")
      */
     public function delete(Request $request, School $school, EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('delete' . $school->getId(), $request->request->get('_token'))) {
-            $entityManager->remove($school);
-            $entityManager->flush();
-        }
-
-        return $this->redirectToRoute('school_show', ['slug' => $school->getSlug()], Response::HTTP_SEE_OTHER);
+        $school->setStatus(false);
+        $entityManager->flush();
+        return $this->redirectToRoute('app_logout', ['slug' => $school->getSlug()], Response::HTTP_SEE_OTHER);
     }
 }

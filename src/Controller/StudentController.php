@@ -70,12 +70,9 @@ class StudentController extends AbstractController
      */
     public function delete(Request $request, Student $student, EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('delete' . $student->getId(), $request->request->get('_token'))) {
-            $entityManager->remove($student);
-            $entityManager->flush();
-        }
-
-        return $this->redirectToRoute('student_index', [], Response::HTTP_SEE_OTHER);
+        $student->setStatus(false);
+        $entityManager->flush();
+        return $this->redirectToRoute('app_logout', ['slug' => $student->getSlug()], Response::HTTP_SEE_OTHER);
     }
 
     /**

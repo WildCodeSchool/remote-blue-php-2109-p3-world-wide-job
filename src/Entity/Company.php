@@ -84,6 +84,11 @@ class Company
      */
     private ?\DateTimeInterface $updatedAt;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private bool $status;
+
     public function __construct()
     {
         $this->offers = new ArrayCollection();
@@ -236,6 +241,18 @@ class Company
     public function setUser(User $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getStatus(): ?bool
+    {
+        return $this->status;
+    }
+
+    public function setStatus(bool $status): self
+    {
+        $this->status = $status;
 
         return $this;
     }
