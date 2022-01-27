@@ -99,7 +99,7 @@ class OfferController extends AbstractController
             'message' => 'Postulat pris en compte', 'isApplied' => null], 200, [], ['groups' => 'application']);
     }
 
-     /**
+    /**
      * @Route("/ajouter", name="new", methods={"GET", "POST"})
      */
     public function new(
@@ -188,18 +188,30 @@ class OfferController extends AbstractController
     public function addToFavorite(
         StudentRepository $studentRepository,
         EntityManagerInterface $entityManager,
-        Offer $offer
+        Offer $offer,
+        Request $request
     ): Response {
         $student = $studentRepository->findOneBy(['user' => $this->getUser()]);
+        $referer = $request->headers->get('referer');
+        $referer = str_replace("http://localhost:8000", "", $referer);
+        $referer = str_replace("https://mumakil-projet3-world-wide-job.phprover.wilders.dev/", "", $referer);
         if ($student->isInFavorite($offer)) {
             $student->removeFavorite($offer);
         } else {
             $student->addFavorite($offer);
         }
         $entityManager->flush();
-
-        return $this->json([
-            'isInFavorite' => $student->isInFavorite($offer),
-        ]);
+        if ($referer == "/etudiant/" . $student->getSlug() . "/favoris") {
+            return $this->redirectToRoute(
+                'student_favorite',
+                ['slug' => $student->getSlug()],
+                Response::HTTP_SEE_OTHER
+            );
+        } else {
+            return $this->json([
+                'isInFavorite' => $student->isInFavorite($offer),
+                'referer' => $referer,
+            ]);
+        }
     }
 }
