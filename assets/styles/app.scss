@@ -18,7 +18,8 @@
 @import "_footer.css";
 @import "_curriculum.css";
 @import "_cv.scss";
-
+@import "_cv1.scss";
+@import "_show-favorite";
 
 body {
     background-color: #d3d3d3;
@@ -27,7 +28,6 @@ body {
     margin: 0;
     background: #E7EFFC;
 }
-
 
 .main-container {
     // marge du contenu principale: 350px car il y a le tableau de bord à gauche
