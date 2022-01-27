@@ -49,21 +49,24 @@ class SchoolController extends AbstractController
 
         if ($schoolForm->isSubmitted() && $schoolForm->isValid()) {
             $entityManager->flush();
+            $this->addFlash('success', 'Votre profil a été modifié');
+        }
 
-            return $this->redirectToRoute('school_show', ['slug' => $school->getSlug()], Response::HTTP_SEE_OTHER);
+        if ($userForm->isSubmitted() && $userForm->isValid()) {
+            $entityManager->flush();
+            $this->addFlash('success', 'Votre profil a été modifié');
         }
 
         if ($passwordForm->isSubmitted() && $passwordForm->isValid()) {
             $entityManager->flush();
-
-            return $this->redirectToRoute('school_show', ['slug' => $school->getSlug()], Response::HTTP_SEE_OTHER);
+            $this->addFlash('success', 'Votre mot de passe a été modifié');
         }
 
         return $this->renderForm('school/edit.html.twig', [
             'school' => $school,
             'form' => $schoolForm,
+            'userFrom' => $userForm,
             'passwordForm' => $passwordForm,
-            'userForm' => $userForm
         ]);
     }
 

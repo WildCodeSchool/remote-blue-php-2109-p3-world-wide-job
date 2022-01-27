@@ -1,7 +1,10 @@
 {% extends 'profile.html.twig' %}
 
 {% block title %}Edit Company{% endblock %}
-
+ {% block javascripts %}
+     {{ parent() }}
+     {{ encore_entry_script_tags('edit') }}
+ {% endblock %}
 {% block banner %}
     {{ form_start(form) }}
     <img src="{{ asset('build/images/workbanner.jpg') }}" class="profile-banner" alt="profile banner">
@@ -72,12 +75,19 @@
 
     </div>
 
-
-
     <form method="post" action="{{ path('school_delete', {'slug': school.slug}) }}"
           onsubmit="return confirm('Voulez vous vraiment supprimer votre compte ?');">
         <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ school.id) }}">
         <button class="btn btn-edit delete-edit text-end"><i class="fa fa-trash me-1"></i></button>
     </form>
+
+       {% for category, messages in app.flashes %}
+        {% for message in messages %}
+            <div id="alertEdit" class="alert alert-{{ category }}">
+                <button id="btnEditClose" class="btn-close closeAlert"></button>
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endfor %}
 
 {% endblock %}
