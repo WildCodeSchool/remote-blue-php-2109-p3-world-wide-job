@@ -1,13 +1,45 @@
 .student-profil {
-    margin-top: 6rem;
-    margin-bottom: 3rem;
-    margin-left: -1rem;
+  margin-top: 6rem;
+  margin-bottom: 3rem;
+  margin-left: -1rem;
 }
 
 .birthday {
-    width: 849px;
+  width: 849px;
 }
 
 .birthday_label {
-    white-space: nowrap;
+  white-space: nowrap;
+}
+
+.alert {
+  position: fixed;
+  background: aliceblue;
+  width: 200px;
+  height: 200px;
+  top: 50%;
+  left: 50%;
+  margin-top: -100px;
+  margin-left: -100px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+}
+
+.closeAlert {
+  align-self: start;
+}
+
+.none {
+  display: none;
+}
+
+.btn-supp {
+border: darkred 2px solid;
+  border-radius: 5px;
+}
+
+.btn-supp:hover {
+ background: darkred;
+  opacity: 0.8;
 }
