@@ -61,7 +61,7 @@ class Curriculum
     private Student $student;
 
     /**
-     * @ORM\OneToMany(targetEntity=Experience::class, mappedBy="cv", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity=Experience::class, mappedBy="curriculum", cascade={"persist"})
      */
     private Collection $experiences;
 
