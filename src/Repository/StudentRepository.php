@@ -61,7 +61,7 @@ class StudentRepository extends ServiceEntityRepository
      * @param School $school
      * @return float|int|mixed|string
      */
-    public function findAllCandidate(School $school)
+    public function findbyAllCandidate(School $school)
     {
         $query = $this->createQueryBuilder('s')
             ->where('s.school = :school')
