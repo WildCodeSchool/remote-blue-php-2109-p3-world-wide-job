@@ -155,7 +155,7 @@ class CompanyController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/delete", name="delete", methods={"POST"})
+     * @Route("/{slug}/delete", name="delete", methods={"POST"})
      */
     public function delete(Request $request, Company $company, EntityManagerInterface $entityManager): Response
     {
