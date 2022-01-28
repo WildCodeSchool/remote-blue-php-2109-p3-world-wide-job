@@ -142,6 +142,9 @@
     "jakub-onderka/php-console-color": {
         "version": "v0.2"
     },
+    "jms/metadata": {
+        "version": "2.6.1"
+    },
     "laminas/laminas-code": {
         "version": "4.2.2"
     },
@@ -598,6 +601,9 @@
     },
     "symfony/twig-pack": {
         "version": "v1.0.1"
+    },
+    "symfony/ux-swup": {
+        "version": "v2.0.1"
     },
     "symfony/validator": {
         "version": "4.3",

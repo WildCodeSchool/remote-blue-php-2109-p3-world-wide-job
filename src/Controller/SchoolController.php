@@ -34,6 +34,7 @@ class SchoolController extends AbstractController
     }
 
     /**
+<<<<<<< HEAD
      * @Route("/{slug}/edit", name="edit", methods={"GET", "POST"})
      */
     public function edit(Request $request, School $school, EntityManagerInterface $entityManager): Response
@@ -80,4 +81,16 @@ class SchoolController extends AbstractController
         $entityManager->flush();
         return $this->redirectToRoute('app_logout', ['slug' => $school->getSlug()], Response::HTTP_SEE_OTHER);
     }
-}
+
+    /**
+     * @Route("/{slug}/suivi", name="suivi_show")
+     * @return Response
+     */
+    public function studentFollow(School $school, StudentRepository $studentRepository): Response
+    {
+        $candidate = $studentRepository->findbyAllCandidate($school);
+        return $this->render('school/suivi_show.html.twig', [
+            'candidate' => $candidate
+        ]);
+    }
+

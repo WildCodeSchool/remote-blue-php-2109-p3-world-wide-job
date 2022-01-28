@@ -10,26 +10,6 @@ class NavigationService
     public const ROLE_NOT_COMPLETED = [
         ['title' => 'Terminer mon inscription', 'path' => 'redirection'],
     ];
-//    public const COMPANY_COMPLETED = [
-//        ['title' => 'Mon profil entreprise', 'path' => 'company_show'],
-//        ['title' => 'Créer une offre', 'path' => 'company_show'],
-//        ['title' => 'Voir mes offres', 'path' => 'company_show'],
-//        ['title' => 'Consulter mes candidature', 'path' => 'company_show'],
-//    ];
-
-//    public const SCHOOL_COMPLETED = [
-//        ['title' => 'Mon profil formation', 'path' => 'school_show'],
-//        ['title' => 'Liste des étudiants', 'path' => 'school_show'],
-//        ['title' => 'Suivie de mes étudiants', 'path' => 'school_show'],
-//        ['title' => 'Mes cursus', 'path' => 'school_show'],
-//    ];
-
-//    public const STUDENT_COMPLETED = [
-//        ['title' => 'Mon profil étudiant', 'path' => 'student_show'],
-//        ['title' => 'Faire mon CV', 'path' => 'curriculum'],
-//        ['title' => 'Voir mes candidatures', 'path' => 'student_show'],
-//        ['title' => 'Mes offres favorites', 'path' => 'student_show'],
-//    ];
 
     private Security $security;
     private UrlGeneratorInterface $urlGenerator;
@@ -60,7 +40,7 @@ class NavigationService
                 ['title' => 'Voir mes candidatures', 'path' => $this->urlGenerator
                     ->generate('student_show', ['slug' => $this->userService->getSlug()])],
                 ['title' => 'Mes offres favorites', 'path' => $this->urlGenerator
-                    ->generate('student_show', ['slug' => $this->userService->getSlug()])],
+                    ->generate('student_favorite', ['slug' => $this->userService->getSlug()])],
             ];
         }
         if ($this->security->isGranted('ROLE_COMPANY_COMPLETED')) {
@@ -76,10 +56,10 @@ class NavigationService
         }
         if ($this->security->isGranted('ROLE_SCHOOL_COMPLETED')) {
             return [
-                ['title' => 'Mon profil étudiant', 'path' => $this->generateUrl('user_home')],
-                ['title' => 'Faire mon CV', 'path' => 'curriculum'],
-                ['title' => 'Voir mes candidatures', 'path' => 'student_show'],
-                ['title' => 'Mes offres favorites', 'path' => 'student_show'],
+                ['title' => 'Mon profil formation', 'path' => $this->generateUrl('user_home')],
+                ['title' => 'List des étudiants', 'path' => $this->generateUrl('user_home')],
+                ['title' => 'Suivi des candidatures', 'path' => $this->urlGenerator
+                    ->generate('school_suivi_show', ['slug' => $this->userService->getSlug()])],
             ];
         }
 
