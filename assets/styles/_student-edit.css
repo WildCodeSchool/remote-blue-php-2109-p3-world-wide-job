@@ -12,20 +12,6 @@
   white-space: nowrap;
 }
 
-.alert {
-  position: fixed;
-  background: aliceblue;
-  width: 200px;
-  height: 200px;
-  top: 50%;
-  left: 50%;
-  margin-top: -100px;
-  margin-left: -100px;
-  text-align: center;
-  display: flex;
-  align-items: center;
-}
-
 .closeAlert {
   align-self: start;
 }
