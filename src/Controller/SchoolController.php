@@ -78,6 +78,6 @@ class SchoolController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('schooll_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('index', [], Response::HTTP_SEE_OTHER);
     }
 }
