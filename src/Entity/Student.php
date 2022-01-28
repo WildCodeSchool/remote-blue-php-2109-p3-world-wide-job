@@ -7,6 +7,7 @@ use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -14,7 +15,9 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity(repositoryClass=StudentRepository::class)
+ * @UniqueEntity(fields={"username"}, message="Nom utilisateur déja utilisé")
  * @Vich\Uploadable
+ * @UniqueEntity(fields={"username"}, message="Votre nom utilisateur doit étre unique")
  */
 class Student
 {
@@ -85,7 +88,8 @@ class Student
     private ?string $slug;
 
     /**
-     * @ORM\Column(type="string", length=255, unique=true, nullable=true)
+     * @ORM\Column(name="username", type="string", length=255, nullable=true, unique=true)
+     *
      */
     private string $username;
 
@@ -94,10 +98,22 @@ class Student
      */
     private ?string $description;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Offer::class, inversedBy="students")
+     * @var ArrayCollection<int, Offer>
+     */
+    private Collection $favorite;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private bool $status;
+
     public function __construct()
     {
         $this->degree = new ArrayCollection();
         $this->applications = new ArrayCollection();
+        $this->favorite = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -283,8 +299,54 @@ class Student
 
         return $this;
     }
+
     public function __sleep()
     {
         return [];
+    }
+
+    /**
+     * @return Collection|Offer[]
+     */
+    public function getFavorite(): Collection
+    {
+        return $this->favorite;
+    }
+
+    public function addFavorite(Offer $favorite): self
+    {
+        if (!$this->favorite->contains($favorite)) {
+            $this->favorite[] = $favorite;
+        }
+
+        return $this;
+    }
+
+    public function removeFavorite(Offer $favorite): self
+    {
+        $this->favorite->removeElement($favorite);
+
+        return $this;
+    }
+
+    public function isInFavorite(Offer $offer): bool
+    {
+        if ($this->getFavorite()->contains($offer)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function getStatus(): ?bool
+    {
+        return $this->status;
+    }
+
+    public function setStatus(bool $status): self
+    {
+        $this->status = $status;
+
+        return $this;
     }
 }

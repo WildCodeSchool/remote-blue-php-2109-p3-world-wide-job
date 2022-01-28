@@ -1,0 +1,29 @@
+.main-nav {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  padding: 1rem;
+  width: $nav-width;
+  display: flex;
+  flex-direction: column;
+  background-color: $dark;
+  color: $white;
+  z-index: 1000;
+  @include media-breakpoint-down(lg) {
+    width: 100vw;
+    transform: translateX(-100%);
+    transition: transform .4s ease;
+    &.opened {
+      transform: translateX(0);
+    }
+  }
+  .close-main-nav {
+    display: none;
+    @include media-breakpoint-down(lg) {
+      display: block;
+    }
+    position: absolute;
+    top: .5rem;
+    right: .25rem;
+  }
+}

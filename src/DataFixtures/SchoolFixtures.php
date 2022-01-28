@@ -39,7 +39,8 @@ class SchoolFixtures extends Fixture implements DependentFixtureInterface
                 voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non 
                 proident, sunt in culpa qui officia deserunt mollit anim id est laborum.')
                 ->setType(rand(1, 9))
-                ->setUser($this->getReference('ROLE_SCHOOL_COMPLETED_' . $key));
+                ->setUser($this->getReference('ROLE_SCHOOL_COMPLETED_' . $key))
+                ->setStatus(true);
             $this->addReference('school_' . $key, $school);
             $manager->persist($school);
         }

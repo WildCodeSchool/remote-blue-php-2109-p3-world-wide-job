@@ -85,6 +85,11 @@ class School
      */
     private ?\DateTimeInterface $updatedAt;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private bool $status;
+
     public function __sleep()
     {
         return [];
@@ -250,6 +255,18 @@ class School
     public function setSlug(string $slug): self
     {
         $this->slug = $slug;
+
+        return $this;
+    }
+
+    public function getStatus(): ?bool
+    {
+        return $this->status;
+    }
+
+    public function setStatus(bool $status): self
+    {
+        $this->status = $status;
 
         return $this;
     }

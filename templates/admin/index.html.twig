@@ -1,0 +1,23 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Administration du site{% endblock %}
+
+{% block body %}
+<div class="bg-light p-4 mb-4 text-center">
+    <h1>Bienvenue sur votre interface de gestion</h1>
+    <p>Accédez directement aux pages d'administration grâce aux liens ci-dessous.</p>
+</div>
+<div class="grid-wrapper">
+    {% set links = [
+        {'title': 'Statistiques', 'path': 'admin_statistic_index'},
+        {'title': 'Étudiants', 'path': 'admin_student_index'},
+        {'title': 'Centres de formations', 'path': 'admin_school_index'},
+        {'title': 'Sociétés', 'path': 'admin_company_index'},
+    ] %}
+    {% for link in links %}
+    <div class="">
+        <a href="{{ path(link.path) }}" class="btn btn-primary d-block p-4 text-uppercase">{{ link.title }}</a>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

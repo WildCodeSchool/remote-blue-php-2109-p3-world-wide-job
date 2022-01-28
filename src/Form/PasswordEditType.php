@@ -25,22 +25,21 @@ class PasswordEditType extends AbstractType
         $builder
             ->add('plainPassword', RepeatedType::class, [
                 'type' => PasswordType::class,
-
                 'mapped' => false,
                 'attr' => ['autocomplete' => 'new-password'],
                 'options' => ['attr' => ['class' => 'password-field']],
                 'required' => true,
-                'first_options'  => ['label' => 'Mot de passe'],
+                'first_options'  => ['label' => 'Votre mot de passe'],
                 'second_options' => ['label' => 'Confirmer mot de passe'],
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Entrez votre mot de passe',
+                        'message' => 'Entrer votre mot de passe',
                     ]),
                     new Length([
                         'min' => 6,
-                        'minMessage' => 'Votre mot de passe doit au moins faire {{ limit }} characters minimum',
+                        'minMessage' => 'Votre mot de pass doit faire au moins {{ limit }} characters minimum',
                         // max length allowed by Symfony for security reasons
-                        'max' => 4096,
+                        'max' => 4097,
                     ]),
                 ],
             ]);

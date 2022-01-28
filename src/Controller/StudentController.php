@@ -8,6 +8,7 @@ use App\Form\PasswordEditType;
 use App\Form\RegistrationFormType;
 use App\Form\StudentType;
 use App\Form\UserEditType;
+use App\Services\AdminService;
 use App\Repository\ApplicationRepository;
 use App\Repository\OfferRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -15,6 +16,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 /**
  * @Route("/etudiant", name="student_")
@@ -26,8 +28,10 @@ class StudentController extends AbstractController
      */
     public function show(Student $student): Response
     {
-        return $this->render('student/applications.html.twig', [
+        $contractCv = AdminService::CONTRACTCV;
+        return $this->render('student/show.html.twig', [
             'student' => $student,
+            'contract' => $contractCv,
         ]);
     }
 
@@ -36,6 +40,9 @@ class StudentController extends AbstractController
      */
     public function edit(Request $request, Student $student, EntityManagerInterface $entityManager): Response
     {
+        if (!($this->getUser() == $student->getUser())) {
+            throw new AccessDeniedException('Seul ' . $student->getUsername() . ' peut modifier son profil.');
+        }
         $studentForm = $this->createForm(StudentType::class, $student);
         $studentForm->handleRequest($request);
 
@@ -46,15 +53,20 @@ class StudentController extends AbstractController
         $userForm->handleRequest($request);
 
         if ($studentForm->isSubmitted() && $studentForm->isValid()) {
+            $student->setSlug($student->getUsername());
             $entityManager->flush();
-
-            return $this->redirectToRoute('student_show', ['slug' => $student->getSlug()], Response::HTTP_SEE_OTHER);
+            $this->addFlash('success', 'Votre profil a été modifié');
         }
+
+        if ($userForm->isSubmitted() && $userForm->isValid()) {
+            $entityManager->flush();
+            $this->addFlash('success', 'Votre profil a été modifié');
+        }
+
 
         if ($passwordForm->isSubmitted() && $passwordForm->isValid()) {
             $entityManager->flush();
-
-            return $this->redirectToRoute('student_edit', ['slug' => $student->getSlug()], Response::HTTP_SEE_OTHER);
+            $this->addFlash('success', 'Votre profil a été modifié');
         }
 
         return $this->renderForm('student/edit.html.twig', [
@@ -70,12 +82,19 @@ class StudentController extends AbstractController
      */
     public function delete(Request $request, Student $student, EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('delete' . $student->getId(), $request->request->get('_token'))) {
-            $entityManager->remove($student);
-            $entityManager->flush();
-        }
+        $student->setStatus(false);
+        $entityManager->flush();
+        return $this->redirectToRoute('app_logout', ['slug' => $student->getSlug()], Response::HTTP_SEE_OTHER);
+    }
 
-        return $this->redirectToRoute('student_index', [], Response::HTTP_SEE_OTHER);
+    /**
+     * @Route("/{slug}/favoris", name="favorite")
+     */
+    public function showFavorite(Student $student): Response
+    {
+        return $this->render('favorite/favorite_show.html.twig', [
+            'student' => $student,
+        ]);
     }
 
     /**

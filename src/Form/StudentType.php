@@ -29,13 +29,13 @@ class StudentType extends AbstractType
                 'download_uri' => true, // not mandatory, default is true
             ])
             ->add('ine', TextType::class, [
-                'label' => "INE :"
+                'label' => "INE :",
             ])
             ->add('username', TextType::class, [
-                'label' => "Pseudo :"
+                'label' => "Pseudo :",
             ])
             ->add('description', TextareaType::class, [
-                'label' => "INE :"
+                'label' => "INE :",
             ])
             ->add('school', EntityType::class, [
                 "class" => School::class,

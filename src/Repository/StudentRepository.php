@@ -58,6 +58,24 @@ class StudentRepository extends ServiceEntityRepository
         return $query->getQuery()->getResult();
     }
 
+    /**
+     * @param School $school
+     * @return float|int|mixed|string
+     */
+    public function findbyAllCandidate(School $school)
+    {
+        $query = $this->createQueryBuilder('s')
+            ->where('s.school = :school')
+            ->setParameter('school', $school)
+            ->leftJoin('s.user', 'u')
+            ->leftJoin('s.applications', 'a')
+            ->orderBy('u.firstname', 'ASC')
+        ;
+
+        // returns an array of Product objects
+        return $query->getQuery()->getResult();
+    }
+
     // /**
     //  * @return Student[] Returns an array of Student objects
     //  */

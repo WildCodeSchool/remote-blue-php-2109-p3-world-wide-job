@@ -45,11 +45,31 @@ class UserFixtures extends Fixture
                     ->setAdress2('bis terrain du moulin')
                     ->setCity('Saint Siméon de Bressieux')
                     ->setZip('38870')
-                    ->setCountry('France');
+                    ->setCountry('France')
+                    ->setLastConnection();
                 $this->addReference($role['role'] . '_' . $i, $user);
                 $manager->persist($user);
             };
+            $user = new User();
+            $user->setEmail('admin@gmail.com');
+            $hashedPassword = $this->passwordHasher->hashPassword(
+                $user,
+                'admin'
+            );
         };
+        $user->setPassword($hashedPassword)
+            ->setRoles(['ROLE_ADMIN'])
+            ->setCivility('Monsieur')
+            ->setFirstName('Jean')
+            ->setLastname('Dupont')
+            ->setBirthdate(new DateTime('2002-10-12'))
+            ->setPhone(0665575533)
+            ->setAdress1('333 rue de la gerla')
+            ->setAdress2('bis terrain du moulin')
+            ->setCity('Saint Siméon de Bressieux')
+            ->setZip('38870')
+            ->setCountry('France');
+        $manager->persist($user);
         $manager->flush();
     }
 }
