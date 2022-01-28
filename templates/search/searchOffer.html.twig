@@ -68,7 +68,8 @@
         <div class="card rounded shadow largeOffer" id="largeOffer{{ offer.id }}">
             <div class="card-body largeCard">
                 <button class="btn-close closeOffer"></button>
-                <h3 class="descCompanyName">{{ offer.company.companyName }}</h3>
+                <h3 class="descCompanyName">{{ offer.company.companyName }} <br>
+                    <a href="{{ path('company_show', {'slug': offer.company.slug}) }}">Voir le profil</a></h3>
                 <h2 class="descJobTitle">{{ offer.name }}</h2>
                 <h3 class="descJobLocation">{{ offer.city }}</h3>
                 <h3 class="descJobType">{% for key, value in typeOfContract %}

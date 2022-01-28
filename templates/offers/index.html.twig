@@ -5,6 +5,7 @@
     {{ encore_entry_script_tags('search') }}
 {% endblock %}
 {% block body %}
+    {% if company.offers|length > 1 %}
 <div class="searchContainer">
     <div class="searchGrid">
         <div class="smallSearchCard">
@@ -83,4 +84,7 @@
         {% endfor %}
     </div>
 </div>
+    {% else %}
+        <h2 class="profile-no-offer text-center">Vous n'avez pas d'offres actives</h2>
+    {% endif %}
 {% endblock %}
