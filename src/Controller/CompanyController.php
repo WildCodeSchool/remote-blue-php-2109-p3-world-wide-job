@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-use App\Entity\Application;
 use App\Entity\Company;
 use App\Entity\Offer;
 use App\Entity\School;
@@ -11,13 +10,11 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\SearchType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
-use App\Entity\Student;
 use App\Form\FilterCandidature;
 use App\Repository\ApplicationRepository;
 use App\Form\CompanyType;
 use App\Form\PasswordEditType;
 use App\Form\UserEditType;
-use App\Repository\CompanyRepository;
 use App\Repository\OfferRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -126,6 +123,7 @@ class CompanyController extends AbstractController
         $companyForm = $this->createForm(CompanyType::class, $company);
         $companyForm->handleRequest($request);
 
+
         $userForm = $this->createForm(UserEditType::class, $company->getUser());
         $userForm->handleRequest($request);
 
@@ -134,14 +132,17 @@ class CompanyController extends AbstractController
 
         if ($companyForm->isSubmitted() && $companyForm->isValid()) {
             $entityManager->flush();
+            $this->addFlash('success', 'Votre profil a été modifié');
+        }
 
-            return $this->redirectToRoute('company_show', ['slug' => $company->getSlug() ], Response::HTTP_SEE_OTHER);
+        if ($userForm->isSubmitted() && $userForm->isValid()) {
+            $entityManager->flush();
+            $this->addFlash('success', 'Votre profil a été modifié');
         }
 
         if ($passwordForm->isSubmitted() && $passwordForm->isValid()) {
             $entityManager->flush();
-
-            return $this->redirectToRoute('company_show', ['slug' => $company->getSlug() ], Response::HTTP_SEE_OTHER);
+            $this->addFlash('success', 'Votre mot de passe a été modifié');
         }
 
 
@@ -154,7 +155,7 @@ class CompanyController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/delete", name="delete", methods={"POST"})
+     * @Route("/{slug}/delete", name="delete", methods={"POST"})
      */
     public function delete(Request $request, Company $company, EntityManagerInterface $entityManager): Response
     {

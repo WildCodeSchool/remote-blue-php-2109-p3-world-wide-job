@@ -50,15 +50,20 @@ class StudentController extends AbstractController
         $userForm->handleRequest($request);
 
         if ($studentForm->isSubmitted() && $studentForm->isValid()) {
+            $student->setSlug($student->getUsername());
             $entityManager->flush();
-
-            return $this->redirectToRoute('student_show', ['slug' => $student->getSlug()], Response::HTTP_SEE_OTHER);
+            $this->addFlash('success', 'Votre profil a été modifié');
         }
+
+        if ($userForm->isSubmitted() && $userForm->isValid()) {
+            $entityManager->flush();
+            $this->addFlash('success', 'Votre profil a été modifié');
+        }
+
 
         if ($passwordForm->isSubmitted() && $passwordForm->isValid()) {
             $entityManager->flush();
-
-            return $this->redirectToRoute('student_edit', ['slug' => $student->getSlug()], Response::HTTP_SEE_OTHER);
+            $this->addFlash('success', 'Votre profil a été modifié');
         }
 
         return $this->renderForm('student/edit.html.twig', [
