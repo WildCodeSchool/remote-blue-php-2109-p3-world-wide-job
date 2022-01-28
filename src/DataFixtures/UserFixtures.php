@@ -45,7 +45,8 @@ class UserFixtures extends Fixture
                     ->setAdress2('bis terrain du moulin')
                     ->setCity('Saint Siméon de Bressieux')
                     ->setZip('38870')
-                    ->setCountry('France');
+                    ->setCountry('France')
+                    ->setLastConnection();
                 $this->addReference($role['role'] . '_' . $i, $user);
                 $manager->persist($user);
             };

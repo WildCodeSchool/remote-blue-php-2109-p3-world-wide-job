@@ -2,18 +2,16 @@
 
 namespace App\Controller;
 
-use App\Repository\CompanyRepository;
-use App\Repository\SchoolRepository;
-use App\Repository\StudentRepository;
 use App\Services\NavigationService;
 use App\Services\UserService;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use Symfony\Component\Routing\Annotation\Route;
 
 class LoginController extends AbstractController
 {
@@ -66,10 +64,15 @@ class LoginController extends AbstractController
     public function redirected(
         Security $security,
         UrlGeneratorInterface $urlGenerator,
-        CompanyRepository $companyRepository,
-        SchoolRepository $schoolRepository,
-        StudentRepository $studentRepository
+        EntityManagerInterface $manager
     ): RedirectResponse {
+
+        $logUser = $this->getUser();
+        if ($logUser) {
+            $logUser->setLastConnection();
+            $manager->flush();
+        }
+
         if (
             $security->isGranted('ROLE_STUDENT')
         ) {
