@@ -21,16 +21,13 @@ RUN composer install \
 #
 # Stage 2 - Prep App's Frontend CSS & JS
 #
-FROM node:14-alpine as frontend
-
-COPY package.json webpack.config.js yarn.lock /app/
-COPY ./assets/ /app/assets/
-
-
-WORKDIR /app
-
-RUN yarn install --silent \
-    && yarn encore production
+#FROM node:14-alpine as frontend
+#COPY --from=vendor /app/vendor ./vendor
+#COPY package.json webpack.config.js yarn.lock ./
+#COPY ./assets/ ./assets/
+#
+#RUN yarn install --silent \
+#    && yarn encore production
 
 
 # end Stage 2 #
@@ -42,14 +39,19 @@ FROM php:8.0-fpm-alpine as phpserver
 
 # add cli tools
 RUN apk update \
-    && apk upgrade \    
+    && apk upgrade \
     && apk add nginx
 
-    
+RUN apk add --no-cache \
+      libzip-dev \
+      zip \
+    && docker-php-ext-install zip
+
 # silently install 'docker-php-ext-install' extensions
 RUN set -x
 
 RUN docker-php-ext-install pdo_mysql bcmath > /dev/null
+
 
 COPY nginx.conf /etc/nginx/nginx.conf
 
@@ -60,7 +62,15 @@ WORKDIR /var/www
 
 COPY . /var/www/
 COPY --from=vendor /app/vendor /var/www/vendor
-COPY --from=frontend /app/public/build /var/www/public/build
+RUN apk add nodejs
+RUN apk add npm
+RUN npm install npm@latest -g
+RUN npm install yarn@latest -g
+RUN node -v
+RUN npm -v
+RUN yarn install
+RUN yarn run build
+#COPY --from=frontend /app/public/build /var/www/public/build
 
 ##RUN mkdir /var/www/var
 ##RUN chown -R www-data:www-data /var/www/var
