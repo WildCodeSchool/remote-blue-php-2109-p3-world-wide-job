@@ -31,10 +31,13 @@
     <a class="btn btn-edit update-edit text-end" style="padding: 10px" href="{{ path('company_edit', {'slug': student.slug}) }}"> <i class="fas fa-pen me-1"></i> </a>
     {% endif %}
 {% endblock %}
+
 {% block profileBottom %}
     {% if student.curriculum %}
-        {% include 'student/cv/_cv1.html.twig' %}
-        {% elseif app.user == student.user %}
+        <div class="student-cv-container d-flex justify-content-center">
+            {% include 'student/_cv.html.twig' %}
+        </div>
+        {% else %}
         <h3 class="text-center">Vous n'avez pas encore de cv, vous pouvez le créer <a href="{{ path('curriculum') }}">ici</a></h3>
     {% endif %}
 {% endblock %}
