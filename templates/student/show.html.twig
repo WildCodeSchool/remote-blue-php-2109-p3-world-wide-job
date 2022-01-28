@@ -32,7 +32,8 @@
 {% block profileBottom %}
     {% if student.curriculum %}
         {% include 'student/cv/_cv1.html.twig' %}
+        <h3 class="text-center mt-2">Si vous souhaitez remplacer votre cv, ça se passe <a href="{{ path('curriculum') }}">ici</a></h3>
         {% else %}
-        <h3 class="text-center">Vous n'avez pas encore de cv, vous pouvez le créer <a href="{{ path('curriculum') }}">ici</a></h3>
+        <h3 class="text-center mt-5">Vous n'avez pas encore de cv, vous pouvez le créer <a href="{{ path('curriculum') }}">ici</a></h3>
     {% endif %}
 {% endblock %}
