@@ -25,11 +25,12 @@
             <td><img class="profile_school" src="{{ vich_uploader_asset(candidate) }}"></td>
             <td>{% set difference = date('now').diff(date(candidate.user.lastConnection)) %}
                 {% set left_days = difference.days %}
-                Connecté il y à
                 {% if left_days == 1 %}
-                    1 jour
+                    il y a 1 jour
+                {% elseif left_days == 0 %}
+                    aujourd'hui
                 {% else %}
-                    {{ left_days }} jours
+                   il y a  {{ left_days }} jours
                 {% endif %}</td>
             <td>{{ candidate.applications|length }} Candidature </td>
             <td>

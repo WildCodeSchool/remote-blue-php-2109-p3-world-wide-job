@@ -56,10 +56,10 @@ class NavigationService
         }
         if ($this->security->isGranted('ROLE_SCHOOL_COMPLETED')) {
             return [
-                ['title' => 'Mon profil étudiant', 'path' => $this->generateUrl('user_home')],
-                ['title' => 'Faire mon CV', 'path' => 'curriculum'],
-                ['title' => 'Voir mes candidatures', 'path' => 'student_show'],
-                ['title' => 'Mes offres favorites', 'path' => 'student_favorite'],
+                ['title' => 'Mon profil formation', 'path' => $this->generateUrl('user_home')],
+                ['title' => 'List des étudiants', 'path' => $this->generateUrl('user_home')],
+                ['title' => 'Suivi des candidatures', 'path' => $this->urlGenerator
+                    ->generate('school_suivi_show', ['slug' => $this->userService->getSlug()])],
             ];
         }
 

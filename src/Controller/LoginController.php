@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Services\NavigationService;
 use App\Services\UserService;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
@@ -62,12 +63,14 @@ class LoginController extends AbstractController
      */
     public function redirected(
         Security $security,
-        UrlGeneratorInterface $urlGenerator
+        UrlGeneratorInterface $urlGenerator,
+        EntityManagerInterface $manager
     ): RedirectResponse {
 
         $logUser = $this->getUser();
         if ($logUser) {
             $logUser->setLastConnection();
+            $manager->flush();
         }
 
         if (
