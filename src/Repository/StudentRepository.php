@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Application;
+use App\Entity\Offer;
 use App\Entity\School;
 use App\Entity\Student;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;

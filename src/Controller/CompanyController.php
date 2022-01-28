@@ -101,7 +101,7 @@ class CompanyController extends AbstractController
     {
         $applications = $offerRepository->findAllCountApplications($company);
 
-        return $this->render('company/show.html.twig', [
+        return $this->render('company/applications.html.twig', [
             'company' => $company,
             'applications' => $applications
         ]);
@@ -112,7 +112,7 @@ class CompanyController extends AbstractController
      */
     public function index(Company $company): Response
     {
-        return $this->render('offers/index.html.twig', [
+        return $this->render('offers/applications.html.twig', [
             'company' => $company
         ]);
     }

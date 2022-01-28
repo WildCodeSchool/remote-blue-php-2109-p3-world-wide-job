@@ -172,22 +172,21 @@ class ApplicationRepository extends ServiceEntityRepository
         return $query->getQuery()->getResult();
     }
 
-    // /**
-    //  * @return Application[] Returns an array of Application objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    /**
+     * @param Student $student
+     * @return float|int|mixed|string
+     */
+    public function findByStudent(Student $student)
     {
-        return $this->createQueryBuilder('a')
-            ->andWhere('a.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('a.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
+        $query = $this->createQueryBuilder('a')
+            ->where('a.student = :student')
+            ->setParameter('student', $student)
+            ->Join('a.offer', 'o')
+            ->addSelect('o');
+
+        // returns an array of Product objects
+        return $query->getQuery()->getResult();
     }
-    */
 
     /*
     public function findOneBySomeField($value): ?Application

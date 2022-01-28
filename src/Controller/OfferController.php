@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Application;
 use App\Entity\Offer;
 use App\Entity\Company;
+use App\Entity\Student;
 use App\Form\OfferType;
 use App\Repository\CompanyRepository;
 use DateTime;
@@ -181,4 +182,14 @@ class OfferController extends AbstractController
         $company = $companyRepository->findOneBy(['user' => $this->getUser()]);
         return $this->redirectToRoute('company_index', ['slug' => $company->getSlug()], Response::HTTP_SEE_OTHER);
     }
+
+   /* /**
+     * @Route("/{slug}/applications", name="application")
+     */
+    /*public function applications(Offer $offer): Response
+    {
+        return $this->render('student/applications.html.twig', [
+            'offer' => $offer,
+        ]);
+    }*/
 }
