@@ -34,7 +34,7 @@ class SchoolController extends AbstractController
     }
 
     /**
-<<<<<<< HEAD
+     * <<<<<<< HEAD
      * @Route("/{slug}/edit", name="edit", methods={"GET", "POST"})
      */
     public function edit(Request $request, School $school, EntityManagerInterface $entityManager): Response
@@ -93,4 +93,4 @@ class SchoolController extends AbstractController
             'candidate' => $candidate
         ]);
     }
-
+}
