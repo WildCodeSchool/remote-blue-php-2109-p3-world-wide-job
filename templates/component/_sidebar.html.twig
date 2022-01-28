@@ -2,12 +2,14 @@
     <div class="pt-3 sidebar-container position-fixed ">
         {% if is_granted('ROLE_USER') == false %}
             Vous n'étes pas connecté.
-
         {% else %}
-            <div class="img-profil "
-                 style="background-image: url(https://thispersondoesnotexist.com/image);">
-            </div>
-
+            {% if app.user.student %}
+                <img src="{{ vich_uploader_asset(app.user.student) }}" class="img-profil" alt="">
+                {% elseif app.user.school %}
+                    <img src="{{ vich_uploader_asset(app.user.school) }}" class="img-profil" alt="">
+                    {% elseif app.user.company %}
+                        <img src="{{ vich_uploader_asset(app.user.company) }}" class="img-profil" alt="">
+            {% endif %}
             <ul class="list-unstyled list-inline nav-contain">
                 <!-- décomenter le twig pour mettre en place les routes -->
                 <!-- tableau dynamique -->
@@ -18,11 +20,7 @@
                            href="{{ link.path }}">{{ link.title }}</a>
                     </li>
                 {% endfor %}
-
             </ul>
-
         {% endif %}
-
-
     </div>
 {% endblock %}

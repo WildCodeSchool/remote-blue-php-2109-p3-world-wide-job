@@ -27,7 +27,9 @@
         <h3>Présentation</h3>
         <p>{{ student.description }}</p>
     </div>
+    {% if app.user == student.user %}
     <a class="btn btn-edit update-edit text-end" style="padding: 10px" href="{{ path('company_edit', {'slug': student.slug}) }}"> <i class="fas fa-pen me-1"></i> </a>
+    {% endif %}
 {% endblock %}
 
 {% block profileBottom %}

@@ -13,6 +13,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 /**
  * @Route("/etudiant", name="student_")
@@ -36,6 +37,9 @@ class StudentController extends AbstractController
      */
     public function edit(Request $request, Student $student, EntityManagerInterface $entityManager): Response
     {
+        if (!($this->getUser() == $student->getUser())) {
+            throw new AccessDeniedException('Seul ' . $student->getUsername() . ' peut modifier son profil.');
+        }
         $studentForm = $this->createForm(StudentType::class, $student);
         $studentForm->handleRequest($request);
 
