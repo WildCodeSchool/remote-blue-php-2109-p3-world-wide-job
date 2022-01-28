@@ -25,7 +25,6 @@ class PasswordEditType extends AbstractType
         $builder
             ->add('plainPassword', RepeatedType::class, [
                 'type' => PasswordType::class,
-
                 'mapped' => false,
                 'attr' => ['autocomplete' => 'new-password'],
                 'options' => ['attr' => ['class' => 'password-field']],
@@ -34,7 +33,7 @@ class PasswordEditType extends AbstractType
                 'second_options' => ['label' => 'Confirmer mot de passe'],
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Entrez votre mot de passe',
+                        'message' => 'Entrer votre mot de passe',
                     ]),
                     new Length([
                         'min' => 6,

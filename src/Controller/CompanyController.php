@@ -159,11 +159,8 @@ class CompanyController extends AbstractController
      */
     public function delete(Request $request, Company $company, EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('delete' . $company->getId(), $request->request->get('_token'))) {
-            $entityManager->remove($company);
-            $entityManager->flush();
-        }
-
-        return $this->redirectToRoute('company_index', [], Response::HTTP_SEE_OTHER);
+        $company->setStatus(false);
+        $entityManager->flush();
+        return $this->redirectToRoute('app_logout', ['slug' => $company->getSlug()], Response::HTTP_SEE_OTHER);
     }
 }

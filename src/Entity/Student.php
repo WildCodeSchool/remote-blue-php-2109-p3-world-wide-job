@@ -15,6 +15,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity(repositoryClass=StudentRepository::class)
+ * @UniqueEntity(fields={"username"}, message="Nom utilisateur déja utilisé")
  * @Vich\Uploadable
  * @UniqueEntity(fields={"username"}, message="Votre nom utilisateur doit étre unique")
  */
@@ -102,6 +103,11 @@ class Student
      * @var ArrayCollection<int, Offer>
      */
     private Collection $favorite;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private bool $status;
 
     public function __construct()
     {
@@ -330,5 +336,17 @@ class Student
         } else {
             return false;
         }
+    }
+
+    public function getStatus(): ?bool
+    {
+        return $this->status;
+    }
+
+    public function setStatus(bool $status): self
+    {
+        $this->status = $status;
+
+        return $this;
     }
 }

@@ -33,51 +33,51 @@ class SchoolController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name="school_edit", methods={"GET", "POST"})
+     * @Route("/{slug}/edit", name="edit", methods={"GET", "POST"})
      */
     public function edit(Request $request, School $school, EntityManagerInterface $entityManager): Response
     {
         $schoolForm = $this->createForm(SchoolType::class, $school);
         $schoolForm->handleRequest($request);
 
+        $passwordForm = $this->createForm(PasswordEditType::class, $school->getUser());
+        $passwordForm->handleRequest($request);
+
         $userForm = $this->createForm(UserEditType::class, $school->getUser());
         $userForm->handleRequest($request);
 
-        $passwordForm = $this->createForm(PasswordEditType::class, $school);
-        $passwordForm->handleRequest($request);
-
         if ($schoolForm->isSubmitted() && $schoolForm->isValid()) {
             $entityManager->flush();
-
-            return $this->redirectToRoute('school_show', ['slug' => $school->getSlug()], Response::HTTP_SEE_OTHER);
+            $this->addFlash('success', 'Votre profil a été modifié');
         }
 
-        if ($passwordForm->isSubmitted() && $schoolForm->isValid()) {
+        if ($userForm->isSubmitted() && $userForm->isValid()) {
             $entityManager->flush();
-
-            return $this->redirectToRoute('company_show', ['slug' => $school->getSlug()], Response::HTTP_SEE_OTHER);
+            $this->addFlash('success', 'Votre profil a été modifié');
         }
 
+        if ($passwordForm->isSubmitted() && $passwordForm->isValid()) {
+            $entityManager->flush();
+            $this->addFlash('success', 'Votre mot de passe a été modifié');
+        }
 
-        return $this->renderForm('company/edit.html.twig', [
-            'company' => $school,
+        return $this->renderForm('school/edit.html.twig', [
+            'school' => $school,
             'form' => $schoolForm,
             'userForm' => $userForm,
-            'passwordForm' => $passwordForm
+            'passwordForm' => $passwordForm,
         ]);
     }
 
+
     /**
-     * @Route("/{id}", name="school_delete", methods={"POST"})
+     * @Route("/{slug}/delete", name="delete")
      */
     public function delete(Request $request, School $school, EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('delete' . $school->getId(), $request->request->get('_token'))) {
-            $entityManager->remove($school);
-            $entityManager->flush();
-        }
-
-        return $this->redirectToRoute('index', [], Response::HTTP_SEE_OTHER);
+        $school->setStatus(false);
+        $entityManager->flush();
+        return $this->redirectToRoute('app_logout', ['slug' => $school->getSlug()], Response::HTTP_SEE_OTHER);
     }
 
     /**
