@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use App\Entity\Student;
-use App\Repository\StudentRepository;
 use App\Form\PasswordEditType;
 use App\Form\RegistrationFormType;
 use App\Form\StudentType;
