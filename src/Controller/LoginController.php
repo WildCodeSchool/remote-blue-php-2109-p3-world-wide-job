@@ -6,6 +6,7 @@ use App\Entity\User;
 use App\Repository\CompanyRepository;
 use App\Repository\SchoolRepository;
 use App\Repository\StudentRepository;
+use App\Repository\UserRepository;
 use App\Services\Slugify;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -73,8 +74,15 @@ class LoginController extends AbstractController
         CompanyRepository $companyRepository,
         SchoolRepository $schoolRepository,
         StudentRepository $studentRepository,
+        UserRepository $userRepository,
         Slugify $slugify
     ): RedirectResponse {
+
+        $logUser = $this->getUser();
+        if ($logUser) {
+            $logUser->setLastConnection();
+        }
+
         if (
             $security->isGranted('ROLE_STUDENT')
         ) {
