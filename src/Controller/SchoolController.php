@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\Entity\School;
 use App\Form\PasswordEditType;
-use App\Form\School1Type;
 use App\Form\SchoolType;
 use App\Form\UserEditType;
 use App\Repository\StudentRepository;
@@ -34,7 +33,7 @@ class SchoolController extends AbstractController
     }
 
     /**
-     * <<<<<<< HEAD
+     * 
      * @Route("/{slug}/edit", name="edit", methods={"GET", "POST"})
      */
     public function edit(Request $request, School $school, EntityManagerInterface $entityManager): Response

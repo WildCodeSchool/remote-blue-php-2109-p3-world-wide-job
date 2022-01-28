@@ -17,6 +17,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  * @ORM\Entity(repositoryClass=StudentRepository::class)
  * @UniqueEntity(fields={"username"}, message="Nom utilisateur déja utilisé")
  * @Vich\Uploadable
+ * @UniqueEntity(fields={"username"}, message="Votre nom utilisateur doit étre unique")
  */
 class Student
 {
@@ -87,7 +88,8 @@ class Student
     private ?string $slug;
 
     /**
-     * @ORM\Column(type="string", length=255, unique=true, nullable=true)
+     * @ORM\Column(name="username", type="string", length=255, nullable=true, unique=true)
+     *
      */
     private string $username;
 
@@ -297,6 +299,7 @@ class Student
 
         return $this;
     }
+
     public function __sleep()
     {
         return [];
