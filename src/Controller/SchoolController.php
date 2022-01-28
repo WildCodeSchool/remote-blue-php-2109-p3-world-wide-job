@@ -26,4 +26,16 @@ class SchoolController extends AbstractController
             'studentsByApp' => $studentsByApp,
         ]);
     }
+
+    /**
+     * @Route("/{slug}/suivi", name="suivi_show")
+     * @return Response
+     */
+    public function studentFollow(School $school, StudentRepository $studentRepository): Response
+    {
+        $candidate = $studentRepository->findbyAllCandidate($school);
+        return $this->render('school/suivi_show.html.twig', [
+            'candidate' => $candidate
+        ]);
+    }
 }
