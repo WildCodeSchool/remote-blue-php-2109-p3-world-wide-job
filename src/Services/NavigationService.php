@@ -38,7 +38,7 @@ class NavigationService
                 ['title' => 'Faire mon CV', 'path' => $this->urlGenerator
                     ->generate('curriculum')],
                 ['title' => 'Voir mes candidatures', 'path' => $this->urlGenerator
-                    ->generate('student_show', ['slug' => $this->userService->getSlug()])],
+                    ->generate('student_application', ['slug' => $this->userService->getSlug()])],
                 ['title' => 'Mes offres favorites', 'path' => $this->urlGenerator
                     ->generate('student_favorite', ['slug' => $this->userService->getSlug()])],
             ];
@@ -51,7 +51,7 @@ class NavigationService
                 ['title' => 'Voir mes offres', 'path' => $this->urlGenerator
                     ->generate('company_index', ['slug' => $this->userService->getSlug()])],
                 ['title' => 'Consulter mes candidature', 'path' => $this->urlGenerator
-                    ->generate('company_index', ['slug' => $this->userService->getSlug()])],
+                    ->generate('company_application', ['slug' => $this->userService->getSlug()])],
             ];
         }
         if ($this->security->isGranted('ROLE_SCHOOL_COMPLETED')) {

@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Application;
 use App\Entity\Offer;
 use App\Entity\Company;
+use App\Entity\Student;
 use App\Form\OfferType;
 use App\Repository\CompanyRepository;
 use App\Repository\StudentRepository;

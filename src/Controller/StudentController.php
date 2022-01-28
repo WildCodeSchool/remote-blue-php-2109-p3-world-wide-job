@@ -2,12 +2,15 @@
 
 namespace App\Controller;
 
+use App\Entity\Offer;
 use App\Entity\Student;
 use App\Form\PasswordEditType;
 use App\Form\RegistrationFormType;
 use App\Form\StudentType;
 use App\Form\UserEditType;
 use App\Services\AdminService;
+use App\Repository\ApplicationRepository;
+use App\Repository\OfferRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -91,6 +94,16 @@ class StudentController extends AbstractController
     {
         return $this->render('favorite/favorite_show.html.twig', [
             'student' => $student,
+        ]);
+    }
+
+    /**
+     * @Route("/{slug}/applications", name="application")
+     */
+    public function applications(Student $student): Response
+    {
+        return $this->render('student/applications.html.twig', [
+            'student' => $student
         ]);
     }
 }
