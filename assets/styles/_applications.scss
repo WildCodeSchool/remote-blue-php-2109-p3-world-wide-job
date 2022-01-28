@@ -1,27 +1,22 @@
 @import 'variables';
 
 .nav-tabs {
-  background-color: $background-color;
-  justify-content: space-between;
+    background-color: $background-color;
+    justify-content: space-between;
 }
 
 .nav-item {
-
-  box-shadow: $box-shadow;
-  border-radius: $border-radius;
+    box-shadow: $box-shadow;
+    border-radius: $border-radius;
 }
 
 .btn-primary {
-  color: white;
-  font-size: $btn-font-size;
+    color: white;
+    font-size: $btn-font-size;
 }
 
 .comp-picture {
-  top: -7vh;
-  left: 5rem;
-  height: 14vh;
-}
-
-.card {
-  background-color: $background-color;
+    top: -7vh;
+    left: 5rem;
+    height: 14vh;
 }

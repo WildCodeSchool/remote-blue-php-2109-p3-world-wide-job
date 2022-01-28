@@ -51,7 +51,7 @@ class NavigationService
                 ['title' => 'Voir mes offres', 'path' => $this->urlGenerator
                     ->generate('company_index', ['slug' => $this->userService->getSlug()])],
                 ['title' => 'Consulter mes candidature', 'path' => $this->urlGenerator
-                    ->generate('company_index', ['slug' => $this->userService->getSlug()])],
+                    ->generate('company_application', ['slug' => $this->userService->getSlug()])],
             ];
         }
         if ($this->security->isGranted('ROLE_SCHOOL_COMPLETED')) {
