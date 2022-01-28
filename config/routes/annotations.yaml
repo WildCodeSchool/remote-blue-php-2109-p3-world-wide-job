@@ -1,6 +1,14 @@
 controllers:
-    resource: ../../src/Controller/
+    resource: '../../src/Controller/**/*'
+    exclude: '../../src/Controller/Admin/'
     type: annotation
+    name_prefix: ''
+
+admin:
+    resource: '../../src/Controller/Admin/'
+    type: annotation
+    prefix: '/admin'
+    name_prefix: 'admin_'
 
 kernel:
     resource: ../../src/Kernel.php

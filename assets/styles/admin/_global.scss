@@ -1,0 +1,8 @@
+.main-container {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-left: $nav-width;
+  @include media-breakpoint-down(lg) {
+    padding-left: 0;
+  }
+}
