@@ -2,6 +2,7 @@
 set -e
 
 php composer.phar update
+php bin/console assets:install public
 
 ## Symfony configuration
 if [ ${APP_ENV} != "prod" ]; then
