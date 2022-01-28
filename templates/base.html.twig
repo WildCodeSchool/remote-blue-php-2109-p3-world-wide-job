@@ -17,9 +17,17 @@
 <body class="{{ app.request.pathinfo == path('home') ? 'home-background-image' }}
 d-flex flex-column h-100"
       style="{{ app.request.pathinfo == path('home') ? 'background-image: url(build/images/office.4166db60.png);' }}">
-<header class="position-fixed top-0 w-100">
+<header class="position-fixed mt-0 top-0 w-100">
     {% include 'component/_navbar.html.twig' %}
 </header>
+{% for category, messages in app.flashes %}
+    {% for message in messages %}
+        <div class="alert alert-dismissible fade show alert-{{ category }}" role="alert">
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endfor %}
 <div>
     <aside >
         {% block sidebar %}{% endblock %}
@@ -27,8 +35,9 @@ d-flex flex-column h-100"
     <main>
         {% block body %}{% endblock %}
     </main>
+
 </div>
-<footer class="mt-auto">
+<footer class="mt-auto footer-complete">
     {% include 'component/_footer.html.twig' %}
 </footer>
 </body>

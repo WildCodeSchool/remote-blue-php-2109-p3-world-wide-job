@@ -1,5 +1,6 @@
 .container {
     opacity: 75%;
+    margin-top: 100px;
 }
 
 .home-background-image {
@@ -31,7 +32,8 @@
 
 .card-choice {
     text-align: center;
-    margin-top: 100px;
+    margin-top: 6rem;
+    margin-bottom: 2rem;
     background-color: #4088ee;
     border-radius: 10px;
     height: 100%;

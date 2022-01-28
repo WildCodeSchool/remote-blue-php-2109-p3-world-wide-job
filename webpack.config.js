@@ -35,6 +35,7 @@ Encore
     .addEntry('search', './assets/search.js')
     .addEntry('displayform', './assets/displayform.js')
     .addEntry('offerType', './assets/offerType.js')
+    .addEntry('admin', './assets/admin.js')
     // enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)
     .enableStimulusBridge('./assets/controllers.json')
 
@@ -86,4 +87,16 @@ Encore
 // uncomment if you're having problems with a jQuery plugin
 //    .autoProvidejQuery();
 
-module.exports = Encore.getWebpackConfig();
+const fullConfig = Encore.getWebpackConfig();
+fullConfig.devServer = {
+    headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, PATCH, OPTIONS',
+        'Access-Control-Allow-Headers': 'X-Requested-With, content-type, Authorization',
+    },
+    watchFiles: {
+        paths: ['templates/**/*.html.twig'],
+    },
+};
+
+module.exports = fullConfig;

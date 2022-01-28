@@ -61,12 +61,12 @@ class Curriculum
     private Student $student;
 
     /**
-     * @ORM\OneToMany(targetEntity=Experience::class, mappedBy="cv", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity=Experience::class, mappedBy="curriculum", cascade={"persist", "remove"})
      */
     private Collection $experiences;
 
     /**
-     * @ORM\OneToMany(targetEntity=Training::class, mappedBy="curriculum", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity=Training::class, mappedBy="curriculum", cascade={"persist", "remove"})
      */
     private Collection $trainings;
 
@@ -79,6 +79,18 @@ class Curriculum
      * @ORM\Column(type="datetime", nullable=true)
      */
     private ?\DateTimeInterface $updatedAt;
+
+    public function getUpdatedAt(): ?\DateTimeInterface
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(?\DateTimeInterface $updatedAt): self
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
 
     /**
      * @return File|null
@@ -117,6 +129,20 @@ class Curriculum
     {
         $this->picture = $picture;
 
+        return $this;
+    }
+
+    public function getLogoFile(): ?File
+    {
+        return $this->pictureFile;
+    }
+
+    public function setLogoFile(?File $image = null): self
+    {
+        $this->pictureFile = $image;
+        if ($image) {
+            $this->updatedAt = new DateTime('now');
+        }
         return $this;
     }
 
@@ -236,18 +262,6 @@ class Curriculum
     public function setCvType(?int $cvType): self
     {
         $this->cvType = $cvType;
-
-        return $this;
-    }
-
-    public function getUpdatedAt(): ?\DateTimeInterface
-    {
-        return $this->updatedAt;
-    }
-
-    public function setUpdatedAt(?\DateTimeInterface $updatedAt): self
-    {
-        $this->updatedAt = $updatedAt;
 
         return $this;
     }

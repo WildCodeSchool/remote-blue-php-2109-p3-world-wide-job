@@ -15,7 +15,7 @@ class TrainingType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('fieldOfStudy', TextType::class, [
+            ->add('degree', TextType::class, [
                 'label' => 'Intitulé du diplôme'
             ])
             ->add('school', TextType::class, [

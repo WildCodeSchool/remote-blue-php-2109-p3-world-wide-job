@@ -5,14 +5,15 @@ namespace App\Controller;
 use App\Entity\Application;
 use App\Entity\Offer;
 use App\Entity\Company;
+use App\Entity\Student;
 use App\Form\OfferType;
 use App\Repository\CompanyRepository;
+use App\Repository\StudentRepository;
 use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Form\FilterOfferType;
 use App\Repository\ApplicationRepository;
 use App\Repository\OfferRepository;
-use App\Repository\StudentRepository;
 use App\Services\AdminService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -99,7 +100,7 @@ class OfferController extends AbstractController
             'message' => 'Postulat pris en compte', 'isApplied' => null], 200, [], ['groups' => 'application']);
     }
 
-     /**
+    /**
      * @Route("/ajouter", name="new", methods={"GET", "POST"})
      */
     public function new(
@@ -180,5 +181,37 @@ class OfferController extends AbstractController
         }
         $company = $companyRepository->findOneBy(['user' => $this->getUser()]);
         return $this->redirectToRoute('company_index', ['slug' => $company->getSlug()], Response::HTTP_SEE_OTHER);
+    }
+
+    /**
+     * @Route("/{id}/favoris", name="favorite")
+     */
+    public function addToFavorite(
+        StudentRepository $studentRepository,
+        EntityManagerInterface $entityManager,
+        Offer $offer,
+        Request $request
+    ): Response {
+        $student = $studentRepository->findOneBy(['user' => $this->getUser()]);
+        $referer = $request->headers->get('referer');
+        $referer = str_replace("http://localhost:8000", "", $referer);
+        $referer = str_replace("https://mumakil-projet3-world-wide-job.phprover.wilders.dev/", "", $referer);
+        if ($student->isInFavorite($offer)) {
+            $student->removeFavorite($offer);
+        } else {
+            $student->addFavorite($offer);
+        }
+        $entityManager->flush();
+        if ($referer == "/etudiant/" . $student->getSlug() . "/favoris") {
+            return $this->redirectToRoute(
+                'student_favorite',
+                ['slug' => $student->getSlug()],
+                Response::HTTP_SEE_OTHER
+            );
+        } else {
+            return $this->json([
+                'isInFavorite' => $student->isInFavorite($offer),
+            ]);
+        }
     }
 }

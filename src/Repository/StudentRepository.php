@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Application;
+use App\Entity\Offer;
 use App\Entity\School;
 use App\Entity\Student;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
@@ -47,6 +48,24 @@ class StudentRepository extends ServiceEntityRepository
         $query = $this->createQueryBuilder('s')
             ->where('s.school = :school')
             ->andWhere('a.status = 3')
+            ->setParameter('school', $school)
+            ->leftJoin('s.user', 'u')
+            ->leftJoin('s.applications', 'a')
+            ->orderBy('u.firstname', 'ASC')
+        ;
+
+        // returns an array of Product objects
+        return $query->getQuery()->getResult();
+    }
+
+    /**
+     * @param School $school
+     * @return float|int|mixed|string
+     */
+    public function findbyAllCandidate(School $school)
+    {
+        $query = $this->createQueryBuilder('s')
+            ->where('s.school = :school')
             ->setParameter('school', $school)
             ->leftJoin('s.user', 'u')
             ->leftJoin('s.applications', 'a')

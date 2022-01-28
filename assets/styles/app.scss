@@ -13,10 +13,15 @@
 @import '_login.css';
 @import '_searchCandidat.scss';
 @import "_company-edit.scss";
-@import "_student-edit.scss";
+@import "_student-edit.css";
 @import '_offer-type.scss';
 @import "_footer.css";
+@import "_suivi.css";
 @import "_curriculum.css";
+@import "_cv.scss";
+@import "_cv1.scss";
+@import "_show-favorite";
+@import "_applications.scss";
 
 
 body {
@@ -26,7 +31,6 @@ body {
     margin: 0;
     background: #E7EFFC;
 }
-
 
 .main-container {
     // marge du contenu principale: 350px car il y a le tableau de bord à gauche

@@ -60,6 +60,7 @@ class RegistrationController extends AbstractController
                 $company->setUser($loggedUser);
                 $company->setSlug($slugify
                     ->generate($company->getCompanyName()));
+                $company->setStatus(true);
                 if ($loggedUser != null) {
                     $loggedUser->setRoles(['ROLE_COMPANY_COMPLETED']);
                 }
@@ -100,8 +101,10 @@ class RegistrationController extends AbstractController
                 getRepository(User::class)->
                 findOneBy(['email' => $loggedUser->getUserIdentifier()]);
                 $school->setUser($loggedUser);
+                $school->setStatus(true);
                 $school->setSlug($slugify->
                 generate($school->getSchoolName()));
+                $school->setStatus(true);
                 if ($loggedUser != null) {
                     $loggedUser->setRoles(['ROLE_SCHOOL_COMPLETED']);
                 }
@@ -144,6 +147,7 @@ class RegistrationController extends AbstractController
                 $student->setUser($loggedUser);
                 $student->setSlug($slugify
                     ->generate($student->getUsername()));
+                $student->setStatus(true);
                 if ($loggedUser != null) {
                     $loggedUser->setRoles(['ROLE_STUDENT_COMPLETED']);
                 }
