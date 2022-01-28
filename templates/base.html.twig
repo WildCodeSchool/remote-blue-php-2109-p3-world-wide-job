@@ -17,7 +17,7 @@
 <body class="{{ app.request.pathinfo == path('home') ? 'home-background-image' }}
 d-flex flex-column h-100"
       style="{{ app.request.pathinfo == path('home') ? 'background-image: url(build/images/office.4166db60.png);' }}">
-<header class="position-fixed top-0 w-100">
+<header class="position-fixed mt-0 top-0 w-100">
     {% include 'component/_navbar.html.twig' %}
 </header>
 {% for category, messages in app.flashes %}

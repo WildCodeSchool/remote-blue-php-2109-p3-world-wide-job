@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Suivi des Candidatures {% endblock %}
+{% block body %}
+
+<body>
+<div class="container-suivi p-5 ">
+    <h1 class="title">Tableau de Bord</h1>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th scope="col">Prénom/Nom</th>
+            <th scope="col">Éleve</th>
+            <th scope="col">Dernière connexion</th>
+            <th scope="col">Candidature</th>
+            <th scope="col">Candidature acceptée</th>
+            <th scope="col">Status</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        {% for candidate in candidate %}
+        <tr>
+            <td>{{ candidate.user.firstname }} {{ candidate.user.lastname }}</td>
+            <td><img class="profile_school" src="{{ vich_uploader_asset(candidate) }}"></td>
+            <td>{% set difference = date('now').diff(date(candidate.user.lastConnection)) %}
+                {% set left_days = difference.days %}
+                {% if left_days == 1 %}
+                    il y a 1 jour
+                {% elseif left_days == 0 %}
+                    aujourd'hui
+                {% else %}
+                   il y a  {{ left_days }} jours
+                {% endif %}</td>
+            <td>{{ candidate.applications|length }} Candidature </td>
+            <td>
+                {% set count = 0 %}
+                {% for application in candidate.applications %}
+                    {% if application.status == 3 %}
+                        {% set count = count + 1 %}
+                    {% endif %}
+
+            {% endfor %}{{ count }} Candidature
+            </td>
+            <td><div class="contract text-center">
+                    {% set max = [0] %}
+                    {% for application in candidate.applications %}
+                        {% set max = max|merge([application.status]) %}
+                    {% endfor %}
+                    {% if max(max) == 3 %}
+                        <p class="color_1">Validé</p>
+
+                        {% elseif max(max) == 2 %}
+                        <p class="color_2">En Cours</p>
+                            {% else %}
+                        <p class="color_3">En Recherche</p>
+                    {% endif %}
+                </div></td>
+
+        </tr>
+        {% endfor %}
+
+        </tbody>
+    </table>
+</div>
+</body>
+{% endblock %}

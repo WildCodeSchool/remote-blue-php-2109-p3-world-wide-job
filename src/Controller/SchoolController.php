@@ -32,7 +32,6 @@ class SchoolController extends AbstractController
         ]);
     }
 
-
     /**
      * @Route("/{id}/edit", name="school_edit", methods={"GET", "POST"})
      */
@@ -50,13 +49,13 @@ class SchoolController extends AbstractController
         if ($schoolForm->isSubmitted() && $schoolForm->isValid()) {
             $entityManager->flush();
 
-            return $this->redirectToRoute('school_show', ['slug' => $school->getSlug() ], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('school_show', ['slug' => $school->getSlug()], Response::HTTP_SEE_OTHER);
         }
 
         if ($passwordForm->isSubmitted() && $schoolForm->isValid()) {
             $entityManager->flush();
 
-            return $this->redirectToRoute('company_show', ['slug' => $school->getSlug() ], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('company_show', ['slug' => $school->getSlug()], Response::HTTP_SEE_OTHER);
         }
 
 
@@ -79,5 +78,17 @@ class SchoolController extends AbstractController
         }
 
         return $this->redirectToRoute('schooll_index', [], Response::HTTP_SEE_OTHER);
+    }
+
+    /**
+     * @Route("/{slug}/suivi", name="suivi_show")
+     * @return Response
+     */
+    public function studentFollow(School $school, StudentRepository $studentRepository): Response
+    {
+        $candidate = $studentRepository->findbyAllCandidate($school);
+        return $this->render('school/suivi_show.html.twig', [
+            'candidate' => $candidate
+        ]);
     }
 }
