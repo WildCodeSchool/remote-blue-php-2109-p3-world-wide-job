@@ -3,33 +3,26 @@
 {% block title %}{{ company.companyName }}{% endblock %}
 
 {% block banner %}
-
     <div class={{ applications ? "d-none" : "profile-no-offer" }}></div>
-
     <img src="{{ asset('build/images/workbanner.jpg') }}" class="profile-banner" alt="profile banner">
 {% endblock %}
 {% block picture %}
     <div class="profile-title">
-
-
         <img src="{{ vich_uploader_asset(company) }}" class="profile-picture" alt="{{ company.companyName }}">
-
-
         <h2 class="profile-name mt-lg-4 text-primary">{{ company.companyName }}</h2>
-
     </div>
 {% endblock %}
 {% block information %}
     <div class="profile-localisation">
-
         <p class="profile-city rounded">{{ company.user.city }}, {{ company.user.country }}</p>
-
     </div>
     <div class="profile-presentation">
         <h3>Présentation</h3>
         <p>{{ company.description }}</p>
     </div>
+    {% if app.user.company == company %}
     <a class="btn btn-edit update-edit text-end" style="padding: 10px" href="{{ path('company_edit', {'slug': company.slug}) }}"> <i class="fas fa-pen me-1"></i> </a>
+    {% endif %}
 {% endblock %}
 {% block profileBottom %}
     {% for application in applications %}
@@ -44,7 +37,10 @@
                     <p class="profile-offer-description my-2 mt-md-3 my-lg-0 px-lg-4">{{ application.0.shortDescription }} </p>
                     {#  lien href à mettre à jour une fois la page offre créé#}
                     <div class="d-flex align-items-end justify-content-end">
-                        <a class="mx-4" href="{{ path('registration_index', {'role': 'ecole'}) }}">Voir l'annonce</a>
+{#
+                        TODO Faire une page pour voir l'annonce
+#}
+                        <a class="mx-4" href="{{ path('company_show', {'slug': company.slug}) }}">Voir l'annonce</a>
                         {% if application.count == 0 %}
                         <p class="my-0">{{ application.count }} Candidature </p>
                         {% else %}
