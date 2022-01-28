@@ -38,7 +38,8 @@
         <div class="student-cv-container d-flex justify-content-center">
             {% include 'student/_cv.html.twig' %}
         </div>
+        <h3 class="text-center mt-2">Si vous souhaitez modifier votre cv, ça se passe <a href="{{ path('curriculum') }}">ici</a></h3>
         {% else %}
-        <h3 class="text-center">Vous n'avez pas encore de cv, vous pouvez le créer <a href="{{ path('curriculum') }}">ici</a></h3>
+        <h3 class="text-center mt-5">Vous n'avez pas encore de cv, vous pouvez le créer <a href="{{ path('curriculum') }}">ici</a></h3>
     {% endif %}
 {% endblock %}
