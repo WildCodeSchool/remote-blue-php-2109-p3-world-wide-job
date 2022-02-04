@@ -62,7 +62,6 @@ class NavigationService
                     ->generate('school_suivi_show', ['slug' => $this->userService->getSlug()])],
             ];
         }
-
         return self::ROLE_NOT_COMPLETED;
     }
 
