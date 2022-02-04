@@ -14,8 +14,8 @@
                 <!-- décomenter le twig pour mettre en place les routes -->
                 <!-- tableau dynamique -->
                 {% for link in navigation.userLinks %}
-                    <li class="text-decoration-none btn-primary
-                 {{ app.request.pathinfo == link.path ? 'activelink' }}">
+                    <li class="text-decoration-none btn-primary d-flex align-items-center rounded-end"
+                 id="{{ app.request.pathinfo == link.path ? 'activelink' }}">
                         <a class="text-decoration-none "
                            href="{{ link.path }}">{{ link.title }}</a>
                     </li>

@@ -42,6 +42,7 @@ class CompanyType extends AbstractType
                 'label' => "Description :"
             ])
             ->add('logoFile', VichFileType::class, [
+                'label' => "Logo de l'entreprise",
                 'required'      => false,
                 'allow_delete'  => true, // not mandatory, default is true
                 'download_uri' => true, // not mandatory, default is true

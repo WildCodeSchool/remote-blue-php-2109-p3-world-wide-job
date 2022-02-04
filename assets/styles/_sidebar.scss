@@ -1,7 +1,7 @@
 .sidebar-container {
-    background-color: $gray; //!important;
+    background-color: $light; //!important;
     height: 100%;
-    width: 300px;
+    width: 240px;
     top: 54px;
 }
 
@@ -40,8 +40,8 @@
 }
 
 
-.activelink {
-    background-color: $primary; //!important;
+#activelink {
+    background-color: $activeLink; //!important;
 }
 
 
