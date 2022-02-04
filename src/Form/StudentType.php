@@ -27,17 +27,19 @@ class StudentType extends AbstractType
                 'required' => false,
                 'allow_delete' => true, // not mandatory, default is true
                 'download_uri' => true, // not mandatory, default is true
+                'label' => 'Photo de profil :'
             ])
             ->add('ine', TextType::class, [
-                'label' => "INE :",
+                'label' => "Numéro INE :",
             ])
             ->add('username', TextType::class, [
                 'label' => "Pseudo :",
             ])
             ->add('description', TextareaType::class, [
-                'label' => "INE :",
+                'label' => "Présentation de votre profil :",
             ])
             ->add('school', EntityType::class, [
+                'label' => 'Formation :',
                 "class" => School::class,
                 "choice_label" => "schoolName",
                 'multiple' => false,
