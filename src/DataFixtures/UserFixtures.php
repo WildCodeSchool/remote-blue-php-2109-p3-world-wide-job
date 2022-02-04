@@ -50,13 +50,13 @@ class UserFixtures extends Fixture
                 $this->addReference($role['role'] . '_' . $i, $user);
                 $manager->persist($user);
             };
-            $user = new User();
-            $user->setEmail('admin@gmail.com');
-            $hashedPassword = $this->passwordHasher->hashPassword(
-                $user,
-                'admin'
-            );
         };
+        $user = new User();
+        $user->setEmail('admin@gmail.com');
+        $hashedPassword = $this->passwordHasher->hashPassword(
+            $user,
+            'admin'
+        );
         $user->setPassword($hashedPassword)
             ->setRoles(['ROLE_ADMIN'])
             ->setCivility('Monsieur')
