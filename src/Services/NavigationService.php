@@ -35,7 +35,7 @@ class NavigationService
         if ($this->security->isGranted('ROLE_STUDENT_COMPLETED')) {
             return [
                 ['title' => 'Mon profil étudiant', 'path' => $this->generateUrl('user_home')],
-                ['title' => 'Faire mon CV', 'path' => $this->urlGenerator
+                ['title' => 'Mon CV', 'path' => $this->urlGenerator
                     ->generate('curriculum')],
                 ['title' => 'Voir mes candidatures', 'path' => $this->urlGenerator
                     ->generate('student_application', ['slug' => $this->userService->getSlug()])],
