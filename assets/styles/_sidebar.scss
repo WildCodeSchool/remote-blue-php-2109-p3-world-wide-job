@@ -3,6 +3,9 @@
     height: 100%;
     width: 240px;
     top: 54px;
+    @include media-breakpoint-down(xxl){
+        display: none;
+    }
 }
 
 .img-profil {
