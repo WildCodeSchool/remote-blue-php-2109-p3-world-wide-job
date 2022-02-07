@@ -4,17 +4,18 @@
 {% block body %}
 
 <body>
-<div class="container-suivi p-5 ">
-    <h1 class="title">Tableau de Bord</h1>
+<div class="container-suivi p-5">
+    <a class="btn press" href="{{ path('school_show', {'slug': school.slug}) }}">Retour</a>
+    <h1 class="title">Suivi des étudiants</h1>
     <table class="table table-bordered">
         <thead>
         <tr>
             <th scope="col">Prénom/Nom</th>
             <th scope="col">Éleve</th>
             <th scope="col">Dernière connexion</th>
-            <th scope="col">Candidature</th>
-            <th scope="col">Candidature acceptée</th>
-            <th scope="col">Status</th>
+            <th scope="col">Candidature(s)</th>
+            <th scope="col">Candidature(s) acceptée</th>
+            <th scope="col">État du contrat</th>
         </tr>
         </thead>
         <tbody>
@@ -48,7 +49,7 @@
                         {% set max = max|merge([application.status]) %}
                     {% endfor %}
                     {% if max(max) == 3 %}
-                        <p class="color_1">Validé</p>
+                        <p class="color_1">Signé</p>
 
                         {% elseif max(max) == 2 %}
                         <p class="color_2">En Cours</p>

@@ -31,7 +31,7 @@ class OfferType extends AbstractType
             ])
             ->add('contractType', ChoiceType::class, [
                 'required' => false,
-                'label' => "Type de contrat",
+                'label' => "Type de contrat:",
                 'choices' => AdminService::CONTRACTTYPE,
             ])
             ->add('shortDescription', TextType::class, [
@@ -64,7 +64,7 @@ class OfferType extends AbstractType
                 'required' => false,
             ])
             ->add('drivingLicence', ChoiceType::class, [
-                'label' => "Permis de conduire",
+                'label' => "Permis de conduire obligatoire",
                 'choices' => [
                     'Oui' => true,
                     'Non' => false

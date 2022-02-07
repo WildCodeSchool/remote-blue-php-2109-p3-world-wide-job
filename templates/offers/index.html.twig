@@ -50,13 +50,8 @@
             <div class="card rounded shadow largeOffer" id="largeOffer{{ offer.id }}">
                 <div class="card-body largeCard">
                     <button class="btn-close closeOffer"></button>
-                    <div class="descCompanyName">
-                        <a href="{{ path('offer_edit', {'id': offer.id}) }}">Modifier</a>
-                        <form method="post" action="{{ path('offer_delete', {'id': offer.id}) }}" onsubmit="return confirm('Etes-vous sur de vouloir supprimer cette offre ?');">
-                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ offer.id) }}">
-                            <button class="btn">Supprimer</button>
-                        </form>
-                    </div>
+                    <h3 class="descCompanyName">{{ offer.company.companyName }} <br>
+                        <a href="{{ path('company_show', {'slug': offer.company.slug}) }}">Voir le profil</a></h3>
                     <h2 class="descJobTitle">{{ offer.name }}</h2>
                     <h3 class="descJobLocation">{{ offer.city }}</h3>
                     <h3 class="descJobType">{% for key, value in offer.contractType %}
@@ -65,8 +60,11 @@
                             {% endif %}
                         {% endfor %}
                     </h3>
-                    <button class="btn-primary text-white rounded descApply">Postuler</button>
-                    <button class="btn-primary text-white rounded descSave">Enregistrer</button>
+                    <a href="{{ path('offer_edit', {'id': offer.id}) }}" class="btn-primary text-white rounded descApply">Modifier</a>
+                    <form class="descSave" method="post" action="{{ path('offer_delete', {'id': offer.id}) }}" onsubmit="return confirm('Etes-vous sur de vouloir supprimer cette offre ?');">
+                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ offer.id) }}">
+                        <button class="btn-primary text-white rounded">Supprimer</button>
+                    </form>
                     <div class="descDetails">Détail de l'offre :</div>
                     <p class="descOffer">{{ offer.longDescription }}
                     </p>

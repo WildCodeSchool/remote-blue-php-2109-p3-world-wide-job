@@ -129,7 +129,6 @@ class Student
     public function setPicture(?string $picture): self
     {
         $this->picture = $picture;
-
         return $this;
     }
 

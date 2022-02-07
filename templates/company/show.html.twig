@@ -35,17 +35,9 @@
                 <img class="profile-offer-picture" src="{{ vich_uploader_asset(company) }}" alt="{{ company.companyName }}">
                 <div class="profile-offer-text d-flex flex-column justify-content-between">
                     <p class="profile-offer-description my-2 mt-md-3 my-lg-0 px-lg-4">{{ application.0.shortDescription }} </p>
-                    {#  lien href à mettre à jour une fois la page offre créé#}
                     <div class="d-flex align-items-end justify-content-end">
-{#
-                        TODO Faire une page pour voir l'annonce
-#}
-                        <a class="mx-4" href="{{ path('company_show', {'slug': company.slug}) }}">Voir l'annonce</a>
-                        {% if application.count == 0 %}
-                        <p class="my-0">{{ application.count }} Candidature </p>
-                        {% else %}
-                        <p class="my-0">{{ application.count }} Candidatures </p>
-                        {% endif %}
+                        <a class="mx-4" href="{{ path('offer_show', {'id': application.0.id}) }}">Voir l'offre</a>
+                            <p class="my-0"><strong>{{ application.count }}</strong> Candidature(s) </p>
                     </div>
                 </div>
             </div>

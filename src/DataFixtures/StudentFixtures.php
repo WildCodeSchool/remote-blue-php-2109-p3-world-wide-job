@@ -31,8 +31,8 @@ class StudentFixtures extends Fixture implements DependentFixtureInterface
                 ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in 
                 voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non 
                 proident, sunt in culpa qui officia deserunt mollit anim id est laborum.')
-                ->setUsername('jeandupont' . $i)
-                ->setSlug($this->slugify->generate('jeandupont' . $i))
+                ->setUsername('myusername' . $i)
+                ->setSlug($this->slugify->generate('myusername' . $i))
                 ->setStatus(true);
             $this->addReference('student_' . $i, $student);
             $manager->persist($student);
