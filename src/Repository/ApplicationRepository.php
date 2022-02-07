@@ -39,55 +39,28 @@ class ApplicationRepository extends ServiceEntityRepository
             ->join('o.company', 'c')
             ->join('s.school', 'sc')
             ->join('s.curriculum', 'cu')
-            ->select(
-                'u.firstname',
-                'u.lastname',
-                'u.city',
-                'u.zip',
-                's.picture',
-                'a.status',
-                'a.id',
-                's.ine',
-                's.id',
-                'sc.schoolName',
-                'a.status',
-                's.slug',
-                'cu'
-            )
             ->getQuery()
             ->getResult();
     }
 
     /**
-     * @param mixed $school
+     * @param mixed $status
+     *  @param mixed $company
      * @return float|int|mixed|array|string
      */
-    public function findBySchool($school)
+    public function findByStatus($status, $company)
     {
         return $this->createQueryBuilder('a')
-            ->Where('s.school = :school')
-            ->setParameter('school', $school)
+            ->Where('a.status = :status')
+            ->andWhere('o.company = :company')
+            ->setParameter('status', $status)
+            ->setParameter('company', $company)
             ->join('a.student', 's')
             ->join('s.user', 'u')
             ->join('a.offer', 'o')
             ->join('o.company', 'c')
             ->join('s.school', 'sc')
             ->join('s.curriculum', 'cu')
-            ->select(
-                'u.firstname',
-                'u.lastname',
-                'u.city',
-                'u.zip',
-                's.picture',
-                'a.status',
-                's.ine',
-                's.id',
-                'a.id',
-                'sc.schoolName',
-                'a.status',
-                's.slug',
-                'cu'
-            )
             ->groupBy('a')
             ->getQuery()
             ->getResult();
@@ -107,6 +80,7 @@ class ApplicationRepository extends ServiceEntityRepository
             ->join('a.offer', 'o')
             ->join('o.company', 'c')
             ->join('s.school', 'sc')
+            ->join('s.curriculum', 'cu')
             ->groupBy('a')
             ->getQuery()
             ->getResult();

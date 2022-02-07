@@ -8,6 +8,7 @@ use App\Entity\Offer;
 use App\Entity\School;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SearchType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
@@ -41,16 +42,18 @@ class CompanyController extends AbstractController
             'required' => false,
             'attr' => ['placeholder' => 'Étudiant'],
         ])
-            ->add('searchBySchool', EntityType::class, [
-                'class' => School::class,
+        ->add(
+            'searchByStatus',
+            ChoiceType::class,
+            ['choices'  => [
+                    'Accepté' => 1,
+                    'En cours' => 2,
+                    'Refuser' => 3,
+                ],
                 'required' => false,
-                'query_builder' => function (EntityRepository $er) {
-                    return $er->createQueryBuilder('s')
-                        ->orderBy('s.schoolName', 'ASC');
-                },
-                'placeholder' => "Ecole",
-                'choice_label' => 'schoolName',
-            ])
+                'placeholder' => 'Status'
+                ]
+        )
             ->add('searchByOffers', EntityType::class, [
                 'class' => Offer::class,
                 'required' => false,
@@ -72,13 +75,13 @@ class CompanyController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $student = $form->get('searchStudent')->getData();
             $offer = $form->get('searchByOffers')->getData();
-            $school = $form->get('searchBySchool')->getData();
+            $status = $form->get('searchByStatus')->getData();
             if (!empty($student)) {
                     $candidatures = $appliRepository->findLikeStudent($student);
             } elseif (!empty($offer)) {
                 $candidatures = $appliRepository->findByOffer($offer);
-            } elseif (!empty($school)) {
-                $candidatures = $appliRepository->findBySchool($school);
+            } elseif (!empty($status)) {
+                $candidatures = $appliRepository->findByStatus($status, $company);
             } else {
                 $candidatures = $appliRepository->findAllApplicationsByCompany($company);
             }
@@ -159,12 +162,10 @@ class CompanyController extends AbstractController
      * @Route("/{id}/accept", name="accept")
      */
     public function accept(
-        int $id,
-        ApplicationRepository $application,
+        Application $application,
         EntityManagerInterface $entityManager
     ): Response {
-        $appli = $application->findOneBy(['id' => $id]);
-        $appli->setStatus('1');
+        $application->setStatus(1);
         $entityManager->flush();
         return $this->json([
             'isAccept' => true,
@@ -175,12 +176,10 @@ class CompanyController extends AbstractController
      * @Route("/{id}/refuse", name="refuse")
      */
     public function refuse(
-        int $id,
-        ApplicationRepository $application,
-        EntityManagerInterface $entityManager
+        EntityManagerInterface $entityManager,
+        Application $application
     ): Response {
-        $appli = $application->findOneBy(['id' => $id]);
-        $appli->setStatus('3');
+        $application->setStatus(3);
         $entityManager->flush();
         return $this->json([
             'isRefuse' => true,
