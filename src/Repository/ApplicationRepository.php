@@ -38,6 +38,7 @@ class ApplicationRepository extends ServiceEntityRepository
             ->join('a.offer', 'o')
             ->join('o.company', 'c')
             ->join('s.school', 'sc')
+            ->join('s.curriculum', 'cu')
             ->select(
                 'u.firstname',
                 'u.lastname',
@@ -45,10 +46,13 @@ class ApplicationRepository extends ServiceEntityRepository
                 'u.zip',
                 's.picture',
                 'a.status',
+                'a.id',
                 's.ine',
                 's.id',
                 'sc.schoolName',
-                'a.status'
+                'a.status',
+                's.slug',
+                'cu'
             )
             ->getQuery()
             ->getResult();
@@ -68,6 +72,7 @@ class ApplicationRepository extends ServiceEntityRepository
             ->join('a.offer', 'o')
             ->join('o.company', 'c')
             ->join('s.school', 'sc')
+            ->join('s.curriculum', 'cu')
             ->select(
                 'u.firstname',
                 'u.lastname',
@@ -77,8 +82,11 @@ class ApplicationRepository extends ServiceEntityRepository
                 'a.status',
                 's.ine',
                 's.id',
+                'a.id',
                 'sc.schoolName',
-                'a.status'
+                'a.status',
+                's.slug',
+                'cu'
             )
             ->groupBy('a')
             ->getQuery()
@@ -99,18 +107,6 @@ class ApplicationRepository extends ServiceEntityRepository
             ->join('a.offer', 'o')
             ->join('o.company', 'c')
             ->join('s.school', 'sc')
-            ->select(
-                'u.firstname',
-                'u.lastname',
-                'u.city',
-                'u.zip',
-                's.picture',
-                'a.status',
-                's.ine',
-                's.id',
-                'sc.schoolName',
-                'a.status'
-            )
             ->groupBy('a')
             ->getQuery()
             ->getResult();
@@ -154,18 +150,9 @@ class ApplicationRepository extends ServiceEntityRepository
             ->join('a.offer', 'o')
             ->join('o.company', 'c')
             ->join('s.school', 'sc')
-            ->select(
-                'u.firstname',
-                'u.lastname',
-                'u.city',
-                'u.zip',
-                's.picture',
-                'a.status',
-                's.ine',
-                's.id',
-                'sc.schoolName',
-                'a.status'
-            )
+            ->join('s.curriculum', 'cu')
+            ->join('cu.experiences', 'ex')
+            ->join('cu.trainings', 'tr')
             ->groupBy('a');
 
         // returns an array of Product objects

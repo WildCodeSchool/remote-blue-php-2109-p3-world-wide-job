@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Application;
 use App\Entity\Company;
 use App\Entity\Offer;
 use App\Entity\School;
@@ -85,7 +86,7 @@ class CompanyController extends AbstractController
             $candidatures = $appliRepository->findAllApplicationsByCompany($company);
         }
 
-        return $this->render('company/searchCandidat.html.twig', [
+        return $this->render('company/application.html.twig', [
             'candidatures' => $candidatures,
             'form' => $form->createView(),
         ]);
@@ -151,6 +152,38 @@ class CompanyController extends AbstractController
             'form' => $companyForm,
              'userForm' => $userForm,
             'passwordForm' => $passwordForm
+        ]);
+    }
+
+    /**
+     * @Route("/{id}/accept", name="accept")
+     */
+    public function accept(
+        int $id,
+        ApplicationRepository $application,
+        EntityManagerInterface $entityManager
+    ): Response {
+        $appli = $application->findOneBy(['id' => $id]);
+        $appli->setStatus('1');
+        $entityManager->flush();
+        return $this->json([
+            'isAccept' => true,
+        ]);
+    }
+
+    /**
+     * @Route("/{id}/refuse", name="refuse")
+     */
+    public function refuse(
+        int $id,
+        ApplicationRepository $application,
+        EntityManagerInterface $entityManager
+    ): Response {
+        $appli = $application->findOneBy(['id' => $id]);
+        $appli->setStatus('3');
+        $entityManager->flush();
+        return $this->json([
+            'isRefuse' => true,
         ]);
     }
 
