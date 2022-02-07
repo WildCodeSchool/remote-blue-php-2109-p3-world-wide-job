@@ -57,12 +57,11 @@ class NavigationService
         if ($this->security->isGranted('ROLE_SCHOOL_COMPLETED')) {
             return [
                 ['title' => 'Mon profil formation', 'path' => $this->generateUrl('user_home')],
-                ['title' => 'List des étudiants', 'path' => $this->generateUrl('user_home')],
-                ['title' => 'Suivi des candidatures', 'path' => $this->urlGenerator
+                ['title' => 'Liste des étudiants', 'path' => $this->generateUrl('user_home')],
+                ['title' => 'Suivi des étudiants', 'path' => $this->urlGenerator
                     ->generate('school_suivi_show', ['slug' => $this->userService->getSlug()])],
             ];
         }
-
         return self::ROLE_NOT_COMPLETED;
     }
 
