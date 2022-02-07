@@ -1,8 +1,15 @@
+require('select2');
+
 const largeOffers = document.getElementsByClassName('largeOffer');
 const smallOffers = document.getElementsByClassName('smallOffer');
 const closeOffer = document.getElementsByClassName('closeOffer');
 const applyButtons = document.querySelectorAll('[data-apply]');
 const addFavorite = document.querySelectorAll('[data-favorite]');
+const $ = require('jquery');
+
+document.addEventListener('DOMContentLoaded', () => {
+    $('.select-multiple').select2();
+});
 
 function addToFavorite(event) {
     event.preventDefault();
@@ -13,8 +20,12 @@ function addToFavorite(event) {
         .then((res) => {
             if (res.isInFavorite) {
                 // Ajout d'un message au clic si possible
-                favoriteLink.innerHTML = 'Enlever des favoris';
+                favoriteLink.innerHTML = 'Retirer';
+                favoriteLink.classList.remove('btn-primary');
+                favoriteLink.classList.add('btn-success');
             } else {
+                favoriteLink.classList.add('btn-primary');
+                favoriteLink.classList.remove('btn-success');
                 favoriteLink.innerHTML = 'Enregistrer';
             }
         });
@@ -28,11 +39,12 @@ function jobApply(event) {
         .then((res) => res.json())
         .then((res) => {
             if (res.isApplied) {
-                // Ajout d'un message au clic si possible
+                // eslint-disable-next-line no-alert
                 alert('Vous avez déjà postulé');
             } else {
-                applyLink.classList.add('applied');
                 applyLink.innerHTML = 'Postulé';
+                // eslint-disable-next-line
+                applyLink.outerHTML = '<p class=\'btn-success text-white text-center rounded descApply\'>' + applyLink.innerHTML + '</p>';
             }
         });
 }

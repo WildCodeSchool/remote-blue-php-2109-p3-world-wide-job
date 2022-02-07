@@ -36,6 +36,9 @@
     "@ckeditor/ckeditor5-build-classic": "^31.1.0",
     "@fortawesome/fontawesome-free": "^5.15.4",
     "@popperjs/core": "^2.11.0",
-    "bootstrap-icons": "^1.7.2"
+    "bootstrap-icons": "^1.7.2",
+    "jquery": "^3.6.0",
+    "select2": "^4.1.0-rc.0",
+    "select2-bootstrap-5-theme": "^1.2.0"
   }
 }
