@@ -50,7 +50,7 @@ class NavigationService
                     ->generate('offer_new')],
                 ['title' => 'Voir mes offres', 'path' => $this->urlGenerator
                     ->generate('company_index', ['slug' => $this->userService->getSlug()])],
-                ['title' => 'Consulter mes candidature', 'path' => $this->urlGenerator
+                ['title' => 'Consulter les candidature(s)', 'path' => $this->urlGenerator
                     ->generate('company_application', ['slug' => $this->userService->getSlug()])],
             ];
         }

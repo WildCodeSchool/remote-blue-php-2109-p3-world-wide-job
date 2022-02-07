@@ -1,74 +1,75 @@
 {% extends 'base.html.twig' %}
-
-{% block title %}Offer{% endblock %}
-
+        {% block title %}Recherche emploi world wide job{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('search') }}
+{% endblock %}
 {% block body %}
-    <h1>Offer</h1>
+    <div class="searchContainer">
+        {% if app.user %}
+            <div class="largeSearchCard mx-auto" id="largeSearchCard">
+                {% for offer in offers %}
+                    {% if offer.status %}
+                        <div class="card rounded shadow largeOffer" id="largeOffer{{ offer.id }}">
+                            <div class="card-body largeCard">
+                                <button class="btn-close closeOffer"></button>
+                                <h3 class="descCompanyName">{{ offer.company.companyName }} <br>
+                                    <a href="{{ path('company_show', {'slug': offer.company.slug}) }}">Voir le profil</a></h3>
+                                <h2 class="descJobTitle">{{ offer.name }}</h2>
+                                <h3 class="descJobLocation">{{ offer.city }}</h3>
+                                <h3 class="descJobType">
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ offer.id }}</td>
-            </tr>
-            <tr>
-                <th>Name</th>
-                <td>{{ offer.name }}</td>
-            </tr>
-            <tr>
-                <th>City</th>
-                <td>{{ offer.city }}</td>
-            </tr>
-            <tr>
-                <th>ContractType</th>
-                <td>{{ offer.contractType }}</td>
-            </tr>
-            <tr>
-                <th>Duration</th>
-                <td>{{ offer.duration }}</td>
-            </tr>
-            <tr>
-                <th>ShortDescription</th>
-                <td>{{ offer.shortDescription }}</td>
-            </tr>
-            <tr>
-                <th>DateOfPublication</th>
-                <td>{{ offer.dateOfPublication ? offer.dateOfPublication|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>LongDescription</th>
-                <td>{{ offer.longDescription }}</td>
-            </tr>
-            <tr>
-                <th>FieldOfActivity</th>
-                <td>{{ offer.fieldOfActivity }}</td>
-            </tr>
-            <tr>
-                <th>JobPosition</th>
-                <td>{{ offer.jobPosition }}</td>
-            </tr>
-            <tr>
-                <th>DateIn</th>
-                <td>{{ offer.dateIn ? offer.dateIn|date('Y-m-d') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Wage</th>
-                <td>{{ offer.wage }}</td>
-            </tr>
-            <tr>
-                <th>Tutor</th>
-                <td>{{ offer.tutor }}</td>
-            </tr>
-            <tr>
-                <th>DrivingLicence</th>
-                <td>{{ offer.drivingLicence ? 'Yes' : 'No' }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <a href="{{ path('offers_index') }}">back to list</a>
-
-    <a href="{{ path('offers_edit', {'id': offer.id}) }}">edit</a>
-
-    {{ include('offers/_delete_form.html.twig') }}
+                                </h3>
+                                {% if app.user.student is not empty and offer.isAppliedByStudent(app.user.student) %}
+                                    <p class="btn-success text-white text-center rounded descApply">Postulé</p>
+                                {% elseif app.user.student %}
+                                    <a href="{{ path('offer_apply', {'id': offer.id}) }}" data-apply="" class="btn-primary text-white rounded descApply">Postuler</a>
+                                {% endif %}
+                                {% if app.user.student %}
+                                <a class="{{ app.user.student.inFavorite(offer) ? 'btn-success' : 'btn-primary' }} text-white rounded descSave" data-favorite="" href="{{ path('offer_favorite', {'id': offer.id}) }}">{{ is_granted('ROLE_STUDENT_COMPLETED') and app.user.student.inFavorite(offer) ? 'Retirer' : 'Enregistrer' }}
+                                </a>
+                                    {% endif %}
+                                <div class="descDetails">Détail de l'offre :</div>
+                                <p class="descOffer">{{ offer.longDescription }}
+                                </p>
+                                <h5 class="descDate">{% set difference = date('now').diff(date(offer.dateOfPublication)) %}
+                                    {% set left_days = difference.days %}
+                                    Publié il y à
+                                    {% if left_days == 1 %}
+                                        1 jour
+                                    {% else %}
+                                        {{ left_days }} jours
+                                    {% endif %}</h5>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="largeSearchCard disconnected">
+                <div class="card rounded shadow largeOffer">
+                    <div class="card-body largeCard">
+                        <button class="btn-close closeOffer"></button>
+                        <h3 class="descCompanyName">Entreprise</h3>
+                        <h2 class="descJobTitle">Nom de l'offre</h2>
+                        <h3 class="descJobLocation">Localisation</h3>
+                        <h3 class="descJobType">Type de contrat</h3>
+                        <button class="btn-success text-white rounded descApply inactived">Postulé</button>
+                        <button class="btn-primary text-white rounded descSave inactived">Enregistrer</button>
+                        <div class="descDetails">Détail de l'offre :</div>
+                        <p class="descOffer">Description de l'offre détailléeDescription de l'offre détaillée
+                            Description de l'offre détailléeDescription de l'offre détailléeDescription de l'offre détaillée
+                            Description de l'offre détailléeDescription de l'offre détailléeDescription de l'offre détaillée
+                            Description de l'offre détailléeDescription de l'offre détailléeDescription de l'offre détaillée
+                            Description de l'offre détailléeDescription de l'offre détailléeDescription de l'offre détaillée
+                            Description de l'offre détailléeDescription de l'offre détailléeDescription de l'offre détaillée
+                            Description de l'offre détailléeDescription de l'offre détailléeDescription de l'offre détaillée
+                            Description de l'offre détailléeDescription de l'offre détailléeDescription de l'offre détaillée
+                            Description de l'offre détailléeDescription de l'offre détailléeDescription de l'offre détaillée</p>
+                        <h5 class="descDate">Il y à x jours</h5>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    </div>
 {% endblock %}
