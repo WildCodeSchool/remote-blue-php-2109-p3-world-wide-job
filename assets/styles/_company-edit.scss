@@ -18,9 +18,13 @@
 }
 
 .update-edit {
-    position: fixed;
-    top:25%;
-    left: 75%;
+    position: absolute;
+    right: 0px;
+    top: 120px;
+    @media screen and (min-width: 768px) {
+        right: -150px;
+        top: -80px;
+    }
 }
 
 .vich-file div {
