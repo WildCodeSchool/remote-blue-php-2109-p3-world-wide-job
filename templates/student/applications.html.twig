@@ -13,24 +13,22 @@
 {% endblock %}
 
 {% block profileBottom %}
-    <ul class="nav nav-tabs" id="myTab" role="tablist">
+    <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
         <li class="nav-item" role="presentation">
-            <button class="btn btn-primary" id="validate-tab" data-bs-toggle="tab" data-bs-target="#validate"
-                    type="button" role="tab" aria-controls="validate" aria-selected="true">Validées
-            </button>
+            <button class="btn btn-primary shadow" id="pills-standby-tab" data-bs-toggle="pill" data-bs-target="#standby"
+                    type="button" role="tab" aria-controls="pills-standby" aria-selected="false">En attente</button>
         </li>
         <li class="nav-item" role="presentation">
-            <button class="btn btn-primary" id="standby-tab" data-bs-toggle="tab" data-bs-target="#standby" type="button"
-                    role="tab" aria-controls="standby" aria-selected="false">En attente
-            </button>
+            <button class="btn btn-primary shadow" id="pills-validate-tab" data-bs-toggle="pill" data-bs-target="#validate"
+                    type="button" role="tab" aria-controls="pills-validate" aria-selected="true">Validée(s)</button>
         </li>
         <li class="nav-item" role="presentation">
-            <button class="btn btn-primary" id="rejected-tab" data-bs-toggle="tab" data-bs-target="#rejected" type="button"
-                    role="tab" aria-controls="rejected" aria-selected="false">Refusées
-            </button>
+            <button class="btn btn-primary shadow" id="pills-rejected-tab" data-bs-toggle="pill" data-bs-target="#rejected"
+                    type="button" role="tab" aria-controls="pills-rejected" aria-selected="false">Rejetée(s)</button>
         </li>
     </ul>
-    <div class="tab-content" id="myTabContent">
+
+    <div class="tab-content" id="pills-TabContent">
         {% set items = [
             {'status': 1, 'id': 'validate', 'class': 'show active'},
             {'status': 2, 'id': 'standby', 'class': ''},
@@ -38,12 +36,12 @@
         ] %}
         {% for item in items %}
             <div class="tab-pane fade {{ item.class }}" id="{{ item.id }}" role="tabpanel"
-                 aria-labelledby="validate-tab">
+                 aria-labelledby="pills-validate-tab">
                 {% for application in student.applications|filter(application => application.status == item.status) %}
-                    <div class="card text-center">
-                        <div class="shadow p-3 mb-5 bg-body rounded">
+                    <div class="card text-center shadow p-3 mb-5 bg-body rounded">
+                       <div class="bg-body rounded">
                             <div class="card-body">
-                                <h3 class="card-title">{{ application.offer.name }} {{ application.status }}</h3>
+                                <h3 class="card-title">{{ application.offer.name }}</h3>
                                 <h4 class="profile-name text-center mt-lg-4">{{ application.offer.company.companyName }}</h4>
                                 <img src="{{ vich_uploader_asset(application.offer.company) }}" class="comp-picture"
                                      alt="">

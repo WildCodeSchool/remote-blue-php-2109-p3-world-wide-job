@@ -1,14 +1,12 @@
 @import 'variables';
 
-.nav-tabs {
-    background-color: $background-color;
+.nav-pills {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
     justify-content: space-between;
 }
 
-.nav-item {
-    box-shadow: $box-shadow;
-    border-radius: $border-radius;
-}
+
 
 .btn-primary {
     color: white;
@@ -19,4 +17,10 @@
     top: -7vh;
     left: 5rem;
     height: 14vh;
+}
+
+
+@media screen and (max-width: 400px) {
+
+
 }
