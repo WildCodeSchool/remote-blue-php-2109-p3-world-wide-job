@@ -1,8 +1,15 @@
+require('select2');
+
 const largeOffers = document.getElementsByClassName('largeOffer');
 const smallOffers = document.getElementsByClassName('smallOffer');
 const closeOffer = document.getElementsByClassName('closeOffer');
 const applyButtons = document.querySelectorAll('[data-apply]');
 const addFavorite = document.querySelectorAll('[data-favorite]');
+const $ = require('jquery');
+
+document.addEventListener('DOMContentLoaded', () => {
+    $('.select-multiple').select2();
+});
 
 function addToFavorite(event) {
     event.preventDefault();

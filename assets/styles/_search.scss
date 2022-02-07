@@ -94,8 +94,7 @@ body::-webkit-scrollbar-thumb {
     grid-column: 1/5;
     grid-row: 6;
     font-size: 1rem;
-    margin-bottom: 2rem;
-    margin-top: .5rem;
+    margin-top: 1rem;
 }
 
 .descOffer {
@@ -186,6 +185,7 @@ body::-webkit-scrollbar-thumb {
 
     .submitFilter {
         padding-bottom: 1rem;
+        margin-right: 1rem;
     }
 
     .smallOffer {
@@ -199,6 +199,10 @@ body::-webkit-scrollbar-thumb {
 
     .card-body {
         padding: 0.5rem;
+    }
+
+    .smallSearchCard {
+        margin-top: 20px;
     }
 
     .largeSearchCard {
@@ -283,6 +287,7 @@ body::-webkit-scrollbar-thumb {
         grid-row: 1;
         display: flex;
         flex-direction: column;
+        margin-top: 17px;
     }
 
     .smallOffer {

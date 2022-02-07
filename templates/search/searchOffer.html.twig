@@ -20,6 +20,9 @@
             {{ form_widget(form.submit, {'label': 'Recherche'}) }}
             {{ form_end(form) }}
         </div>
+        <div class="reset-filter">
+            <a class="btn btn-secondary" href="{{ path('offer_search') }}">Réinitialiser</a>
+        </div>
     </div>
 <div class="searchContainer">
     <div class="searchGrid">
@@ -47,11 +50,13 @@
                                 </h4>
                                 <h5 class="jobDate">{% set difference = date('now').diff(date(offer.dateOfPublication)) %}
                                     {% set left_days = difference.days %}
-                                    Publié il y à
+                                    Publié
                                     {% if left_days == 1 %}
-                                        1 jour
+                                        il y a 1 jour
+                                    {% elseif left_days == 0 %}
+                                        aujourd'hui
                                     {% else %}
-                                        {{ left_days }} jours
+                                       il y a {{ left_days }} jours
                                     {% endif %}</h5>
                             </div>
                         </div>
@@ -92,11 +97,13 @@
                 </p>
                 <h5 class="descDate">{% set difference = date('now').diff(date(offer.dateOfPublication)) %}
                     {% set left_days = difference.days %}
-                    Publié il y à
+                    Publié
                     {% if left_days == 1 %}
-                        1 jour
+                        il y a 1 jour
+                    {% elseif left_days == 0 %}
+                        aujourd'hui
                     {% else %}
-                        {{ left_days }} jours
+                       il y a {{ left_days }} jours
                     {% endif %}</h5>
             </div>
         </div>
