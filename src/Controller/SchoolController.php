@@ -88,7 +88,8 @@ class SchoolController extends AbstractController
     {
         $candidate = $studentRepository->findbyAllCandidate($school);
         return $this->render('school/suivi_show.html.twig', [
-            'candidate' => $candidate
+            'candidate' => $candidate,
+            'school' => $school
         ]);
     }
 }

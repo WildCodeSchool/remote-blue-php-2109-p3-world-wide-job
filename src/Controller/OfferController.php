@@ -120,7 +120,7 @@ class OfferController extends AbstractController
             $entityManager->persist($offer);
             $entityManager->flush();
 
-            return $this->redirectToRoute('home', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('company_show', ['slug' => $company->getSlug()], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('offers/new.html.twig', [
