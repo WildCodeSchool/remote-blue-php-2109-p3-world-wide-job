@@ -14,7 +14,7 @@
             {{ form_widget(form.searchStudent) }}
         </div>
         <div class="filterFieldOfActivity mx-2">
-            {{ form_widget(form.searchBySchool) }}
+            {{ form_widget(form.searchByStatus) }}
         </div>
         <div class="filterTypeOfContract me-2">
             {{ form_widget(form.searchByOffers) }}
@@ -69,8 +69,8 @@
                         </div>
                         <hr>
                         <div class="d-flex">
-                            <div class="alert-success h-100 p-1 rounded w-25 d-none accept-label" id="acceptLabel{{ loop.index }}" data-acceptLabel="{{ loop.index }}" > Accepté(e)</div>
-                            <div class="alert-danger h-100 p-1 rounded w-25 d-none refuse-label" id="refuseLabel{{ loop.index }}"  data-refuseLabel="{{ loop.index }}" > Refusé(e)</div>
+                            <div class="alert-success h-100 p-1 rounded w-25 d-none accept-label text-center" id="acceptLabel{{ loop.index }}" data-acceptLabel="{{ loop.index }}" > Accepté(e)</div>
+                            <div class="alert-danger h-100 p-1 rounded w-25 d-none refuse-label text-center" id="refuseLabel{{ loop.index }}"  data-refuseLabel="{{ loop.index }}" > Refusé(e)</div>
                             {% if candidature.status == 2 %}
                                 <a class="btn-primary text-white rounded descApply me-2 p-2 acceptOrRefused"
                                    href="{{ path('company_accept', {'id': candidature.id}) }}" data-accept="{{ loop.index }}" id="btn-accept-{{ loop.index }}">
@@ -79,9 +79,9 @@
                                    href="{{ path('company_refuse', {'id': candidature.id}) }}" data-refuse="{{ loop.index }}" id="btn-refuse-{{ loop.index }}">
                                     Refuser </a>
                             {% elseif candidature.status == 1 %}
-                                <div class="alert-success h-100 p-1 rounded w-25"> Accepté(e)</div>
+                                <div class="alert-success h-100 p-1 rounded w-25 text-center"> Accepté(e)</div>
                             {% elseif candidature.status == 3 %}
-                                <div class="alert-danger h-100 p-1 rounded w-25"> Refusé(e)</div>
+                                <div class="alert-danger h-100 p-1 rounded w-25 text-center"> Refusé(e)</div>
                             {% endif %}
                             <a class="btn-primary text-white rounded p-2 descSave me-1 ms-2"
                                href="{{ path('student_show', {'slug': candidature.student.slug}) }}">Voir le profil</a>
