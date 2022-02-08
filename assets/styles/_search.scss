@@ -83,7 +83,13 @@ body::-webkit-scrollbar-thumb {
     grid-column: 2;
     grid-row: 5;
     text-decoration: none;
-    max-height: 2rem;
+    height: 1.7rem;
+    padding: 0 .2rem;
+}
+
+.descSave {
+    height: 1.7rem;
+    padding: 0 .2rem;
 }
 
 .descApply.applied {
