@@ -4,9 +4,11 @@
     {{ parent() }}
     {{ encore_entry_script_tags('search') }}
 {% endblock %}
- {% block sidebar %}
-     {% include 'component/_sidebar.html.twig' %}
- {% endblock %}
+
+{% block sidebar %}
+      {% include 'component/_sidebar.html.twig' %}
+{% endblock %}
+
 {% block body %}
     <h2 class="favorite-title text-center">Mes favoris</h2>
     {% if app.user.student.favorite|length >= 1 %}
