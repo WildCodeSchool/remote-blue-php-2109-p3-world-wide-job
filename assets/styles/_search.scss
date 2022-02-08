@@ -25,6 +25,15 @@ body::-webkit-scrollbar-thumb {
     position: fixed;
 }
 
+.submitFilter {
+    display: flex;
+    align-items: center;
+}
+
+.closeFilter {
+    margin-left: 2rem;
+}
+
 .smallCard {
     pointer-events: none;
 }
