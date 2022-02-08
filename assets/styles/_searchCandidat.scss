@@ -40,6 +40,11 @@
     white-space: nowrap;
 }
 
+.largeOffer .accepted {
+    background-color: greenyellow;
+}
+
+
 @media screen and (max-width: 992px) {
     .searchContainer .card-cv {
         display: grid;
