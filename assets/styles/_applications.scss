@@ -6,11 +6,22 @@
     justify-content: space-between;
 }
 
-
-
-.btn-primary {
+.application-button.btn.btn-primary {
     color: white;
     font-size: $btn-font-size;
+    border-radius: $border-radius;
+    width: auto;
+    height: auto;
+
+    &.active {
+        color: white;
+        font-size: $btn-font-size;
+        border-radius: $border-radius;
+        width: auto;
+        background-color: $success;
+        border: none;
+        height: auto;
+    }
 }
 
 .comp-picture {
