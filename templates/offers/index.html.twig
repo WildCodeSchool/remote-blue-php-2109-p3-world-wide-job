@@ -4,6 +4,7 @@
     {{ parent() }}
     {{ encore_entry_script_tags('search') }}
 {% endblock %}
+
 {% block body %}
     {% if company.offers|length > 1 %}
 <div class="searchContainer">

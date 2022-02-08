@@ -7,6 +7,7 @@ use App\Entity\School;
 use App\Entity\Student;
 use App\Repository\DegreeRepository;
 use App\Repository\SchoolRepository;
+use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
@@ -35,7 +36,7 @@ class StudentType extends AbstractType
             ->add('username', TextType::class, [
                 'label' => "Pseudo :",
             ])
-            ->add('description', TextareaType::class, [
+            ->add('description', CKEditorType::class, [
                 'label' => "Présentation de votre profil :",
             ])
             ->add('school', EntityType::class, [
