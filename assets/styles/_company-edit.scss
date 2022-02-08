@@ -18,9 +18,27 @@
 }
 
 .update-edit {
-    position: fixed;
-    top:25%;
-    left: 75%;
+    position: absolute;
+    left: 0;
+    top: -110px;
+    @media screen and (min-width: 768px) {
+        right: -150px;
+        top: -80px;
+        left: unset;
+    }
+}
+
+.update-cv {
+    position: absolute;
+    right: -66px;
+    top: 115px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    @media screen and (max-width: 768px) {
+        left: 28px;
+        top: 14px;
+    }
 }
 
 .vich-file div {
