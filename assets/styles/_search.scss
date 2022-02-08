@@ -22,7 +22,7 @@ body::-webkit-scrollbar-thumb {
 }
 
 .filterBar {
-    position: sticky;
+    position: fixed;
 }
 
 .smallCard {
@@ -160,13 +160,36 @@ body::-webkit-scrollbar-thumb {
 }
 
 @media screen and (max-width: 992px) {
+    .openFilter {
+        display: flex;
+        justify-content: center;
+        margin-top: 30px;
+    }
+
+    .filterOpenButton {
+        margin-right: 1rem;
+    }
+
     .filterBar {
+        border-radius: $border-radius;
+        border: solid 1px black;
         background-color: lightgrey;
         display: flex;
-        flex-wrap: wrap;
+        flex-direction: column;
         justify-content: center;
-        top: 55px;
+        align-items: center;
+        top: 75px;
+        left: 5vw;
+        width: 90vw;
+        max-height: 70vh;
         z-index: 10;
+        pointer-events: none;
+        opacity: 0;
+    }
+
+    .filterBar.show {
+        pointer-events: auto;
+        opacity: 1;
     }
 
     .filterCity {
@@ -175,12 +198,15 @@ body::-webkit-scrollbar-thumb {
     }
 
     .filterFieldOfActivity {
+        border-radius: $border-radius;
+        border: solid 1px #ced4da;
         width: 45vw;
         margin-bottom: .5rem;
     }
 
     .filterTypeOfContract{
         width: 45vw;
+        margin-bottom: .5rem;
     }
 
     .submitFilter {
@@ -201,10 +227,6 @@ body::-webkit-scrollbar-thumb {
         padding: 0.5rem;
     }
 
-    .smallSearchCard {
-        margin-top: 20px;
-    }
-
     .largeSearchCard {
         display: grid;
         grid-template-columns: 1fr;
@@ -212,8 +234,8 @@ body::-webkit-scrollbar-thumb {
         position: fixed;
         pointer-events: none;
         left: 5vw;
-        top: 225px;
-        height: calc(98vh - 225px);
+        top: 100px;
+        height: calc(98vh - 100px);
         width: 90vw;
     }
 
@@ -232,21 +254,61 @@ body::-webkit-scrollbar-thumb {
 }
 
 @media screen and (min-width: 992px) {
-    .filterBar {
-        background-color: $gray;
+    .openFilter {
         display: flex;
         justify-content: center;
+        margin-left: 37.5vw;
+        margin-top: 30px;
         padding: .5rem 0;
-        z-index: 10;
-        top: 55px;
+        width: 25vw;
+        background-color: lightgrey;
+        border-radius: $border-radius;
+    }
+
+    .filterOpenButton {
+        margin-right: 1rem;
+    }
+
+    .filterBar {
+        border-radius: $border-radius;
+        border: solid 1px black;
+        background-color: lightgrey;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        top: 100px;
+        left: 20vw;
+        width: 60vw;
+        max-height: 70vh;
+        pointer-events: none;
+        opacity: 0;
+    }
+
+    .filterBar.show {
+        pointer-events: auto;
+        opacity: 1;
+        z-index: 30;
     }
 
     .filterCity {
         margin-left: .5rem;
+        margin-bottom: 1rem;
+    }
+
+    .filterTypeOfContract {
+        margin-bottom: 1rem;
+    }
+
+    .filterFieldOfActivity {
+        margin-bottom: 1rem;
+        border-radius: $border-radius;
+        border: solid 1px #ced4da;
     }
 
     .submitFilter {
         margin-right: .5rem;
+        margin-bottom: 1rem;
     }
 
     .largeOffer::-webkit-scrollbar {
@@ -287,7 +349,6 @@ body::-webkit-scrollbar-thumb {
         grid-row: 1;
         display: flex;
         flex-direction: column;
-        margin-top: 17px;
     }
 
     .smallOffer {
