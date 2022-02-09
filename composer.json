@@ -42,6 +42,7 @@
         "symfony/string": "5.3.*",
         "symfony/translation": "5.3.*",
         "symfony/twig-bundle": "5.3.*",
+        "symfony/ux-chartjs": "^2.0",
         "symfony/ux-swup": "^2.0",
         "symfony/validator": "5.3.*",
         "symfony/web-link": "5.3.*",
