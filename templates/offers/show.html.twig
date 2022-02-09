@@ -27,7 +27,7 @@
                                 </a>
                                     {% endif %}
                                 <div class="descDetails">Détail de l'offre :</div>
-                                <div class="descOffer offer-descOffer">offer.longDescription|raw }}
+                                <div class="descOffer offer-descOffer">{{ offer.longDescription|raw }}
                                 </div>
                                 <h5 class="descDate offer-descDate">{% set difference = date('now').diff(date(offer.dateOfPublication)) %}
                                     {% set left_days = difference.days %}
