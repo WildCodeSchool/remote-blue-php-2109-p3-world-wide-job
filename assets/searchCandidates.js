@@ -1,16 +1,6 @@
-
-
 const largeOffers = document.getElementsByClassName('largeOffer');
 const smallOffers = document.getElementsByClassName('smallOffer');
 const closeOffer = document.getElementsByClassName('closeOffer');
-const applyButtons = document.querySelectorAll('[data-apply]');
-const addFavorite = document.querySelectorAll('[data-favorite]');
-
-
-document.addEventListener('DOMContentLoaded', () => {
-    $('.select-multiple').select2();
-});
-
 
 function load1stContent(array, array2) {
     array[0].classList.add('show');
@@ -48,5 +38,3 @@ for (const element of smallOffers) {
         }
     });
 }
-
-
