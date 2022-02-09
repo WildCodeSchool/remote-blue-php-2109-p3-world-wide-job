@@ -7,7 +7,8 @@
 	{% if error %}
 		<div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
 	{% endif %}
-	<div class="login-background-image" style="background-image: url(build/images/background-Login.fd72d10a.png);" >
+	<div class="login-background-image" style="background-image: url(' {{  asset('build/images/background-Login.png') }}')" >
+
 	<div class="wrapper fadeInDown">
 		<div id="formContent" class="formContent">
 
