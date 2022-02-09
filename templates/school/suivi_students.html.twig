@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Suivi des Étudiants {% endblock %}
+
+{% block sidebar %}
+    {% include 'component/_sidebar.html.twig' %}
+{% endblock %}
+
+{% block body %}
+
+{% if students %}
+    <article class="mt-5">
+{% for student in students %}
+    <div class="profile-student w-50 mx-4 my-3 py-lg-3 mx-auto d-flex justify-content-center ps-4">
+        <div class="profile-offer-bottom d-flex me-2">
+            <img class="profile-offer-picture" src="{{ vich_uploader_asset(student) }}" alt="profil">
+        </div>
+        <div class="mx-3">
+            <h4 class="">{{ student.user.lastname }}</h4>
+            <h4 class=""> {{ student.user.firstname }}</h4>
+        </div>
+        <div class="mx-3">
+            <h6> {{ student.user.country }}</h6>
+            <h6> {{ student.user.city }} </h6>
+            <h6>  {{ student.user.phone }}  </h6>
+        </div>
+    </div>
+    {% endfor %}
+    </article>
+{% else %}
+    <p> Vous n'avez aucun étudiants </p>
+{% endif %}
+{% endblock %}
