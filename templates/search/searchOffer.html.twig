@@ -4,11 +4,13 @@
 {{ parent() }}
 {{ encore_entry_script_tags('search') }}
 {% endblock %}
-{% block sidebar %}
-{% include 'component/_sidebar.html.twig' %}
-{% endblock %}
+
 {% block body %}
-    <div class="filterBar shadow pt-3">
+    <div class="openFilter">
+        <button class="btn btn-primary filterOpenButton" id="open-filter">Trier</button>
+        <a class="btn btn-secondary" href="{{ path('offer_search') }}">Réinitialiser</a>
+    </div>
+    <div class="filterBar shadow pt-3" id="filter-bar">
         <div class="filterCity">
             {{ form_start(form) }}
         {{ form_widget(form.searchCity) }}
@@ -22,9 +24,7 @@
         <div class="submitFilter">
             {{ form_widget(form.submit, {'label': 'Recherche'}) }}
             {{ form_end(form) }}
-        </div>
-        <div class="reset-filter">
-            <a class="btn btn-secondary" href="{{ path('offer_search') }}">Réinitialiser</a>
+            <button class="btn-close closeFilter" id="closeFilters"></button>
         </div>
     </div>
 <div class="searchContainer">

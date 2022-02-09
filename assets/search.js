@@ -5,10 +5,26 @@ const smallOffers = document.getElementsByClassName('smallOffer');
 const closeOffer = document.getElementsByClassName('closeOffer');
 const applyButtons = document.querySelectorAll('[data-apply]');
 const addFavorite = document.querySelectorAll('[data-favorite]');
+const filters = document.getElementById('filter-bar');
+const openFilters = document.getElementById('open-filter');
+const closeFilters = document.getElementById('closeFilters');
+const closeSearch = document.getElementById('filter_offer_submit');
 const $ = require('jquery');
 
 document.addEventListener('DOMContentLoaded', () => {
     $('.select-multiple').select2();
+});
+
+openFilters.addEventListener('click', () => {
+    filters.classList.add('show');
+});
+
+closeSearch.addEventListener('click', () => {
+    filters.classList.remove('show');
+});
+
+closeFilters.addEventListener('click', () => {
+    filters.classList.remove('show');
 });
 
 function addToFavorite(event) {
