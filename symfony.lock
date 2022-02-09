@@ -614,6 +614,9 @@
     "symfony/twig-pack": {
         "version": "v1.0.1"
     },
+    "symfony/ux-chartjs": {
+        "version": "v2.0.1"
+    },
     "symfony/ux-swup": {
         "version": "v2.0.1"
     },
