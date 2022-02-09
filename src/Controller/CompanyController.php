@@ -6,6 +6,7 @@ use App\Entity\Application;
 use App\Entity\Company;
 use App\Entity\Offer;
 use App\Entity\School;
+use App\Services\Slugify;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -28,6 +29,13 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class CompanyController extends AbstractController
 {
+    private Slugify $slugify;
+
+    public function __construct(Slugify $slugify)
+    {
+        $this->slugify = $slugify;
+    }
+
     /**
      * @Route("/{slug}/candidature", name="application")
      */
@@ -135,6 +143,7 @@ class CompanyController extends AbstractController
         $passwordForm->handleRequest($request);
 
         if ($companyForm->isSubmitted() && $companyForm->isValid()) {
+            $company->setSlug($this->slugify->generate($company->getCompanyName()));
             $entityManager->flush();
             $this->addFlash('success', 'Votre profil a été modifié');
         }

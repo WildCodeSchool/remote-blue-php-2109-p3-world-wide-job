@@ -11,6 +11,7 @@ use App\Form\UserEditType;
 use App\Services\AdminService;
 use App\Repository\ApplicationRepository;
 use App\Repository\OfferRepository;
+use App\Services\Slugify;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -23,6 +24,13 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
  */
 class StudentController extends AbstractController
 {
+    private Slugify $slugify;
+
+    public function __construct(Slugify $slugify)
+    {
+        $this->slugify = $slugify;
+    }
+
     /**
      * @Route("/{slug}", name="show")
      */
@@ -53,7 +61,7 @@ class StudentController extends AbstractController
         $userForm->handleRequest($request);
 
         if ($studentForm->isSubmitted() && $studentForm->isValid()) {
-            $student->setSlug($student->getUsername());
+            $student->setSlug($this->slugify->generate($student->getUsername()));
             $entityManager->flush();
             $this->addFlash('success', 'Votre profil a été modifié');
         }

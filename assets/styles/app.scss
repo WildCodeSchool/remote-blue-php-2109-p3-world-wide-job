@@ -24,13 +24,14 @@
 @import "_cv1.scss";
 @import "_show-favorite";
 @import "_applications.scss";
-
+@import "_alert.css";
+@import "_offer";
 
 body {
     background-color: #d3d3d3;
     min-height: 100vh;
     font-family: 'Karla', sans-serif;
-    margin-top: 40px;
+    margin-top: 70px;
     background: #E7EFFC;
 }
 

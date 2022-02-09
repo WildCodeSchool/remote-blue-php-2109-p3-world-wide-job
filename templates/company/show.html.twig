@@ -16,16 +16,17 @@
     <div class="profile-localisation">
         <p class="profile-city rounded">{{ company.user.city }}, {{ company.user.country }}</p>
     </div>
-    <div class="profile-presentation">
+    <div class="profile-presentation position-relative">
         <h3>Présentation</h3>
         <p>{{ company.description }}</p>
+        {% if app.user.company == company %}
+            <a class="btn btn-edit update-edit text-end" style="padding: 10px" href="{{ path('company_edit', {'slug': company.slug}) }}"> <i class="fas fa-pen me-1"></i> </a>
+        {% endif %}
     </div>
-    {% if app.user.company == company %}
-    <a class="btn btn-edit update-edit text-end" style="padding: 10px" href="{{ path('company_edit', {'slug': company.slug}) }}"> <i class="fas fa-pen me-1"></i> </a>
-    {% endif %}
 {% endblock %}
 {% block profileBottom %}
     {% for application in applications %}
+        {% if application.0.status %}
         <div class="profile-offer mx-4 my-3 py-lg-3">
             <div class="profile-offer-head d-flex justify-content-between align-items-center mb-2">
                 <h4 class="profile-offer-title d-flex align-items-center my-0 my-lg-2 text-primary">{{ application.0.name }}</h4>
@@ -46,5 +47,6 @@
             <div class="profile-offer mx-4 my-3 py-lg-3">
                 <p>Cette entreprise n'a pas d'offres actives</p>
             </div>
+            {% endif %}
     {% endfor %}
 {% endblock %}

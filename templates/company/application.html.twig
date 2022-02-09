@@ -8,7 +8,7 @@
 {% block filters %}
 {% endblock %}
 {% block body %}
-    <div class="filterBar shadow pt-3">
+    <div class="filterBar-candidate shadow pt-3 d-flex justify-content-center">
         <div class="filterCity">
             {{ form_start(form) }}
             {{ form_widget(form.searchStudent) }}
@@ -25,17 +25,53 @@
         </div>
     </div>
     <div class="searchContainer mt-5 pt-3">
-        <div class="searchGrid">
-            <div class="smallSearchCard">
-                {% if candidatures %}
-                {% for candidature in candidatures %}
-                    <div class="card rounded sha dow smallOffer" id="smallOffer{{ candidature.id }}">
-                        <div class="card-body smallCard d-flex flex-row align-items-center">
-                            <div class="job-profil-Container me-2">
-                                <img class="profil-offer-photo mt-0 " src="{{ candidature.student.picture }}"
-                                     alt="logo entreprise">
+        {% if candidatures %}
+            <div class="searchGrid">
+                <div class="smallSearchCard">
+
+                    {% for candidature in candidatures %}
+                        <div class="card rounded sha dow smallOffer" id="smallOffer{{ candidature.id }}">
+                            <div class="card-body smallCard d-flex flex-row align-items-center">
+                                <div class="job-profil-Container me-2">
+                                    <img class="profil-offer-photo mt-0 " src="{{ candidature.student.picture }}"
+                                         alt="logo entreprise">
+                                </div>
+                                <div class="jobInfoContainer">
+
+                                    <div class="jobSubInfoContainer d-flex flex-column align-items-start">
+                                        <h3 class="jobTitle offer-name text-primary mb-1">  {{ candidature.student.user.lastname }} {{ candidature.student.user.firstname }}</h3>
+                                        <h4 class="jobLocation offer-localisation  mt-1 mb-0">{{ candidature.student.user.city }}
+                                            ({{ candidature.student.user.zip }}
+                                            )</h4>
+                                        <h4 class="jobType offer-formation mb-0"> {{ candidature.student.school.schoolName }} </h4>
+                                    </div>
+                                    <div class="status-candidature h-25 p-1 rounded"
+                                         id="label-result-{{ loop.index }}"></div>
+                                    {% if candidature.status == 3 %}
+                                        <div class="status-candidature alert-danger h-25 p-1 rounded"
+                                             id="refused-{{ loop.index }}"> Refusé(e)
+                                        </div>
+                                    {% elseif candidature.status == 2 %}
+                                        <div class="status-candidature alert-secondary h-25 p-1 rounded"
+                                             id="waiting-{{ loop.index }}"> En attente
+                                        </div>
+                                    {% elseif candidature.status == 1 %}
+                                        <div class="status-candidature alert-success h-25 p-1 rounded"
+                                             id="accepted-{{ loop.index }}"> Accepté(e)
+                                        </div>
+                                    {% endif %}
+                                </div>
                             </div>
-                            <div class="jobInfoContainer">
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="card-cv" id="largeSearchCard">
+                {% for candidature in candidatures %}
+                    <div class="card rounded shadow largeOffer" id="largeOffer{{ candidature.id }}">
+                        <div class="card-body largeCard d-flex flex-column">
+                            <button class="btn-close closeOffer"></button>
+                            {% include 'student/_cv.html.twig' with {'student': candidature.student} %}
 
                                 <div class="jobSubInfoContainer d-flex flex-column align-items-start">
                                     <h3 class="jobTitle offer-name text-primary mb-1">  {{ candidature.student.user.lastname }} {{ candidature.student.user.firstname }}</h3>
@@ -43,63 +79,47 @@
                                         ({{ candidature.student.user.zip }}
                                         )</h4>
                                     <h4 class="jobType offer-formation mb-0"> {{ candidature.student.school.schoolName }} </h4>
+                                    <h4 class="jobType offer-formation mb-0"> {{ candidature.offer.name }} </h4>
+                            <hr>
+                            <div class="d-flex">
+                                <div class="alert-success h-100 p-1 rounded w-25 d-none accept-label text-center"
+                                     id="acceptLabel{{ loop.index }}" data-acceptLabel="{{ loop.index }}"> Accepté(e)
                                 </div>
-                                <div class="status-candidature h-25 p-1 rounded" id="label-result-{{ loop.index }}">  </div>
-                                {% if candidature.status == 3 %}
-                                    <div class="status-candidature alert-danger h-25 p-1 rounded" id="refused-{{ loop.index }}"> Refusé(e)</div>
-                                {% elseif candidature.status == 2 %}
-                                    <div class="status-candidature alert-secondary h-25 p-1 rounded" id="waiting-{{ loop.index }}"> En attente </div>
+                                <div class="alert-danger h-100 p-1 rounded w-25 d-none refuse-label text-center"
+                                     id="refuseLabel{{ loop.index }}" data-refuseLabel="{{ loop.index }}"> Refusé(e)
+                                </div>
+                                {% if candidature.status == 2 %}
+                                    <a class="btn btn-primary text-white rounded me-2 acceptOrRefused"
+                                       href="{{ path('company_accept', {'id': candidature.id}) }}"
+                                       data-accept="{{ loop.index }}" id="btn-accept-{{ loop.index }}">
+                                        Accepter </a>
+                                    <a class="btn btn-outline-primary me-2 acceptOrRefused"
+                                       href="{{ path('company_refuse', {'id': candidature.id}) }}"
+                                       data-refuse="{{ loop.index }}" id="btn-refuse-{{ loop.index }}">
+                                        Refuser </a>
                                 {% elseif candidature.status == 1 %}
-                                    <div class="status-candidature alert-success h-25 p-1 rounded" id="accepted-{{ loop.index }}"> Accepté(e) </div>
+                                    <div class="alert-success h-100 p-1 rounded w-25 text-center"> Accepté(e)</div>
+                                {% elseif candidature.status == 3 %}
+                                    <div class="alert-danger h-100 p-1 rounded w-25 text-center"> Refusé(e)</div>
                                 {% endif %}
+                                <a class="btn btn-primary text-white rounded  me-1 ms-2"
+                                   href="{{ path('student_show', {'slug': candidature.student.slug}) }}">Voir le
+                                    profil</a>
                             </div>
                         </div>
                     </div>
                 {% endfor %}
             </div>
-        </div>
-        <div class="largeSearchCard card-cv" style="max-width: 580px;" id="largeSearchCard">
-            {% for candidature in candidatures %}
-                <div class="card rounded shadow largeOffer" id="largeOffer{{ candidature.id }}">
-                    <div class="card-body largeCard d-flex flex-column">
-                        <button class="btn-close closeOffer"></button>
-                        {# @todo change unit rem to % #}
-                        <div style="width: 34.375rem">
-                            {% include 'company/_cv.html.twig' %}
-                        </div>
-                        <hr>
-                        <div class="d-flex">
-                            <div class="alert-success h-100 p-1 rounded w-25 d-none accept-label text-center" id="acceptLabel{{ loop.index }}" data-acceptLabel="{{ loop.index }}" > Accepté(e)</div>
-                            <div class="alert-danger h-100 p-1 rounded w-25 d-none refuse-label text-center" id="refuseLabel{{ loop.index }}"  data-refuseLabel="{{ loop.index }}" > Refusé(e)</div>
-                            {% if candidature.status == 2 %}
-                                <a class="btn-primary text-white rounded descApply me-2 p-2 acceptOrRefused"
-                                   href="{{ path('company_accept', {'id': candidature.id}) }}" data-accept="{{ loop.index }}" id="btn-accept-{{ loop.index }}">
-                                    Accepter </a>
-                                <a class="rounded descApply bg-transparent p-2 border-primary btn-outline-primary me-2 acceptOrRefused"
-                                   href="{{ path('company_refuse', {'id': candidature.id}) }}" data-refuse="{{ loop.index }}" id="btn-refuse-{{ loop.index }}">
-                                    Refuser </a>
-                            {% elseif candidature.status == 1 %}
-                                <div class="alert-success h-100 p-1 rounded w-25 text-center"> Accepté(e)</div>
-                            {% elseif candidature.status == 3 %}
-                                <div class="alert-danger h-100 p-1 rounded w-25 text-center"> Refusé(e)</div>
-                            {% endif %}
-                            <a class="btn-primary text-white rounded p-2 descSave me-1 ms-2"
-                               href="{{ path('student_show', {'slug': candidature.student.slug}) }}">Voir le profil</a>
+        {% else %}
+            <div class="card rounded sha dow smallOffer">
+                <div class="card-body smallCard d-flex flex-row align-items-center">
+                    <div class="jobInfoContainer">
+                        <div class="jobSubInfoContainer d-flex flex-column align-items-start">
+                            Aucune candidature
                         </div>
                     </div>
                 </div>
-            {% endfor %}
-            {% else %}
-                <div class="card rounded sha dow smallOffer">
-                    <div class="card-body smallCard d-flex flex-row align-items-center">
-                        <div class="jobInfoContainer">
-                            <div class="jobSubInfoContainer d-flex flex-column align-items-start">
-                                Aucune candidature
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            {% endif %}
-        </div>
+            </div>
+        {% endif %}
     </div>
 {% endblock %}

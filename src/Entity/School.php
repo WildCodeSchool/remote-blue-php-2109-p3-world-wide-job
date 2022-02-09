@@ -8,6 +8,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\Serializer\Annotation\Ignore;
 use Symfony\Component\Validator\Constraints as Assert;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
@@ -25,17 +26,18 @@ class School
     protected int $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     * @var string
+     * @ORM\Column(type="string", length=255, nullable="true")
+     * @var ?string
      */
-    private string $logo = "";
+    private ?string $logo = "";
 
     /**
      * @Vich\UploadableField(mapping="profile_file", fileNameProperty="logo")
      * @Assert\File(
-     *     maxSize = "1M",
+     *     maxSize = "5M",
      *     mimeTypes = {"image/jpeg", "image/png", "image/webp"},
      * )
+     * @Ignore()
      * @var ?File
      */
     private ?File $logoFile = null;
@@ -106,18 +108,18 @@ class School
         return $this->id;
     }
 
-    public function getLogo(): string
+    public function getLogo(): ?string
     {
         return $this->logo;
     }
 
-    public function setLogo(string $logo): self
+    public function setLogo(?string $logo): self
     {
         $this->logo = $logo;
         return $this;
     }
 
-    public function setLogoFile(?File $image = null): void
+    public function setLogoFile(File $image = null): void
     {
         $this->logoFile = $image;
         if ($image) {

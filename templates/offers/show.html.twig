@@ -2,24 +2,21 @@
         {% block title %}Recherche emploi world wide job{% endblock %}
 {% block javascripts %}
     {{ parent() }}
-    {{ encore_entry_script_tags('search') }}
+    {{ encore_entry_script_tags('offerShow') }}
 {% endblock %}
 {% block body %}
     <div class="searchContainer">
         {% if app.user %}
-            <div class="largeSearchCard mx-auto" id="largeSearchCard">
+            <div class="largeSearchCard largeSearchCard-offer mx-auto" id="largeSearchCard">
                 {% for offer in offers %}
                     {% if offer.status %}
-                        <div class="card rounded shadow largeOffer" id="largeOffer{{ offer.id }}">
-                            <div class="card-body largeCard">
-                                <button class="btn-close closeOffer"></button>
+                        <div class="card rounded shadow largeOffer largeOffer-show" id="largeOffer{{ offer.id }}">
+                            <div class="card-body largeCard largeCard-offer">
                                 <h3 class="descCompanyName">{{ offer.company.companyName }} <br>
-                                    <a href="{{ path('company_show', {'slug': offer.company.slug}) }}">Voir le profil</a></h3>
+                                    <a class="offer-show-company" href="{{ path('company_show', {'slug': offer.company.slug}) }}">Voir le profil</a>
+                                </h3>
                                 <h2 class="descJobTitle">{{ offer.name }}</h2>
                                 <h3 class="descJobLocation">{{ offer.city }}</h3>
-                                <h3 class="descJobType">
-
-                                </h3>
                                 {% if app.user.student is not empty and offer.isAppliedByStudent(app.user.student) %}
                                     <p class="btn-success text-white text-center rounded descApply">Postulé</p>
                                 {% elseif app.user.student %}
@@ -30,9 +27,9 @@
                                 </a>
                                     {% endif %}
                                 <div class="descDetails">Détail de l'offre :</div>
-                                <p class="descOffer">{{ offer.longDescription }}
+                                <p class="descOffer offer-descOffer">{{ Description|raw }}
                                 </p>
-                                <h5 class="descDate">{% set difference = date('now').diff(date(offer.dateOfPublication)) %}
+                                <h5 class="descDate offer-descDate">{% set difference = date('now').diff(date(offer.dateOfPublication)) %}
                                     {% set left_days = difference.days %}
                                     Publié il y à
                                     {% if left_days == 1 %}
