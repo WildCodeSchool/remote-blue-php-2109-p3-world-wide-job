@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+        {{ content.title }}
+{% endblock %}
+
+{% block body %}
+
+        <div class="container">
+            <h1 class="text-center my-5">{{ content.title }}</h1>
+            {{ content.body|raw }}
+        </div>
+
+{% endblock %}
+
