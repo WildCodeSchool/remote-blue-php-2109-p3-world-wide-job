@@ -7,7 +7,11 @@ use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Exception;
+use JetBrains\PhpStorm\Internal\LanguageLevelTypeAware;
+use Serializable;
 use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\Serializer\Annotation\Ignore;
 use Symfony\Component\Validator\Constraints as Assert;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
@@ -15,7 +19,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  * @ORM\Entity(repositoryClass=CompanyRepository::class)
  * @Vich\Uploadable
  */
-class Company
+class Company implements Serializable
 {
     /**
      * @ORM\Id
@@ -26,15 +30,17 @@ class Company
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @var ?string
      */
     private ?string $logo = "";
 
     /**
      * @Vich\UploadableField(mapping="profile_file", fileNameProperty="logo")
      * @Assert\File(
-     *     maxSize = "1M",
+     *     maxSize = "5M",
      *     mimeTypes = {"image/jpeg", "image/png", "image/webp"},
      * )
+     * @Ignore()
      * @var ?File
      */
     private ?File $logoFile = null;
@@ -116,13 +122,12 @@ class Company
         return $this->logoFile;
     }
 
-    public function setLogoFile(?File $image = null): self
+    public function setLogoFile(File $image = null): void
     {
         $this->logoFile = $image;
         if ($image) {
             $this->updatedAt = new DateTime('now');
         }
-        return $this;
     }
 
     public function getSlug(): ?string
@@ -255,5 +260,21 @@ class Company
         $this->status = $status;
 
         return $this;
+    }
+
+    public function serialize(): ?string
+    {
+        return serialize(array(
+            $this->id,
+        ));
+    }
+
+    public function unserialize($data)
+    {
+        if (is_array(unserialize($data))) {
+            list (
+                $this->id,
+                ) = unserialize($data);
+        }
     }
 }
