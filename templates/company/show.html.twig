@@ -16,13 +16,13 @@
     <div class="profile-localisation">
         <p class="profile-city rounded">{{ company.user.city }}, {{ company.user.country }}</p>
     </div>
-    <div class="profile-presentation">
+    <div class="profile-presentation position-relative">
         <h3>Présentation</h3>
         <p>{{ company.description }}</p>
+        {% if app.user.company == company %}
+            <a class="btn btn-edit update-edit text-end" style="padding: 10px" href="{{ path('company_edit', {'slug': company.slug}) }}"> <i class="fas fa-pen me-1"></i> </a>
+        {% endif %}
     </div>
-    {% if app.user.company == company %}
-    <a class="btn btn-edit update-edit text-end" style="padding: 10px" href="{{ path('company_edit', {'slug': company.slug}) }}"> <i class="fas fa-pen me-1"></i> </a>
-    {% endif %}
 {% endblock %}
 {% block profileBottom %}
     {% for application in applications %}
