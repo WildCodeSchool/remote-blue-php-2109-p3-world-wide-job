@@ -72,9 +72,7 @@
                             {% endif %}
                             <a class="btn-primary text-white rounded descSave" href="{{ path('offer_favorite', {'id': offer.id}) }}">Enlever des favoris</a>
                             <div class="descDetails">Détail de l'offre :</div>
-                            <p class="descOffer">
-                            <p class="descOffer">{{ offer.longDescription|raw }}
-                            </p>
+                            <div class="descOffer">{{ offer.longDescription|raw }}</div>
                             <h5 class="descDate">{% set difference = date('now').diff(date(offer.dateOfPublication)) %}
                                 {% set left_days = difference.days %}
                                 Il y à
