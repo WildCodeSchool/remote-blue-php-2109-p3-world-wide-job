@@ -20,6 +20,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 /**
  * @Route("/offres", name="offer_")
@@ -150,6 +151,10 @@ class OfferController extends AbstractController
         CompanyRepository $companyRepository
     ): Response {
         $company = $companyRepository->findOneBy(['user' => $this->getUser()]);
+        if (!($this->getUser() == $offer->getCompany()->getUser())) {
+            // If not the owner, throws a 403 Access Denied exception
+            throw new AccessDeniedException("Vous n'êtes pas autorisé à éditer cette offre");
+        }
 
         $form = $this->createForm(OfferType::class, $offer);
         $form->handleRequest($request);
