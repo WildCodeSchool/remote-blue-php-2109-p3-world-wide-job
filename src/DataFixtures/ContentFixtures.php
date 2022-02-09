@@ -33,7 +33,7 @@ class ContentFixtures extends Fixture
     {
 
         $content = new Content();
-        $content->setTitle('Mention légal');
+        $content->setTitle('Mentions légales');
         $content->setSlug($this->slugify->generate($content->getTitle()));
         $content->setBody(self::LOREM);
         $manager->persist($content);

@@ -9,12 +9,12 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/contenue", name="content_")
+ * @Route("/", name="content_")
  */
 class ContentController extends AbstractController
 {
     /**
-     * @Route("/{slug}", name="show")
+     * @Route("/{slug}", name="show", priority="-1")
      * @ParamConverter("Content", class="App\Entity\Content", options={"mapping": {"slug": "slug"}})
      */
     public function show(Content $content): Response
