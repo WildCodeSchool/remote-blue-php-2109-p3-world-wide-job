@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
         .then((editor) => {
             editor.model.document.on('change:data', () => {
                 document.getElementById('offerDescription').innerHTML = editor.getData();
+                document.getElementById('offer_longDescription').value = editor.getData();
             });
         });
 });
