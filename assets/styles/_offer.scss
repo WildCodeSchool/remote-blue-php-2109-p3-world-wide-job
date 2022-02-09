@@ -1,0 +1,23 @@
+.largeOffer-show {
+    opacity: 1;
+}
+
+.largeSearchCard-offer {
+    min-width: 500px;
+}
+
+p.descOffer.offer-descOffer {
+    grid-row: 7;
+}
+
+.offer-descDate {
+    grid-row: 8;
+}
+
+.offer-show-company {
+    pointer-events: unset;
+}
+
+.largeCard-offer {
+    pointer-events: auto;
+}

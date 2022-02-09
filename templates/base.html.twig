@@ -14,9 +14,9 @@
         {{ encore_entry_script_tags('app') }}
     {% endblock %}
 </head>
-<body class="{{ app.request.pathinfo == path('home') ? 'home-background-image' }}
+<body class="home-background-image {{ app.request.pathinfo == path('login') ? 'background-image: url('~ asset('build/images/background-Login.png')~')' }}
 d-flex flex-column h-100"
-      style="{{ app.request.pathinfo == path('home') ? 'background-image: url(build/images/office.4166db60.png);' }}">
+      style="{{ app.request.pathinfo == path('home') ? 'background-image: url('~ asset('build/images/office.png')~')' }}">
 <header class="position-fixed mt-0 top-0 w-100">
     {% include 'component/_navbar.html.twig' %}
 </header>

@@ -14,11 +14,14 @@
     <div class="profile-localisation">
         <p class="profile-city">{{ school.user.city }}, {{ school.user.country }}</p>
     </div>
-    <div class="profile-presentation">
+    <div class="profile-presentation position-relative">
         <h3>Présentation</h3>
-        {{ school.schoolDesc|raw }}
+        <p>{{ school.schoolDesc }}</p>
+        {% if app.user == school.user %}
+        <a class="btn btn-edit update-edit text-end" style="padding: 10px" href="{{ path('school_edit', {'slug': school.slug}) }}"> <i class="fas fa-pen me-1"></i> </a>
+        {% endif %}
+
     </div>
-    <a class="btn btn-edit update-edit text-end" style="padding: 10px" href="{{ path('school_edit', {'slug': school.slug}) }}"> <i class="fas fa-pen me-1"></i> </a>
 {% endblock %}
 {% block profileBottom %}
     <section class="profile-school-students my-4 py-4 mx-4">
