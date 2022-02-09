@@ -35,7 +35,7 @@ class NavigationService
         if ($this->security->isGranted('ROLE_STUDENT_COMPLETED')) {
             return [
                 ['title' => 'Mon profil étudiant', 'path' => $this->generateUrl('user_home')],
-                ['title' => 'Faire mon CV', 'path' => $this->urlGenerator
+                ['title' => 'Mon CV', 'path' => $this->urlGenerator
                     ->generate('curriculum')],
                 ['title' => 'Voir mes candidatures', 'path' => $this->urlGenerator
                     ->generate('student_application', ['slug' => $this->userService->getSlug()])],
@@ -50,19 +50,19 @@ class NavigationService
                     ->generate('offer_new')],
                 ['title' => 'Voir mes offres', 'path' => $this->urlGenerator
                     ->generate('company_index', ['slug' => $this->userService->getSlug()])],
-                ['title' => 'Consulter mes candidature', 'path' => $this->urlGenerator
+                ['title' => 'Consulter les candidature(s)', 'path' => $this->urlGenerator
                     ->generate('company_application', ['slug' => $this->userService->getSlug()])],
             ];
         }
         if ($this->security->isGranted('ROLE_SCHOOL_COMPLETED')) {
             return [
                 ['title' => 'Mon profil formation', 'path' => $this->generateUrl('user_home')],
-                ['title' => 'List des étudiants', 'path' => $this->generateUrl('user_home')],
-                ['title' => 'Suivi des candidatures', 'path' => $this->urlGenerator
+                ['title' => 'Liste des étudiants', 'path' => $this->urlGenerator
+                    ->generate('school_students', ['slug' => $this->userService->getSlug()])],
+                ['title' => 'Suivi des étudiants', 'path' => $this->urlGenerator
                     ->generate('school_suivi_show', ['slug' => $this->userService->getSlug()])],
             ];
         }
-
         return self::ROLE_NOT_COMPLETED;
     }
 

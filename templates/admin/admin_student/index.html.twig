@@ -1,20 +1,68 @@
 {% extends 'admin/base.html.twig' %}
 
-{% block title %}Hello AdminStudentController!{% endblock %}
+{% block title %}Admin liste des étudiants{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+    <h1>Liste des étudiants</h1>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/Users/jef/Documents/Wild code school/Sessions/Remote - 2021-09/Projets/Projets 3/remote-blue-php-2109-p3-world-wide-job/src/Controller/AdminStudentController.php'|file_link(0) }}">src/Controller/AdminStudentController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/Users/jef/Documents/Wild code school/Sessions/Remote - 2021-09/Projets/Projets 3/remote-blue-php-2109-p3-world-wide-job/templates/admin_student/index.html.twig'|file_link(0) }}">templates/admin_student/index.html.twig</a></code></li>
-    </ul>
-</div>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Picture</th>
+            <th>Ine</th>
+            <th>UpdatedAt</th>
+            <th>Slug</th>
+            <th>Username</th>
+            <th>Status</th>
+            <th>Roles</th>
+            <th>Email</th>
+            <th>Civility</th>
+            <th>Firstname</th>
+            <th>Lastname</th>
+            <th>Birthdate</th>
+            <th>Phone</th>
+            <th>Adress1</th>
+            <th>Adress2</th>
+            <th>City</th>
+            <th>Zip</th>
+            <th>Country</th>
+            <th>IsVerified</th>
+            <th>LastConnection</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for student in students %}
+            <tr>
+                <td>{{ student.id }}</td>
+                <td>{{ student.picture }}</td>
+                <td>{{ student.ine }}</td>
+                <td>{{ student.updatedAt ? student.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ student.slug }}</td>
+                <td>{{ student.username }}</td>
+                <td>{{ student.status ? 'Yes' : 'No' }}</td>
+                <td>{{ student.user.roles ? student.user.roles|json_encode : '' }}</td>
+                <td>{{ student.user.email }}</td>
+                <td>{{ student.user.civility }}</td>
+                <td>{{ student.user.firstname }}</td>
+                <td>{{ student.user.lastname }}</td>
+                <td>{{ student.user.birthdate ? student.user.birthdate|date('Y-m-d') : '' }}</td>
+                <td>{{ student.user.phone }}</td>
+                <td>{{ student.user.adress1 }}</td>
+                <td>{{ student.user.adress2 }}</td>
+                <td>{{ student.user.city }}</td>
+                <td>{{ student.user.zip }}</td>
+                <td>{{ student.user.country }}</td>
+                <td>{{ student.user.isVerified ? 'Yes' : 'No' }}</td>
+                <td>{{ student.user.lastConnection ? student.user.lastConnection|date('Y-m-d') : '' }}</td>
+                <td>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
 {% endblock %}

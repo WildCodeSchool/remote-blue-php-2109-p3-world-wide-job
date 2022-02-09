@@ -4,8 +4,13 @@
 {{ parent() }}
 {{ encore_entry_script_tags('search') }}
 {% endblock %}
+
 {% block body %}
-    <div class="filterBar shadow pt-3">
+    <div class="openFilter">
+        <button class="btn btn-primary filterOpenButton" id="open-filter">Trier</button>
+        <a class="btn btn-secondary" href="{{ path('offer_search') }}">Réinitialiser</a>
+    </div>
+    <div class="filterBar shadow pt-3" id="filter-bar">
         <div class="filterCity">
             {{ form_start(form) }}
         {{ form_widget(form.searchCity) }}
@@ -19,6 +24,7 @@
         <div class="submitFilter">
             {{ form_widget(form.submit, {'label': 'Recherche'}) }}
             {{ form_end(form) }}
+            <button class="btn-close closeFilter" id="closeFilters"></button>
         </div>
     </div>
 <div class="searchContainer">
@@ -47,11 +53,13 @@
                                 </h4>
                                 <h5 class="jobDate">{% set difference = date('now').diff(date(offer.dateOfPublication)) %}
                                     {% set left_days = difference.days %}
-                                    Publié il y à
+                                    Publié
                                     {% if left_days == 1 %}
-                                        1 jour
+                                        il y a 1 jour
+                                    {% elseif left_days == 0 %}
+                                        aujourd'hui
                                     {% else %}
-                                        {{ left_days }} jours
+                                       il y a {{ left_days }} jours
                                     {% endif %}</h5>
                             </div>
                         </div>
@@ -79,22 +87,26 @@
                     {% endfor %}
                 </h3>
                 {% if app.user.student is not empty and offer.isAppliedByStudent(app.user.student) %}
-                    <button class="btn-success text-white rounded descApply">Postulé</button>
-                {% else %}
+                    <p class="btn-success text-white text-center rounded descApply">Postulé</p>
+                {% elseif app.user.student %}
                     <a href="{{ path('offer_apply', {'id': offer.id}) }}" data-apply="" class="btn-primary text-white rounded descApply">Postuler</a>
                 {% endif %}
-                <a class="btn-primary text-white rounded descSave" data-favorite="" href="{{ path('offer_favorite', {'id': offer.id}) }}">{{ is_granted('ROLE_STUDENT_COMPLETED') and app.user.student.inFavorite(offer) ? 'Enlever des favoris' : 'Enregistrer' }}
+                {% if app.user.student is not empty %}
+                <a class="{{ app.user.student.inFavorite(offer) ? 'btn-success' : 'btn-primary' }} text-white rounded descSave" data-favorite="" href="{{ path('offer_favorite', {'id': offer.id}) }}">{{ is_granted('ROLE_STUDENT_COMPLETED') and app.user.student.inFavorite(offer) ? 'Retirer' : 'Enregistrer' }}
                 </a>
+                {% endif %}
                 <div class="descDetails">Détail de l'offre :</div>
-                <p class="descOffer">{{ offer.longDescription }}
-                </p>
+                <div class="descOffer">{{ offer.longDescription|raw }}
+                </div>
                 <h5 class="descDate">{% set difference = date('now').diff(date(offer.dateOfPublication)) %}
                     {% set left_days = difference.days %}
-                    Publié il y à
+                    Publié
                     {% if left_days == 1 %}
-                        1 jour
+                        il y a 1 jour
+                    {% elseif left_days == 0 %}
+                        aujourd'hui
                     {% else %}
-                        {{ left_days }} jours
+                       il y a {{ left_days }} jours
                     {% endif %}</h5>
             </div>
         </div>

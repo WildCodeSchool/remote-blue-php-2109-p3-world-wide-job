@@ -7,6 +7,7 @@ use App\Form\PasswordEditType;
 use App\Form\SchoolType;
 use App\Form\UserEditType;
 use App\Repository\StudentRepository;
+use App\Services\Slugify;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -18,6 +19,13 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class SchoolController extends AbstractController
 {
+    private Slugify $slugify;
+
+    public function __construct(Slugify $slugify)
+    {
+        $this->slugify = $slugify;
+    }
+
     /**
      * @Route("/{slug}", name="show")
      */
@@ -47,6 +55,7 @@ class SchoolController extends AbstractController
         $userForm->handleRequest($request);
 
         if ($schoolForm->isSubmitted() && $schoolForm->isValid()) {
+            $school->setSlug($this->slugify->generate($school->getSchoolName()));
             $entityManager->flush();
             $this->addFlash('success', 'Votre profil a été modifié');
         }
@@ -88,7 +97,20 @@ class SchoolController extends AbstractController
     {
         $candidate = $studentRepository->findbyAllCandidate($school);
         return $this->render('school/suivi_show.html.twig', [
-            'candidate' => $candidate
+            'candidate' => $candidate,
+            'school' => $school
+        ]);
+    }
+
+    /**
+     * @Route("/{slug}/étudiants", name="students")
+     */
+    public function students(School $school, StudentRepository $studentRepository): Response
+    {
+        $students = $studentRepository->findbyAllCandidate($school);
+        return $this->render('school/suivi_students.html.twig', [
+            'students' => $students,
+            'school' => $school
         ]);
     }
 }

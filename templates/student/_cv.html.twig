@@ -2,8 +2,7 @@
     <div class="grid-container">
         <div class="zone-1">
             <div class="toCenter">
-                <div class="profile">
-                    <img class="userPicture rounded-circle" src="{{ vich_uploader_asset(student) }}" alt="{{ student.user.lastname }}">
+                <div class="profile" style="backgroud-image: url('{{ vich_uploader_asset(student.curriculum) }}')">
                 </div>
             </div>
             <div class="contact-box">
@@ -26,17 +25,17 @@
             <div class="personal-box">
                 <div class="title">
                     <h2>Compétences</h2>
-                    <div class="skill-1">
-                        <p>{{ student.curriculum.skills }}</p>
+                    <div class="skills m-4">
+                        <h6>{{ student.curriculum.skills }}</h6>
                     </div>
                 </div>
             </div>
             <div class="langues-box">
                 <div class="title">
                     <h2>Langues</h2>
-                    <ul>
-                        <li>{{ student.curriculum.language }}</li>
-                    </ul>
+                    <div class="skills m-4">
+                        <h6>{{ student.curriculum.language }}</h6>
+                    </div>
                 </div>
             </div>
         </div>
@@ -62,7 +61,7 @@
                 {% for training in student.curriculum.trainings %}
                         <ul>
                             <li>
-                                <div class="msg-1">{{ training.dateIn|date("d-n-y") }}-{{ training.dateOut|date("d-n-y") }} | {{ training.degree }}</div>
+                                <div class="msg-1">{{ training.dateIn|date("d/m/Y") }}-{{ training.dateOut|date("d/m/Y") }} | {{ training.degree }}</div>
                                 <div class="msg-2">{{ training.school }} | {{ training.graduate }}</div>
                             </li>
                         </ul>

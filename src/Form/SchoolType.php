@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\School;
+use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -21,10 +22,10 @@ class SchoolType extends AbstractType
                 'label' => "Nom de l’établissement :"
             ])
             ->add('schoolCode', TextType::class, [
-                'label' => 'N° de l’établissement :'
+                'label' => 'Intitulé de la formation :'
             ])
-            ->add('schoolDesc', TextareaType::class, [
-                'label' => "Description de l'établissement :"
+            ->add('schoolDesc', CKEditorType::class, [
+                'label' => "Description de la formation :"
             ])
             ->add('type', ChoiceType::class, [
                 'label' => 'Type d’établissement :',
@@ -42,6 +43,7 @@ class SchoolType extends AbstractType
                 'required'      => false,
                 'allow_delete'  => true, // not mandatory, default is true
                 'download_uri' => true, // not mandatory, default is true
+                'label' => "Logo de l'établissement"
             ])
         ;
     }

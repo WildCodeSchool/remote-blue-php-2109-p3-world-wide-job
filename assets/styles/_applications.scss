@@ -1,18 +1,33 @@
 @import 'variables';
 
-.nav-tabs {
-    background-color: $background-color;
+
+
+.nav-pills {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
     justify-content: space-between;
 }
 
-.nav-item {
-    box-shadow: $box-shadow;
-    border-radius: $border-radius;
+.view.btn {
+    color: white;
 }
 
-.btn-primary {
+.application-button.btn.btn-primary {
     color: white;
     font-size: $btn-font-size;
+    border-radius: $border-radius;
+    width: auto;
+    height: auto;
+
+    &.active {
+        color: white;
+        font-size: $btn-font-size;
+        border-radius: $border-radius;
+        width: auto;
+        background-color: $success;
+        border: none;
+        height: auto;
+    }
 }
 
 .comp-picture {
@@ -20,3 +35,6 @@
     left: 5rem;
     height: 14vh;
 }
+
+
+

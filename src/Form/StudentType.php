@@ -7,6 +7,7 @@ use App\Entity\School;
 use App\Entity\Student;
 use App\Repository\DegreeRepository;
 use App\Repository\SchoolRepository;
+use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
@@ -27,17 +28,19 @@ class StudentType extends AbstractType
                 'required' => false,
                 'allow_delete' => true, // not mandatory, default is true
                 'download_uri' => true, // not mandatory, default is true
+                'label' => 'Photo de profil :'
             ])
             ->add('ine', TextType::class, [
-                'label' => "INE :",
+                'label' => "Numéro INE :",
             ])
             ->add('username', TextType::class, [
                 'label' => "Pseudo :",
             ])
-            ->add('description', TextareaType::class, [
-                'label' => "INE :",
+            ->add('description', CKEditorType::class, [
+                'label' => "Présentation de votre profil :",
             ])
             ->add('school', EntityType::class, [
+                'label' => 'Formation :',
                 "class" => School::class,
                 "choice_label" => "schoolName",
                 'multiple' => false,

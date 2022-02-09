@@ -14,15 +14,15 @@
         {{ encore_entry_script_tags('app') }}
     {% endblock %}
 </head>
-<body class="{{ app.request.pathinfo == path('home') ? 'home-background-image' }}
+<body class="home-background-image {{ app.request.pathinfo == path('login') ? 'background-image: url(' ~ asset('build/images/background-Login.png') ~ ')' }}
 d-flex flex-column h-100"
-      style="{{ app.request.pathinfo == path('home') ? 'background-image: url(build/images/office.4166db60.png);' }}">
+      style="{{ app.request.pathinfo == path('home') ? 'background-image: url(' ~ asset('build/images/office.png') ~ ')' }}">
 <header class="position-fixed mt-0 top-0 w-100">
     {% include 'component/_navbar.html.twig' %}
 </header>
 {% for category, messages in app.flashes %}
     {% for message in messages %}
-        <div class="alert alert-dismissible fade show alert-{{ category }}" role="alert">
+        <div class="alert alert-base alert-dismissible fade show alert-{{ category }}" role="alert">
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             {{ message }}
         </div>

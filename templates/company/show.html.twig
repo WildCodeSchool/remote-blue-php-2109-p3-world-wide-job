@@ -16,16 +16,17 @@
     <div class="profile-localisation">
         <p class="profile-city rounded">{{ company.user.city }}, {{ company.user.country }}</p>
     </div>
-    <div class="profile-presentation">
+    <div class="profile-presentation position-relative">
         <h3>Présentation</h3>
         <p>{{ company.description }}</p>
+        {% if app.user.company == company %}
+            <a class="btn btn-edit update-edit text-end" style="padding: 10px" href="{{ path('company_edit', {'slug': company.slug}) }}"> <i class="fas fa-pen me-1"></i> </a>
+        {% endif %}
     </div>
-    {% if app.user.company == company %}
-    <a class="btn btn-edit update-edit text-end" style="padding: 10px" href="{{ path('company_edit', {'slug': company.slug}) }}"> <i class="fas fa-pen me-1"></i> </a>
-    {% endif %}
 {% endblock %}
 {% block profileBottom %}
     {% for application in applications %}
+        {% if application.0.status %}
         <div class="profile-offer mx-4 my-3 py-lg-3">
             <div class="profile-offer-head d-flex justify-content-between align-items-center mb-2">
                 <h4 class="profile-offer-title d-flex align-items-center my-0 my-lg-2 text-primary">{{ application.0.name }}</h4>
@@ -35,17 +36,9 @@
                 <img class="profile-offer-picture" src="{{ vich_uploader_asset(company) }}" alt="{{ company.companyName }}">
                 <div class="profile-offer-text d-flex flex-column justify-content-between">
                     <p class="profile-offer-description my-2 mt-md-3 my-lg-0 px-lg-4">{{ application.0.shortDescription }} </p>
-                    {#  lien href à mettre à jour une fois la page offre créé#}
                     <div class="d-flex align-items-end justify-content-end">
-{#
-                        TODO Faire une page pour voir l'annonce
-#}
-                        <a class="mx-4" href="{{ path('company_show', {'slug': company.slug}) }}">Voir l'annonce</a>
-                        {% if application.count == 0 %}
-                        <p class="my-0">{{ application.count }} Candidature </p>
-                        {% else %}
-                        <p class="my-0">{{ application.count }} Candidatures </p>
-                        {% endif %}
+                        <a class="mx-4" href="{{ path('offer_show', {'id': application.0.id}) }}">Voir l'offre</a>
+                            <p class="my-0"><strong>{{ application.count }}</strong> Candidature(s) </p>
                     </div>
                 </div>
             </div>
@@ -54,5 +47,6 @@
             <div class="profile-offer mx-4 my-3 py-lg-3">
                 <p>Cette entreprise n'a pas d'offres actives</p>
             </div>
+            {% endif %}
     {% endfor %}
 {% endblock %}

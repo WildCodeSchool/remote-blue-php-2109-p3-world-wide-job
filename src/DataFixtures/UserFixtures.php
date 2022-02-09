@@ -16,6 +16,26 @@ class UserFixtures extends Fixture
         ['role' => 'ROLE_STUDENT_COMPLETED', 'user' => 'student']
     ];
 
+    public const FIRSTNAME = [
+        'Naim',
+        'Samuel',
+        'Ismael',
+        'Pierre',
+        'Florian',
+        'Romain',
+        'Valene'
+    ];
+
+    public const LASTNAME = [
+        'Jhuboo',
+        'Dupont',
+        'Le Tellier',
+        'Duplantier',
+        'Malotino',
+        'Reno',
+        'Depardieu'
+    ];
+
     private UserPasswordHasherInterface $passwordHasher;
 
     public function __construct(UserPasswordHasherInterface $passwordHasher)
@@ -26,37 +46,40 @@ class UserFixtures extends Fixture
     public function load(ObjectManager $manager): void
     {
         foreach (self::USERROLES as $role) {
-            $maxUser = 35;
-            for ($i = 0; $i <= $maxUser; $i++) {
-                $user = new User();
-                $user->setEmail($role['user'] . $i . '@gmail.com');
-                $hashedPassword = $this->passwordHasher->hashPassword(
-                    $user,
-                    'password'
-                );
-                $user->setPassword($hashedPassword)
-                    ->setRoles([$role['role']])
-                    ->setCivility('Monsieur')
-                    ->setFirstName('Jean')
-                    ->setLastname('Dupont')
-                    ->setBirthdate(new DateTime('2002-10-12'))
-                    ->setPhone(0665575533)
-                    ->setAdress1('333 rue de la gerla')
-                    ->setAdress2('bis terrain du moulin')
-                    ->setCity('Saint Siméon de Bressieux')
-                    ->setZip('38870')
-                    ->setCountry('France')
-                    ->setLastConnection();
-                $this->addReference($role['role'] . '_' . $i, $user);
-                $manager->persist($user);
+            $counter = 0;
+            foreach (self::FIRSTNAME as $firstname) {
+                foreach (self::LASTNAME as $lastname) {
+                    $user = new User();
+                    $user->setEmail($role['user'] . $counter . '@gmail.com');
+                    $hashedPassword = $this->passwordHasher->hashPassword(
+                        $user,
+                        'password'
+                    );
+                    $user->setPassword($hashedPassword)
+                        ->setRoles([$role['role']])
+                        ->setCivility('Monsieur')
+                        ->setFirstName($firstname)
+                        ->setLastname($lastname)
+                        ->setBirthdate(new DateTime('2002-10-12'))
+                        ->setPhone(0665575533)
+                        ->setAdress1('333 rue de la gerla')
+                        ->setAdress2('bis terrain du moulin')
+                        ->setCity('Saint Siméon de Bressieux')
+                        ->setZip('38870')
+                        ->setCountry('France')
+                        ->setLastConnection();
+                    $this->addReference($role['role'] . '_' . $counter, $user);
+                    $manager->persist($user);
+                    $counter++;
+                };
             };
-            $user = new User();
-            $user->setEmail('admin@gmail.com');
-            $hashedPassword = $this->passwordHasher->hashPassword(
-                $user,
-                'admin'
-            );
         };
+        $user = new User();
+        $user->setEmail('admin@gmail.com');
+        $hashedPassword = $this->passwordHasher->hashPassword(
+            $user,
+            'admin'
+        );
         $user->setPassword($hashedPassword)
             ->setRoles(['ROLE_ADMIN'])
             ->setCivility('Monsieur')

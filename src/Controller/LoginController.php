@@ -85,6 +85,10 @@ class LoginController extends AbstractController
             $security->isGranted('ROLE_COMPANY')
         ) {
             return new RedirectResponse($urlGenerator->generate('registration_company'));
+        } elseif (
+            $security->isGranted('ROLE_ADMIN')
+        ) {
+            return new RedirectResponse($urlGenerator->generate('admin_home_index'));
         } else {
             return $this->redirectToCompletedAccount();
         }

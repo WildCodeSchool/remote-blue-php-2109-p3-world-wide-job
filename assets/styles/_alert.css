@@ -1,0 +1,10 @@
+.alert-base {
+    margin-left: 271px
+}
+
+@media screen and (max-width: 992px) {
+    .alert-base {
+        width: 60%;
+        margin: auto;
+    }
+}

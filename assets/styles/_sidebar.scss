@@ -1,8 +1,11 @@
 .sidebar-container {
-    background-color: $gray; //!important;
+    background-color: $light; //!important;
     height: 100%;
-    width: 300px;
+    width: 240px;
     top: 54px;
+    @include media-breakpoint-down(xxl){
+        display: none;
+    }
 }
 
 .img-profil {
@@ -13,7 +16,7 @@
     height: 150px;
     margin: 0 auto 10px 3%;
     width: 150px;
-
+    object-fit: contain;
 }
 
 .img-logo {
@@ -27,21 +30,24 @@
 .nav-contain {
     li {
         background-color: $secondary;
-        height: 40px;
+        min-height: 40px;
         margin-bottom: 20px;
         margin-top: 20px;
         padding: 5px;
-
+        max-width: 90%;
         a {
-            color: $black;
+            color: color-contrast($secondary);
             margin-left: 3%;
         }
     }
 }
 
 
-.activelink {
-    background-color: $primary; //!important;
+#activelink {
+    background-color: $activeLink; //!important;
+    a {
+        color: color-contrast($activeLink);
+    }
 }
 
 

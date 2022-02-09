@@ -4,14 +4,12 @@
 }
 
 .home-background-image {
-    color: #fffbfb;
     background: #d3d3d3 no-repeat fixed center center;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
 }
-
 
 .card-introduction {
     color: white;
@@ -21,8 +19,13 @@
 }
 
 .card-text {
+    color: white;
     text-align: center;
     font-size: 0.813rem;
+}
+
+.linkWWJ {
+    color: white;
 }
 
 .card-create {
@@ -66,6 +69,7 @@
 }
 
 .btn.home {
+    display: inline-block;
     background-color: #0861cd;
     color: white;
     height: 2.625rem;
@@ -73,6 +77,12 @@
     margin: 0.625rem 3.75rem;
     box-shadow: 0px 4px 4px #000;
     font-size: 1.563rem;
+    cursor: pointer;
+    transition: background-color 0.5s, color 0.5s;
+}
+
+.btn.home:hover {
+    background-color: #09284e;
 }
 
 .btn-img{
