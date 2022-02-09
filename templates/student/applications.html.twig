@@ -6,52 +6,55 @@
     <img src="{{ asset('build/images/student2-banner.jpg') }}" class="profile-banner" alt="profile banner">
 {% endblock %}
 {% block picture %}
-    <div class="profile-title">
+    <div class="profile-title text-black">
         <img src="{{ vich_uploader_asset(student) }}" class="profile-picture" alt="{{ student.user.firstname }}">
         <h2 class="profile-name mt-lg-4">{{ student.user.firstname }} {{ student.user.lastname }}</h2>
     </div>
 {% endblock %}
 
 {% block profileBottom %}
-    <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+
+      <ul class="nav nav-pills mb-3 mx-4" id="pills-tab" role="tablist">
         <li class="nav-item" role="presentation">
-            <button class="application-button btn btn-primary shadow" id="pills-standby-tab" data-bs-toggle="pill" data-bs-target="#standby"
+            <button class="application-button btn btn-primary shadow active" id="pills-standby-tab" data-bs-toggle="pill" data-bs-target="#standby"
                     type="button" role="tab" aria-controls="pills-standby" aria-selected="false">En attente</button>
         </li>
         <li class="nav-item" role="presentation">
-            <button class="application-button btn btn-primary shadow" id="pills-validate-tab" data-bs-toggle="pill" data-bs-target="#validate"
+            <button class="application-button btn btn-primary shadow " id="pills-validate-tab" data-bs-toggle="pill" data-bs-target="#validate"
                     type="button" role="tab" aria-controls="pills-validate" aria-selected="true">Validée(s)</button>
         </li>
         <li class="nav-item" role="presentation">
             <button class="application-button btn btn-primary shadow" id="pills-rejected-tab" data-bs-toggle="pill" data-bs-target="#rejected"
                     type="button" role="tab" aria-controls="pills-rejected" aria-selected="false">Rejetée(s)</button>
         </li>
-    </ul>
+      </ul>
 
-
-
-    <div class="tab-content" id="pills-TabContent">
+     <div class="tab-content mx-4" id="pills-TabContent">
         {% set items = [
-            {'status': 1, 'id': 'validate', 'class': 'show active'},
-            {'status': 2, 'id': 'standby', 'class': ''},
+            {'status': 1, 'id': 'validate', 'class': ''},
+            {'status': 2, 'id': 'standby', 'class': 'show active'},
             {'status': 3, 'id': 'rejected', 'class': ''},
         ] %}
         {% for item in items %}
             <div class="tab-pane fade {{ item.class }}" id="{{ item.id }}" role="tabpanel"
                  aria-labelledby="pills-validate-tab">
                 {% for application in student.applications|filter(application => application.status == item.status) %}
-                    <div class="card text-center shadow p-3 mb-5 bg-body rounded">
+                    <div class="card text-center text-black shadow p-3 mb-5 bg-body rounded">
                        <div class="bg-body rounded">
                             <div class="card-body">
                                 <h3 class="card-title">{{ application.offer.name }}</h3>
                                 <h4 class="profile-name text-center mt-lg-4">{{ application.offer.company.companyName }}</h4>
                                 <img src="{{ vich_uploader_asset(application.offer.company) }}" class="comp-picture"
                                      alt="">
+                                <a class="view btn btn-primary shadow" href="{{ path("offer_show", {"id": application.offer.id}) }}">Voir l'offre</a>
                             </div>
                         </div>
                     </div>
+                    {% else %}
+                        <p class="text-center text-black">Vous n'avez pas de candidature(s) en cours.</p>
                 {% endfor %}
             </div>
         {% endfor %}
-    </div>
+     </div>
+
 {% endblock %}
