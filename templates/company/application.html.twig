@@ -8,7 +8,7 @@
 {% block filters %}
 {% endblock %}
 {% block body %}
-    <div class="filterBar shadow pt-3">
+    <div class="filterBar-candidate shadow pt-3 d-flex justify-content-center">
         <div class="filterCity">
             {{ form_start(form) }}
             {{ form_widget(form.searchStudent) }}
@@ -73,6 +73,13 @@
                             <button class="btn-close closeOffer"></button>
                             {% include 'student/_cv.html.twig' with {'student': candidature.student} %}
 
+                                <div class="jobSubInfoContainer d-flex flex-column align-items-start">
+                                    <h3 class="jobTitle offer-name text-primary mb-1">  {{ candidature.student.user.lastname }} {{ candidature.student.user.firstname }}</h3>
+                                    <h4 class="jobLocation offer-localisation  mt-1 mb-0">{{ candidature.student.user.city }}
+                                        ({{ candidature.student.user.zip }}
+                                        )</h4>
+                                    <h4 class="jobType offer-formation mb-0"> {{ candidature.student.school.schoolName }} </h4>
+                                    <h4 class="jobType offer-formation mb-0"> {{ candidature.offer.name }} </h4>
                             <hr>
                             <div class="d-flex">
                                 <div class="alert-success h-100 p-1 rounded w-25 d-none accept-label text-center"
