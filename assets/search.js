@@ -15,18 +15,6 @@ document.addEventListener('DOMContentLoaded', () => {
     $('.select-multiple').select2();
 });
 
-openFilters.addEventListener('click', () => {
-    filters.classList.add('show');
-});
-
-closeSearch.addEventListener('click', () => {
-    filters.classList.remove('show');
-});
-
-closeFilters.addEventListener('click', () => {
-    filters.classList.remove('show');
-});
-
 function addToFavorite(event) {
     event.preventDefault();
     const favoriteLink = event.currentTarget;
@@ -105,3 +93,15 @@ for (const element of smallOffers) {
 
 addFavorite
     .forEach((a) => a.addEventListener('click', addToFavorite));
+
+openFilters.addEventListener('click', () => {
+    filters.classList.add('show');
+});
+
+closeSearch.addEventListener('click', () => {
+    filters.classList.remove('show');
+});
+
+closeFilters.addEventListener('click', () => {
+    filters.classList.remove('show');
+});
