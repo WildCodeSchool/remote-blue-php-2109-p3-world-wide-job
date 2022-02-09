@@ -16,7 +16,7 @@
     </div>
     <div class="profile-presentation position-relative">
         <h3>Présentation</h3>
-        <p>{{ school.schoolDesc }}</p>
+        <p>{{ school.schoolDesc|raw }}</p>
         {% if app.user == school.user %}
         <a class="btn btn-edit update-edit text-end" style="padding: 10px" href="{{ path('school_edit', {'slug': school.slug}) }}"> <i class="fas fa-pen me-1"></i> </a>
         {% endif %}
