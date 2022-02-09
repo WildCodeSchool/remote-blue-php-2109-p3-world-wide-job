@@ -67,7 +67,7 @@
                         <button class="btn-primary text-white rounded">Supprimer</button>
                     </form>
                     <div class="descDetails">Détail de l'offre :</div>
-                    <p class="descOffer">{{ Description }}
+                    <p class="descOffer">{{ offer.longDescription|raw }}
                     </p>
                     <h5 class="descDate">{% set difference = date('now').diff(date(offer.dateOfPublication)) %}
                         {% set left_days = difference.days %}
