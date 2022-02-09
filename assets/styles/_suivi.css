@@ -13,6 +13,15 @@
     text-align: center;
 }
 
+.profile-student {
+    background-color: #fffbfb;
+    box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.35);
+    border-radius: 7px;
+    padding: 7px;
+    max-width: 700px;
+    margin-top: 30px;
+}
+
 .color_1 {
     width: 100%;
     height: 30px;
