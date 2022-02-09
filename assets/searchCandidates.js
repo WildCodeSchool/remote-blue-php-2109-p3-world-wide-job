@@ -1,54 +1,16 @@
-require('select2');
+
 
 const largeOffers = document.getElementsByClassName('largeOffer');
 const smallOffers = document.getElementsByClassName('smallOffer');
 const closeOffer = document.getElementsByClassName('closeOffer');
 const applyButtons = document.querySelectorAll('[data-apply]');
 const addFavorite = document.querySelectorAll('[data-favorite]');
-const $ = require('jquery');
+
 
 document.addEventListener('DOMContentLoaded', () => {
     $('.select-multiple').select2();
 });
 
-function addToFavorite(event) {
-    event.preventDefault();
-    const favoriteLink = event.currentTarget;
-    const link = favoriteLink.href;
-    fetch(link)
-        .then((res) => res.json())
-        .then((res) => {
-            if (res.isInFavorite) {
-                // Ajout d'un message au clic si possible
-                favoriteLink.innerHTML = 'Retirer';
-                favoriteLink.classList.remove('btn-primary');
-                favoriteLink.classList.add('btn-success');
-            } else {
-                favoriteLink.classList.add('btn-primary');
-                favoriteLink.classList.remove('btn-success');
-                favoriteLink.innerHTML = 'Enregistrer';
-            }
-        });
-}
-
-function jobApply(event) {
-    event.preventDefault();
-    const applyLink = event.currentTarget;
-    const link = applyLink.href;
-    fetch(link)
-        .then((res) => res.json())
-        .then((res) => {
-            if (res.isApplied) {
-                // eslint-disable-next-line no-alert
-                alert('Vous avez déjà postulé');
-            } else {
-                applyLink.innerHTML = 'Postulé';
-                // eslint-disable-next-line
-                applyLink.outerHTML = '<p class=\'btn-success text-white text-center rounded descApply\'>' + applyLink.innerHTML + '</p>';
-            }
-        });
-}
-applyButtons.forEach((element) => element.addEventListener('click', jobApply));
 
 function load1stContent(array, array2) {
     array[0].classList.add('show');
@@ -87,5 +49,4 @@ for (const element of smallOffers) {
     });
 }
 
-addFavorite
-    .forEach((a) => a.addEventListener('click', addToFavorite));
+
