@@ -33,8 +33,8 @@
                         <div class="card rounded sha dow smallOffer" id="smallOffer{{ candidature.id }}">
                             <div class="card-body smallCard d-flex flex-row align-items-center">
                                 <div class="job-profil-Container me-2">
-                                    <img class="profil-offer-photo mt-0 " src="{{ candidature.student.picture }}"
-                                         alt="logo entreprise">
+                                    <img class="profil-offer-photo mt-0 " src="{{ vich_uploader_asset(candidature.student) }}"
+                                         alt="photo etudiante">
                                 </div>
                                 <div class="jobInfoContainer">
 
