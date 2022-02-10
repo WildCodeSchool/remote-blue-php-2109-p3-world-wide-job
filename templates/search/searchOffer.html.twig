@@ -53,7 +53,7 @@
                                 </h4>
                                 <h5 class="jobDate">{% set difference = date('now').diff(date(offer.dateOfPublication)) %}
                                     {% set left_days = difference.days %}
-                                    Publié
+                                    Publiée
                                     {% if left_days == 1 %}
                                         il y a 1 jour
                                     {% elseif left_days == 0 %}
@@ -100,7 +100,7 @@
                 </div>
                 <h5 class="descDate">{% set difference = date('now').diff(date(offer.dateOfPublication)) %}
                     {% set left_days = difference.days %}
-                    Publié
+                    Publiée
                     {% if left_days == 1 %}
                         il y a 1 jour
                     {% elseif left_days == 0 %}
