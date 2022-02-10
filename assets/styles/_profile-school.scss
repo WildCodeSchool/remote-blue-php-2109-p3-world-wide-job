@@ -1,5 +1,7 @@
 .profile-school-student-picture {
     width: 5rem;
+    height: 5rem;
+    object-fit: cover;
 }
 
 .profile-school-students {
@@ -24,5 +26,7 @@
 
     .profile-school-student-picture {
         width: 8rem;
+        height: 8rem;
+        object-fit: cover;
     }
 }
