@@ -199,8 +199,9 @@ class OfferController extends AbstractController
     ): Response {
         $student = $studentRepository->findOneBy(['user' => $this->getUser()]);
         $referer = $request->headers->get('referer');
-        $referer = str_replace("http://127.0.0.1:8000", "", $referer);
-        $referer = str_replace("http://world-wide-job.wblg5200.odns.fr", "", $referer);
+        $refererLength = strlen($referer);
+        $routeLength = strlen("/etudiant/" . $student->getSlug() . "/favoris");
+        $referer = substr($referer, $refererLength - $routeLength, $refererLength);
         if ($student->isInFavorite($offer)) {
             $student->removeFavorite($offer);
         } else {
