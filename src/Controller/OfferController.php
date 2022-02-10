@@ -117,7 +117,7 @@ class OfferController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $offer->setCompany($company)
                 ->setDateOfPublication(new DateTime());
-            $offer->setStatus(1);
+            $offer->setStatus(2);
             $entityManager->persist($offer);
             $entityManager->flush();
 

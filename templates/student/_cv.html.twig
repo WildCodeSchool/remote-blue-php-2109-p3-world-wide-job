@@ -2,7 +2,8 @@
     <div class="grid-container">
         <div class="zone-1">
             <div class="toCenter">
-                <div class="profile" style="backgroud-image: url('{{ vich_uploader_asset(student.curriculum) }}')">
+                <div class="profile">
+                    <img src="{{ vich_uploader_asset(app.user.student) }}" class="img-profil" alt="">
                 </div>
             </div>
             <div class="contact-box">
