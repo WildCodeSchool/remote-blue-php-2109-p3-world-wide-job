@@ -1,12 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello CurriculumController!{% endblock %}
+{% block title %}Mon CV{% endblock %}
 {% block javascripts %}
     {{ parent() }}
     {{ encore_entry_script_tags('displayform') }}
 {% endblock %}
 {% block body %}
-    <h1 class="curriculum-title text-center">Créer ton CV !</h1>
+    <h2 class="curriculum-title text-center">{{ app.user.student.curriculum ? 'Modifie ton CV !' : 'Crée ton CV !' }}</h2>
     <div class="curriculum-form">
         {{ form_start(form, {'attr': {'class': 'curriculum-general'}}) }}
         <div class="curriculum-content">
