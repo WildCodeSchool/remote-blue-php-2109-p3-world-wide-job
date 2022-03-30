@@ -135,7 +135,6 @@ class CompanyController extends AbstractController
         $companyForm = $this->createForm(CompanyType::class, $company);
         $companyForm->handleRequest($request);
 
-
         $userForm = $this->createForm(UserEditType::class, $company->getUser());
         $userForm->handleRequest($request);
 
@@ -146,6 +145,7 @@ class CompanyController extends AbstractController
             $company->setSlug($this->slugify->generate($company->getCompanyName()));
             $entityManager->flush();
             $this->addFlash('success', 'Votre profil a été modifié');
+            return $this->redirectToRoute('company_edit', ['slug' => $company->getSlug()]);
         }
 
         if ($userForm->isSubmitted() && $userForm->isValid()) {

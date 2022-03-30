@@ -2,7 +2,8 @@
     <div class="grid-container">
         <div class="zone-1">
             <div class="toCenter">
-                <div class="profile" style="backgroud-image: url('{{ vich_uploader_asset(student.curriculum) }}')">
+                <div class="profile">
+                    <img src="{{ vich_uploader_asset(student) }}" class="img-profil" alt="">
                 </div>
             </div>
             <div class="contact-box">
@@ -49,7 +50,7 @@
                         <h2>A propos de moi</h2>
                     </div>
                 </div>
-                <div class="desc">{{ student.description }}</div>
+                <div class="desc">{{ student.description|raw }}</div>
             </div>
             <div class="group-2">
                 <div class="title">

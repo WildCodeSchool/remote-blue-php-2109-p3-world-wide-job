@@ -117,7 +117,7 @@ class OfferController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $offer->setCompany($company)
                 ->setDateOfPublication(new DateTime());
-            $offer->setStatus(1);
+            $offer->setStatus(2);
             $entityManager->persist($offer);
             $entityManager->flush();
 
@@ -199,8 +199,9 @@ class OfferController extends AbstractController
     ): Response {
         $student = $studentRepository->findOneBy(['user' => $this->getUser()]);
         $referer = $request->headers->get('referer');
-        $referer = str_replace("http://localhost:8000", "", $referer);
-        $referer = str_replace("https://mumakil-projet3-world-wide-job.phprover.wilders.dev/", "", $referer);
+        $refererLength = strlen($referer);
+        $routeLength = strlen("/etudiant/" . $student->getSlug() . "/favoris");
+        $referer = substr($referer, $refererLength - $routeLength, $refererLength);
         if ($student->isInFavorite($offer)) {
             $student->removeFavorite($offer);
         } else {

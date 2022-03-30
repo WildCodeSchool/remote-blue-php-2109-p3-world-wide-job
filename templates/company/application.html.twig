@@ -28,16 +28,14 @@
         {% if candidatures %}
             <div class="searchGrid">
                 <div class="smallSearchCard">
-
                     {% for candidature in candidatures %}
                         <div class="card rounded sha dow smallOffer" id="smallOffer{{ candidature.id }}">
                             <div class="card-body smallCard d-flex flex-row align-items-center">
                                 <div class="job-profil-Container me-2">
-                                    <img class="profil-offer-photo mt-0 " src="{{ candidature.student.picture }}"
-                                         alt="logo entreprise">
+                                    <img class="profil-offer-photo mt-0 " src="{{ vich_uploader_asset(candidature.student) }}"
+                                         alt="photo etudiante">
                                 </div>
                                 <div class="jobInfoContainer">
-
                                     <div class="jobSubInfoContainer d-flex flex-column align-items-start">
                                         <h3 class="jobTitle offer-name text-primary mb-1">  {{ candidature.student.user.lastname }} {{ candidature.student.user.firstname }}</h3>
                                         <h4 class="jobLocation offer-localisation  mt-1 mb-0">{{ candidature.student.user.city }}
@@ -72,9 +70,8 @@
                         <div class="card-body largeCard d-flex flex-column">
                             <button class="btn-close closeOffer"></button>
                             {% include 'student/_cv.html.twig' with {'student': candidature.student} %}
-
                                 <div class="jobSubInfoContainer d-flex flex-column align-items-start">
-                                    <h3 class="jobTitle offer-name text-primary mb-1">  {{ candidature.student.user.lastname }} {{ candidature.student.user.firstname }}</h3>
+                                    <h3 class="jobTitle offer-name text-primary mb-1 mt-2">  {{ candidature.student.user.lastname }} {{ candidature.student.user.firstname }}</h3>
                                     <h4 class="jobLocation offer-localisation  mt-1 mb-0">{{ candidature.student.user.city }}
                                         ({{ candidature.student.user.zip }}
                                         )</h4>
@@ -111,7 +108,7 @@
                 {% endfor %}
             </div>
         {% else %}
-            <div class="card rounded sha dow smallOffer">
+            <div class="card rounded sha dow smallOffer mx-auto">
                 <div class="card-body smallCard d-flex flex-row align-items-center">
                     <div class="jobInfoContainer">
                         <div class="jobSubInfoContainer d-flex flex-column align-items-start">
