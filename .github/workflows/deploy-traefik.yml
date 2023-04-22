@@ -14,4 +14,4 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           host: ${{ secrets.SSH_HOST }}
           password: ${{ secrets.SSH_PASSWORD }}
-          script: 'cd && cd traefik/deploy && bash ./php-projects.sh ${{ vars.PROJECT_NAME }} ${{ vars.PROJECT_NAME }}'
+          script: 'cd && cd traefik/deploy && bash ./php-projects.sh ${{ github.event.repository.name }} ${{ vars.PROJECT_NAME }}'
