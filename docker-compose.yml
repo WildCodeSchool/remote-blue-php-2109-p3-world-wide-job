@@ -18,7 +18,7 @@ services:
       - "traefik.enable=true"
       - "traefik.docker.network=proxy"
       - "traefik.http.routers.${PROJECT_NAME:-project}-secure.entrypoints=websecure"
-      - "traefik.http.routers.${PROJECT_NAME:-project}-secure.rule=Host(`${HOST:-localhost}`)"
+      - "traefik.http.routers.${PROJECT_NAME:-project}-secure.rule=Host(`${HOST:-localhost}`) || (Host(`demo.${HOST:-localhost}`))"
 
 networks:
   proxy:
